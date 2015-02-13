@@ -1,0 +1,13 @@
+{% extends "index_base.html" %}
+
+{% block header_scripts %}
+<style>
+header {
+  background: url(/static/images/699686_original.jpg) no-repeat center center;
+}
+</style>
+{% endblock %}
+
+{% block footer_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mobile-app.js') }}"></script>
+{% endblock %}

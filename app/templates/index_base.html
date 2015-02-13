@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block header %}
+    <header>
+        <div id="bg_video"></div>
+        <i id="i_scroll_down" class="icon-arrow-down animated infinite pulse"></i>
+        <div class="titles">
+            <h1>apres-work.co</h1>
+            <h3>Катаем по будням после работы или учебы</h3>
+        </div>
+        <div class="social">
+            <a class="vk" href="http://vk.com/apresworkco" target="_blank"><i class="icon-vk"></i></a>
+            <a class="instagram" href="http://instagram.com/apresworkco" target="_blank"><i class="icon-instagram"></i></a>
+        </div>
+    </header>
+{% endblock %}
+
+
+{% block content %}
+    <section class="instagram-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="instagram-content">
+                        <h3>Последние фото</h3>
+                        <div class="row photos-wrap">
+                            <!-- Instafeed target div -->
+                            <div id="instafeed"></div>
+                            <!-- The following HTML will be our template inside instafeed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container site-description">
+            <div class="row">
+                <div class="col-xs-12 col-lg-12">
+                    <h4>apres-work это</h4>
+                    <p class="about-text">
+                        почти что калька с французского apres-ski, только это не алкопати после катания,
+                        а катание по будням, после работы или учебы.<br> 
+                        <strong>Основная идея - скидка за катание группой</strong>.<br>Работает просто - набирается группа от 8-10 чел и каждый получает скидку на катание или спец.бонус от спота.
+<br><br>
+Как все происходит: за 3 дня открываем голосование во вконтакте куда едем, за день голосование закрывается и становится доступна страница для записи. <br>Если едешь - оставляй на странице имя и номер телефона. Как только наберется группа, ты сразу получишь смс с кодом. Этот код называешь при оплате в парке или на кассе и получаешь скидку.<br><br>
+Вот так вот просто: нажал на кнопку - получил скидку.</p>
+                    <div class="row" style="margin-top:50px;">
+                        <h5>Мы работаем над стартом проекта, а вы пока что можете подписаться на новости, чтобы узнать обо всем первыми!</h5>
+                    </div>
+                    <div class="row contact-form">
+                        <form action="/subscribe" method="POST" id="form_contact">
+                            <input name="_csrf_token" type=hidden value="{{ csrf_token() }}">
+                            {#<input class="input-lg" name="name" type="text" id="inp_name" placeholder="Имя">#}
+                            {#<input class="input-lg" name="phone" type="tel" id="inp_phone" placeholder="Телефон">#}
+                            <div class="form-group col-xs-12 col-sm-12 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
+                                <label for="email">E-mail:</label>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-3">
+                                <input type="email" class="input-lg" name="email" />
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 col-lg-2">
+                                <button class="contact-now-btn" type="submit" id="btn_wannago" style="margin-top:0px;">Подписаться</button>
+                            </div>
+                            <div class="form-group messages col-xs-10 col-sm-10 col-md-10 col-lg-10 col-sx-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a class="footer-link" href="/webkamery">Вебкамеры</a>
+            <a class="footer-link" href="/gdepokatatsya">Где покататься</a>
+            <div class="footer-social-links">
+                <a class="vk" href="http://vk.com/apresworkco"><i class="icon-vk"></i></a>
+                <a class="instagram" href="http://instagram.com/apresworkco"><i class="icon-instagram"></i></a>
+            </div>
+            {% comment %}
+            <div class="visible-xs-block">xs</div>
+            <div class="visible-sm-block">sm</div>
+            <div class="visible-md-block">md</div>
+            <div class="visible-lg-block">lg</div>
+            {% endcomment %}
+        </div>
+    </footer>
+{% endblock %}
