@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Веб-камеры курортов - apres-work.co{% endblock %}
+{% block description %}Все веб-камеры самых популярных курортов СПб и Ленинградской области на одной странице{% endblock %}
+{% block url %}http://apres-work.co/webkamery{% endblock %}
+{% block image %}{{ url_for('static', filename='images/webkamery-image.jpg')}}{% endblock %}
+
+{% block content %}
+<section class="webcameras">
+	<div class="container">
+		<h3>Веб-камеры горнолыжных центров и парков СПб</h3>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h4>Игора <a href="http://igora.biz" target="_blank"><i class="icon-earth"></i></a><a href="http://vk.com/club237187" target="_blank"><i class="icon-vk"></i></a></h4>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://webcam.igora.biz/webcam/images/cam_01.jpg?{{ rand }}" alt="Игора, камера 1">
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://webcam.igora.biz/webcam/images/cam_02.jpg?{{ rand }}" alt="Игора, камера 2">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h4>Золотая долина <a href="http://igora.biz" target="_blank"><i class="icon-earth"></i></a><a href="http://vk.com/club237187" target="_blank"><i class="icon-vk"></i></a></h4>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://www.zoldol.ru/camera/cam0.jpg?{{ rand }}" alt="Золотая долина, камера 1">
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://www.zoldol.ru/camera/cam1.jpg?{{ rand }}" alt="Золотая долина, камера 2">
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://www.zoldol.ru/camera/cam2.jpg?{{ rand }}" alt="Золотая долина, камера 3">
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://www.zoldol.ru/camera/cam5.jpg?{{ rand }}" alt="Золотая долина, камера 4">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h4>Туутари парк</h4>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<img src="http://tootary.ru/camera/artyomushka-ok.jpg?{{ rand }}" alt="Туутари парк, камера 1">
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
