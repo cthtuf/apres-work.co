@@ -300,6 +300,6 @@ a.footer-link:hover {
     z-index: 1;
 }
 
-.webcamera-reload:hover{
+.desktop-client .webcamera-reload:hover{
   opacity: 1;
 }
