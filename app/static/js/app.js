@@ -62,13 +62,16 @@ var app = (function(){
             try {
                 subscribe_form.init();
                 instafeed.init(1660779127, '1660779127.682f757.ae522e0680a84182885d03115f5b23cf');
-                $('#bg_video').tubular({videoId: 'ajPPMBtqY1k'});
 
-                $('#i_scroll_down').on('click', function(){
-                    $('html, body').animate({
-                        scrollTop: $(".site-description").offset().top-20
-                    }, 600);
-                });
+                if($('body').hasClass('desktop-client')){
+                    $('#bg_video').tubular({videoId: 'ajPPMBtqY1k'});
+
+                    $('#i_scroll_down').on('click', function(){
+                        $('html, body').animate({
+                            scrollTop: $(".site-description").offset().top-20
+                        }, 600);
+                    });
+                }
                 $('#btn_wannago').removeAttr('disabled');
             } catch (e){
                 console.log('App init form exception: '+e.message);

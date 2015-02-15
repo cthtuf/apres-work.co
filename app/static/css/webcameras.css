@@ -1,0 +1,30 @@
+.webcameras h3, h4 {
+  color:#333;
+  padding:10px;
+}
+
+.webcameras img{
+  width:100%;
+  padding:10px;
+}
+
+.webcamera-image-block {
+  position: relative;
+}
+
+.webcamera-reload {
+    color: #fff;
+    cursor: pointer;
+    font-size: 50px;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -30px;
+    opacity: 0.3;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+
+.desktop-client .webcamera-reload:hover{
+  opacity: 1;
+}

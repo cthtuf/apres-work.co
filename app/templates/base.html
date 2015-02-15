@@ -14,10 +14,7 @@
     <title>{{ self.title() }}</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.min.css')}}">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -36,7 +33,7 @@
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <script type="text/javascript" src="{{ url_for('static', filename='js/modernizr.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/modernizr.min.js')}}"></script>
     {% block head_scripts %}{% endblock %}
 </head>
 <body class="{% if not request.MOBILE %}desktop-client{% else %}mobile-client{% endif %}">
@@ -59,10 +56,10 @@
                     <li {% if request.url_rule.endpoint == 'webkamery' %}class="active"{% endif %}><a href="{{ url_for('webkamery')}}">Веб-камеры <span class="sr-only">(current)</span></a></li>
                     <li {% if request.url_rule.endpoint == 'gdepokatatsya' %}class="active"{% endif %}><a href="{{ url_for('gdepokatatsya')}}">Где покататься</a></li>
                 </ul>
-                {#<ul class="nav navbar-nav navbar-right nav-social">#}
-                  {#  <li><a class="vk" href="http://vk.com/apresworkco" target="_blank"><i class="fa fa-vk"></i></a></li>#}
-                   {# <li><a class="instagram" href="http://instagram.com/apresworkco" target="_blank"><i class="fa fa-instagram"></i></a></li>#}
-                {#</ul>#}
+                <ul class="nav navbar-nav navbar-right nav-social">
+                    <li><a class="vk" href="http://vk.com/apresworkco" target="_blank"><i class="fa fa-vk"></i></a></li>
+                    <li><a class="instagram" href="http://instagram.com/apresworkco" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -71,9 +68,6 @@
     {% block header %}{% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}{% endblock %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/instafeed.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/libs.min.js') }}"></script>
     {% block footer_scripts %}{% endblock %}
 </body>
-
