@@ -3,15 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width,user-scalable=no">
     <meta charset="utf-8">
-    <meta property="og:title" content="apres-work.co: Сообщество будничных райдеров" />
-    <meta property="og:description" content="" />
-    <meta property="og:url" content="https://apres-work.co" />
-    <meta property="og:image" content="{{ url_for('static', filename='images/fuckthejob.png')}}" />
+    <meta property="og:title" content="{% block title %}{% endblock %}" />
+    <meta property="og:description" content="{% block description %}{% endblock %}" />
+    <meta property="og:url" content="{% block url %}{% endblock %}" />
+    <meta property="og:image" content="{% block image %}{% endblock %}" />
 
-    <meta name="title" content="apres-work.co: Сообщество будничных райдеров" />
-    <meta name="description" content="" />
-    <link rel="image_src" href="{{ url_for('static', filename='images/fuckthejob.png')}}" />
-    <title>apres-work.co</title>
+    <meta name="title" content="{{ self.title() }}" />
+    <meta name="description" content="{{ self.description() }}" />
+    <link rel="image_src" href="{{ self.image() }}" />
+    <title>{{ self.title() }}</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
@@ -44,7 +44,6 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/instafeed.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/tubular.js') }}"></script>
     {% block footer_scripts %}{% endblock %}
 </body>
 

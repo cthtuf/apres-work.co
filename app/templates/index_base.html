@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block title %}apres-work.co{% endblock %}
+{% block description %}apres-work co это комьюнити, где друзья катаются вместе, и при этом получают скидки на катание{% endblock %}
+{% block url %}http://apres-work.co{% endblock %}
+{% block image %}{{ url_for('static', filename='images/fuckthejob.png')}}{% endblock %}
+
 {% block header %}
     <header>
         <div id="bg_video"></div>
@@ -77,12 +82,6 @@
                 <a class="vk" href="http://vk.com/apresworkco"><i class="icon-vk"></i></a>
                 <a class="instagram" href="http://instagram.com/apresworkco"><i class="icon-instagram"></i></a>
             </div>
-            {% comment %}
-            <div class="visible-xs-block">xs</div>
-            <div class="visible-sm-block">sm</div>
-            <div class="visible-md-block">md</div>
-            <div class="visible-lg-block">lg</div>
-            {% endcomment %}
         </div>
     </footer>
 {% endblock %}

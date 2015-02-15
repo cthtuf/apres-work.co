@@ -5382,11 +5382,11 @@ h2 {
 
 @font-face {
   font-family: 'icomoon';
-  src:url('/static/fonts/icomoon/icomoon.eot?2quahi');
-  src:url('/static/fonts/icomoon/icomoon.eot?#iefix2quahi') format('embedded-opentype'),
-    url('/static/fonts/icomoon/icomoon.woff?2quahi') format('woff'),
-    url('/static/fonts/icomoon/icomoon.ttf?2quahi') format('truetype'),
-    url('/static/fonts/icomoon/icomoon.svg?2quahi#icomoon') format('svg');
+  src:url('/static/fonts/icomoon/icomoon.eot?-v8fdtu');
+  src:url('/static/fonts/icomoon/icomoon.eot?#iefix-v8fdtu') format('embedded-opentype'),
+    url('/static/fonts/icomoon/icomoon.woff?-v8fdtu') format('woff'),
+    url('/static/fonts/icomoon/icomoon.ttf?-v8fdtu') format('truetype'),
+    url('/static/fonts/icomoon/icomoon.svg?-v8fdtu#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -5453,6 +5453,34 @@ h2 {
   content: "\e93f";
 }
 
+.icon-location:before {
+  content: "\e947";
+}
+
+.icon-location2:before {
+  content: "\e948";
+}
+
+.icon-compass:before {
+  content: "\e949";
+}
+
+.icon-clock:before {
+  content: "\e94e";
+}
+
+.icon-clock2:before {
+  content: "\e94f";
+}
+
+.icon-stopwatch:before {
+  content: "\e952";
+}
+
+.icon-calendar:before {
+  content: "\e953";
+}
+
 .icon-mobile:before {
   content: "\e958";
 }
@@ -5465,8 +5493,68 @@ h2 {
   content: "\e95a";
 }
 
+.icon-spinner8:before {
+  content: "\e981";
+}
+
+.icon-spinner9:before {
+  content: "\e982";
+}
+
+.icon-key:before {
+  content: "\e98d";
+}
+
+.icon-lock:before {
+  content: "\e98f";
+}
+
+.icon-unlocked:before {
+  content: "\e990";
+}
+
+.icon-cog:before {
+  content: "\e994";
+}
+
+.icon-magic-wand:before {
+  content: "\e997";
+}
+
 .icon-trophy:before {
   content: "\e99e";
+}
+
+.icon-earth:before {
+  content: "\e9ca";
+}
+
+.icon-link:before {
+  content: "\e9cb";
+}
+
+.icon-flag:before {
+  content: "\e9cc";
+}
+
+.icon-eye:before {
+  content: "\e9ce";
+}
+
+.icon-heart:before {
+  content: "\e9da";
+}
+
+.icon-heart-broken:before {
+  content: "\e9db";
+}
+
+.icon-volume-medium:before {
+  content: "\ea27";
+}
+
+.icon-volume-mute2:before {
+  content: "\ea2a";
 }
 
 .icon-loop:before {
@@ -5489,6 +5577,10 @@ h2 {
   content: "\ea36";
 }
 
+.icon-new-tab:before {
+  content: "\ea7e";
+}
+
 .icon-share2:before {
   content: "\ea82";
 }
@@ -5500,6 +5592,8 @@ h2 {
 .icon-youtube3:before {
   content: "\ea99";
 }
+
+
 
 
 
@@ -5684,6 +5778,16 @@ a.footer-link:hover {
     text-decoration: none; }
     .footer-social-links a:hover {
       opacity: 1.0; }
+
+.webcameras h3, h4 {
+  color:#333;
+  padding:10px;
+}
+
+.webcameras img{
+  width:100%;
+  padding:10px;
+}
 
 /* animate css */
 

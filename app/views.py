@@ -63,7 +63,6 @@ def attend():
 
 @app.route('/subscribe', methods=["POST"])
 def subscribe():
-	time.sleep(10)
 	mc = mailchimp.Mailchimp('c3d906f578511669ed27c60ce4079630-us10')
 	try:
 		email = request.form['email']
@@ -76,3 +75,8 @@ def subscribe():
 	except mailchimp.Error, e:
 		return jsonify({'CODE' : '1', 'TEXT' : 'Ошибка подписки'})
 
+
+@app.route('/webkamery', methods=["GET"])
+#@mobile_template('{mobile/}webkamery.html')
+def webkamery():#template):
+    return render_template('webkamery.html', rand=random.randint(1,1000000))
