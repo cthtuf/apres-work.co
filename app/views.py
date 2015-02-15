@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from app import app
-from flask import render_template, request, jsonify, session, abort
+from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from flask.ext.mobility.decorators import mobile_template
 from smsc_api import SMSC
 import re
@@ -80,3 +80,7 @@ def subscribe():
 #@mobile_template('{mobile/}webkamery.html')
 def webkamery():#template):
     return render_template('webkamery.html', rand=random.randint(1,1000000))
+
+@app.route('/gdepokatatsya', methods=["GET"])
+def gdepokatatsya():
+	return redirect(url_for('index'))
