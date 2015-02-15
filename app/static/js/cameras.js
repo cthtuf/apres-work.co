@@ -8,6 +8,8 @@ var cameraimages = (function(){
 				a.search = "?p="+Math.random();
 				$(img).attr('src', a.href);
 			});
+
+			$('.masonry').masonry({ itemSelector : '.webcamera-image-block'});
 		}
 	}
 }());
