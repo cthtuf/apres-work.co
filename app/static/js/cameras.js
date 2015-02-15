@@ -9,7 +9,7 @@ var cameraimages = (function(){
 				$(img).attr('src', a.href);
 			});
 
-			$('.masonry').masonry({ itemSelector : '.webcamera-image-block'});
+			if($('body').hasClass('desktop-client')) $('.masonry').masonry({ itemSelector : '.webcamera-image-block'});
 		}
 	}
 }());
