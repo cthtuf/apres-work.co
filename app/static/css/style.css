@@ -90,11 +90,11 @@ h2 {
 
 .navbar { border-radius: 0; }
 .navbar-brand { padding:5px 15px;}
-
+.navbar-default .navbar-collapse { float:left; }
 
 .social {
   position: absolute;
-  top: 55px;
+  top: 25px;
   right: 50px;
   overflow: hidden; }
   .social a {
