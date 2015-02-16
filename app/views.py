@@ -3,12 +3,14 @@ from app import app
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from flask.ext.mobility.decorators import mobile_template
 from smsc_api import SMSC
+from datetime import datetime,timedelta
 import re
 import time
 import mailchimp
 
 import string
 import random
+from pyowm import OWM,timeutils #for weather
 
 def string_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
@@ -84,3 +86,24 @@ def webkamery():#template):
 @app.route('/gdepokatatsya', methods=["GET"])
 def gdepokatatsya():
 	return redirect(url_for('index'))
+
+@app.route('/getweather', methods=["GET"])
+def get_weather():
+	#owm = OWM(api_key='212261a0fa0f62fe41ed0a1ba84f6627', language='ru')
+	owm = OWM()
+	result = {}
+	#igora
+	igora_obs = owm.weather_at_id(490213)
+	igora_w = igora_obs.get_weather()
+	next_day = datetime.now() + timedelta(days=1)
+	next_3h = timeutils.next_three_hours()
+	igora_f = owm.three_hours_forecast('Sosnovo')
+	result['igora'] = {
+		'current' : igora_w.to_JSON(),
+		'forecast' : {
+			'in3h' : igora_f.get_weather_at(next_3h).to_JSON(),
+			'in24h' : igora_f.get_weather_at(next_day).to_JSON()
+		}
+	}
+	return jsonify(result)
+	

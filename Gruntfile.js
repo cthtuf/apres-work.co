@@ -19,6 +19,7 @@ module.exports = function(grunt) {
                 src: [
                     'app/static/css/lib/bootstrap.css',
                     'app/static/css/lib/font-awesome.css',
+                    'app/static/css/lib/weather-icons.css',
                     'app/static/css/lib/animate.css',
                     'app/static/css/base.css',
                     'app/static/css/instafeed.css',
