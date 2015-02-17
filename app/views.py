@@ -4,6 +4,7 @@ from flask import render_template, request, jsonify, session, abort, redirect, u
 from flask.ext.mobility.decorators import mobile_template
 from smsc_api import SMSC
 from datetime import datetime,timedelta
+from .forms import SubscriptionForm
 import re
 import time
 import mailchimp
@@ -12,28 +13,51 @@ import string
 import random
 from pyowm import OWM,timeutils #for weather
 
-def string_generator(size=6, chars=string.ascii_uppercase + string.digits):
-	return ''.join(random.choice(chars) for _ in range(size))
+weather_icons_map = {
+	'01d' : 'wi-day-sunny',
+	'01n' : 'wi-night-clear',
+	'02d' : 'wi-day-cloudy',
+	'02n' : 'wi-night-alt-cloudy',
+	'03d' : 'wi-cloud',
+	'03n' : 'wi-cloud',
+	'04d' : 'wi-cloudy',
+	'04n' : 'wi-cloudy',
+	'09d' : 'wi-day-showers',
+	'09n' : 'wi-night-alt-showers',
+	'10d' : 'wi-day-rain',
+	'10n' : 'wi-night-alt-rain',
+	'11d' : 'wi-day-lightning',
+	'11n' : 'wi-night-alt-lightning',
+	'13d' : 'wi-snow',
+	'13n' : 'wi-snow',
+	'50d' : 'wi-fog',
+	'50n' : 'wi-fog'
+}
 
-@app.before_request
-def csrf_protect():
-    if request.method in ["POST"]:
-        token = session.pop('_csrf_token', None)
-        if not token or token != request.form.get('_csrf_token'):
-            abort(403)
+#def string_generator(size=6, chars=string.ascii_uppercase + string.digits):
+#	return ''.join(random.choice(chars) for _ in range(size))
 
-def generate_csrf_token():
-    if '_csrf_token' not in session:
-        session['_csrf_token'] = string_generator(size=32)
-    return session['_csrf_token']
+#@app.before_request
+#def csrf_protect():
+#    if request.method in ["POST"]:
+#        token = session.pop('_csrf_token', None)
+#        if not token or token != request.form.get('_csrf_token'):
+#            abort(403)
 
-app.jinja_env.globals['csrf_token'] = generate_csrf_token 
+#def generate_csrf_token():
+#    if '_csrf_token' not in session:
+#        session['_csrf_token'] = string_generator(size=32)
+#    return session['_csrf_token']
+
+#app.jinja_env.globals['csrf_token'] = generate_csrf_token 
 
 @app.route('/')
 @app.route('/index')
 @mobile_template('{mobile/}index.html')
 def index(template):
-    return render_template(template)
+	form = SubscriptionForm()
+	return render_template(template,
+		form=form)
 
 @app.route('/attend', methods=["POST"])
 def attend():
@@ -65,13 +89,17 @@ def attend():
 
 @app.route('/subscribe', methods=["POST"])
 def subscribe():
-	mc = mailchimp.Mailchimp('c3d906f578511669ed27c60ce4079630-us10')
 	try:
-		email = request.form['email']
-		if not email:
-			return jsonify({'CODE' : '3', 'TEXT' : 'Не указан адрес электронной почты'})
-		mc.lists.subscribe('55fafc9548', {'email': email})
-		return jsonify({'CODE' : '0', 'TEXT' : 'Отлично! Чтобы подтвердить подписку, перейдите по ссылке в письме'})
+		form = SubscriptionForm()
+		if form.validate_on_submit():
+			mc = mailchimp.Mailchimp('c3d906f578511669ed27c60ce4079630-us10')		
+			email = form.email.data
+			if not email:
+				return jsonify({'CODE' : '3', 'TEXT' : 'Не указан адрес электронной почты'})
+			mc.lists.subscribe('55fafc9548', {'email': email})
+			return jsonify({'CODE' : '0', 'TEXT' : 'Отлично! Чтобы подтвердить подписку, перейдите по ссылке в письме'})
+		else:
+			return jsonify({'CODE' : '4', 'TEXT' : 'Неверный формат Email'})	
 	except mailchimp.ListAlreadySubscribedError:
 		return jsonify({'CODE' : '2', 'TEXT' : 'Вы уже подписаны'})
 	except mailchimp.Error, e:

@@ -2,6 +2,7 @@ from flask import Flask
 from flask.ext.mobility import Mobility
 
 app = Flask(__name__, static_url_path='/static')
+app.config.from_object('config')
 Mobility(app)
 from app import views
 

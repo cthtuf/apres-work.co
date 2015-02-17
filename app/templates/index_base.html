@@ -53,20 +53,21 @@
                     </div>
                     <div class="row contact-form">
                         <form action="/subscribe" method="POST" id="form_contact">
-                            <input name="_csrf_token" type=hidden value="{{ csrf_token() }}">
+                            {{ form.hidden_tag() }}
                             {#<input class="input-lg" name="name" type="text" id="inp_name" placeholder="Имя">#}
                             {#<input class="input-lg" name="phone" type="tel" id="inp_phone" placeholder="Телефон">#}
                             <div class="form-group col-xs-12 col-sm-12 col-md-1 col-md-offset-2 col-lg-1 col-lg-offset-3">
                                 <label for="email">E-mail:</label>
                             </div>
                             <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-3">
-                                <input type="email" class="input-lg" name="email" />
+                                {{ form.email(class_="input-lg")}}
+                                {#<input type="email" class="input-lg" name="email" />#}
                             </div>
                             <div class="form-group col-xs-12 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 col-lg-2">
                                 <button class="contact-now-btn" type="submit" id="btn_wannago" style="margin-top:0px;">Подписаться</button>
                             </div>
-                            <div class="form-group messages col-xs-10 col-sm-10 col-md-10 col-lg-10 col-sx-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"></div>
                         </form>
+                        <div class="form-group messages col-xs-10 col-sm-10 col-md-10 col-lg-10 col-sx-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"></div>
                     </div>
                 </div>
             </div>
