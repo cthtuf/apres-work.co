@@ -5,6 +5,7 @@ Flask-Login==0.2.11
 Flask-Mail==0.9.1
 Flask-Mobility==0.1.1
 Flask-OpenID==1.2.4
+Flask-PyMongo==0.3.0
 Flask-SQLAlchemy==2.0
 Flask-WTF==0.11
 Flask-WhooshAlchemy==0.56
@@ -21,11 +22,14 @@ coverage==4.0a4
 decorator==3.4.0
 distribute==0.6.24
 docopt==0.4.0
+flask-mongo-sessions==0.2.1
 flipflop==1.0
 guess-language==0.2
 itsdangerous==0.24
 mailchimp==2.0.9
 pbr==0.10.7
+pymongo==2.8
+pyowm==2.2.0
 python-openid==2.2.5
 pytz==2014.10
 requests==2.5.1
