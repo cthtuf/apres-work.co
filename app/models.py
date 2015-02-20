@@ -28,6 +28,7 @@ class Location(db.Model):
 
 class Subscription(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	dt = db.Column(db.DateTime)
 	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 	location = db.relationship("Location", foreign_keys=[location_id])
 	email = db.Column(db.String(120), index=True, unique=True)
@@ -42,6 +43,8 @@ class Subscription(db.Model):
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	dt_registration = db.Column(db.DateTime)
+	dt_last_action = db.Column(db.DateTime)
 	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 	location = db.relationship("Location", foreign_keys=[location_id])
 	phone = db.Column(db.String(10), index=True, unique=True)
@@ -67,18 +70,21 @@ class Resort(db.Model):
 	url_fb = db.Column(db.String(255))
 	la = db.Column(db.Float)
 	lo = db.Column(db.Float)
+	owm_id = db.Column(db.Integer)
 
 	def __repr__(self):
-		return '<Resort id=%r, location_id=%r, name=%r, url_site=%r, la=%r, lo=%r)>' % (
+		return '<Resort id=%r, location_id=%r, name=%r, url_site=%r, la=%r, lo=%r, owm_id=%r>' % (
 		self.id,
 		self.location_id,
 		self.name,
 		self.url_site,
 		self.la,
-		self.lo)
+		self.lo,
+		self.owm_id)
 
 class Webcamera(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(50))
 	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 	location = db.relationship("Location", foreign_keys=[location_id])
 	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))

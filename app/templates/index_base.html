@@ -52,7 +52,7 @@
                         <h5>Мы работаем над стартом проекта, а вы пока что можете подписаться на новости, чтобы узнать обо всем первыми!</h5>
                     </div>
                     <div class="row contact-form">
-                        <form action="/subscribe" method="POST" id="form_contact">
+                        <form action="{{ url_for('subscribe', location_suffix=location_suffix) }}" method="POST" id="form_contact">
                             {{ form.hidden_tag() }}
                             {#<input class="input-lg" name="name" type="text" id="inp_name" placeholder="Имя">#}
                             {#<input class="input-lg" name="phone" type="tel" id="inp_phone" placeholder="Телефон">#}
