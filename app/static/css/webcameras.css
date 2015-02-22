@@ -3,6 +3,10 @@
   padding:10px;
 }
 
+.webcameras .resort {
+  margin-bottom:20px;
+}
+
 .webcameras .resort-info {
   cursor: pointer;
 }

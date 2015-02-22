@@ -9,8 +9,8 @@
 	<div class="container">
 		<h3>Веб-камеры горнолыжных центров и парков СПб</h3>
 		{% for resort in cbr %}
-		<div class="resort resort-{{ resort }} row" data-id="{{resort}}">
-			<h4 class="resort-info">{{ cbr[resort]['NAME']}}&nbsp;<i class="show-resort-additional-info fa fa-ellipsis-h"></i></h4>
+		<div class="resort resort-{{ resort }} row well" data-id="{{resort}}">
+			<h4 class="resort-info">{{ cbr[resort]['NAME']}}&nbsp;<i title="Загрузить детали..." class="show-resort-additional-info fa fa-ellipsis-h"></i></h4>
 			<div class="resort-additional-info col-xs-12 col-sm-12 col-md-12 col-lg-12 row hidden">
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					Контакты:
