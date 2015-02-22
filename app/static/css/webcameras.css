@@ -53,6 +53,7 @@
 /* размер иконок погоды */
 .weather i {
   font-size:24px;
+  cursor:default;
 }
 
 .weather i.warning {
@@ -63,4 +64,7 @@
 }
 .weather i.ok {
   color:#277D1E;
+}
+.webcamera-reload {
+  cursor: pointer !important;
 }
