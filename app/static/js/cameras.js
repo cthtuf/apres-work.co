@@ -4,6 +4,7 @@ var cameraimages = (function(){
 		if(speed>3) return 'warning'; else
 		return 'ok';
 	}
+	var requestInProgress = false;
 
 	var weather_loaded = false;
 	return {
@@ -20,14 +21,18 @@ var cameraimages = (function(){
 				e.preventDefault();
 				$('.show-resort-additional-info').toggleClass('hidden');
 				$('.resort-additional-info').toggleClass('hidden');
-				cameraimages.loadWeather($(this).parents('.resort').eq(0).attr('data-weatherurl'));
+				cameraimages.loadWeather();
 			});
 			$('.resort-info-reload').on('click', function(){
-				cameraimages.loadWeather($(this).parents('.resort').eq(0).attr('data-weatherurl'));
+				cameraimages.loadWeather();
 			});
+			cameraimages.loadWeather(); //get weather on page load
 			//if($('body').hasClass('desktop-client')) $('.masonry').masonry({ itemSelector : '.webcamera-image-block'});
 		},
-		loadWeather : function(url){
+		loadWeather : function(){
+			if(requestInProgress) return; else requestInProgress = true;
+			var url = $('.webcameras').attr('data-weatherurl');
+			if(!url) return;
 			if(!weather_loaded)
 			$.get(url).done(function(rpo){
 				var wNow = '',
@@ -67,7 +72,7 @@ var cameraimages = (function(){
 						.resort .weather .weather-in24h').html('<i class="resort-info-reload fa fa-reload"></i>');
 				}
 			}).always(function(){
-
+				requestInProgress = false;
 			})
 		}
 	}
