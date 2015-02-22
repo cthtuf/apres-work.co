@@ -10278,7 +10278,7 @@ footer {
     display: inline-block;
     width: 100%;
     max-width:270px;
-    padding: 20px 50px;
+    padding: 20px 0;
     margin: 20px auto 0;
     color: #FFF;
     background: #585c65;
@@ -10314,8 +10314,9 @@ footer {
     border: 1px solid #666;
     border-radius: 0; }
   .contact-form button {
-    padding: 15px 50px 12px;
-    border: none; }
+    padding: 15px 0 12px;
+    border: none;
+    text-align: center}
   .contact-form form {
     margin-bottom: 10px; }
   .contact-form .alert {
