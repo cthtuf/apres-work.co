@@ -90,7 +90,9 @@ class Webcamera(db.Model):
 	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
 	resort = db.relationship("Resort", foreign_keys=[resort_id])
 	img_link = db.Column(db.String(255))
+	iframe_link = db.Column(db.String(255))
 	img_na = db.Column(db.String(255))
+	load_from_iframe = db.Column(db.Boolean)
 
 	def __repr__(self):
 		return '<Webcamera id=%r, resort_id=%r, img_link=%r>' % (

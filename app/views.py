@@ -152,42 +152,32 @@ def subscribe(location_suffix):
 
 
 @app.route('/<string:location_suffix>/webkamery/', methods=["GET"])
-def webkamery(location_suffix):#template):
+def webkamery(location_suffix):
 	check_location_suffix(location_suffix)
 	cbr = {}
-	result = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==session['locations'][location_suffix]).all()
-	#print str(result)
-	#for rec in result:
-	#	print str(rec)
-	#	print ''
-	#return ''
-	#result = db.session.query(Webcamera).filter_by(resort.location_id=session['locations'][location_suffix]).all()
-	for rec in result:
-		if rec.Resort.id in cbr:
-			cbr[rec.Resort.id]['CAMERAS'].append({
-				'ID' : rec.Webcamera.id,
-				'NAME' : rec.Webcamera.name,
-				'IMG_LINK' : rec.Webcamera.img_link,
-				'IMG_NA' : rec.Webcamera.img_na
-				})
-		else:
-			cbr[rec.Resort.id] = {
-				'NAME' : rec.Resort.name,
-				'URL_SITE' : rec.Resort.url_site,
-				'URL_IG' : rec.Resort.url_ig,
-				'URL_VK' : rec.Resort.url_vk,
-				'URL_FB' : rec.Resort.url_fb,
-				'LA' : rec.Resort.la,
-				'LO' : rec.Resort.lo,
-				'OWM_ID' : rec.Resort.owm_id,
-				'CAMERAS' : [{
-					'ID' : rec.Webcamera.id,
-					'NAME' : rec.Webcamera.name,
-					'IMG_LINK' : rec.Webcamera.img_link,
-					'IMG_NA' : rec.Webcamera.img_na
-				}]
-			}
-
+	resorts = db.session.query(Resort).filter(Resort.location_id==session['locations'][location_suffix]).all()
+	for resort in resorts:
+		cbr[resort.id] = {
+			'NAME' : resort.name,
+			'URL_SITE' : resort.url_site,
+			'URL_IG' : resort.url_ig,
+			'URL_VK' : resort.url_vk,
+			'URL_FB' : resort.url_fb,
+			'LA' : resort.la,
+			'LO' : resort.lo,
+			'OWM_ID' : resort.owm_id,
+			'CAMERAS' : []
+		}
+	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==session['locations'][location_suffix]).all()
+	for camera in webcameras:
+		cbr[camera.Resort.id]['CAMERAS'].append({
+				'ID' : camera.Webcamera.id,
+				'NAME' : camera.Webcamera.name,
+				'IMG_LINK' : camera.Webcamera.img_link,
+				'IFRAME_LINK' : camera.Webcamera.iframe_link,
+				'IMG_NA' : camera.Webcamera.img_na,
+				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
+			})
 	return render_template('webkamery.html',
 		location_suffix = location_suffix,
 		cbr = cbr,
@@ -207,71 +197,86 @@ def gdepokatatsya(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('index'))
 
+def round_to_base(x, base=15):
+    return int(base * round(float(x)/base))
+
 @app.route('/<string:location_suffix>/getweather/', methods=["GET"])
 def get_weather(location_suffix):
-	check_location_suffix(location_suffix)
-	#273.15
-	owm = OWM(API_key=app.config['OWM_KEY'], language='ru')
-	result = {}
-	resorts = db.session.query(Resort).filter_by(location_id=session['locations'][location_suffix]).all()
-	if len(resorts)>0:
-		for resort in resorts:
-			if not resort.owm_id: continue
-			observation = owm.weather_at_id(resort.owm_id)
-			current_weather = observation.get_weather()
-			next_day = datetime.datetime.now() + timedelta(days=1)
-			next_3h = datetime.datetime.now() + timedelta(hours=3)
-			next_6h = datetime.datetime.now() + timedelta(hours=6)
-			forecast_weather = owm.three_hours_forecast_at_id(resort.owm_id)
-			in3h_weather = forecast_weather.get_weather_at(next_3h)
-			in6h_weather = forecast_weather.get_weather_at(next_6h)
-			in24h_weather = forecast_weather.get_weather_at(next_day)
-			#print str(current_weather)
-			#print 
-			result[resort.id] = {
-				'current' : {
-					'temp' : str(current_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
-					'temp_interval' : u'от '+str(current_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(current_weather.get_temperature(unit='celsius')['temp_max'])+u'\u00B0C', 
-					'detailed_status': current_weather.get_detailed_status(),
-					'icon' : weather_icons_map[current_weather.get_weather_icon_name()],
-					'wind' : {
-						'speed' : current_weather.get_wind()['speed'],
-						'deg' : current_weather.get_wind()['deg']
+	result = { 'success' : 'true', 'resorts' : {} }
+	try:
+		check_location_suffix(location_suffix)
+		#273.15
+		owm = OWM(API_key=app.config['OWM_KEY'], language='ru')
+		resorts = db.session.query(Resort).filter_by(location_id=session['locations'][location_suffix]).all()
+		if len(resorts)>0:
+			for resort in resorts:
+				if not resort.owm_id: continue
+				observation = owm.weather_at_id(resort.owm_id)
+				current_weather = observation.get_weather()
+				next_day = datetime.datetime.now() + timedelta(days=1)
+				next_3h = datetime.datetime.now() + timedelta(hours=3)
+				next_6h = datetime.datetime.now() + timedelta(hours=6)
+				forecast_weather = owm.three_hours_forecast_at_id(resort.owm_id)
+				in3h_weather = forecast_weather.get_weather_at(next_3h)
+				in6h_weather = forecast_weather.get_weather_at(next_6h)
+				in24h_weather = forecast_weather.get_weather_at(next_day)
+				#print str(current_weather)
+				#print 
+				result['resorts'][resort.id] = {
+					'current' : {
+						'temp' : str(current_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
+						'temp_interval' : u'от '+str(current_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(current_weather.get_temperature(unit='celsius')['temp_max'])+u'\u00B0C', 
+						'detailed_status': current_weather.get_detailed_status(),
+						'icon' : weather_icons_map[current_weather.get_weather_icon_name()],
+						'wind' : {
+							'speed' : current_weather.get_wind()['speed'],
+							'deg' : current_weather.get_wind()['deg'],
+							'speed_icon' : 'wi-beafort-'+str(int(round(current_weather.get_wind()['speed']))),
+							'deg_icon' : '_'+str(round_to_base(current_weather.get_wind()['deg'], 15))+'-deg'
+						},
+						'clouds' : current_weather.get_clouds()
 					},
-					'clouds' : current_weather.get_clouds()
-				},
-				'in3h' : {
-					'temp' : str(in3h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
-					'temp-interval' : u'от '+str(in3h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in3h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
-					'detailed_status': in3h_weather.get_detailed_status(),
-					'icon' : weather_icons_map[in3h_weather.get_weather_icon_name()],
-					'wind' : {
-						'speed' : in3h_weather.get_wind()['speed'],
-						'deg' : in3h_weather.get_wind()['deg']
+					'in3h' : {
+						'temp' : str(in3h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
+						'temp-interval' : u'от '+str(in3h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in3h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
+						'detailed_status': in3h_weather.get_detailed_status(),
+						'icon' : weather_icons_map[in3h_weather.get_weather_icon_name()],
+						'wind' : {
+							'speed' : in3h_weather.get_wind()['speed'],
+							'deg' : in3h_weather.get_wind()['deg'],
+							'speed_icon' : 'wi-beafort-'+str(int(round(in3h_weather.get_wind()['speed']))),
+							'deg_icon' : '_'+str(round_to_base(in3h_weather.get_wind()['deg'], 15))+'-deg'
+						},
+						'clouds' : in3h_weather.get_clouds()
 					},
-					'clouds' : in3h_weather.get_clouds()
-				},
-				'in6h' : {
-					'temp' : str(in6h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
-					'temp-interval' : u'от '+str(in6h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in6h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
-					'detailed_status': in6h_weather.get_detailed_status(),
-					'icon' : weather_icons_map[in6h_weather.get_weather_icon_name()],
-					'wind' : {
-						'speed' : in6h_weather.get_wind()['speed'],
-						'deg' : in6h_weather.get_wind()['deg']
+					'in6h' : {
+						'temp' : str(in6h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
+						'temp-interval' : u'от '+str(in6h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in6h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
+						'detailed_status': in6h_weather.get_detailed_status(),
+						'icon' : weather_icons_map[in6h_weather.get_weather_icon_name()],
+						'wind' : {
+							'speed' : in6h_weather.get_wind()['speed'],
+							'deg' : in6h_weather.get_wind()['deg'],
+							'speed_icon' : 'wi-beafort-'+str(int(round(in6h_weather.get_wind()['speed']))),
+							'deg_icon' : '_'+str(round_to_base(in6h_weather.get_wind()['deg'], 15))+'-deg'
+						},
+						'clouds' : in6h_weather.get_clouds()
 					},
-					'clouds' : in6h_weather.get_clouds()
-				},
-				'in24h' : {
-					'temp' : str(in24h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
-					'temp-interval' : u'от '+str(in24h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in24h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
-					'detailed_status': in24h_weather.get_detailed_status(),
-					'icon' : weather_icons_map[in24h_weather.get_weather_icon_name()],
-					'wind' : {
-						'speed' : in24h_weather.get_wind()['speed'],
-						'deg' : in24h_weather.get_wind()['deg']
-					},
-					'clouds' : in24h_weather.get_clouds()
+					'in24h' : {
+						'temp' : str(in24h_weather.get_temperature(unit='celsius')['temp'])+ u'\u00B0C',
+						'temp-interval' : u'от '+str(in24h_weather.get_temperature(unit='celsius')['temp_min']) + u'\u00B0C до ' +str(in24h_weather.get_temperature(unit='celsius')['temp_max']) + u'\u00B0C', 
+						'detailed_status': in24h_weather.get_detailed_status(),
+						'icon' : weather_icons_map[in24h_weather.get_weather_icon_name()],
+						'wind' : {
+							'speed' : in24h_weather.get_wind()['speed'],
+							'deg' : in24h_weather.get_wind()['deg'],
+							'speed_icon' : 'wi-beafort-'+str(int(round(in24h_weather.get_wind()['speed']))),
+							'deg_icon' : '_'+str(round_to_base(in24h_weather.get_wind()['deg'], 15))+'-deg'
+						},
+						'clouds' : in24h_weather.get_clouds()
+					}
 				}
-			}
+	except Exception as e:
+		print str(e)
+		result = { 'success' : 'false' }
 	return jsonify(result)

@@ -49,3 +49,18 @@
 .desktop-client .webcamera-reload:hover{
   opacity: 1;
 }
+
+/* размер иконок погоды */
+.weather i {
+  font-size:24px;
+}
+
+.weather i.warning {
+  color:#E09D51;
+}
+.weather i.danger {
+  color:#a94442;
+}
+.weather i.ok {
+  color:#277D1E;
+}
