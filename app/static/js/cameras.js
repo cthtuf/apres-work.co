@@ -49,7 +49,7 @@ var cameraimages = (function(){
 							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].current.wind.deg_icon+'"></i>';//rpo[r].current);
 						wIn3h = rpo.resorts[r].in3h.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].in3h.icon+'"></i>'+
-							'&nbsp;< title="Скорость ветра"i class="wi '+ rpo.resorts[r].in3h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in3h.wind.speed)+'"></i>'+
+							'&nbsp;<i title="Скорость ветра" class="wi '+ rpo.resorts[r].in3h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in3h.wind.speed)+'"></i>'+
 							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].in3h.wind.deg_icon+'"></i>';//rpo[r].in3h);
 						wIn6h = rpo.resorts[r].in6h.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].in6h.icon+'"></i>'+
