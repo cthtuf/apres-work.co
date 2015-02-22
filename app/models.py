@@ -64,6 +64,8 @@ class Resort(db.Model):
 	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 	location = db.relationship("Location", foreign_keys=[location_id])
 	name = db.Column(db.String(120), index=True)
+	address = db.Column(db.String(255))
+	phone = db.Column(db.String(20))
 	url_site = db.Column(db.String(255))
 	url_ig = db.Column(db.String(255))
 	url_vk = db.Column(db.String(255))
@@ -85,29 +87,27 @@ class Resort(db.Model):
 class Webcamera(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(50))
-	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
-	location = db.relationship("Location", foreign_keys=[location_id])
 	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
 	resort = db.relationship("Resort", foreign_keys=[resort_id])
 	img_link = db.Column(db.String(255))
 	img_na = db.Column(db.String(255))
 
 	def __repr__(self):
-		return '<Webcamera id=%r, location_id=%r, resort_id=%r, img_link=%r>' % (
+		return '<Webcamera id=%r, resort_id=%r, img_link=%r>' % (
 			self.id,
-			self.location_id,
 			self.resort_id,
 			self.img_link)
 
 class Event(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
-	location = db.relationship("Location", foreign_keys=[location_id])
-	dt = db.Column(db.DateTime)
+	dt_created = db.Column(db.DateTime)
+	dt_from = db.Column(db.DateTime)
+	dt_to = db.Column(db.DateTime)
 	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
 	resort = db.relationship("Resort", foreign_keys=[resort_id])
 	name = db.Column(db.String(50))
 	description = db.Column(db.String(1000))
+	img_link = db.Column(db.String(255))
 
 	def __repr__(self):
 		return '<Event id=%r, location_id=%r, dt=%r, resort_id=%r, name=$r>' % (

@@ -3,9 +3,29 @@
   padding:10px;
 }
 
+.webcameras .resort-info {
+  cursor: pointer;
+}
+
+.webcameras .show-resort-additional-info {
+  cursor:pointer;
+  color:#999;
+  margin-left:4px;
+  vertical-align: middle;
+
+}
+
+.webcameras .resort-additional-info {
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+}
+
 .webcameras img{
   width:100%;
   padding:10px;
+  min-height: 200px;
+  min-width:200px;
 }
 
 .webcamera-image-block {
@@ -23,6 +43,7 @@
     position: absolute;
     top: 50%;
     z-index: 1;
+    text-shadow:0 0 10px #666;
 }
 
 .desktop-client .webcamera-reload:hover{

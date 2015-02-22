@@ -9,8 +9,44 @@
 	<div class="container">
 		<h3>Веб-камеры горнолыжных центров и парков СПб</h3>
 		{% for resort in cbr %}
-		<div>
-			<h4>{{ cbr[resort]['NAME']}} <a href="{{ cbr[resort]['URL_SITE'] }}" target="_blank"><i class="icon-earth"></i></a><a href="{{ cbr[resort]['URL_VK'] }}" target="_blank"><i class="icon-vk"></i></a></h4>
+		<div class="resort resort-{{ resort }}" data-id="{{resort}}" data-weatherurl="{{ url_for('get_weather', location_suffix=location_suffix) }}">
+			<h4 class="resort-info">{{ cbr[resort]['NAME']}}&nbsp;<i class="show-resort-additional-info fa fa-ellipsis-h"></i></h4>
+			<div class="resort-additional-info row hidden">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					Контакты:
+					<div>
+						{% if cbr[resort]['ADDRESS'] %}
+						{{cbr[resort]['ADDRESS']}}
+						{% endif %}
+						{% if cbr[resort]['ADDRESS'] and cbr[resort]['PHONE'] %},{%endif%}
+						{% if cbr[resort]['PHONE'] %}
+						{{cbr[resort]['PHONE']}}
+						{% endif %}
+					</div>
+					{% if cbr[resort]['URL_SITE'] %}
+					<div>www: <a href="{{ cbr[resort]['URL_SITE'] }}" target="_blank">{{ cbr[resort]['URL_SITE'] }}</a></div>
+					{% endif %}
+					{% if cbr[resort]['URL_VK'] %}
+					<div>vk: <a href="http://vk.com/{{ cbr[resort]['URL_VK'] }}" target="_blank">{{ cbr[resort]['URL_VK'] }}</a></div>
+					{% endif %}
+					{% if cbr[resort]['URL_FB'] %}
+					<div>fb: <a href="http://facebook.com/{{ cbr[resort]['URL_FB'] }}" target="_blank">{{ cbr[resort]['URL_FB'] }}</a></div>
+					{% endif %}
+					{% if cbr[resort]['URL_IG'] %}
+					<div>ig: <a href="http://instagram.com/{{ cbr[resort]['URL_IG'] }}" target="_blank">{{ cbr[resort]['URL_IG'] }}</a></div>
+					{% endif %}
+					{% if cbr[resort]['LA'] and cbr[resort]['LO'] %}
+					<div>gps: la={{cbr[resort]['LA']}}, lo={{ cbr[resort]['LO']}}</div>
+					{% endif %}
+				</div>
+				<div class="weather col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					Прогноз погоды:
+					<div>Сейчас: <span class="weather-now"></span></div>
+					<div>Через 3ч: <span class="weather-in3h"></span></div>
+					<div>Через 6ч: <span class="weather-in6h"></span></div>
+					<div>Через 24ч: <span class="weather-in24h"></span></div>
+				</div>
+			</div>
 			<div class="row masonry">
 				{% for camera in cbr[resort]['CAMERAS'] %}
 				<div class="webcamera-image-block col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -20,6 +56,9 @@
 				{% endfor %}
 			</div>
 		</div>
+		{% else %}
+			<h4>Курортов пока нет :(</h4>
+			Помоги нам добавить их - напиши на <a href="mailto:hola@apres-work.co">hola@apres-work.co</a>
 		{% endfor %}
 	</div>
 </section>
