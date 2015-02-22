@@ -7,14 +7,21 @@ body {
   font-size: 16px; }
 
 header {
-  padding-top:20px;
   max-height: 600px;
   height: 600px;
+  padding-top:20px;
   overflow: hidden;
   background: url(/static/images/bg_mainpage.jpg) center center no-repeat #666;
  }
+@media screen and (max-width:768px){
+  header {
+    max-height: 430px;
+    height:430px;
+    background: url(/static/images/bg_mainpage_sm.jpg) center center no-repeat #666;
+  }
+} 
   header h1 {
-    font-size: 30px;
+    font-size: 46px;
     text-shadow: 0 0 3px #999;
     color:#333; }
     @media screen and (min-width: 1200px) {
@@ -57,13 +64,19 @@ header {
 
 .titles {
   position: absolute;
-  bottom: 40%;
-  width: 600px;
-  right:10%;
-  text-align: center; }
-  @media screen and (min-width: 1200px) {
+  text-align: center;}
+  @media screen and (min-width: 768px) {
     .titles {
-      bottom: 40%; } }
+      bottom: 40%;
+      width: 600px;
+      right:10%; } }
+  @media screen and (max-width: 768px){
+    .titles {
+      left:0;
+      right:0;
+      top:10%;
+    }
+  }
 
 h1, h2, h3 {
   width: 100%;
@@ -95,7 +108,7 @@ h2 {
   font-family: "Kaushan Script", cursive; }
 
 .navbar { border-radius: 0; margin-bottom:0;}
-.navbar-brand { padding:5px 15px;}
+.navbar-brand { padding:5px 15px; z-index:1;}
 
 .nav-social a {
   /*
