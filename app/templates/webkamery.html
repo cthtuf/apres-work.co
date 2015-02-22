@@ -57,7 +57,7 @@
 					{% if camera['LOAD_FROM_IFRAME']==True %}
 					<iframe src="{{ camera['IFRAME_LINK'] }}"></iframe>
 					{% else %}
-					<div class="webcamera-reload"><i class="fa fa-refresh"></i></div>
+					<div class="webcamera-reload"><i title="Обновить" class="fa fa-refresh"></i></div>
 					<img src="{{ camera['IMG_LINK'] }}?{{ rand }}" alt="{{ camera['NAME'] }}">
 					{% endif %}
 				</div>
