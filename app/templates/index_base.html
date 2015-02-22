@@ -73,8 +73,8 @@
             </div>
         </div>
         <div class="footer-links">
-            <a class="footer-link" href="/webkamery">Вебкамеры</a>
-            <a class="footer-link" href="/gdepokatatsya">Где покататься</a>
+            <a class="footer-link" href="{{ url_for('webkamery', location_suffix=location_suffix) }}">Вебкамеры</a>
+            {#<a class="footer-link" href="/gdepokatatsya">Где покататься</a>#}
             <div class="footer-social-links">
                 <a class="vk" href="http://vk.com/apresworkco" target="_blank"><i class="fa fa-vk"></i></a>
                 <a class="instagram" href="http://instagram.com/apresworkco" target="_blank"><i class="fa fa-instagram"></i></a>

@@ -54,7 +54,7 @@
             <div id="navbar_collapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li {% if request.url_rule.endpoint == 'webkamery' %}class="active"{% endif %}><a href="{{ url_for('webkamery', location_suffix=location_suffix)}}">Веб-камеры <span class="sr-only">(current)</span></a></li>
-                    <li {% if request.url_rule.endpoint == 'gdepokatatsya' %}class="active"{% endif %}><a href="{{ url_for('gdepokatatsya', location_suffix=location_suffix)}}">Где покататься</a></li>
+                    {#<li {% if request.url_rule.endpoint == 'gdepokatatsya' %}class="active"{% endif %}><a href="{{ url_for('gdepokatatsya', location_suffix=location_suffix)}}">Где покататься</a></li>#}
                 </ul>
                 <ul class="nav navbar-nav navbar-right nav-social">
                     <li><a class="vk" href="http://vk.com/apresworkco" target="_blank"><i class="fa fa-vk"></i></a></li>
