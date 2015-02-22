@@ -63,8 +63,8 @@ var app = (function(){
                 subscribe_form.init();
                 instafeed.init(1660779127, '1660779127.682f757.ae522e0680a84182885d03115f5b23cf');
 
-                /*if($('body').hasClass('desktop-client')){
-                    $('#bg_video').tubular({videoId: 'ajPPMBtqY1k'});
+                if($('body').hasClass('desktop-client')){
+                    //$('#bg_video').tubular({videoId: 'ajPPMBtqY1k'});
 
                     $('#i_scroll_down').on('click', function(){
                         $('html, body').animate({
