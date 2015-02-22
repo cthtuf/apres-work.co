@@ -71,7 +71,7 @@ var app = (function(){
                             scrollTop: $(".site-description").offset().top-20
                         }, 600);
                     });
-                }*/
+                }
                 $('#btn_wannago').removeAttr('disabled');
             } catch (e){
                 console.log('App init form exception: '+e.message);
