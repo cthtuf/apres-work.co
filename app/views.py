@@ -1,43 +1,20 @@
 # -*- coding: UTF-8 -*-
-from app import app, db
+from app import app, db, mongo
 from functools import wraps
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
+from flask.ext.login import LoginManager, UserMixin, login_required
 from flask.ext.mobility.decorators import mobile_template
 from smsc_api import SMSC
 from datetime import datetime,timedelta
 from .forms import SubscriptionForm
 from models import *
+from helpers import *
 import re
 import time
 import mailchimp
+import flask.ext.admin
 
-import string
-import random
 from pyowm import OWM,timeutils #for weather
-
-weather_icons_map = {
-	'01d' : 'wi-day-sunny',
-	'01n' : 'wi-night-clear',
-	'02d' : 'wi-day-cloudy',
-	'02n' : 'wi-night-alt-cloudy',
-	'03d' : 'wi-cloud',
-	'03n' : 'wi-cloud',
-	'04d' : 'wi-cloudy',
-	'04n' : 'wi-cloudy',
-	'09d' : 'wi-day-showers',
-	'09n' : 'wi-night-alt-showers',
-	'10d' : 'wi-day-rain',
-	'10n' : 'wi-night-alt-rain',
-	'11d' : 'wi-day-lightning',
-	'11n' : 'wi-night-alt-lightning',
-	'13d' : 'wi-snow',
-	'13n' : 'wi-snow',
-	'50d' : 'wi-fog',
-	'50n' : 'wi-fog'
-}
-
-#def string_generator(size=6, chars=string.ascii_uppercase + string.digits):
-#	return ''.join(random.choice(chars) for _ in range(size))
 
 #@app.before_request
 #def csrf_protect():
@@ -86,7 +63,6 @@ def check_location_suffix(location_suffix):
 			abort(404)
 	else:
 		return True
-
 
 @app.route('/<string:location_suffix>/')
 @mobile_template('{mobile/}index.html')
@@ -151,8 +127,8 @@ def subscribe(location_suffix):
 		return jsonify({'CODE' : '1', 'TEXT' : 'Ошибка подписки'})
 
 
-@app.route('/<string:location_suffix>/webkamery/', methods=["GET"])
-def webkamery(location_suffix):
+@app.route('/<string:location_suffix>/resorts/', methods=["GET"])
+def resorts(location_suffix):
 	check_location_suffix(location_suffix)
 	cbr = {}
 	resorts = db.session.query(Resort).filter(Resort.location_id==session['locations'][location_suffix]).all()
@@ -192,14 +168,6 @@ def sobytiya(location_suffix):
 		past_events = past_events
 		)
 
-@app.route('/<string:location_suffix>/gdepokatatsya/', methods=["GET"])
-def gdepokatatsya(location_suffix):
-	check_location_suffix(location_suffix)
-	return redirect(url_for('index'))
-
-def round_to_base(x, base=15):
-    return int(base * round(float(x)/base))
-
 @app.route('/<string:location_suffix>/getweather/', methods=["GET"])
 def get_weather(location_suffix):
 	result = { 'success' : 'true', 'resorts' : {} }
@@ -232,7 +200,9 @@ def get_weather(location_suffix):
 							'speed' : current_weather.get_wind()['speed'],
 							'deg' : current_weather.get_wind()['deg'],
 							'speed_icon' : 'wi-beafort-'+str(int(round(current_weather.get_wind()['speed']))),
-							'deg_icon' : '_'+str(round_to_base(current_weather.get_wind()['deg'], 15))+'-deg'
+							'deg_icon' : '_'+str(round_to_base(current_weather.get_wind()['deg'], 15))+'-deg',
+							'bad_deg' : resort.bad_wind_direction
+
 						},
 						'clouds' : current_weather.get_clouds()
 					},
@@ -245,7 +215,8 @@ def get_weather(location_suffix):
 							'speed' : in3h_weather.get_wind()['speed'],
 							'deg' : in3h_weather.get_wind()['deg'],
 							'speed_icon' : 'wi-beafort-'+str(int(round(in3h_weather.get_wind()['speed']))),
-							'deg_icon' : '_'+str(round_to_base(in3h_weather.get_wind()['deg'], 15))+'-deg'
+							'deg_icon' : '_'+str(round_to_base(in3h_weather.get_wind()['deg'], 15))+'-deg',
+							'bad_deg' : resort.bad_wind_direction
 						},
 						'clouds' : in3h_weather.get_clouds()
 					},
@@ -258,7 +229,8 @@ def get_weather(location_suffix):
 							'speed' : in6h_weather.get_wind()['speed'],
 							'deg' : in6h_weather.get_wind()['deg'],
 							'speed_icon' : 'wi-beafort-'+str(int(round(in6h_weather.get_wind()['speed']))),
-							'deg_icon' : '_'+str(round_to_base(in6h_weather.get_wind()['deg'], 15))+'-deg'
+							'deg_icon' : '_'+str(round_to_base(in6h_weather.get_wind()['deg'], 15))+'-deg',
+							'bad_deg' : resort.bad_wind_direction
 						},
 						'clouds' : in6h_weather.get_clouds()
 					},
@@ -271,7 +243,8 @@ def get_weather(location_suffix):
 							'speed' : in24h_weather.get_wind()['speed'],
 							'deg' : in24h_weather.get_wind()['deg'],
 							'speed_icon' : 'wi-beafort-'+str(int(round(in24h_weather.get_wind()['speed']))),
-							'deg_icon' : '_'+str(round_to_base(in24h_weather.get_wind()['deg'], 15))+'-deg'
+							'deg_icon' : '_'+str(round_to_base(in24h_weather.get_wind()['deg'], 15))+'-deg',
+							'bad_deg' : resort.bad_wind_direction
 						},
 						'clouds' : in24h_weather.get_clouds()
 					}

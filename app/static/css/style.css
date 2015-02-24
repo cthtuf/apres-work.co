@@ -10481,13 +10481,13 @@ a.footer-link:hover {
   cursor:default;
 }
 
-.weather i.warning {
+.weather .wind-warning i.wind {
   color:#E09D51;
 }
-.weather i.danger {
+.weather .wind-danger i.wind {
   color:#a94442;
 }
-.weather i.ok {
+.weather .wind-ok i.wind {
   color:#277D1E;
 }
 .webcamera-reload {

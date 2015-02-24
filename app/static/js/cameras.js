@@ -1,9 +1,14 @@
 var cameraimages = (function(){
-	var getWindStatus = function(speed){
-		if(speed>6) return 'danger'; else
-		if(speed>3) return 'warning'; else
-		return 'ok';
+	var getWindStatus = function(speed, deg, bad_deg){
+		var wind_abs = Math.abs(bad_deg-deg);
+		if(speed>6) return 'wind-danger'; else
+		if(speed>3) {
+			if(wind_abs<60) return 'wind-danger';
+			else return 'wind-warning';
+		} else
+		return 'wind-ok';
 	}
+
 	var requestInProgress = false;
 
 	var weather_loaded = false;
@@ -45,24 +50,24 @@ var cameraimages = (function(){
 						var $resort_weather = $('.resort.resort-'+r+ ' .weather');
 						wNow = rpo.resorts[r].current.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].current.icon+'"></i>'+
-							'&nbsp;<i title="Скорость ветра" class="wi '+ rpo.resorts[r].current.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].current.wind.speed)+'"></i>'+
-							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].current.wind.deg_icon+'"></i>';//rpo[r].current);
+							'&nbsp;<i title="Скорость ветра" class="wind wi '+ rpo.resorts[r].current.wind.speed_icon+'"></i>'+
+							'&nbsp;<i title="Направление ветра" class="wind wi wi-wind-default '+rpo.resorts[r].current.wind.deg_icon+'"></i>';//rpo[r].current);
 						wIn3h = rpo.resorts[r].in3h.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].in3h.icon+'"></i>'+
-							'&nbsp;<i title="Скорость ветра" class="wi '+ rpo.resorts[r].in3h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in3h.wind.speed)+'"></i>'+
-							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].in3h.wind.deg_icon+'"></i>';//rpo[r].in3h);
+							'&nbsp;<i title="Скорость ветра" class="wind wi '+ rpo.resorts[r].in3h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in3h.wind.speed)+'"></i>'+
+							'&nbsp;<i title="Направление ветра" class="wind wi wi-wind-default '+rpo.resorts[r].in3h.wind.deg_icon+'"></i>';//rpo[r].in3h);
 						wIn6h = rpo.resorts[r].in6h.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].in6h.icon+'"></i>'+
-							'&nbsp;<i title="Скорость ветра" class="wi '+ rpo.resorts[r].in6h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in6h.wind.speed)+'"></i>'+
-							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].in6h.wind.deg_icon+'"></i>';//rpo[r].in6h);
+							'&nbsp;<i title="Скорость ветра" class="wind wi '+ rpo.resorts[r].in6h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in6h.wind.speed)+'"></i>'+
+							'&nbsp;<i title="Направление ветра" class="wind wi wi-wind-default '+rpo.resorts[r].in6h.wind.deg_icon+'"></i>';//rpo[r].in6h);
 						wIn24h = rpo.resorts[r].in24h.temp+
 							'&nbsp;<i title="Осадки" class="wi '+ rpo.resorts[r].in24h.icon+'"></i>'+
-							'&nbsp;<i title="Скорость ветра" class="wi '+ rpo.resorts[r].in24h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in24h.wind.speed)+'"></i>'+
-							'&nbsp;<i title="Направление ветра" class="wi wi-wind-default '+rpo.resorts[r].in24h.wind.deg_icon+'"></i>';//rpo[r].in24h);
-						$resort_weather.find('.weather-now').html(wNow);
-						$resort_weather.find('.weather-in3h').html(wIn3h);
-						$resort_weather.find('.weather-in6h').html(wIn6h);
-						$resort_weather.find('.weather-in24h').html(wIn24h);
+							'&nbsp;<i title="Скорость ветра" class="wind wi '+ rpo.resorts[r].in24h.wind.speed_icon+' '+getWindStatus(rpo.resorts[r].in24h.wind.speed)+'"></i>'+
+							'&nbsp;<i title="Направление ветра" class="wind wi wi-wind-default '+rpo.resorts[r].in24h.wind.deg_icon+'"></i>';//rpo[r].in24h);
+						$resort_weather.find('.weather-now').html(wNow).addClass(getWindStatus(getWindStatus(rpo.resorts[r].current.wind.speed, rpo.resorts[r].current.wind.deg, rpo.resorts[r].current.wind.bad_deg)));
+						$resort_weather.find('.weather-in3h').html(wIn3h).addClass(getWindStatus(getWindStatus(rpo.resorts[r].in3h.wind.speed, rpo.resorts[r].in3h.wind.deg, rpo.resorts[r].in3h.wind.bad_deg)));
+						$resort_weather.find('.weather-in6h').html(wIn6h).addClass(getWindStatus(getWindStatus(rpo.resorts[r].in6h.wind.speed, rpo.resorts[r].in6h.wind.deg, rpo.resorts[r].in6h.wind.bad_deg)));
+						$resort_weather.find('.weather-in24h').html(wIn24h).addClass(getWindStatus(getWindStatus(rpo.resorts[r].in24h.wind.speed, rpo.resorts[r].in24h.wind.deg, rpo.resorts[r].in24h.wind.bad_deg)));
 					}
 					weather_loaded = true;
 				} else {

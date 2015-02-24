@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from app import db
 import datetime
 
@@ -51,6 +52,25 @@ class User(db.Model):
 	email = db.Column(db.String(120), index=True)
 	ga_client_id = db.Column(db.Integer)
 
+	def is_authenticated(self):
+		return True
+
+	def is_active(self):
+		return True
+
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return self.id
+
+	def __init__(self, location_id, phone, email, ga_client_id):
+		self.location_id = location_id
+		self.dt_registration = datetime.datetime.now()
+		self.phone = phone
+		self.email = email
+		self.ga_client_id = ga_client_id
+
 	def __repr__(self):
 		return '<User id=%r, location_id=%r, phone=%r, email=%r, ga_client_id=%r>' % (
 			self.id, 
@@ -58,6 +78,7 @@ class User(db.Model):
 			self.phone,
 			self.email,
 			self.ga_client_id)
+
 
 class Resort(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -73,6 +94,7 @@ class Resort(db.Model):
 	la = db.Column(db.Float)
 	lo = db.Column(db.Float)
 	owm_id = db.Column(db.Integer)
+	bad_wind_direction = db.Column(db.Integer)
 
 	def __repr__(self):
 		return '<Resort id=%r, location_id=%r, name=%r, url_site=%r, la=%r, lo=%r, owm_id=%r>' % (
@@ -131,12 +153,18 @@ class Partner(db.Model):
 			self.name,
 			self.resort_id)
 
-class PartnerUser(db.Model):
+#id = 1 - admin
+#id = 2 - moderator
+#id = 3 - partner user
+class StaffUser(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(20))
 	email = db.Column(db.String(50))
 	phone = db.Column(db.String(10))
 	password = db.Column(db.String(20))
+	type_id = db.Column(db.Integer)
+	partner_id = db.Column(db.Integer, db.ForeignKey('partner.id'))
+	partner = db.relationship("Partner", foreign_keys=[partner_id])
 
 	def __repr__(self):
 		return '<PartnerUser id=%r, name=%r, email=%r, phone=%r, password=%r>' % (
