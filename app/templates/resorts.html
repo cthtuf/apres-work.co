@@ -129,11 +129,11 @@
             <i class="fa fa-facebook facebook-color"></i>
             Facebook
         </a>
-        <a href="sms:?body=Привет!%20Посмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ url_for('resorts', location_suffix=location_suffix)}}">
+        <a href="sms:?body=Привет!%20Посмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ request.url }}">
             <i class="fa fa-comment-o sms-color"></i>
             SMS
         </a>
-        <a href="mailto:?&subject=Все%20парки%20СПб&body=Привет!%0A%0aПосмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ url_for('resorts', location_suffix=location_suffix)}}">
+        <a href="mailto:?&subject=Все%20парки%20СПб&body=Привет!%0A%0aПосмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ request.url }}">
             <i class="fa fa-envelope-o mail-color"></i>
             Email
         </a>
