@@ -321,7 +321,10 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
                     return false
                 }
                 t.loadImg(a.eq(e).attr("href"), function() {
-                    n("#swipebox-slider .slide").eq(e).html(this)
+                    var slide = n("#swipebox-slider .slide").eq(e);
+                    n(slide).html(this);
+                    if(a.eq(e).hasClass('can-be-reloaded'))
+                    	n(slide).append(n('<i>').addClass('i-reload fa fa-refresh').attr('title', 'Обновить').on('click', resorts.reloadWebCamera));
                 })
             },
             setTitle: function(e, t) {
@@ -331,7 +334,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
                 }
             },
             loadImg: function(e, t) {
-                var r = n("<img>").on("load", function() {
+                var r = n("<img>").addClass('responsive-image').on("load", function() {
                     t.call(r)
                 });
                 r.attr("src", e)

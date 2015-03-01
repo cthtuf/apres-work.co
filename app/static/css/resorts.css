@@ -21,3 +21,25 @@
 .resorts-weather-container .wind-ok i.wind {
   color:#277D1E;
 }
+
+.slide .responsive-image {
+	min-width:50%;
+	min-width:50%;
+}
+
+.i-reload {
+	color: #fff;
+    cursor: pointer;
+    font-size: 36px;
+    left: 50%;
+    margin-left: -18px;
+    margin-top: -18px;
+    position: absolute;
+    text-shadow: 0 0 20px #000;
+    top: 50%;
+    opacity: 0.7;
+}
+
+.i-reload:hover{
+	opacity:1;
+}

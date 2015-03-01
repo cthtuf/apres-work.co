@@ -2369,8 +2369,9 @@ table tr:hover td{
 }
 
 .resorts-one-details a{
-	opacity:0.5;
-	color:#666666;
+	/*opacity:0.5;
+	color:#666666;*/
+	color:#1f8dd6;
 	display:inline-block;
 	padding-right:10px;
 	padding-left:10px;

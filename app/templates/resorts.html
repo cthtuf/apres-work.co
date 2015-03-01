@@ -31,17 +31,17 @@
                 <div class="resorts-one-image">
                     {% if resorts[resort]['CAMERAS']|length == 0 %}
                     <a href="{{resorts[resort]['URL_IMG']}}" class="swipebox" title="{{resorts[resort]['NAME']}}">
-                        <i class="fa fa-video-camera"></i>
+                        <i class="fa fa-camera"></i>
                     </a>
                     <img src="{{resorts[resort]['URL_IMG']}}" class="responsive-image">
                     {% else %}
                     {# show first camera on page and other cameras in the swipebox #}
-                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}" class="swipebox" title="{{resorts[resort]['NAME']}}">
+                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}" class="swipebox can-be-reloaded" title="{{resorts[resort]['NAME']}}">
                         <i class="fa fa-video-camera"></i>
                     </a>
                     <img src="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}" class="responsive-image">
                     {% for camera in resorts[resort]['CAMERAS'][1:] %}
-                    <a class="swipebox hidden" href="{{camera['IMG_LINK']}}" title="{{resorts[resort]['NAME']}}"></a>
+                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}" title="{{resorts[resort]['NAME']}}"></a>
                     <img src="{{camera['IMG_LINK']}}" class="responsive-image hidden">
                     {% endfor %}
                     {% endif %}
@@ -52,10 +52,13 @@
                         {{resorts[resort]['ADDRESS']}}
                         {% if resorts[resort]['ADDRESS'] and resorts[resort]['PHONE'] %},{%endif%}
                         {% if resorts[resort]['PHONE'] %}
-                        <a href="tel:{{resorts[resort]['PHONE']}}">{{resorts[resort]['PHONE']}}</a>
+                        {{resorts[resort]['PHONE']}}
                         {% endif %}
                     </em>
                     <div class="resorts-one-details">
+                        {% if resorts[resort]['PHONE'] %}
+                        <a href="tel:{{ resorts[resort]['PHONE'] }}"><i class="fa fa-phone"></i></a>
+                        {% endif %}
                         {% if resorts[resort]['URL_SITE'] %}
                         <a href="{{resorts[resort]['URL_SITE']}}" target="_blank"><i class="fa fa-globe"></i></a>
                         {% endif %}
@@ -126,11 +129,11 @@
             <i class="fa fa-facebook facebook-color"></i>
             Facebook
         </a>
-        <a href="sms:?body=Hi!%20There%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+        <a href="sms:?body=Привет!%20Посмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ url_for('resorts', location_suffix=location_suffix)}}">
             <i class="fa fa-comment-o sms-color"></i>
             SMS
         </a>
-        <a href="mailto:?&subject=Resorts%20list&body=Hi!%0A%0AThere%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+        <a href="mailto:?&subject=Все%20парки%20СПб&body=Привет!%0A%0aПосмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ url_for('resorts', location_suffix=location_suffix)}}">
             <i class="fa fa-envelope-o mail-color"></i>
             Email
         </a>

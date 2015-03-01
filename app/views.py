@@ -152,6 +152,8 @@ def resorts(location_suffix):
 	for resort in resorts:
 		cbr[resort.id] = {
 			'NAME' : resort.name,
+			'PHONE' : resort.phone,
+			'ADDRESS' : resort.address,
 			'URL_SITE' : resort.url_site,
 			'URL_IG' : resort.url_ig,
 			'URL_VK' : resort.url_vk,
