@@ -3,8 +3,8 @@ from flask.ext.mobility import Mobility
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.pymongo import PyMongo
 from flask.ext.mongo_sessions import MongoDBSessionInterface
-from flask.ext.admin import Admin
-from flask.ext.admin.contrib.sqlamodel import ModelView
+#from flask.ext.admin import Admin
+#from flask.ext.admin.contrib.sqlamodel import ModelView
 #from flask.ext.login import LoginManager
 
 app = Flask(__name__, static_url_path='/static')
@@ -15,7 +15,7 @@ mongo = PyMongo(app)
 with app.app_context():
     app.session_interface = MongoDBSessionInterface(app, mongo.db, 'sessions')
 
-admin = Admin(app)
+#admin = Admin(app)
 
 from app import views, models
 
