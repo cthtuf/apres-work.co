@@ -9,21 +9,21 @@ module.exports = function(grunt) {
             dist_js: {
                 src: [
         		    'app/static/js/lib/jquery.min.js',
-        		    'app/static/js/lib/bootstrap.js',
-        		    'app/static/js/lib/instafeed.min.js',
-        		    'app/static/js/lib/tubular.js'
+        		    'app/static/js/lib/jqueryui.js',
+        		    'app/static/js/lib/plugins.js'
                 ],
                 dest: 'app/static/js/libs.js',
             },
             dist_css: {
                 src: [
-                    'app/static/css/lib/bootstrap.css',
+                    'app/static/css/lib/epsilon.css',
                     'app/static/css/lib/font-awesome.css',
                     'app/static/css/lib/weather-icons.css',
                     'app/static/css/lib/animate.css',
+		    'app/static/css/lib/owl-carousel.css',
+		    'app/static/css/lib/swipebox.css',
                     'app/static/css/base.css',
-                    'app/static/css/instafeed.css',
-                    'app/static/css/webcameras.css'
+		    'app/static/css/resorts.css'
                 ],
                 dest: 'app/static/css/style.css'
             }
