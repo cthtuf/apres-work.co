@@ -417,12 +417,12 @@ $(document).ready(function() {
 	/////////////////
 	$(".swipebox").swipebox({
 		useCSS : true, // false will force the use of jQuery for animations
-		hideBarsDelay : 3000 // 0 to always show caption and action bar
+		hideBarsDelay : 0 // 0 to always show caption and action bar
 	});
 	
 	$(".wide-gallery-item").swipebox({
 		useCSS : true, // false will force the use of jQuery for animations
-		hideBarsDelay : 3000 // 0 to always show caption and action bar
+		hideBarsDelay : 0 // 0 to always show caption and action bar
 	});
 	
 	var time = 7; // time in seconds
