@@ -18,7 +18,7 @@ with app.app_context():
 #admin = Admin(app)
 
 from app import views, models
-
+'''
 admin.add_view(ModelView(models.Site, db.session))
 admin.add_view(ModelView(models.Location, db.session))
 admin.add_view(ModelView(models.Subscription, db.session))
@@ -31,6 +31,6 @@ admin.add_view(ModelView(models.StaffUser, db.session))
 admin.add_view(ModelView(models.Promotion, db.session))
 admin.add_view(ModelView(models.Sms, db.session))
 admin.add_view(ModelView(models.Promocode, db.session))
-
+'''
 if __name__ == "__main__":
     app.run(debug=True)
