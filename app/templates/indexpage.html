@@ -1,0 +1,95 @@
+{% extends "base2.html" %}
+{% block title %}Homies comunity - apres-work.co{% endblock %}
+{% block description %}Комьюнити локальных райдеров{% endblock %}
+{% block url %}http://apres-work.co/{% endblock %}
+{% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
+{% block head_scripts %}
+{#<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css">#}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="snap-content">
+    <div class="header">
+        <a href="/" class="header-logo"></a>
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+    
+    <div class="full-slider full-bottom" data-snap-ignore="true">     
+        <!-- Image Slider Style 1-->
+        <div>
+            <div class="overlay dark-overlay"></div>
+            <div class="slider-image slider-image-1">  
+                <div class="slider-style-1" style="height:270px; margin-top:-135px">
+                    <h2>Катайся</h2>
+                    <h3>с нами вечером в будни</h3>
+                    <p>
+                        после работы или учебы, а так же в выходные, ведь вместе веселее и дешевле.
+                    </p>
+                    {#<a href="#" class="slider-button-1 button-green">Get Started</a>#}
+                </div>
+            </div>
+        </div>
+        <!-- Image Slider Style 2-->
+        <div>
+            <div class="overlay dark-overlay"></div>
+            <div class="slider-image slider-image-2">
+                <div class="slider-style-2" style="height:260px; margin-top:-130px;">
+                    <h2>Знакомься</h2>
+                    <h3>с новыми людьми</h3>
+                    <p>
+                        и заводи новый друзей и приятелей для совместного катания.
+                    </p>
+                    <a href="#" class="slider-button-1 button-blue">There's more</a>
+                </div>
+            </div>
+        </div>
+        <!-- Image Slider Style 3-->
+        <div>
+            <div class="overlay dark-overlay"></div>
+            <div class="slider-image slider-image-3">
+                <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
+                <div class="slider-style-3" style="height:240px; margin-top:-120px">
+                    <h2>Прокачивайся</h2>
+                    <h3>в трюках и стиле</h3>
+                    <p>
+                        тренеруясь или просто катаясь с нами по фану
+                    </p>
+                    <a href="#" class="slider-button-1 button-red">Alternate Homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Page Footer-->
+    <div class="footer">
+        <div class="footer-socials half-bottom">
+            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <p class="center-text">Copyright 2015. All rights reserved.</p>
+    </div>       
+</div>
+    
+<div class="share-bottom">
+    <h3>Поделиться</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Hi!%20There%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Resorts%20list&body=Hi!%0A%0AThere%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">Закрыть&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock %}

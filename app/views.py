@@ -30,6 +30,7 @@ from pyowm import OWM,timeutils #for weather
 
 #app.jinja_env.globals['csrf_token'] = generate_csrf_token 
 
+
 '''def valid_location(func):
 	@wraps(func)
 	def wrapper(location_suffix, *args, **kwargs):
@@ -47,9 +48,18 @@ from pyowm import OWM,timeutils #for weather
 	return wrapper
 '''
 
-@app.route('/')
-def index():
-	return redirect(url_for('location_index', location_suffix='spb'))
+def save_location(func):
+	@wraps(func)
+	def wrapper(location_suffix, *args, **kwargs):
+		session['locations']['last_location_suffix'] = location_suffix
+		return func(location_suffix, *args, **kwargs)
+	return wrapper
+
+@app.context_processor
+def utility_processor():
+    def is_menu_active(checked_page):
+        if request.path == url_for(checked_page, location_suffix=session['locations']['last_location_suffix']): return 'active-menu'
+    return dict(is_menu_active=is_menu_active)
 
 def check_location_suffix(location_suffix):
 	if not session.has_key('locations') or not session['locations'].has_key(location_suffix):
@@ -64,14 +74,19 @@ def check_location_suffix(location_suffix):
 	else:
 		return True
 
+@app.route('/')
+def index():
+	return redirect(url_for('location_index', location_suffix='spb'))
+
 @app.route('/<string:location_suffix>/')
-@mobile_template('{mobile/}index.html')
-def location_index(location_suffix, template):
+@save_location
+def location_index(location_suffix):
 	check_location_suffix(location_suffix)
 	form = SubscriptionForm()
-	return render_template(template,
+	return render_template('indexpage.html',
 		location_suffix = location_suffix,
-		form=form)
+		form=form,
+		debug=app.debug)
 
 @app.route('/<string:location_suffix>/<int:event_id>/attend/', methods=["POST"])
 def attend(location_suffix, event_id):
@@ -128,6 +143,7 @@ def subscribe(location_suffix):
 
 
 @app.route('/<string:location_suffix>/resorts/', methods=["GET"])
+@save_location
 def resorts(location_suffix):
 	check_location_suffix(location_suffix)
 	cbr = {}
@@ -139,9 +155,11 @@ def resorts(location_suffix):
 			'URL_IG' : resort.url_ig,
 			'URL_VK' : resort.url_vk,
 			'URL_FB' : resort.url_fb,
+			'URL_IMG': resort.url_img,
 			'LA' : resort.la,
 			'LO' : resort.lo,
 			'OWM_ID' : resort.owm_id,
+			'DESCRIPTION' : resort.description,
 			'CAMERAS' : []
 		}
 	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==session['locations'][location_suffix]).all()
@@ -154,22 +172,15 @@ def resorts(location_suffix):
 				'IMG_NA' : camera.Webcamera.img_na,
 				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
 			})
-	return render_template('webkamery.html',
+		
+	return render_template('resorts.html',
 		location_suffix = location_suffix,
-		cbr = cbr,
-		rand=random.randint(1,1000000))
-
-@app.route('/<string:location_suffix>/sobytiya/', methods=["GET"])
-def sobytiya(location_suffix):
-	check_location_suffix(location_suffix)
-	return render_template('sobytiya.html',
-		location_suffix=location_suffix,
-		active_event = active_events,
-		past_events = past_events
-		)
+		resorts = cbr,
+		rand=random.randint(1,1000000),
+		debug=app.debug)
 
 @app.route('/<string:location_suffix>/getweather/', methods=["GET"])
-def get_weather(location_suffix):
+def getweather(location_suffix):
 	result = { 'success' : 'true', 'resorts' : {} }
 	try:
 		check_location_suffix(location_suffix)
@@ -253,3 +264,24 @@ def get_weather(location_suffix):
 		print str(e)
 		result = { 'success' : 'false' }
 	return jsonify(result)
+
+@app.route('/<string:location_suffix>/feedback/')
+def feedback(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('resorts', location_suffix=location_suffix))
+
+@app.route('/<string:location_suffix>/howitworks/')
+def howitworks(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('resorts', location_suffix=location_suffix))
+
+@app.route('/<string:location_suffix>/events/')
+def events(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('resort', location_suffix=location_suffix))
+
+@app.route('/<string:location_suffix>/news/')
+@save_location
+def news(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('resorts', location_suffix=location_suffix))

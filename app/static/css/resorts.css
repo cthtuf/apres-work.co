@@ -1,0 +1,23 @@
+.resorts-weather-load {
+	border-bottom:1px dashed #999;
+}
+
+.resorts-weather-load i {
+	padding:0 !important;
+}
+
+/* размер иконок погоды */
+.resorts-weather-container i {
+  font-size:24px;
+  cursor:default;
+}
+
+.resorts-weather-container i.wind {
+  color:#E09D51;
+}
+.resorts-weather-container .wind-danger i.wind {
+  color:#a94442;
+}
+.resorts-weather-container .wind-ok i.wind {
+  color:#277D1E;
+}
