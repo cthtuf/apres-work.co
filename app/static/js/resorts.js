@@ -22,23 +22,23 @@ var resorts = (function(){
 		loadWeather : function(){
 			var beforeRequest = function(){
 				$resorts = $('.resorts-one-item');
-				$resorts.find('.resorts-weather-load').addClass('hidden');
-				$resorts.find('.resorts-weather-loading').removeClass('hidden');
-				$resorts.find('.resorts-weather-container').addClass('hidden');
+				$resorts.find('.resorts-weather-load').hide();
+				$resorts.find('.resorts-weather-loading').show();
+				$resorts.find('.resorts-weather-container').hide();
 			}
 
 			var onError = function(){
 				$resorts = $('.resorts-one-item');
-				$resorts.find('.resorts-weather-load').addClass('hidden');
-				$resorts.find('.resorts-weather-loading').removeClass('hidden');
-				$resorts.find('.resorts-weather-container').addClass('hidden');
+				$resorts.find('.resorts-weather-load').show();
+				$resorts.find('.resorts-weather-loading').hide();
+				$resorts.find('.resorts-weather-container').hide();
 			}
 
 			var onSuccess = function(){
 				$resorts = $('.resorts-one-item');
-				$resorts.find('.resorts-weather-loading').addClass('hidden');
-				$resorts.find('.resorts-weather-load').addClass('hidden');
-				$resorts.find('.resorts-weather-container').removeClass('hidden');
+				$resorts.find('.resorts-weather-loading').hide();
+				$resorts.find('.resorts-weather-load').hide();
+				$resorts.find('.resorts-weather-container').slideDown();
 				weather_loaded = true;
 			}
 
