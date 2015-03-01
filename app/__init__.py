@@ -32,5 +32,6 @@ admin.add_view(ModelView(models.Promotion, db.session))
 admin.add_view(ModelView(models.Sms, db.session))
 admin.add_view(ModelView(models.Promocode, db.session))
 '''
+app.debug = True
 if __name__ == "__main__":
     app.run(debug=True)

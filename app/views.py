@@ -51,6 +51,7 @@ from pyowm import OWM,timeutils #for weather
 def save_location(func):
 	@wraps(func)
 	def wrapper(location_suffix, *args, **kwargs):
+		if 'locations' not in session: session['locations'] = {}
 		session['locations']['last_location_suffix'] = location_suffix
 		return func(location_suffix, *args, **kwargs)
 	return wrapper
