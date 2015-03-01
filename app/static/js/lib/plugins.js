@@ -337,7 +337,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
                 var r = n("<img>").addClass('responsive-image').on("load", function() {
                     t.call(r)
                 });
-                r.attr("src", e)
+                r.attr("src", e).on('click', resorts.reloadWebCamera);
             },
             getNext: function() {
                 var e = this;

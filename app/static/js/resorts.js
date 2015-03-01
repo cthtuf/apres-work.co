@@ -87,7 +87,9 @@ resorts = (function(){
 				onError();
 			})
 		},
-		reloadWebCamera : function(){
+		reloadWebCamera : function(e){
+			e.preventDefault();
+			e.stopPropagation();
 			var img = $(this).parent().find('img');
 			a = document.createElement('a');
 			a.href = $(img).attr('src');
