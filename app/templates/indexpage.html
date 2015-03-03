@@ -6,6 +6,23 @@
 {% block head_scripts %}
 {#<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css">#}
 {% endblock %}
+{% block footer_scripts %}
+<script>
+$ = jQuery;
+var index = (function(){
+    return {
+        init : function(){
+
+        }
+    }
+})();
+
+$(function(){
+    $.scrollIt();
+    index.init();
+});
+</script>
+{% endblock %}
 
 {% block content %}
 <div id="content" class="snap-content">
@@ -13,51 +30,79 @@
         <a href="/" class="header-logo"></a>
         <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
     </div>
-    
-    <div class="full-slider full-bottom" data-snap-ignore="true">     
-        <!-- Image Slider Style 1-->
-        <div>
-            <div class="overlay dark-overlay"></div>
-            <div class="slider-image slider-image-1">  
-                <div class="slider-style-1" style="height:270px; margin-top:-135px">
-                    <h2>Катайся</h2>
-                    <h3>с нами вечером в будни</h3>
-                    <p>
-                        после работы или учебы, а так же в выходные, ведь вместе веселее и дешевле.
-                    </p>
-                    {#<a href="#" class="slider-button-1 button-green">Get Started</a>#}
+    <div class="mainpage-slider-container">
+        <a href="#description" class="arrow-scroll-down"><i data-scroll-goto="0" class="fa fa-angle-double-down animated infinite pulse"></i></a>
+        <div class="full-slider full-bottom" data-snap-ignore="true">     
+            <!-- Image Slider Style 1-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-1">  
+                    <div class="slider-style" style="height:270px; margin-top:-135px">
+                        <h2>Катайся</h2>
+                        <h3>в компании друзей</h3>
+                        <p>
+                            после работы или учебы, а так же в выходные, ведь вместе веселее и дешевле.
+                        </p>
+                        {#<a href="#" class="slider-button-1 button-green">Get Started</a>#}
+                    </div>
+                </div>
+            </div>
+            <!-- Image Slider Style 2-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-2">
+                    <div class="slider-style" style="height:260px; margin-top:-130px;">
+                        <h2>Знакомься</h2>
+                        <h3>с другими райдерами</h3>
+                        <p>
+                            и заводи новый друзей для совместного катания.
+                        </p>
+                        {#<a href="#" class="slider-button-1 button-blue"></a>#}
+                    </div>
+                </div>
+            </div>
+            <!-- Image Slider Style 3-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-3">
+                    <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
+                    <div class="slider-style" style="height:240px; margin-top:-120px">
+                        <h2>Прогрессируй</h2>
+                        <h3>в сложности трюков и стиле</h3>
+                        <p>
+                            тренеруясь или просто катаясь по фану
+                        </p>
+                        {#<a href="#" class="slider-button-1 button-red">Alternate Homepage</a>#}
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Image Slider Style 2-->
-        <div>
-            <div class="overlay dark-overlay"></div>
-            <div class="slider-image slider-image-2">
-                <div class="slider-style-2" style="height:260px; margin-top:-130px;">
-                    <h2>Знакомься</h2>
-                    <h3>с новыми людьми</h3>
-                    <p>
-                        и заводи новый друзей и приятелей для совместного катания.
-                    </p>
-                    <a href="#" class="slider-button-1 button-blue">There's more</a>
-                </div>
+    </div>
+
+    <div class="content">       
+        <div id="description" data-scroll-index="0" class="project-description container large-title no-bottom">
+            <h3>Salut gars!</h3>
+            <p>
+                ... или добро пожаловать в комьюнити локальных райдеров.
+            </p>
+            <div class="center-socials">
+                <a href="//vk.com/apresworkco" class="vkontakte-color vk-social"><i class="fa fa-vk"></i></a>
+                <a href="//instagram.com/apresworkco" class="instagram-color instagram-social"><i class="fa fa-instagram"></i></a>
             </div>
+            <p>
+                apres-work, это почти что калька с французского apres-ski, только это не алкопати после катания, а катание по будням, после работы или учебы.<br>
+            </p>
+            <p>
+                <strong>Основная идея - катание группой со скидкой на скипасы</strong>.<br>Работает просто - набирается группа от 8-10 чел и каждый получает скидку на катание или спец.бонус от спота.
+            </p>
+            <p>
+            Как все происходит: за 3 дня открываем голосование <a href="//vk.com/apresworkco" target="_blank">во вконтакте</a> куда едем, за день голосование закрывается и становится доступна страница для записи. <br>Если едешь - оставляй на странице имя и номер телефона. Как только наберется группа, ты сразу получишь смс с кодом. Этот код называешь при оплате в парке или на кассе и получаешь скидку.
+            </p>
+            <p>
+            Вот так вот просто: нажал на кнопку - получил скидку.</p>
+            </p>
         </div>
-        <!-- Image Slider Style 3-->
-        <div>
-            <div class="overlay dark-overlay"></div>
-            <div class="slider-image slider-image-3">
-                <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
-                <div class="slider-style-3" style="height:240px; margin-top:-120px">
-                    <h2>Прокачивайся</h2>
-                    <h3>в трюках и стиле</h3>
-                    <p>
-                        тренеруясь или просто катаясь с нами по фану
-                    </p>
-                    <a href="#" class="slider-button-1 button-red">Alternate Homepage</a>
-                </div>
-            </div>
-        </div>
+        <div class="decoration"></div>
     </div>
         
     <!-- Page Footer-->
@@ -66,7 +111,7 @@
             <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
             <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
         </div>
-        <p class="center-text">Copyright 2015. All rights reserved.</p>
+        <p class="center-text">2015&nbsp;&copy;&nbsp;apres-work.co</p>
     </div>       
 </div>
     
