@@ -865,7 +865,7 @@ body{
 /*Fullscreen Slider Image*/
 .slider-image-1{background-image:url(../images/pictures/3.jpg);}
 .slider-image-2{background-image:url(../images/pictures/1.jpg);}
-.slider-image-3{background-image:url(../images/pictures/5.jpg);}
+.slider-image-3{background-image:url(../images/pictures/mike_s.jpg);}
 
 strong {
     font-weight: 600;
@@ -997,123 +997,10 @@ strong {
 .slider-button-1:hover{color:#FFFFFF;}
 .slider-button-2:hover{color:#FFFFFF;}
 
-
-.slider-style-2{
-    position:absolute;
-    width:100%;
-    top:50%;
-    z-index:9999;
-}
-
-.slider-style-2 h2{
-    color:#FFFFFF;
-    text-align:center;
-    font-weight:800;
-    text-transform:uppercase;
-    font-size:24px;
-    line-height:36px;
-    padding-bottom:0px;
-    margin-bottom:5px;
-}
-
-.slider-style-2 h3{
-    color:#FFFFFF;
-    text-align:center;
-    font-size:34px;
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:30px;
-}
-
-.slider-style-2 p{
-    text-align:center;
-    width:70%;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:14px;
-}
-
-
-.slider-style-3{
-    position:absolute;
-    width:100%;
-    top:50%;
-    z-index:9999;
-    height:200px;
-}
-
-.slider-style-3 h2{
-    color:#FFFFFF;
-    text-align:center;
-    font-weight:800;
-    text-transform:uppercase;
-    font-size:24px;
-    line-height:36px;
-    padding-bottom:0px;
-    margin-bottom:0px;
-}
-
-.slider-style-3 h3{
-    color:#FFFFFF;
-    text-align:center;
-    font-size:14px;
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:20px;
-}
-
-.slider-style-3 p{
-    text-align:center;
-    width:70%;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:14px;
-}
-
-
-@media(min-width:768px){
-    .slider-style-1 h2{
-        font-size:60px;
-        line-height:55px
+@media (min-width:600px){
+    .slider-style.slider-style-3 h3,
+    .slider-style.slider-style-3 h2,
+    .slider-style.slider-style-3 p {
+        text-indent: -270px;        
     }
-    
-    .slider-style-1 h3{
-        font-size:16px;
-        margin-bottom:10px;
-    }
-    
-    .slider-style-1 p{
-        font-size:14px;
-        width:320px;
-    }
-    
-    .slider-style-2 h2{
-        font-size:36px;
-        font-weight:600;
-    }
-    
-    .slider-style-2 h3{
-        padding-top:10px;
-        font-size:48px; 
-        font-weight:900;
-    }
-    
-    .slider-style-2 p{
-        width:320px;
-    }
-    
-    
-    .slider-style-3 h2{
-        font-size:36px;
-        padding-bottom:5px;
-    }
-    
-    .slider-style-3 h3{
-        font-size:18px;
-    }
-    
-    .slider-style-3 p{
-        width:320px;   
-    }
-    
 }
