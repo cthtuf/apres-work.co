@@ -866,6 +866,10 @@ body{
 .slider-image-1{background-image:url(../images/pictures/3.jpg);}
 .slider-image-2{background-image:url(../images/pictures/1.jpg);}
 .slider-image-3{background-image:url(../images/pictures/mike_s.jpg);}
+@media (min-width:1025px){
+    .slider-image-3{background-image:url(../images/pictures/mike_s_2000.jpg);}
+}
+
 
 strong {
     font-weight: 600;
@@ -1004,3 +1008,59 @@ strong {
         text-indent: -270px;        
     }
 }
+
+.subscription {
+    font-size:16px;
+    margin-bottom:40px;
+}
+
+.subscription p.description {
+    text-align: center;
+    font-size:16px;
+}
+
+.subscription .form-group {
+    display: inline-block;
+    width:30%;
+    vertical-align: middle;
+    margin:5px 0;
+}
+
+.subscription .group-email-lbl {
+    text-align: right;
+}
+
+.subscription button {
+    cursor: pointer;
+    vertical-align: middle;
+    min-width:170px;
+}
+
+.subscription .group-email input {
+    border:1px solid #DDD;
+    height:42px;
+    width:100%;
+    text-indent: 5px;
+}
+
+.subscription .messages > div {
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+@media (max-width:600px){
+    #form_subscribe {
+        width:300px;
+        margin:0 auto;
+    }
+
+    .subscription .form-group {
+        width:100%;
+        text-align: center;
+    }
+
+    .subscription button {
+        width:100%;
+    }
