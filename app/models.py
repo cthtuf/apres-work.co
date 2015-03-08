@@ -79,9 +79,17 @@ class User(db.Model):
 			self.email,
 			self.ga_client_id)
 
+class Resorttype(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<ResortType name=%r' % (self.name)
 
 class Resort(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	type_id = db.Column(db.Integer, db.ForeignKey('resorttype.id'))
+	type = db.relationship("Resorttype", foreign_keys=[type_id])
 	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 	location = db.relationship("Location", foreign_keys=[location_id])
 	name = db.Column(db.String(120))
@@ -93,8 +101,8 @@ class Resort(db.Model):
 	url_vk = db.Column(db.String(255))
 	url_fb = db.Column(db.String(255))
 	url_img = db.Column(db.String(255))
-	la = db.Column(db.Float)
-	lo = db.Column(db.Float)
+	la = db.Column(db.String(10))
+	lo = db.Column(db.String(10))
 	owm_id = db.Column(db.Integer)
 	bad_wind_direction = db.Column(db.Integer)
 
@@ -127,19 +135,20 @@ class Webcamera(db.Model):
 class Event(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	dt_created = db.Column(db.DateTime)
-	dt_from = db.Column(db.DateTime)
-	dt_to = db.Column(db.DateTime)
+	dt_event = db.Column(db.DateTime)
 	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
 	resort = db.relationship("Resort", foreign_keys=[resort_id])
 	name = db.Column(db.String(50))
 	description = db.Column(db.String(1000))
-	img_link = db.Column(db.String(255))
+	poster_url = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_hashtag = db.Column(db.String(20))
+	vk_event_url = db.Column(db.String(255))
 
 	def __repr__(self):
-		return '<Event id=%r, location_id=%r, dt=%r, resort_id=%r, name=$r>' % (
-			self.id, 
-			self.location_id,
-			self.dt,
+		return '<Event id=%r, dt_event=%r, resort_id=%r, name=%r>' % (
+			self.id,
+			self.dt_event,
 			self.resort_id,
 			self.name)
 

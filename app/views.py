@@ -48,6 +48,10 @@ from pyowm import OWM,timeutils #for weather
 	return wrapper
 '''
 
+@app.template_filter('strftime')
+def _jinja2_filter_datetime(date, fmt='%d.%m.%Y'):
+    return date.strftime(fmt) 
+
 def save_location(func):
 	@wraps(func)
 	def wrapper(location_suffix, *args, **kwargs):
@@ -281,7 +285,14 @@ def howitworks(location_suffix):
 @app.route('/<string:location_suffix>/events/')
 def events(location_suffix):
 	check_location_suffix(location_suffix)
-	return redirect(url_for('resort', location_suffix=location_suffix))
+
+	events = Event.query.filter(Event.resort.has(location_id=session['locations'][location_suffix])).all()
+
+	return render_template('events.html',
+		location_suffix = location_suffix,
+		rand=random.randint(1,1000000),
+		events=events,
+		debug=app.debug)
 
 @app.route('/<string:location_suffix>/news/')
 @save_location

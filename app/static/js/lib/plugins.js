@@ -442,7 +442,7 @@ function(e){e.preventDefault();doScroll(e)})};
     var n = n || function(n) {
         var r = {
             dragger: null,
-            disable: '',
+            disable: 'right',
             addBodyClasses: true,
             hyperextensible: true,
             resistance: 0.5,
