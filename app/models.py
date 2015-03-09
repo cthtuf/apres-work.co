@@ -105,6 +105,7 @@ class Resort(db.Model):
 	lo = db.Column(db.String(10))
 	owm_id = db.Column(db.Integer)
 	bad_wind_direction = db.Column(db.Integer)
+	share_text = db.Column(db.String(140))
 
 	def __repr__(self):
 		return '<Resort id=%r, location_id=%r, name=%r, url_site=%r, la=%r, lo=%r, owm_id=%r>' % (

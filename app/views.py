@@ -13,40 +13,12 @@ import re
 import time
 import mailchimp
 import flask.ext.admin
+import urllib
 
 from pyowm import OWM,timeutils #for weather
 
-#@app.before_request
-#def csrf_protect():
-#    if request.method in ["POST"]:
-#        token = session.pop('_csrf_token', None)
-#        if not token or token != request.form.get('_csrf_token'):
-#            abort(403)
-
-#def generate_csrf_token():
-#    if '_csrf_token' not in session:
-#        session['_csrf_token'] = string_generator(size=32)
-#    return session['_csrf_token']
-
-#app.jinja_env.globals['csrf_token'] = generate_csrf_token 
-
-
-'''def valid_location(func):
-	@wraps(func)
-	def wrapper(location_suffix, *args, **kwargs):
-		print 'decorator_1'
-		if not session.has_key('location_id'):
-			print 'decorator_2'
-			loc = db.session.query(Location).filter_by(suffix=location_suffix)
-			if loc.count()>0:
-				session['location_id'] = loc.first().id
-				print 'decorator_3'
-			else:
-				abort(404)
-				print 'decorator_4'
-		return func(*args, **kwargs)
-	return wrapper
-'''
+def get_site_url():
+	return u'http://apres-work.co' #to-do add support of subdomains
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt='%d.%m.%Y'):
@@ -146,6 +118,10 @@ def subscribe(location_suffix):
 	except mailchimp.Error, e:
 		return jsonify({'CODE' : '1', 'TEXT' : 'Ошибка подписки'})
 
+@app.route('/<string:location_suffix>/r/')
+def r(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('resorts', location_suffix=location_suffix))
 
 @app.route('/<string:location_suffix>/resorts/', methods=["GET"])
 @save_location
@@ -154,7 +130,14 @@ def resorts(location_suffix):
 	cbr = {}
 	resorts = db.session.query(Resort).filter(Resort.location_id==session['locations'][location_suffix]).all()
 	for resort in resorts:
+		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('r', location_suffix=location_suffix)+'#id'+str(resort.id))
+		share_text = share_text.encode('utf-8')
+		#share_text = share_text+'#'+resort.name)
+		#print share_text
+		share_text = urllib.quote(share_text)
+		#print share_text
 		cbr[resort.id] = {
+			'ID' : resort.id,
 			'NAME' : resort.name,
 			'PHONE' : resort.phone,
 			'ADDRESS' : resort.address,
@@ -167,6 +150,7 @@ def resorts(location_suffix):
 			'LO' : resort.lo,
 			'OWM_ID' : resort.owm_id,
 			'DESCRIPTION' : resort.description,
+			'SHARE_TEXT' : share_text,
 			'CAMERAS' : []
 		}
 	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==session['locations'][location_suffix]).all()
@@ -281,6 +265,11 @@ def feedback(location_suffix):
 def howitworks(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('resorts', location_suffix=location_suffix))
+
+@app.route('/<string:location_suffix>/e/')
+def e(location_suffix):
+	check_location_suffix(location_suffix)
+	return redirect(url_for('events', location_suffix=location_suffix))
 
 @app.route('/<string:location_suffix>/events/')
 def events(location_suffix):

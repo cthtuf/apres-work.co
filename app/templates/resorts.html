@@ -27,7 +27,7 @@
         </div>
     	<div class="resorts-one" data-weatherurl="{{ url_for('getweather', location_suffix=location_suffix)}}">
             {% for resort in resorts %}
-            <div class="resorts-one-item resort-{{resort}} full-bottom">
+            <div id="id{{resorts[resort]['ID']}}" class="resorts-one-item resort-{{resort}} full-bottom">
                 <div class="resorts-one-image">
                     {% if resorts[resort]['CAMERAS']|length == 0 %}
                     <a href="{{resorts[resort]['URL_IMG']}}" class="swipebox" title="{{resorts[resort]['NAME']}}">
@@ -36,13 +36,13 @@
                     <img src="{{resorts[resort]['URL_IMG']}}" class="responsive-image">
                     {% else %}
                     {# show first camera on page and other cameras in the swipebox #}
-                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}" class="swipebox can-be-reloaded" title="{{resorts[resort]['NAME']}}">
+                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="swipebox can-be-reloaded" title="{{resorts[resort]['NAME']}}">
                         <i class="fa fa-video-camera"></i>
                     </a>
-                    <img src="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}" class="responsive-image">
+                    <img src="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="responsive-image">
                     {% for camera in resorts[resort]['CAMERAS'][1:] %}
-                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}" title="{{resorts[resort]['NAME']}}"></a>
-                    <img src="{{camera['IMG_LINK']}}" class="responsive-image hidden">
+                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}?random={{ rand }}" title="{{resorts[resort]['NAME']}}"></a>
+                    <img src="{{camera['IMG_LINK']}}?random={{ rand }}" class="responsive-image hidden">
                     {% endfor %}
                     {% endif %}
                 </div>
@@ -82,6 +82,11 @@
                     <p class="half-bottom">
                         {% if resorts[resort]['DESCRIPTION'] %}
                         {{ resorts[resort]['DESCRIPTION']}}
+                        {% endif %}
+                    </p>
+                    <p class="half-bottom">
+                        {% if resorts[resort]['SHARE_TEXT'] %}
+                        <a href="sms:?body={{ resorts[resort]['SHARE_TEXT'] }}"><i class="fa fa-mobile"></i>&nbsp;Позвать друга (смс)</a>
                         {% endif %}
                     </p>
                     <div class="resorts-one-links resorts-weather">
