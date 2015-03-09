@@ -66,6 +66,7 @@ def location_index(location_suffix):
 		debug=app.debug)
 
 @app.route('/<string:location_suffix>/<int:event_id>/attend/', methods=["POST"])
+@save_location
 def attend(location_suffix, event_id):
 	check_location_suffix(location_suffix)
 	smsc = SMSC()
@@ -95,6 +96,7 @@ def attend(location_suffix, event_id):
 	'''
 
 @app.route('/<string:location_suffix>/subscribe/', methods=["POST"])
+@save_location
 def subscribe(location_suffix):
 	check_location_suffix(location_suffix)
 	try:
@@ -119,6 +121,7 @@ def subscribe(location_suffix):
 		return jsonify({'CODE' : '1', 'TEXT' : 'Ошибка подписки'})
 
 @app.route('/<string:location_suffix>/r/')
+@save_location
 def r(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('resorts', location_suffix=location_suffix))
@@ -171,6 +174,7 @@ def resorts(location_suffix):
 		debug=app.debug)
 
 @app.route('/<string:location_suffix>/getweather/', methods=["GET"])
+@save_location
 def getweather(location_suffix):
 	result = { 'success' : 'true', 'resorts' : {} }
 	try:
@@ -257,21 +261,25 @@ def getweather(location_suffix):
 	return jsonify(result)
 
 @app.route('/<string:location_suffix>/feedback/')
+@save_location
 def feedback(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('resorts', location_suffix=location_suffix))
 
 @app.route('/<string:location_suffix>/howitworks/')
+@save_location
 def howitworks(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('resorts', location_suffix=location_suffix))
 
 @app.route('/<string:location_suffix>/e/')
+@save_location
 def e(location_suffix):
 	check_location_suffix(location_suffix)
 	return redirect(url_for('events', location_suffix=location_suffix))
 
 @app.route('/<string:location_suffix>/events/')
+@save_location
 def events(location_suffix):
 	check_location_suffix(location_suffix)
 
