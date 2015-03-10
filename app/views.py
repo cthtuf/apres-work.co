@@ -166,7 +166,6 @@ def resorts(location_suffix):
 				'IMG_NA' : camera.Webcamera.img_na,
 				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
 			})
-		
 	return render_template('resorts.html',
 		location_suffix = location_suffix,
 		resorts = cbr,

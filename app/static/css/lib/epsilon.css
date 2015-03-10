@@ -2338,6 +2338,12 @@ table tr:hover td{
 	opacity:0.8;
 }
 
+.resorts-one-text .invite a{
+	font-size:24px;
+	margin-left:10px;
+}
+
+
 .resorts-one-detail{
 	opacity:0.6;
 	color:#666666;
@@ -2377,7 +2383,7 @@ table tr:hover td{
 	padding-left:10px;
 	margin-bottom:5px;
 	margin-top:10px;
-	font-size:11px;
+	font-size:16px;
 }
 
 .resorts-one-details a:first-child{

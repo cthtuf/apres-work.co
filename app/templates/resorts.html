@@ -72,8 +72,10 @@
                         <a href="//facebook.com/{{ resorts[resort]['URL_FB']}}" target="_blank"><i class="fa fa-facebook"></i></a>
                         {% endif %}
                         {% if resorts[resort]['LA'] and resorts[resort]['LO'] %}
-                            {% if request.MOBILE %}
+                            {% if request.user_agent.platform == 'android' %}
                                 <a href="geo:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
+                            {% elif request.user_agent.platform == 'iphone' %}
+                                <a href="maps:daddr={{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
                             {% else %}
                                 <a href="//maps.google.com/maps?t=h&q=loc:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}&z=13" target="_blank"><i class="fa fa-map-marker"></i></a>
                             {% endif %}
@@ -84,9 +86,11 @@
                         {{ resorts[resort]['DESCRIPTION']}}
                         {% endif %}
                     </p>
-                    <p class="half-bottom">
-                        {% if resorts[resort]['SHARE_TEXT'] %}
-                        <a href="sms:?body={{ resorts[resort]['SHARE_TEXT'] }}"><i class="fa fa-mobile"></i>&nbsp;Позвать друга (смс)</a>
+                    <p class="half-bottom invite">
+                        {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}
+                        Позвать друга&nbsp;
+                        <a href="sms:{% if request.user_agent.platform =='iphone' %};{% else %}?{% endif %}body={{ resorts[resort]['SHARE_TEXT'] }}" title="через SMS"><i class="fa fa-mobile"></i></a>
+                        <a href="whatsapp://send?{{ resorts[resort]['SHARE_TEXT'] }}" title="через Whatsapp"><i class="fa fa-whatsapp"></i></a>
                         {% endif %}
                     </p>
                     <div class="resorts-one-links resorts-weather">
