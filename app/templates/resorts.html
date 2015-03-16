@@ -8,6 +8,10 @@
 {% endblock %}
 {% block footer_scripts %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/resorts.js') }}"></script>
+{#<script type="text/javascript">#}
+{#  VK.init({apiId: 4770943, onlyWidgets: true});#}
+{#  VK.Widgets.Like("vk_like", {type: "mini", height: 20}); #}
+{# </script> #}
 {% endblock %}
 
 {% block content %}
@@ -86,23 +90,28 @@
                         {{ resorts[resort]['DESCRIPTION']}}
                         {% endif %}
                     </p>
+                    {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}
                     <p class="half-bottom invite">
-                        {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}
-                        Позвать друга&nbsp;
+                        Позвать друга:&nbsp;
                         <a href="sms:{% if request.user_agent.platform =='iphone' %};{% else %}?{% endif %}body={{ resorts[resort]['SHARE_TEXT'] }}" title="через SMS"><i class="fa fa-mobile"></i></a>
                         <a href="whatsapp://send?{{ resorts[resort]['SHARE_TEXT'] }}" title="через Whatsapp"><i class="fa fa-whatsapp"></i></a>
-                        {% endif %}
                     </p>
+                    {% endif %}
                     <div class="resorts-one-links resorts-weather">
                         <a href="#" class="resorts-weather-load">
                             Загрузить погоду&nbsp;<i class="fa fa-cloud-download"></i>
                         </a>
                         <div class="resorts-weather-container hidden">
-                            <div>сейчас: <span class="weather-now"></span></div>
-                            <div>через 3ч: <span class="weather-in3h"></span></div>
-                            <div>через 6ч: <span class="weather-in6h"></span></div>
-                            <div>через 24ч: <span class="weather-in24h"></span></div>
-                            </div>
+                            <div class="div-weather-now"><label>сейчас:</label> <span class="weather-now"></span></div>
+                            <div class="div-weather-today-night"><label>этой ночью:</label> <span class="weather-today-night"></span></div>
+                            <div class="div-weather-today-morning"><label>утром:</label> <span class="weather-today-morning"></span></div>
+                            <div class="div-weather-today-day"><label>днём:</label> <span class="weather-today-day"></span></div>
+                            <div class="div-weather-today-evening"><label>вечером:</label> <span class="weather-today-evening"></span></div>
+                            <div class="div-weather-tomorrow-night"><label>завтра ночью:</label> <span class="weather-tomorrow-night"></span></div>
+                            <div class="div-weather-tomorrow-morning"><label>завтра утром:</label> <span class="weather-tomorrow-morning"></span></div>
+                            <div class="div-weather-tomorrow-day"><label>завтра днём:</label> <span class="weather-tomorrow-day"></span></div>
+                            <div class="div-weather-tomorrow-evening"><label>завтра вечером:</label> <span class="weather-tomorrow-evening"></span></div>
+                        </div>
                         <span class="resorts-weather-loading hidden">
                             Загружается прогноз погоды...&nbsp;<i class="fa fa-spin fa-circle-o-notch"></i>
                         </span>

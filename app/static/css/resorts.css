@@ -6,6 +6,24 @@
 	padding:0 !important;
 }
 
+.resorts-weather-container label {
+    display: inline-block;
+    margin-right: 6px;
+    text-align: right;
+    vertical-align: bottom;
+    width: 100px;
+}
+
+.resorts-weather-container i.fallout {
+  width:36px;
+  text-align: center;
+}
+
+.resorts-weather-container .weather-temp {
+  display: inline-block;
+  width:36px;
+}
+
 /* размер иконок погоды */
 .resorts-weather-container i {
   font-size:24px;
