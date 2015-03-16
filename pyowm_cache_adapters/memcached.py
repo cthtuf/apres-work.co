@@ -10,7 +10,7 @@ class MemcachedAdapter(OWMCache):
   # Defaults:
   
   # cache item expiration time in seconds
-  __ITEM_LIFETIME_SECONDS = 60*10 # Ten minutes
+  __ITEM_LIFETIME_SECONDS = 4000 # Ten minutes
   
   # hostname and port
   __HOSTNAME = "127.0.0.1"
