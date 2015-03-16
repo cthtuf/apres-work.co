@@ -31,6 +31,7 @@ mailchimp==2.0.9
 pbr==0.10.7
 pymongo==2.8
 pyowm==2.2.0
+python-memcached==1.53
 python-openid==2.2.5
 pytz==2014.10
 requests==2.5.1
