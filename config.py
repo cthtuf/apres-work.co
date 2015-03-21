@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,4 +14,12 @@ MAILCHIMP_SUBSCRIPTION_LIST_ID = '55fafc9548'
 
 OWM_KEY = '212261a0fa0f62fe41ed0a1ba84f6627'
 
-SERVER_NAME = 'apres-work.co'
+#SERVER_NAME = 'apres-work.co:5000'
+
+LANGUAGES = {
+    'en': 'English',
+    'fr': 'Français',
+    'ru': 'Русский'
+}
+
+BABEL_DEFAULT_LOCALE = 'en'

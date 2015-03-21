@@ -5,7 +5,9 @@ from flask.ext.pymongo import PyMongo
 from flask.ext.mongo_sessions import MongoDBSessionInterface
 #from flask.ext.admin import Admin
 #from flask.ext.admin.contrib.sqlamodel import ModelView
+from flask.ext.babel import Babel
 #from flask.ext.login import LoginManager
+from flask import current_app, Blueprint, render_template
 
 app = Flask(__name__, static_url_path='/static')
 app.config.from_object('config')
@@ -16,8 +18,9 @@ with app.app_context():
     app.session_interface = MongoDBSessionInterface(app, mongo.db, 'sessions')
 
 #admin = Admin(app)
+babel = Babel(app)
 
-from app import views, models
+from app import urls, views, models
 '''
 admin.add_view(ModelView(models.Site, db.session))
 admin.add_view(ModelView(models.Location, db.session))
@@ -31,7 +34,7 @@ admin.add_view(ModelView(models.StaffUser, db.session))
 admin.add_view(ModelView(models.Promotion, db.session))
 admin.add_view(ModelView(models.Sms, db.session))
 admin.add_view(ModelView(models.Promocode, db.session))
+admin.add_view(ModelView(models.Resorttype, db.session))
 '''
-app.debug = True
 if __name__ == "__main__":
     app.run(debug=True)

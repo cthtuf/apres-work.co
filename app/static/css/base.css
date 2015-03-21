@@ -67,14 +67,19 @@ body{
 }
 
 .header-logo{
-    margin-top:18px;
-    margin-left:25px;
+    /*
     background-image:url(../images/misc/logo.png);
     width:80px;
-    height:24px;
-    background-size:80px 24px;
-    float:right;
-    margin-right:25px;
+    */
+    float: right;
+    height: 24px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 18px;
+    width: 100px;
+    font-family: Roboto, sans-serif;
+    color: #DDD;
+    font-size: 16px;
 }
 
 .header-clear{

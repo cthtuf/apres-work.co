@@ -19,6 +19,8 @@ class Location(db.Model):
 	suffix = db.Column(db.String(10))
 	name = db.Column(db.String(20))
 	description = db.Column(db.String(200))
+	resorts_header = db.Column(db.String(100))
+	resorts_subheader = db.Column(db.String(500))
 
 	def __repr__(self):
 		return '<Location id=%r, site_id=%r, suffix=%r, name=%r>' % (

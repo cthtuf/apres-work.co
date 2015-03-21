@@ -1,0 +1,230 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2015 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2015-03-19 09:09+0300\n"
+"PO-Revision-Date: 2015-03-19 09:20+0300\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"Last-Translator: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#: app/views.py:78
+msgid "Your promocode: _code_. See you!"
+msgstr "Твой промокод: _code_. Увидимся на склоне!"
+
+#: app/views.py:86
+msgid "Incorrect format"
+msgstr "Неверный формат"
+
+#: app/views.py:93
+msgid "We can't send the sms to this number"
+msgstr "Мы не можем отправить SMS на этот номер"
+
+#: app/views.py:97
+msgid ""
+"Great! When the count of people will be enough, we will send promo-code "
+"to you in sms."
+msgstr "Отлично! Когда наберется группа, мы отправим тебе промокод в смс."
+
+#: app/views.py:115
+msgid "Set email address, please"
+msgstr "Укажите адрес электронной почты, пожалуйста"
+
+#: app/views.py:117 app/views.py:130
+msgid "You're already subscribed. Thank you!"
+msgstr "Вы уже подписаны. Спасибо!"
+
+#: app/views.py:125
+msgid "Great! You're sucessfully subscribed."
+msgstr "Отлично! Вы успешно подписаны"
+
+#: app/views.py:128
+msgid "Incorrect format of the Email"
+msgstr "Неверный формат электронной почты"
+
+#: app/views.py:132
+msgid "An error occured. Please repeat."
+msgstr "Произошла ошибка. Пожалуйста повторите."
+
+#: app/views.py:284 app/views.py:302 app/views.py:320 app/views.py:337
+#: app/views.py:353 app/views.py:369 app/views.py:385
+msgid "from"
+msgstr "от"
+
+#: app/views.py:284 app/views.py:302 app/views.py:320 app/views.py:337
+#: app/views.py:353 app/views.py:369 app/views.py:385
+msgid "to"
+msgstr "до"
+
+#: app/templates/base.html:91
+msgid "Navigation"
+msgstr "Навигация"
+
+#: app/templates/base.html:95
+msgid "Home"
+msgstr "Главная"
+
+#: app/templates/base.html:96
+msgid "How it works"
+msgstr "Как это работает"
+
+#: app/templates/base.html:97
+msgid "Where to ride"
+msgstr "Где покататься"
+
+#: app/templates/base.html:98
+msgid "Events"
+msgstr "События"
+
+#: app/templates/base.html:99
+msgid "News"
+msgstr "Новости"
+
+#: app/templates/events.html:2
+msgid "Events - Homies community"
+msgstr "События - сообщество локальных райдеров"
+
+#: app/templates/events.html:3 app/templates/events.html:22
+msgid ""
+"The list of all past events. On this page you could find photos, videos "
+"and event members"
+msgstr ""
+"Это список всех прошедших событий. Здесь ты можешь найти фотографии, "
+"видео и участников прошедших событий"
+
+#: app/templates/events.html:20
+msgid "Past events"
+msgstr "Прошедшие события"
+
+#: app/templates/events.html:37
+msgid "Where"
+msgstr "Где"
+
+#: app/templates/events.html:37
+msgid "When"
+msgstr "Когда"
+
+#: app/templates/events.html:63 app/templates/indexpage.html:175
+msgid "Share"
+msgstr "Поделиться"
+
+#: app/templates/events.html:82 app/templates/indexpage.html:194
+msgid "Close"
+msgstr "Закрыть"
+
+#: app/templates/indexpage.html:2
+msgid "Home - Homies comunity"
+msgstr "Главная - сообщество локальных райдеров"
+
+#: app/templates/indexpage.html:3
+msgid ""
+"Welcome to community of local riders! It's community of clever riders - "
+"join us and get the cheapest way to ride in the snowparks, to jump on "
+"trampolines and to drink in extreme bars from time to time!"
+msgstr "Добро пожаловать в сообщество локальных райдеров. "
+
+#: app/templates/indexpage.html:84
+msgid "Ride"
+msgstr "Катайся"
+
+#: app/templates/indexpage.html:85
+msgid "with friends"
+msgstr "с друзьями"
+
+#: app/templates/indexpage.html:87
+msgid ""
+"After work or study or at the weekends. More fun with riding together "
+"(also it's cheaper!)"
+msgstr "После работы или учебы. Ведь вместе веселее и дешевле"
+
+#: app/templates/indexpage.html:97
+msgid "Meet"
+msgstr "Знакомься"
+
+#: app/templates/indexpage.html:98
+msgid "with other riders"
+msgstr "с другими райдерами"
+
+#: app/templates/indexpage.html:100
+msgid "and make new friends for riding together"
+msgstr "и заводи новых друзей чтобы вместе катать"
+
+#: app/templates/indexpage.html:111
+msgid "Improve"
+msgstr "Прокачивайся"
+
+#: app/templates/indexpage.html:112
+msgid "Your tricks and style"
+msgstr "в трюках и стиле"
+
+#: app/templates/indexpage.html:114
+msgid "by training or relax riding"
+msgstr "тренеруясь или просто катаясь на релаксе"
+
+#: app/templates/indexpage.html:126
+msgid "... or welcome to the homies community!"
+msgstr "... или добро пожаловать в сообщество локальных райдеров!"
+
+#: app/templates/indexpage.html:133
+msgid ""
+"apres-work it's kinda french apres-ski. It's not alco-party after "
+"riding, but it's riding after work or study in weekdays"
+msgstr ""
+"apres-work это почти что калька с французского apres-ski, только это не "
+"алко-пати после катания. Это катание по будням после работы или учебы"
+
+#: app/templates/indexpage.html:136
+msgid "The common idea - riding in group with sale on the skipasses"
+msgstr "Основная идея - катание в группе со скидкой на скипасы"
+
+#: app/templates/indexpage.html:136
+msgid ""
+"Works simple as a chair - fill the form on the website and when the "
+"count of participated will reached about 8-10 persons, everybody will "
+"get discount or special bonus from spot"
+msgstr ""
+
+#: app/templates/indexpage.html:139
+msgid "How is it going: 3 days before we're "
+msgstr ""
+
+#: app/templates/indexpage.html:139
+msgid "vote"
+msgstr ""
+
+#: app/templates/indexpage.html:139
+msgid ""
+" for spot. 1 day before the voting is closing and the event sign up form "
+"become available on this website"
+msgstr ""
+
+#: app/templates/indexpage.html:139
+msgid ""
+"If you're going with us - just drop the name and phone number in the "
+"form and you'll get the SMS with promo-code. Show this code in the spot "
+"and get the discount!"
+msgstr ""
+
+#: app/templates/indexpage.html:142
+msgid "Yep, so simple. Press the button - get the discount"
+msgstr ""
+
+#: app/templates/indexpage.html:146
+msgid "Subscribe to the news to be the first!"
+msgstr ""
+
+#: app/templates/indexpage.html:156
+msgid "Subscribe"
+msgstr ""

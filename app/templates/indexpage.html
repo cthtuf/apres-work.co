@@ -1,6 +1,6 @@
-{% extends "base2.html" %}
-{% block title %}Homies comunity - apres-work.co{% endblock %}
-{% block description %}Комьюнити локальных райдеров{% endblock %}
+{% extends "base.html" %}
+{% block title %}{{ _("Home - Homies comunity")}}{% endblock %}
+{% block description %}{{ _("Welcome to community of local riders! It's community of clever riders - join us and get the cheapest way to ride in the snowparks, to jump on trampolines and to drink in extreme bars from time to time!")}}{% endblock %}
 {% block url %}http://apres-work.co/{% endblock %}
 {% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
 {% block head_scripts %}
@@ -44,7 +44,7 @@ var subscription = (function(){
                     break;
             }
         }).fail(function(){
-            $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : 'Произошла ошибка. Попробуйте еще раз'}));
+            $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : _("An error occured. Please, try one more time")}));
         });
     };
 
@@ -70,7 +70,7 @@ $(function(){
 {% block content %}
 <div id="content" class="snap-content">
     <div class="header">
-        <a href="/" class="header-logo"></a>
+        <a href="/" class="header-logo">apres-work.co</a>
         <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
     </div>
     <div class="mainpage-slider-container">
@@ -81,12 +81,11 @@ $(function(){
                 <div class="overlay dark-overlay"></div>
                 <div class="slider-image slider-image-1">  
                     <div class="slider-style" style="height:270px; margin-top:-135px">
-                        <h2>Катайся</h2>
-                        <h3>в компании друзей</h3>
+                        <h2>{{ _("Ride") }}</h2>
+                        <h3>{{ _("with friends")}}</h3>
                         <p>
-                            после работы или учебы, а так же в выходные, ведь вместе веселее и дешевле.
+                            {{ _("After work or study or at the weekends. More fun with riding together (also it's cheaper!)")}}
                         </p>
-                        {#<a href="#" class="slider-button-1 button-green">Get Started</a>#}
                     </div>
                 </div>
             </div>
@@ -95,12 +94,11 @@ $(function(){
                 <div class="overlay dark-overlay"></div>
                 <div class="slider-image slider-image-2">
                     <div class="slider-style" style="height:260px; margin-top:-130px;">
-                        <h2>Знакомься</h2>
-                        <h3>с другими райдерами</h3>
+                        <h2>{{ _("Meet")}}</h2>
+                        <h3>{{ _("with other riders")}}</h3>
                         <p>
-                            и заводи новый друзей для совместного катания.
+                            {{ _("and make new friends for riding together")}}
                         </p>
-                        {#<a href="#" class="slider-button-1 button-blue"></a>#}
                     </div>
                 </div>
             </div>
@@ -110,12 +108,11 @@ $(function(){
                 <div class="slider-image slider-image-3">
                     <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
                     <div class="slider-style slider-style-3" style="height:240px; margin-top:-120px">
-                        <h2>Прогрессируй</h2>
-                        <h3>в сложности трюков и стиле</h3>
+                        <h2>{{ _("Improve")}}</h2>
+                        <h3>{{ _("Your tricks and style")}}</h3>
                         <p>
-                            тренеруясь или просто катаясь по фану
+                            {{ _("by training or relax riding")}}
                         </p>
-                        {#<a href="#" class="slider-button-1 button-red">Alternate Homepage</a>#}
                     </div>
                 </div>
             </div>
@@ -126,28 +123,28 @@ $(function(){
         <div id="description" data-scroll-index="0" class="project-description container large-title no-bottom">
             <h3>Salut gars!</h3>
             <p>
-                ... или добро пожаловать в комьюнити локальных райдеров.
+                {{ _("... or welcome to the homies community!") }}
             </p>
             <div class="center-socials">
                 <a href="//vk.com/apresworkco" class="vkontakte-color vk-social"><i class="fa fa-vk"></i></a>
                 <a href="//instagram.com/apresworkco" class="instagram-color instagram-social"><i class="fa fa-instagram"></i></a>
             </div>
             <p>
-                apres-work, это почти что калька с французского apres-ski, только это не алкопати после катания, а катание по будням, после работы или учебы.<br>
+                {{ _("apres-work it's kinda french apres-ski. It's not alco-party after riding, but it's riding after work or study in weekdays") }}<br>
             </p>
             <p>
-                <strong>Основная идея - катание группой со скидкой на скипасы</strong>.<br>Работает просто - набирается группа от 8-10 чел и каждый получает скидку на катание или спец.бонус от спота.
+                <strong>{{ _("The common idea - riding in group with sale on the skipasses")}}</strong>.<br>{{ _("Works simple as a chair - fill the form on the website and when the count of participated will reached about 8-10 persons, everybody will get discount or special bonus from spot")}}
             </p>
             <p>
-            Как все происходит: за 3 дня открываем <a href="//vk.com/apresworkco" target="_blank">голосование</a> куда едем, за день голосование закрывается и становится доступна страница для записи. <br>Если едешь - оставляй на странице имя и номер телефона. Как только наберется группа, ты сразу получишь смс с кодом. Этот код называешь при оплате в парке или на кассе и получаешь скидку.
+                {{ _("How is it going: 3 days before we're ") }}<a href="//vk.com/apresworkco" target="_blank">{{ _('vote')}}</a>{{ _(" for spot. 1 day before the voting is closing and the event sign up form become available on this website") }}<br>{{ _("If you're going with us - just drop the name and phone number in the form and you'll get the SMS with promo-code. Show this code in the spot and get the discount!")}}
             </p>
             <p>
-            Вот так вот просто: нажал на кнопку - получил скидку.</p>
+                {{ _("Yep, so simple. Press the button - get the discount") }}
             </p>
         </div>
         <div class="subscription">
-            <p class="description">Подпишитесь на новости чтобы узнать о старте проекта первыми!</p>
-            <form action="{{ url_for('subscribe', location_suffix=location_suffix) }}" method="POST" id="form_subscribe">
+            <p class="description">{{ _("Subscribe to the news to be the first!")}}</p>
+            <form action="{{ url_for('subscribe', language_suffix=language_suffix, location_suffix=location_suffix) }}" method="POST" id="form_subscribe">
                 {{ form.hidden_tag() }}
                 <div class="form-group group-email-lbl">
                     <label for="email">E-mail:</label>
@@ -156,7 +153,7 @@ $(function(){
                     {{ form.email(class_="input-lg")}}
                 </div>
                 <div class="form-group group-submit">
-                    <button class="button button-green" type="submit"><i class="fa fa-envelope"></i>&nbsp;Подписаться</button>
+                    <button class="button button-green" type="submit"><i class="fa fa-envelope"></i>&nbsp;{{ _("Subscribe")}}</button>
                 </div>
             </form>
             <div class="messages"></div>
@@ -175,7 +172,7 @@ $(function(){
 </div>
     
 <div class="share-bottom">
-    <h3>Поделиться</h3>
+    <h3>{{ _("Share")}}</h3>
     <div class="share-socials-bottom">
         <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
             <i class="fa fa-vk vkontakte-color"></i>
@@ -194,6 +191,6 @@ $(function(){
             Email
         </a>
     </div>
-    <a href="#" class="close-share-bottom">Закрыть&nbsp;<i class="fa fa-times"></i></a>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
 </div>
 {% endblock %}

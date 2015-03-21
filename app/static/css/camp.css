@@ -1,0 +1,130 @@
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.content-heading .overlay {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.slider-camp-1{background-image:url(../images/camp/top/riding1.jpg);}
+.slider-camp-2{background-image:url(../images/camp/top/apres1.jpg);}
+.slider-camp-3{background-image:url(../images/camp/top/valley1.jpg);}
+.slider-camp-4{background-image:url(../images/camp/top/riding2.jpg);}
+.slider-camp-5{background-image:url(../images/camp/top/apres2.jpg);}
+.slider-camp-6{background-image:url(../images/camp/top/valley2.jpg);}
+
+.slider-style {
+    position:absolute;
+    width:100%;
+    top:50%;
+    z-index:9999;
+}
+
+.slider-style p{
+    text-align:center;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:14px;
+    font-family:'Roboto', sans-serif;
+}
+
+.slider-style h2{
+    color:#FFFFFF;
+    text-align:center;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:51px;
+    line-height:50px;
+    padding-bottom:0px;
+    font-family:'Roboto', sans-serif;
+}
+
+.slider-style h3{
+    color:#FFFFFF;
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:30px;
+    font-family:'Roboto', sans-serif;
+}
+
+.slider-button-1{
+    width:200px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:12px;
+    font-weight:500;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:12px;
+    padding-bottom:12px;
+    font-family:'Roboto', sans-serif;
+    margin-bottom:20px;
+    transition:all 200ms ease;
+}
+
+.slider-button-1:hover{
+    transform:scale(0.95, 0.95);  
+    transition:all 200ms ease;
+}
+
+.slider-button-2{
+    width:200px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:12px;
+    font-weight:500;
+    text-transform:uppercase;
+    text-align:center;
+    padding-top:12px;
+    padding-bottom:12px;
+    font-family:'Roboto', sans-serif;
+    margin-bottom:20px;
+    color:#cacaca;
+    transition:all 200ms ease;
+}
+
+.slider-button-2:hover{
+    transform:scale(0.95, 0.95);  
+    transition:all 200ms ease;
+}
+
+.button-line{
+    border:solid 1px #cacaca;
+}
+
+.slider-button-1:hover{color:#FFFFFF;}
+.slider-button-2:hover{color:#FFFFFF;}
+
+@media (min-width:600px){
+    .slider-style.slider-style-3 h3,
+    .slider-style.slider-style-3 h2,
+    .slider-style.slider-style-3 p {
+        text-indent: -270px;        
+    }
+}
+
+.swiper-container {
+	height: 300px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
