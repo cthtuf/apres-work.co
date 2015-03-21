@@ -105,35 +105,35 @@ resorts = (function(){
 						if(!isEmpty(rpo.resorts[r].today_night)) 
 							$resort_weather.find('.weather-today-night').html(wTodayNight).addClass(getWindStatus(rpo.resorts[r].today_night.wind.speed, rpo.resorts[r].today_night.wind.deg, rpo.resorts[r].today_night.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-today-night').addClass('hidden');
+							$resort_weather.find('.weather-today-night').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].today_morning))
 							$resort_weather.find('.weather-today-morning').html(wTodayMorning).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].today_morning.wind.speed, rpo.resorts[r].today_morning.wind.deg, rpo.resorts[r].today_morning.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-today-morning').addClass('hidden');
+							$resort_weather.find('.weather-today-morning').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].today_day))
 							$resort_weather.find('.weather-today-day').html(wTodayDay).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].today_day.wind.speed, rpo.resorts[r].today_day.wind.deg, rpo.resorts[r].today_day.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-today-day').addClass('hidden');
+							$resort_weather.find('.weather-today-day').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].today_evening))
 							$resort_weather.find('.weather-today-evening').html(wTodayEvening).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].today_evening.wind.speed, rpo.resorts[r].today_evening.wind.deg, rpo.resorts[r].today_evening.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-today-evening').addClass('hidden');
+							$resort_weather.find('.weather-today-evening').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].tomorrow_night))
 							$resort_weather.find('.weather-tomorrow-night').html(wTomorrowNight).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].tomorrow_night.wind.speed, rpo.resorts[r].tomorrow_night.wind.deg, rpo.resorts[r].tomorrow_night.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-tomorrow-night').addClass('hidden');
+							$resort_weather.find('.weather-tomorrow-night').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].tomorrow_morning))
 							$resort_weather.find('.weather-tomorrow-morning').html(wTomorrowMorning).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].tomorrow_morning.wind.speed, rpo.resorts[r].tomorrow_morning.wind.deg, rpo.resorts[r].tomorrow_morning.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-tomorrow-morning').addClass('hidden');
+							$resort_weather.find('.weather-tomorrow-morning').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].tomorrow_day))
 							$resort_weather.find('.weather-tomorrow-day').html(wTomorrowDay).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].tomorrow_day.wind.speed, rpo.resorts[r].tomorrow_day.wind.deg, rpo.resorts[r].tomorrow_day.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-tomorrow-day').addClass('hidden');
+							$resort_weather.find('.weather-tomorrow-day').parent().addClass('hidden');
 						if(!isEmpty(rpo.resorts[r].tomorrow_evening))
 							$resort_weather.find('.weather-tomorrow-evening').html(wTomorrowEvening).removeClass('hidden').addClass(getWindStatus(rpo.resorts[r].tomorrow_evening.wind.speed, rpo.resorts[r].tomorrow_evening.wind.deg, rpo.resorts[r].tomorrow_evening.wind.bad_deg));
 						else
-							$resort_weather.find('.weather-tomorrow-evening').addClass('hidden');
+							$resort_weather.find('.weather-tomorrow-evening').parent().addClass('hidden');
 					}
 					onSuccess();
 				} else {
