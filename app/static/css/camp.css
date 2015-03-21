@@ -128,3 +128,12 @@
     -webkit-align-items: center;
     align-items: center;
 }
+
+
+.center-socials {
+  width:200px;
+}
+
+.footer-socials {
+    width:330px;
+}
