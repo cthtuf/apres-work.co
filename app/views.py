@@ -168,18 +168,21 @@ def resorts_short(language_suffix, location_suffix):
 # /ru/spb/resorts/ [GET]
 @save_suffixes
 def resorts(language_suffix, location_suffix):
+	'''
 	if location_suffix == 'l2a':
-		location_header = 'Les Deux Alpes'
-		location_subheader = "Les Deux Alpes is one of those resorts where you can initially struggle to discover just why it's so popular with British skiers."
+		location_header = 'Les Deux Alpes'.encode('utf-8')
+		location_subheader = "Les Deux Alpes is one of those resorts where you can initially struggle to discover just why it's so popular with British skiers.".encode('utf-8')
 	elif location_suffix == 'spb':
-		location_header = 'Парки Санкт-Петербурга и Ленинградской области'
-		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'
+		location_header = 'Парки Санкт-Петербурга и Ленинградской области'.encode('utf-8')
+		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'.encode('utf-8')
 	elif location_suffix == 'msk':
-		location_header = 'Парки Москвы и Московской области'
-		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'
+		location_header = 'Парки Москвы и Московской области'.encode('utf-8')
+		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'.encode('utf-8')
+	'''
 	check_suffixes(language_suffix, location_suffix)
 	cbr = {}
 	resorts = db.session.query(Resort).filter(Resort.location_id==session['locations'][location_suffix]).all()
+	location = db.session.query(Location).filter(Location.suffix==location_suffix).first()
 	for resort in resorts:
 		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_short', language_suffix=language_suffix, location_suffix=location_suffix)+'#id'+str(resort.id))
 		share_text = share_text.encode('utf-8')
@@ -218,8 +221,8 @@ def resorts(language_suffix, location_suffix):
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		resorts = cbr,
-		location_header = location_header,
-		location_subheader = location_subheader,
+		location_header = location.resorts_header,
+		location_subheader = location.resorts_subheader,
 		rand=random.randint(1,1000000),
 		debug=app.debug)
 
