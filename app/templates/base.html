@@ -92,7 +92,7 @@
 	            </div>
 	            
 	            <ul class="sidebar-navigation">
-	                <li><a class="{{is_menu_active('camp')}}" href="{{ url_for('camp', language_suffix=language_suffix, location_suffix='grn') }}"><i class="fa fa-ticket"></i>{{ _('Camp')}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('camp')}}" href="{{ url_for('camp', language_suffix=language_suffix, location_suffix=location_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camp')}}<i class="fa fa-circle"></i></a></li>
 	                <li><a class="{{is_menu_active('resorts')}}" href="{{ url_for('resorts', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("Resorts")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a class="{{is_menu_active('events')}}" href="{{ url_for('events', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("Events")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a class="{{is_menu_active('news')}}" href="{{ url_for('news', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("News")}}<i class="fa fa-circle"></i></a></li>

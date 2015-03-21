@@ -24,9 +24,9 @@
     <div class="header-clear"></div>
     <div class="content">
         <div class="container no-bottom">
-            <h3>Парки Санкт-Петербурга и Ленинградской области</h3>
+            <h3>{{location_header}}</h3>
             <p>
-                На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.
+                {{location_subheader}}
             </p>
         </div>
     	<div class="resorts-one" data-weatherurl="{{ url_for('getweather', location_suffix=location_suffix)}}">

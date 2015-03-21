@@ -72,7 +72,7 @@ def index():
 	return redirect(url_for(
 		'location_index',
 		language_suffix='en',#get_locale(),
-		location_suffix='grn' #get_location()
+		location_suffix='l2a' #get_location()
 	))
 
 # for /ru/ [GET]
@@ -80,7 +80,7 @@ def language_index(language_suffix):
 	return redirect(url_for(
 		'location_index',
 		language_suffix='en',
-		location_suffix='grn'
+		location_suffix='l2a'
 	))
 
 #for /ru/spb/ [GET]
@@ -168,6 +168,15 @@ def resorts_short(language_suffix, location_suffix):
 # /ru/spb/resorts/ [GET]
 @save_suffixes
 def resorts(language_suffix, location_suffix):
+	if location_suffix == 'l2a':
+		location_header = 'Les Deux Alpes'
+		location_subheader = "Les Deux Alpes is one of those resorts where you can initially struggle to discover just why it's so popular with British skiers."
+	elif location_suffix == 'spb':
+		location_header = 'Парки Санкт-Петербурга и Ленинградской области'
+		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'
+	elif location_suffix == 'msk':
+		location_header = 'Парки Москвы и Московской области'
+		location_subheader = 'На странице предоставлены только те горнолыжные центры, в которых присутствуют экстрим-парки.'
 	check_suffixes(language_suffix, location_suffix)
 	cbr = {}
 	resorts = db.session.query(Resort).filter(Resort.location_id==session['locations'][location_suffix]).all()
@@ -209,6 +218,8 @@ def resorts(language_suffix, location_suffix):
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		resorts = cbr,
+		location_header = location_header,
+		location_subheader = location_subheader,
 		rand=random.randint(1,1000000),
 		debug=app.debug)
 
@@ -272,6 +283,6 @@ def camp(language_suffix, location_suffix):
 	return render_template(
 		'camp.html',
 		language_suffix = language_suffix,
-		location_suffix = 'grn',
+		location_suffix = 'l2a',
 		debug=app.debug
 	)
