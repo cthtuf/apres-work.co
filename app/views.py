@@ -70,7 +70,7 @@ def check_suffixes(language_suffix, location_suffix):
 # for / [GET]
 def index():
 	return redirect(url_for(
-		'location_index',
+		'camp',
 		language_suffix='en',#get_locale(),
 		location_suffix='l2a' #get_location()
 	))
@@ -78,7 +78,7 @@ def index():
 # for /ru/ [GET]
 def language_index(language_suffix):
 	return redirect(url_for(
-		'location_index',
+		'camp',
 		language_suffix='en',
 		location_suffix='l2a'
 	))
