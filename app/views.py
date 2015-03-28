@@ -46,13 +46,21 @@ def save_suffixes(func):
 @app.context_processor
 def utility_processor():
     def is_menu_active(checked_page):
-    	print "request.path="+request.path
         if request.path == url_for(
         	checked_page,
         	location_suffix=request.location_suffix, #  session['last_location_suffix'],
         	language_suffix=request.language_suffix # session['last_language_suffix']
         	): return 'active-menu'
     return dict(is_menu_active=is_menu_active)
+
+@app.context_processor
+def utility_processor():
+	def get_img_src(path, filename_desktop, filename_mobile):
+		if request.MOBILE:
+			return url_for('static', filename=path+filename_mobile)
+		else:
+			return url_for('static', filename=path+filename_desktop)
+	return dict(get_img_src=get_img_src)
 
 def check_suffixes(language_suffix, location_suffix):
 	if not session.has_key('locations') or not session['locations'].has_key(location_suffix):

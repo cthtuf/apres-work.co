@@ -125,45 +125,6 @@ $(function(){
                     </div>
                 </div>
             </div>
-            <!-- Image Slider Style 4-->
-            <!--<div>
-                <div class="overlay dark-overlay"></div>
-                <div class="slider-image slider-camp-4">
-                    <div class="slider-style slider-camp-style-4" style="height:240px; margin-top:-120px">
-                        <h2>Elite Experience</h2>
-                        <h3>Built by the best</h3>
-                        <p>
-                            Our motto is to build products we'd recommend to our friends and family and use for ourselves!
-                        </p>
-                    </div>
-                </div>
-            </div>-->
-            <!-- Image Slider Style 5-->
-            <!--<div>
-                <div class="overlay dark-overlay"></div>
-                <div class="slider-image slider-camp-5">
-                    <div class="slider-style slider-camp-style-5" style="height:240px; margin-top:-120px">
-                        <h2>Elite Experience</h2>
-                        <h3>Built by the best</h3>
-                        <p>
-                            Our motto is to build products we'd recommend to our friends and family and use for ourselves!
-                        </p>
-                    </div>
-                </div>
-            </div>-->
-            <!-- Image Slider Style 6-->
-            <!--<div>
-                <div class="overlay dark-overlay"></div>
-                <div class="slider-image slider-camp-6">
-                    <div class="slider-style slider-camp-style-6" style="height:240px; margin-top:-120px">
-                        <h2>Elite Experience</h2>
-                        <h3>Built by the best</h3>
-                        <p>
-                            Our motto is to build products we'd recommend to our friends and family and use for ourselves!
-                        </p>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
     
@@ -191,7 +152,7 @@ $(function(){
         <p>We are provide all you need !</p>
         <i class="fa fa-cog"></i>
         <div class="overlay"></div>
-        <img src="{{ url_for('static', filename='images/camp/bg/1.jpg')}}" alt="">
+        <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="">
     </div>
     
     <!-- Page Content-->
@@ -244,7 +205,7 @@ $(function(){
         <p>Meet our awesome staff!</p>
         <i class="fa fa-user"></i>
         <div class="overlay"></div>
-        <img src="{{ url_for('static', filename='images/camp/bg/2.jpg')}}" alt="Staff background">
+        <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="Staff background">
     </div> 
     
     <!-- Page Content-->
@@ -290,7 +251,7 @@ $(function(){
         <p>Check and enjoy our featured item</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
-        <img src="{{ url_for('static', filename='images/camp/bg/3.jpg')}}" alt="img">
+        <img src="{{ get_img_src('images/camp/bg/', '1024x200_3.jpg', '512x100_3.jpg')}}" alt="img">
     </div>
     
     <!-- Page Content-->
@@ -299,32 +260,36 @@ $(function(){
             <div class="container">
                 <div class="one-half-responsive">
                     <div class="slider-bottom">
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/1.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/2.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/4.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/5.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/6.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/7.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/8.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/9.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/10.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/11.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/12.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/13.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/14.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/15.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/16.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/17.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/18.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/19.jpg')}}"></div>
-                        <div><img src="{{ url_for('static', filename='images/camp/slider/20.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s1.jpg', '512x512_s1.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s2.jpg', '512x512_s2.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s3.jpg', '512x512_s3.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s4.jpg', '512x512_s4.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s5.jpg', '512x512_s5.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s6.jpg', '512x512_s6.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s7.jpg', '512x512_s7.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s8.jpg', '512x512_s8.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s9.jpg', '512x512_s9.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s10.jpg', '512x512_s10.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s11.jpg', '512x512_s11.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s12.jpg', '512x512_s12.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s13.jpg', '512x512_s13.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s14.jpg', '512x512_s14.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s15.jpg', '512x512_s15.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s16.jpg', '512x512_s16.jpg')}}"></div>
+                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s17.jpg', '512x512_s17.jpg')}}"></div>
                     </div>
                 </div>
                 <div class="one-half-responsive last-column">
                     <h3 class="center-if-mobile no-bottom">apres-work.co camp</h3>
-                    <em class="center-if-mobile small-text half-bottom">Awesome summer camp</em>
+                    <em class="center-if-mobile small-text half-bottom">ultimate summer camp</em>
                     <p class="center-if-mobile no-bottom">
-                        Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends…
+                        This summer, we’re bringing skiers and snowboarders to the French Alps to ride, progress, and party with Apres-Work Camps. We’ve taken care of every part of your summer ski vacation, it’s up to you to choose how you want to live it (pick and choose). 
+                    </p>
+                    <p class="center-if-mobile no-bottom">
+                        Les Deux Alpes is a year-round ski resort tucked away in the Southern Alps. During the summer, freestyle skiers and snowboarders take over the glacier, spending the season jumping and sliding at 3600 meters. Apres-Work is here to (work on progression). If you want to train hard this summer or spend some time relaxing in the sun and the snow, Apres-Work has got it covered.
+                    </p>
+                    <p class="center-if-mobile no-bottom">
+                        Up on the glacier, you can train with our freestyle coaches. We offer group lessons of up to 8 skiers or snowboarders where you can train with our coaches, all depending on your freestyle goals. Both group and private lessons are offered and coached by our qualified instructors who have worked around the world: from Japan to Australia, New Zealand to USA. 
                     </p>
                 </div>
             </div>
