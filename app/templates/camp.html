@@ -4,7 +4,7 @@
 {% block url %}http://apres-work.co/ru/grn/camp/{% endblock %}
 {% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
 {% block head_scripts %}
-<link href="{{ url_for('static', filename='css/camp.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='css/camp.css', v='2') }}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick-theme.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
@@ -87,7 +87,7 @@ $(function(){
         <div class="full-slider full-bottom" data-snap-ignore="true">     
             <!-- Image Slider Style 1-->
             <div>
-                <div class="overlay dark-overlay"></div>
+                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-1">  
                     <div class="slider-style slider-camp-style-1" style="height:270px; margin-top:-135px">
                         <h2>Shred</h2>
@@ -100,7 +100,7 @@ $(function(){
             </div>
             <!-- Image Slider Style 2-->
             <div>
-                <div class="overlay dark-overlay"></div>
+                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-2">
                     <div class="slider-style slider-camp-style-2" style="height:260px; margin-top:-130px;">
                         <h2>Party</h2>
@@ -113,7 +113,7 @@ $(function(){
             </div>
             <!-- Image Slider Style 3-->
             <div>
-                <div class="overlay dark-overlay"></div>
+                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-3">
                     <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
                     <div class="slider-style slider-camp-style-3" style="height:240px; margin-top:-120px">
@@ -282,13 +282,13 @@ $(function(){
                 <div class="one-half-responsive last-column">
                     <h3 class="center-if-mobile no-bottom">apres-work.co camp</h3>
                     <em class="center-if-mobile small-text half-bottom">ultimate summer camp</em>
-                    <p class="center-if-mobile no-bottom">
+                    <p class="center-if-mobile half-bottom">
                         This summer, we’re bringing skiers and snowboarders to the French Alps to ride, progress, and party with Apres-Work Camps. We’ve taken care of every part of your summer ski vacation, it’s up to you to choose how you want to live it (pick and choose). 
                     </p>
-                    <p class="center-if-mobile no-bottom">
+                    <p class="center-if-mobile half-bottom">
                         Les Deux Alpes is a year-round ski resort tucked away in the Southern Alps. During the summer, freestyle skiers and snowboarders take over the glacier, spending the season jumping and sliding at 3600 meters. Apres-Work is here to (work on progression). If you want to train hard this summer or spend some time relaxing in the sun and the snow, Apres-Work has got it covered.
                     </p>
-                    <p class="center-if-mobile no-bottom">
+                    <p class="center-if-mobile half-bottom">
                         Up on the glacier, you can train with our freestyle coaches. We offer group lessons of up to 8 skiers or snowboarders where you can train with our coaches, all depending on your freestyle goals. Both group and private lessons are offered and coached by our qualified instructors who have worked around the world: from Japan to Australia, New Zealand to USA. 
                     </p>
                 </div>
