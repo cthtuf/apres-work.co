@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Les 2 Alpes summer camp - apres-work.co{% endblock %}
-{% block description %}{% endblock %}
-{% block url %}http://apres-work.co/ru/grn/camp/{% endblock %}
-{% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
+{% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
+{% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
+{% block url %}{{ url_for('camp', language_suffix=language_suffix, location_suffix=location_suffix) }}{% endblock %}
+{% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
 {% block head_scripts %}
-<link href="{{ url_for('static', filename='css/camp.css', v='2') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick-theme.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
@@ -90,10 +90,10 @@ $(function(){
                 <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-1">  
                     <div class="slider-style slider-camp-style-1" style="height:270px; margin-top:-135px">
-                        <h2>Shred</h2>
+                        <h2>{{ _("Shred") }}</h2>
                         {#<h3>Mobile and Tablet Template</h3>#}
                         <p style="color:#FFF;font-size:20px;">
-                            Experience Les Deux Alpes’ freestyle park: At 3600 meters, L2A’s Freestyle Land is THE summer shred destination
+                            {{ _("Experience Les Deux Alpes’ freestyle park: At 3600 meters, L2A’s Freestyle Land is THE summer shred destination") }}
                         </p>
                     </div>
                 </div>
@@ -104,10 +104,10 @@ $(function(){
                 <div class="slider-image slider-camp-3">
                     <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
                     <div class="slider-style slider-camp-style-3" style="height:240px; margin-top:-120px">
-                        <h2>Play</h2>
+                        <h2>{{ _("Play") }}</h2>
                         {#<h3>Built by the best</h3>#}
                         <p style="color:#FFF;font-size:20px;">
-                            It’s not all about the snow: afternoons in Les Deux Alpes are endless. Mountain biking, skateboarding, swimming, luging, and BBQ’s are only the half of it...
+                            {{ _("It’s not all about the snow: afternoons in Les Deux Alpes are endless. Mountain biking, skateboarding, swimming, luging, and BBQ’s are only the half of it...") }}
                         </p>
                     </div>
                 </div>
@@ -117,10 +117,10 @@ $(function(){
                 <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-2">
                     <div class="slider-style slider-camp-style-2" style="height:260px; margin-top:-130px;">
-                        <h2>Party</h2>
+                        <h2>{{ _("Party") }}</h2>
                         {#<h3>Experience</h3>#}
                         <p style="color:#FFF;font-size:20px;">
-                            Apres-ski starts on the mountain and goes all night. With organized events and drink deals in the heart of the village, we’ve got all your evenings covered
+                            {{ _("Apres-ski starts on the mountain and goes all night. With organized events and drink deals in the heart of the village, we’ve got all your evenings covered") }}
                         </p>
                     </div>
                 </div>
@@ -130,9 +130,9 @@ $(function(){
     
     <div class="content">       
         <div class="container large-title no-bottom">
-            <h3>France, Les Deux Alpes, 8 - 22 Aug 2015</h3>
+            <h3>{{ _("France, Les Deux Alpes, 8 - 22 Aug 2015") }}</h3>
             <p>
-                Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying…because skiing’s more fun with friends…
+                {{ _("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying…because skiing’s more fun with friends…") }}
             </p>
 
             <div class="center-socials">
@@ -148,8 +148,8 @@ $(function(){
             
     <!-- Content Heding -->
     <div class="content-heading">
-        <h4>Services</h4>
-        <p>All your needs in one place.</p>
+        <h4>{{ _("Services") }}</h4>
+        <p>{{ _("All your needs in one place.") }}</p>
         <i class="fa fa-cog"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="">
@@ -163,8 +163,8 @@ $(function(){
             <div class="one-half-responsive">
                 <p class="thumb-left no-bottom">
                     <img src="{{ url_for('static', filename='images/camp/services/coaching.jpg')}}" alt="Coaching">
-                    <strong>Coaching</strong>
-                    <em><br>The essentials - a four way training regime to help our campers accelerate and sustain their progression: starting on trampoline, moving onto an airbag, taking it to the snow and then recovering physically and mentally through yoga.</em>
+                    <strong>{{ _("Coaching") }}</strong>
+                    <em><br>{{ _("The essentials - a four way training regime to help our campers accelerate and sustain their progression: starting on trampoline, moving onto an airbag, taking it to the snow and then recovering physically and mentally through yoga.") }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
@@ -172,8 +172,8 @@ $(function(){
             <div class="one-half-responsive last-column">        
                 <p class="thumb-right no-bottom">
                     <img src="{{ url_for('static', filename='images/camp/services/media.jpg')}}" alt="Media">
-                    <strong>Media</strong>
-                    <em><br>Our media crew is here to make your experience unique and memorable. We have a dedicated photographer, and a professional video operator to capture every moment of your camp experience.</em>
+                    <strong>{{ _("Media") }}</strong>
+                    <em><br>{{ _("Our media crew is here to make your experience unique and memorable. We have a dedicated photographer, and a professional video operator to capture every moment of your camp experience.") }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
@@ -181,8 +181,8 @@ $(function(){
             <div class="one-half-responsive">
                 <p class="thumb-left no-bottom">
                     <img src="{{ url_for('static', filename='images/camp/services/entertainment.jpg')}}" alt="Entertainment">
-                    <strong>Entertainment</strong>
-                    <em><br>We have a calendar packed-full with activities! When we are not training you will be doing anything from golf and mountain biking to traveling and partying, we got it all. We even get a chance to go to Côte d'Azur and lie around on the beach sipping cocktails.</em>
+                    <strong>{{ _("Entertainment") }}</strong>
+                    <em><br>{{ _("We have a calendar packed-full with activities! When we are not training you will be doing anything from golf and mountain biking to traveling and partying, we got it all. We even get a chance to go to Côte d'Azur and lie around on the beach sipping cocktails.") }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
@@ -190,8 +190,8 @@ $(function(){
             <div class="one-half-responsive last-column">        
                 <p class="thumb-right no-bottom">
                     <img src="{{ url_for('static', filename='images/camp/services/organization.jpg')}}" alt="Organization">
-                    <strong>Organization</strong>
-                    <em><br>Simply put - you do not have to worry about a thing, it has all been taken care of in advance. All you have to do is come. You can also customise your camp stay by modifying your program, we can create a custom package just for you.</em>
+                    <strong>{{ _("Organization") }}</strong>
+                    <em><br>{{ _("Simply put - you do not have to worry about a thing, it has all been taken care of in advance. All you have to do is come. You can also customise your camp stay by modifying your program, we can create a custom package just for you.") }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
@@ -201,8 +201,8 @@ $(function(){
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>The Team</h4>
-        <p>Meet our excellent staff</p>
+        <h4>{{ _("The Team") }}</h4>
+        <p>{{ _("Meet our excellent staff") }}</p>
         <i class="fa fa-user"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="Staff background">
@@ -219,10 +219,10 @@ $(function(){
                 <div>
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/bri.jpg')}}" alt="Briana">
-                        <h4>Briana Delfs</h4>
-                        <em>Snowboarding coach, Yoga instructor</em>
+                        <h4>{{ _("Briana Delfs") }}</h4>
+                        <em>{{ _("Snowboarding coach, Yoga instructor") }}</em>
                         <strong style="width:350px;">
-                            Brianna (Bri) originally from the States, over the past five years Bri worked many seasons as a snowboarding coach in many countries around the world, mostly in New-Zealand and US. She isn’t all about snowboarding though: she is studying Philosophy at university in Paris, Yoga instructor and on her way to become one of the strongest rail riders in Europe.
+                            {{ _("Brianna (Bri) originally from the States, over the past five years Bri worked many seasons as a snowboarding coach in many countries around the world, mostly in New-Zealand and US. She isn’t all about snowboarding though: she is studying Philosophy at university in Paris, Yoga instructor and on her way to become one of the strongest rail riders in Europe.") }}
                             <div class="text-align:center;"><a href="https://www.facebook.com/bri.delfs" target="_blank"><i class="fa fa-facebook"></i></a></div>
                         </strong>
                     </div>
@@ -230,10 +230,10 @@ $(function(){
                 <div>
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/val.jpg')}}" alt="Valentine">
-                        <h4>Valentine Tchoukhonine</h4>
-                        <em>Freeski coach</em>
+                        <h4>{{ _("Valentine Tchoukhonine") }}</h4>
+                        <em>{{ _("Freeski coach") }}</em>
                         <strong style="width:350px;">
-                            Valentine (Val) originally from Russia, an ex-racer of 10+ years who changed his discipline to freestyle skiing 6 years ago. Val has spent many winters teaching, mostly in Japan, New-Zealand, Australia and France. Incredibly versatile skier, weather its Park, Big Mountain or Race Course he rips it. In his freetime Val does commercial photography and runs a small studio in Paris.
+                            {{ _("Valentine (Val) originally from Russia, an ex-racer of 10+ years who changed his discipline to freestyle skiing 6 years ago. Val has spent many winters teaching, mostly in Japan, New-Zealand, Australia and France. Incredibly versatile skier, weather its Park, Big Mountain or Race Course he rips it. In his freetime Val does commercial photography and runs a small studio in Paris.") }}
                             <div class="text-align:center;"><a href="https://www.facebook.com/vtchoukhonine" target="_blank"><i class="fa fa-facebook"></i></a></div>
                         </strong>
                     </div>
@@ -241,10 +241,10 @@ $(function(){
                 <div>
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/sergey.jpg')}}" alt="Sergey">
-                        <h4>Sergey Yarlov</h4>
-                        <em>Trampoline coach</em>
+                        <h4>{{ _("Sergey Yarlov") }}</h4>
+                        <em>{{ _("Trampoline coach") }}</em>
                         <strong style="width:350px;">
-                            A Russian entrepreneur of many talents, he runs a number of successful projects ranging from skateboard manufacturing business, to owning a wakeboarding park and running an internet snowsports community - apres-work.co. Sergey is a talented trampoline coach of more than 5 years experience and our client relations manager.
+                            {{ _("A Russian entrepreneur of many talents, he runs a number of successful projects ranging from skateboard manufacturing business, to owning a wakeboarding park and running an internet snowsports community - apres-work.co. Sergey is a talented trampoline coach of more than 5 years experience and our client relations manager.") }}
                             <div class="text-align:center;"><a href="https://www.facebook.com/sergey.yarlov" target="_blank"><i class="fa fa-facebook"></i></a></div>
                         </strong>
                     </div>
@@ -256,8 +256,8 @@ $(function(){
     
     <!-- Content Heading-->
     <div class="content-heading">
-        <h4>How it works</h4>
-        <p>A short summary of the camp</p>
+        <h4>{{ _("How it works") }}</h4>
+        <p>{{ _("A short summary of the camp") }}</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_3.jpg', '512x100_3.jpg')}}" alt="img">
@@ -289,16 +289,16 @@ $(function(){
                     </div>
                 </div>
                 <div class="one-half-responsive last-column">
-                    <h3 class="center-if-mobile no-bottom">apres-work.co camp</h3>
-                    <em class="center-if-mobile small-text half-bottom">ultimate summer camp</em>
+                    <h3 class="center-if-mobile no-bottom">{{ _("apres-work.co camp") }}</h3>
+                    <em class="center-if-mobile small-text half-bottom">{{ _("ultimate summer camp") }}</em>
                     <p class="center-if-mobile half-bottom">
-                        This summer, we’re bringing skiers and snowboarders to the French Alps to ride, progress, and party with Apres-Work Camps. We’ve taken care of every part of your summer ski vacation, it’s up to you to choose how you want to live it (pick and choose). 
+                        {{ _("This summer, we’re bringing skiers and snowboarders to the French Alps to ride, progress, and party with Apres-Work Camps. We’ve taken care of every part of your summer ski vacation, it’s up to you to choose how you want to live it (pick and choose).") }} 
                     </p>
                     <p class="center-if-mobile half-bottom">
-                        Les Deux Alpes is a year-round ski resort tucked away in the Southern Alps. During the summer, freestyle skiers and snowboarders take over the glacier, spending the season jumping and sliding at 3600 meters. Apres-Work is here to (work on progression). If you want to train hard this summer or spend some time relaxing in the sun and the snow, Apres-Work has got it covered.
+                        {{ _("Les Deux Alpes is a year-round ski resort tucked away in the Southern Alps. During the summer, freestyle skiers and snowboarders take over the glacier, spending the season jumping and sliding at 3600 meters. Apres-Work is here to (work on progression). If you want to train hard this summer or spend some time relaxing in the sun and the snow, Apres-Work has got it covered.")}}
                     </p>
                     <p class="center-if-mobile half-bottom">
-                        Up on the glacier, you can train with our freestyle coaches. We offer group lessons of up to 8 skiers or snowboarders where you can train with our coaches, all depending on your freestyle goals. Both group and private lessons are offered and coached by our qualified instructors who have worked around the world: from Japan to Australia, New Zealand to USA. 
+                        {{ _("Up on the glacier, you can train with our freestyle coaches. We offer group lessons of up to 8 skiers or snowboarders where you can train with our coaches, all depending on your freestyle goals. Both group and private lessons are offered and coached by our qualified instructors who have worked around the world: from Japan to Australia, New Zealand to USA.") }}
                     </p>
                 </div>
             </div>
@@ -307,8 +307,8 @@ $(function(){
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>Official partners</h4>
-        <p>Working together to make it happen</p>
+        <h4>{{ _("Official partners") }}</h4>
+        <p>{{ _("Working together to make it happen") }}</p>
         <i class="fa fa-quote-left"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="">
@@ -321,37 +321,37 @@ $(function(){
                 <div>
                     <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'l2a.png', 'l2a.png')}}" alt="Les Deux Alpes logo">
                     <h4>
-                        Go-ahead, sporty and bang on trend, Les 2 Alpes is one of the rare European destinations where you can ski in the summer thanks to its glacier, culminating at an altitude of 3,600 metres.
+                        {{ _("Go-ahead, sporty and bang on trend, Les 2 Alpes is one of the rare European destinations where you can ski in the summer thanks to its glacier, culminating at an altitude of 3,600 metres.") }}
                     </h4>
                 </div>
-                <a href="http://www.les2alpes.com" target="_blank">Les Deux Aples Ski Resort</a>
+                <a href="http://www.les2alpes.com" target="_blank">{{ _("Les Deux Aples Ski Resort") }}</a>
             </div>
             <div>
                 <div>
                     <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'smithies.png', 'smithies.png')}}" alt="Les Deux Alpes logo">
                     <h4>
-                        Smithy's tavern, Bars and restaurants opened in Alpe d'Huez in 1996, Since opening we have established excellent food in our restaurants and great drinks served throughout the night over our big bars. Smithy's then opened in neighbouring Les Deux Alpes in 2002, where we fast became the place to eat, drink and party with many themed nights, live bands and guest Djs and artists. 
+                        {{ _("Smithy's tavern, Bars and restaurants opened in Alpe d'Huez in 1996, Since opening we have established excellent food in our restaurants and great drinks served throughout the night over our big bars. Smithy's then opened in neighbouring Les Deux Alpes in 2002, where we fast became the place to eat, drink and party with many themed nights, live bands and guest Djs and artists.") }} 
                     </h4>
                 </div>
-                <a href="http://www.smithystavern.com" target="_blank">Smithy's tavern</a>
+                <a href="http://www.smithystavern.com" target="_blank">{{ _("Smithy's tavern") }}</a>
             </div>
             <div>
                 <div>
                     <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'polarbear.png', 'polarbear.png')}}" alt="Les Deux Alpes logo">
                     <h4>
-                        In the very heart of resort The Polar Bear Pub welcomes you into its warm, friendly atmosphere to sink a few pints and enjoy a good vin chaud after a hard day up the mountain.  Found by the central roundabout on the main strip of Les Deux Alpes the traditional log style chalet offers a great team  and a buzzing vibe to help you wind down your day.
+                        {{ _("In the very heart of resort The Polar Bear Pub welcomes you into its warm, friendly atmosphere to sink a few pints and enjoy a good vin chaud after a hard day up the mountain.  Found by the central roundabout on the main strip of Les Deux Alpes the traditional log style chalet offers a great team  and a buzzing vibe to help you wind down your day.") }}
                     </h4>
                 </div>
-                <a href="http://www.thepolarbearpub.com" target="_blank">The Polar Bear Pub</a>
+                <a href="http://www.thepolarbearpub.com" target="_blank">{{ _("The Polar Bear Pub") }}</a>
             </div>
             <div>
                 <div>
                     <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'event2fly.png', 'event2fly.png')}}" alt="Les Deux Alpes logo">
                     <h4>
-                        Avec Event2fly vivez de nouvelles émotions et faites le plein d’adrénaline en sautant dans un sac gonflable: l’AIRBAG. Aux 2 Alpes Event2Fly vous propose une expérience unique et innovante. L’été et l’hiver au pied des pistes, tentez vos tricks les plus fous en toute sécurité grâce à une équipe de professionnels.
+                        {{ _("Avec Event2fly vivez de nouvelles émotions et faites le plein d’adrénaline en sautant dans un sac gonflable: l’AIRBAG. Aux 2 Alpes Event2Fly vous propose une expérience unique et innovante. L’été et l’hiver au pied des pistes, tentez vos tricks les plus fous en toute sécurité grâce à une équipe de professionnels.") }}
                     </h4>
                 </div>
-                <a href="http://event2fly.com" target="_blank">Event2fly</a>
+                <a href="http://event2fly.com" target="_blank">{{ _("Event2fly") }}</a>
             </div>
         </div>
             
@@ -372,7 +372,7 @@ $(function(){
 </div>
     
 <div class="share-bottom">
-    <h3>Share</h3>
+    <h3>{{ _("Share") }}</h3>
     <div class="share-socials-bottom">
         <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
             <i class="fa fa-vk vkontakte-color"></i>
@@ -391,6 +391,6 @@ $(function(){
             Email
         </a>
     </div>
-    <a href="#" class="close-share-bottom">Закрыть&nbsp;<i class="fa fa-times"></i></a>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
 </div>
 {% endblock %}
