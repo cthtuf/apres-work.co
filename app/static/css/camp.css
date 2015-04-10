@@ -8,12 +8,12 @@
 
 .slider-camp-1{background-image:url(../images/camp/top/1024x768_1st.jpg);}
 .slider-camp-2{background-image:url(../images/camp/top/1024x768_2nd.jpg);}
-.slider-camp-3{background-image:url(../images/camp/top/1024x768_3rd.jpg);}
+.slider-camp-3{background-image:url(../images/camp/top/1024x768_5th.jpg);}
 
 @media (min-width:1025px){
     .slider-camp-1{background-image:url(../images/camp/top/2048x1536_1st.jpg);}
     .slider-camp-2{background-image:url(../images/camp/top/2048x1536_2nd.jpg);}
-    .slider-camp-3{background-image:url(../images/camp/top/2048x1536_3rd.jpg);}    
+    .slider-camp-3{background-image:url(../images/camp/top/2048x1536_5th.jpg);}    
 }
 
 .slider-style {

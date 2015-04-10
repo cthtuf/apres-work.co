@@ -98,6 +98,20 @@ $(function(){
                     </div>
                 </div>
             </div>
+            <!-- Image Slider Style 3-->
+            <div>
+                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
+                <div class="slider-image slider-camp-3">
+                    <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
+                    <div class="slider-style slider-camp-style-3" style="height:240px; margin-top:-120px">
+                        <h2>Play</h2>
+                        {#<h3>Built by the best</h3>#}
+                        <p style="color:#FFF;font-size:20px;">
+                            It’s not all about the snow: afternoons in Les Deux Alpes are endless. Mountain biking, skateboarding, swimming, luging, and BBQ’s are only the half of it...
+                        </p>
+                    </div>
+                </div>
+            </div>
             <!-- Image Slider Style 2-->
             <div>
                 <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
@@ -107,20 +121,6 @@ $(function(){
                         {#<h3>Experience</h3>#}
                         <p style="color:#FFF;font-size:20px;">
                             Apres-ski starts on the mountain and goes all night. With organized events and drink deals in the heart of the village, we’ve got all your evenings covered
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- Image Slider Style 3-->
-            <div>
-                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
-                <div class="slider-image slider-camp-3">
-                    <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
-                    <div class="slider-style slider-camp-style-3" style="height:240px; margin-top:-120px">
-                        <h2>Beautiful nature</h2>
-                        {#<h3>Built by the best</h3>#}
-                        <p style="color:#FFF;font-size:20px;">
-                            This beautiful region full of nature and mountains is situated on the edge of the natural park “Les Ecrins”.
                         </p>
                     </div>
                 </div>
@@ -307,11 +307,11 @@ $(function(){
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>Our partners</h4>
-        <p>Those who help us alot</p>
+        <h4>Official partners</h4>
+        <p>Working together to make it happen</p>
         <i class="fa fa-quote-left"></i>
         <div class="overlay"></div>
-        <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="img">
+        <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="">
     </div> 
     
     <div class="content">
