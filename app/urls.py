@@ -17,3 +17,4 @@ app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/e/', view_f
 app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/events/', view_func=views.events, methods=['GET'])
 app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/news/', view_func=views.news, methods=['GET'])
 app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/camp/', view_func=views.camp, methods=['GET'])
+app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/camp_attend', view_func=views.camp_attend, methods=['POST'])

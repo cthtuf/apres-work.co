@@ -16,6 +16,7 @@ import flask.ext.admin
 import urllib
 import sys
 from flask.ext.babel import gettext
+from pprint import pprint
 
 @babel.localeselector
 def get_locale(language_suffix=''):
@@ -288,12 +289,56 @@ def news(language_suffix, location_suffix):
 		location_suffix=location_suffix
 	))
 
-# /ru/camp/ [GET]
+def get_camp_list_id(language_suffix):
+	if language_suffix == 'ru':
+		return app.config['MAILCHIMP_CAMP_L2A15_RU']
+	elif language_suffix == 'fr':
+		return app.config['MAILCHIMP_CAMP_L2A15_FR']
+	else:
+		return app.config['MAILCHIMP_CAMP_L2A15_EN']
+
+# /__lang__/__loc__/camp/ [GET]
 @save_suffixes
 def camp(language_suffix, location_suffix):
+	mailchimp_list_token = get_camp_list_id(language_suffix)
+	mc = mailchimp.Mailchimp(app.config['MAILCHIMP_TOKEN'])
+	mailchimp_form = {}
+	try:
+		mailchimp_form = mc.lists.merge_vars({'id' : mailchimp_list_token})
+		mailchimp_form = mailchimp_form['data'][0]['merge_vars']
+	except Exception, e:
+		print e
 	return render_template(
 		'camp.html',
 		language_suffix = language_suffix,
 		location_suffix = 'l2a',
-		debug=app.debug
+		debug=app.debug,
+		mailchimp_form=mailchimp_form
 	)
+
+# /__lang__/__loc__/camp/ [POST]
+@save_suffixes
+def camp_attend(language_suffix, location_suffix):
+	mailchimp_list_token = get_camp_list_id(language_suffix)
+	mc = mailchimp.Mailchimp(app.config['MAILCHIMP_TOKEN'])
+	merge_fields = {}
+	for k,v in request.form.iteritems():
+		if k != 'EMAIL':
+			merge_fields[k] = v
+
+	try:
+		mc.lists.subscribe(
+			mailchimp_list_token,
+			{ 'email': request.form['EMAIL']}, 
+			merge_fields,
+			double_optin=False,
+			send_welcome=True,
+			update_existing=True
+		)
+
+		return jsonify({'CODE' : '0', 'TEXT' : gettext("You're in! We'll call you soon to confirm details")})
+
+	except mailchimp.ListAlreadySubscribedError:
+		return jsonify({'CODE' : '2', 'TEXT' : gettext("You're already subscribed. Thank you!")})
+	except mailchimp.Error, e:
+		return jsonify({'CODE' : '1', 'TEXT' : gettext("An error occured. Please repeat.")})

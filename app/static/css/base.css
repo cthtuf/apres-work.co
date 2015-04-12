@@ -418,6 +418,7 @@ body{
 .center-socials a{
     transition:all 250ms ease;
     margin-bottom:30px;
+    margin-top:10px;
 }
 
 .center-socials a:hover{

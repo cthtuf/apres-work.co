@@ -46,7 +46,7 @@ var subscription = (function(){
                     break;
             }
         }).fail(function(){
-            $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : _("An error occured. Please, try one more time")}));
+            $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : '{{ _("An error occured. Please, try one more time")}}'}));
         });
     };
 
@@ -61,10 +61,86 @@ var subscription = (function(){
     }
 })();
 
+var camp = (function(){
+    $formContainer = $('.block-camp-attend');
+    $form = $formContainer.find('form.form-attend');
+    $formMessageContainer = $formContainer.find('.form-message-container');
+
+    doEnableControls = function(){
+        $form.find('button').removeAttr('disabled');
+    },
+    doDisableControls = function(){
+        $form.find('button').attr('disabled', 'disabled');
+    },
+    clearFormMessages = function(){
+        $form.find('.form-field').removeClass('field-warning');
+        $formMessageContainer.html('');
+    },
+    showFieldMessage = function(){
+
+    },
+    showFormMessage = function(message, className){
+        $formMessageContainer.append(
+            $('<div>', { 'class' : className, 'html' : 
+                $('<p>', { 'class' : 'center-text uppercase', 'text' : message})
+            })
+        );
+    },
+    doAttend = function(e){
+        e.preventDefault();
+        doDisableControls();
+        clearFormMessages();
+        errors = false;
+        $form.find('input').each(function(idx){
+            if($(this).val() == ''){
+                errors = true;
+                $(this).parents('.form-field').addClass('field-warning');
+            }
+        });
+        if(errors){
+            showFormMessage("{{ _('Please, fill all the fields') }}", 'static-notification-yellow ');
+            doEnableControls();
+            return;
+        }
+        data = $(this).serialize();
+        $.ajax({
+            url : $(this).attr('action'), 
+            data : data,
+            method : "POST",
+            cache : false,
+            timeout: 10000,
+        }).done(function(rpo){
+            switch(rpo.CODE){
+                case "0":
+                    showFormMessage(rpo.TEXT, 'static-notification-green');
+                    $form.slideUp();
+                    $('.block-camp-attend h3').slideUp();
+                    $('.form-attend-share').removeClass('hidden');
+                    break;
+                default:
+                    showFormMessage(rpo.TEXT, 'static-notification-yellow');
+                    break;
+            }
+            doEnableControls();
+        }).fail(function(){
+            showFormMessage('{{ _("An error occured. Please, try one more time") }}', 'static-notification-yellow ')
+            doEnableControls();
+        });
+    }
+
+    return {
+        init : function(){
+            $('form.form-attend').on('submit', doAttend);
+            doEnableControls();
+        }
+    }
+})();
+
 $(function(){
     $.scrollIt();
     index.init();
     subscription.init();
+    camp.init();
     $('.slider-bottom').slick({
         dots: true,
         infinite: true,
@@ -304,6 +380,79 @@ $(function(){
             </div>
         <div class="decoration"></div>
     </div>
+
+    <!-- Content Heading-->
+    <div id="attend" class="content-heading">
+        <h4>{{ _("Sign up") }}</h4>
+        <p>{{ _("Sign up to camp and join us") }}</p>
+        <i class="fa fa-star-o"></i>
+        <div class="overlay"></div>
+        <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="img">
+    </div>
+
+    <div class="content block-camp-attend">
+        <h3 class="center-text">{{ _("Sign up form") }}</h3>
+        <div class="decoration"></div>
+            <div class="container">
+                <form method="POST" action="{{ url_for('camp_attend', language_suffix=language_suffix, location_suffix=location_suffix) }}" class="form-attend">
+                    {% for field in mailchimp_form %}
+                    <div class="form-field">
+                        <div class="one-half-responsive col-label">
+                            <label for="{{ field.tag }}">{{ field.name }}</label>
+                        </div>
+                        <div class="one-half-responsive last-column col-controls">
+                            <div class="input-group">
+                                {% if field.field_type == 'dropdown' %}
+                                <select id="{{ field.tag }}" name="{{ field.tag }}">
+                                    {% for choice in field.choices %}
+                                    <option value="{{ choice }}">{{ choice }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% elif field.field_type == 'radio' %}
+                                    {% for choice in field.choices %}
+                                        <input type="radio" id="{{ field.tag }}" name="{{ field.tag }}" value="{{ choice }}">&nbsp;{{ choice }}
+                                    {% endfor %}
+                                {% elif field.field_type == 'email' %}
+                                <input type="email" id="{{ field.tag }}" name="{{ field.tag }}">
+                                {% elif field.field_type == 'phone' %}
+                                <input type="tel" id="{{ field.tag }}" name="{{ field.tag }}">
+                                {% elif field.field_type == 'date' %}
+                                <input type="date" id="{{ field.tag }}" name="{{ field.tag }}">
+                                {% else %}
+                                <input type="text" id="{{ field.tag }}" name="{{ field.tag }}">
+                                {% endif %}
+                                {% if field.helptext %}
+                                    <p class="help-text">{{ field.helptext }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="form-field">
+                        <div class="one-half-responsive col-label">&nbsp;</div>
+                        <div class="one-half-responsive last-column col-controls">
+                            <button type="submit" class="button button-green">
+                                {{ _("Sign up") }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-message">
+                    <div class="one-third-responsive">&nbsp;</div>
+                    <div class="one-third-responsive form-message-container">&nbsp;</div>
+                    <div class="one-third-responsive last-column">&nbsp;</div>
+                </div>
+                <div class="form-attend-share hidden">
+                    <div class="center-socials">
+                        <a href="#" class="goodshare vkontakte-color vk-social" data-type="vk"><i class="fa fa-vk"></i></a>
+                        <a href="#" class="goodshare facebook-color facebook-social" data-type="fb"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="goodshare twitter-color twitter-social" data-type="tw"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="goodshare google-color google-social" data-type="gp"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        <div class="decoration"></div>
+    </div>
     
     <!-- Content Heading -->
     <div class="content-heading">
@@ -361,9 +510,9 @@ $(function(){
     <!-- Page Footer-->
     <div class="footer">
         <div class="footer-socials half-bottom">
-            <a href="#" class="footer-facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="footer-twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="footer-google"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="goodshare footer-facebook" data-type="fb"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="goodshare footer-twitter" data-type="tw"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="goodshare footer-google" data-type="gp"><i class="fa fa-google-plus"></i></a>
             <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
             <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
         </div>
@@ -378,15 +527,15 @@ $(function(){
             <i class="fa fa-vk vkontakte-color"></i>
             Vkontakte
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}" target="_blank">
             <i class="fa fa-facebook facebook-color"></i>
             Facebook
         </a>
-        <a href="sms:?body=Hi!%20There%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+        <a href='sms:?body={{ _("Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/") }}'>   
             <i class="fa fa-comment-o sms-color"></i>
             SMS
         </a>
-        <a href="mailto:?&subject=Resorts%20list&body=Hi!%0A%0AThere%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+        <a href='mailto:?&subject=Les%20Deux%20Alpes%20camp&body={{ _("Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/") }}'>
             <i class="fa fa-envelope-o mail-color"></i>
             Email
         </a>
