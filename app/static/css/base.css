@@ -1075,3 +1075,32 @@ strong {
     .subscription button {
         width:100%;
     }
+}
+
+li.language-nav {
+    
+}
+
+li.language-nav i {
+    color: #ddd;
+    display: inline-block;
+    width: 28px;
+    margin-left: 35px;
+    font-size: 16px;
+
+}
+
+li.language-nav a {
+    display: inline !important;
+    padding:0;
+    margin:0 10px;
+    color:#666;
+}
+
+li.language-nav a:hover {
+    color:#FFF;
+}
+
+li.language-nav a.current {
+    color:#ddd;
+}

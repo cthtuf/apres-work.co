@@ -56,6 +56,14 @@ def utility_processor():
 
 @app.context_processor
 def utility_processor():
+	def is_current_language(language_suffix):
+		if language_suffix==request.language_suffix:
+			return 'current'
+		return ''
+	return dict(is_current_language=is_current_language)
+
+@app.context_processor
+def utility_processor():
 	def get_img_src(path, filename_desktop, filename_mobile):
 		if request.MOBILE:
 			return url_for('static', filename=path+filename_mobile)

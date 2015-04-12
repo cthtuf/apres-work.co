@@ -101,6 +101,9 @@
 	            <div class="sidebar-divider">
 	                apres-work co
 	            </div>
+	            <ul class="sidebar-navigation">
+	            	<li class="language-nav"><i class="fa fa-flag-o"></i>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='ru', remember_language=1) }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='fr', remember_language=1) }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='en', remember_language=1) }}" class="{{ is_current_language('en') }}">EN</a></li>
+	            </ul>
 	        </div>
 	    </div>
     	{% block content %}{% endblock %}

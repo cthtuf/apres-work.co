@@ -171,14 +171,6 @@
     margin-right: 2%;
 }
 
-.col-label {
-    text-align: right;
-}
-
-.col-label label {
-    display: inline;
-}
-
 .col-controls {
 
 }
@@ -203,6 +195,27 @@
 
 .form-attend button {
     cursor: pointer;
+    padding:10px 20px;
+}
+
+@media (max-width:767px){
+    .form-attend button {
+        display: block;
+        text-align: center;
+        width:100%;
+    }
+
+    .col-label label {
+        display: block;
+        text-align: left;
+    }
+}
+
+@media (min-width:768px){
+    .col-label label {
+        display: inline;
+        text-align: right;
+    }
 }
 
 .form-message {
