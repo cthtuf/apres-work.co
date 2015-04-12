@@ -398,7 +398,7 @@ $(function(){
                     {% for field in mailchimp_form %}
                     <div class="form-field">
                         <div class="one-half-responsive col-label">
-                            <label for="{{ field.tag }}">{{ field.name }}</label>
+                            <label class="center-if-mobile" for="{{ field.tag }}">{{ field.name }}</label>
                         </div>
                         <div class="one-half-responsive last-column col-controls">
                             <div class="input-group">
@@ -431,7 +431,7 @@ $(function(){
                     <div class="form-field">
                         <div class="one-half-responsive col-label">&nbsp;</div>
                         <div class="one-half-responsive last-column col-controls">
-                            <button type="submit" class="button button-green">
+                            <button type="submit" class="button button-green center-if-mobile">
                                 {{ _("Sign up") }}
                             </button>
                         </div>
