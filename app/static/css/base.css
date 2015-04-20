@@ -61,9 +61,14 @@ body{
 /* Header*/
 
 .header{
-    background-image:url(../images/misc/menu-bg.png);
-    background-size:100px 100px;
-    height:61px;
+    background:#000;
+    height: 61px;
+    position: absolute;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .header-logo{
