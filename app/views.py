@@ -350,3 +350,12 @@ def camp_attend(language_suffix, location_suffix):
 		return jsonify({'CODE' : '2', 'TEXT' : gettext("You're already subscribed. Thank you!")})
 	except mailchimp.Error, e:
 		return jsonify({'CODE' : '1', 'TEXT' : gettext("An error occured. Please repeat.")})
+		
+# /__lang__/__loc__/get_notifications/ [GET, POST]
+@save_suffixes
+def get_notifications(language_suffix, location_suffix):
+	return jsonify({
+		'lang' : language_suffix,
+		'location' : location_suffix,
+		'random_value' : random.randint(1,1000000)
+	})
