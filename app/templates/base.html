@@ -88,21 +88,35 @@
 	            </div>
 	            
 	            <div class="sidebar-divider">
-	                {{ _("Navigation") }}
+	                {{ _("Local") }}
 	            </div>
 	            
 	            <ul class="sidebar-navigation">
-	                <li><a class="{{is_menu_active('camp')}}" href="{{ url_for('camp', language_suffix=language_suffix, location_suffix=location_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camp')}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('resorts')}}" href="{{ url_for('resorts', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("Resorts")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('events')}}" href="{{ url_for('events', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("Events")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('news')}}" href="{{ url_for('news', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("News")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('howitworks')}}" href="{{ url_for('howitworks', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-cogs"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('resorts_list')}}" href="{{ url_for('resorts_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("Resorts")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('events_list')}}" href="{{ url_for('events_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("Events")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('news_list')}}" href="{{ url_for('news_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("News")}}<i class="fa fa-circle"></i></a></li>
 	            </ul>
+
 	            <div class="sidebar-divider">
-	                apres-work co
+	            	{{ _("Global")}}
+	            </div>
+
+	            <ul class="sidebar-navigation">
+	                <li><a class="{{is_menu_active('camps_list')}}" href="{{ url_for('camps_list', language_suffix=language_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camp')}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('locations_g_list')}}" href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Locations")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('resorts_g_list')}}" href="{{ url_for('resorts_g_list', language_suffix=language_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("All Resorts")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('events_g_list')}}" href="{{ url_for('events_g_list', language_suffix=language_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("All Events")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('news_g_list')}}" href="{{ url_for('news_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All News")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('coaches_g_list')}}" href="{{ url_for('coaches_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Coaches")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('cameramen_g_list')}}" href="{{ url_for('cameramen_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Cameramen")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('howitworks_list')}}" href="{{ url_for('howitworks_list', language_suffix=language_suffix)}}"><i class="fa fa-cogs"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
+	            </ul>
+
+	            <div class="sidebar-divider">
+	                {{ _("Settings") }}
 	            </div>
 	            <ul class="sidebar-navigation">
-	            	<li class="language-nav"><i class="fa fa-flag-o"></i>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='ru', remember_language=1) }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='fr', remember_language=1) }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ url_for(request.endpoint, location_suffix=location_suffix, language_suffix='en', remember_language=1) }}" class="{{ is_current_language('en') }}">EN</a></li>
+	            	<li class="language-nav"><i class="fa fa-flag-o"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a></li>
 	            </ul>
 	        </div>
 	    </div>

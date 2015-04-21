@@ -3,8 +3,8 @@ from flask.ext.mobility import Mobility
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.pymongo import PyMongo
 from flask.ext.mongo_sessions import MongoDBSessionInterface
-#from flask.ext.admin import Admin
-#from flask.ext.admin.contrib.sqlamodel import ModelView
+from flask.ext.admin import Admin
+from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext.babel import Babel
 #from flask.ext.login import LoginManager
 from flask import current_app, Blueprint, render_template
@@ -17,11 +17,11 @@ mongo = PyMongo(app)
 with app.app_context():
     app.session_interface = MongoDBSessionInterface(app, mongo.db, 'sessions')
 
-#admin = Admin(app)
+admin = Admin(app)
 babel = Babel(app)
 
 from app import urls, views, models
-'''
+
 admin.add_view(ModelView(models.Site, db.session))
 admin.add_view(ModelView(models.Location, db.session))
 admin.add_view(ModelView(models.Subscription, db.session))
@@ -35,6 +35,6 @@ admin.add_view(ModelView(models.Promotion, db.session))
 admin.add_view(ModelView(models.Sms, db.session))
 admin.add_view(ModelView(models.Promocode, db.session))
 admin.add_view(ModelView(models.Resorttype, db.session))
-'''
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
 {% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
-{% block url %}{{ url_for('camp', language_suffix=language_suffix, location_suffix=location_suffix) }}{% endblock %}
+{% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp_id) }}{% endblock %}
 {% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
 {% block head_scripts %}
 <link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
@@ -394,7 +394,7 @@ $(function(){
         <h3 class="center-text">{{ _("Sign up form") }}</h3>
         <div class="decoration"></div>
             <div class="container">
-                <form method="POST" action="{{ url_for('camp_attend', language_suffix=language_suffix, location_suffix=location_suffix) }}" class="form-attend">
+                <form method="POST" action="{{ url_for('camps_attend', language_suffix=language_suffix, location_suffix=location_suffix, id=camp_id) }}" class="form-attend">
                     {% for field in mailchimp_form %}
                     <div class="form-field">
                         <div class="one-half-responsive col-label">

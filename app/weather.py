@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pyowm import OWM,timeutils #for weather
-from views import check_suffixes
+from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr
 from app import db
 from models import *
 from flask import request, jsonify, session
@@ -12,7 +12,7 @@ def getweather(location_suffix):
 	result = { 'success' : 'true', 'resorts' : {} }
 	#try:
 	if True:
-		check_suffixes('', location_suffix)
+		location_suffix = save_loc(location_suffix)
 		#API_key=app.config['OWM_KEY'], 
 		owm = OWM(config_module='pyowm_config', language='ru')
 		resorts = db.session.query(Resort).filter_by(location_id=session['locations'][location_suffix]).all()
