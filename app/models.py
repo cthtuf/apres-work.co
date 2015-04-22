@@ -157,6 +157,87 @@ class Event(db.Model):
 			self.resort_id,
 			self.name)
 
+class News(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	dt_news = db.Column(db.DateTime)
+	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
+	resort = db.relationship("Resort", foreign_keys=[resort_id])
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(50))
+	description = db.Column(db.String(1000))
+	poster_url = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_hashtag = db.Column(db.String(20))
+
+	def __repr__(self):
+		return '<News id=%r, dt_news=%r, resort_id=%r, name=%r>' % (
+			self.id,
+			self.dt_news,
+			self.resort_id,
+			self.name)
+
+class Coach(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_hashtag = db.Column(db.String(20))
+	vk_link = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Coach id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+class Cameraman(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_profile = db.Column(db.String(20))
+	vk_profile = db.Column(db.String(255))
+	fb_profile = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Cameraman id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+class Rider(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_profile = db.Column(db.String(20))
+	vk_profile = db.Column(db.String(255))
+	fb_profile = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Rider id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+
 class Partner(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(120))

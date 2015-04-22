@@ -43,10 +43,11 @@ def get_lang(language_suffix=None):
 	return lang
 
 def check_location(location_suffix):
+	print 'check_location', location_suffix
 	loc = db.session.query(Location).filter_by(suffix=location_suffix)
 	if loc.count()>0:
+		request.location_id = loc.first().id
 		return True
-		request.location_id = loc.id
 	else:
 		return False
 
@@ -54,19 +55,30 @@ def get_loc_id(location_suffix=None):
 	return request.location_id
 
 def get_loc(location_suffix=None):
+	print 'get_loc', location_suffix
 	if location_suffix:
 		loc = location_suffix
+		print 'in params', loc
 	elif hasattr(request, 'location_suffix'):
 		loc = request.location_suffix
+		print 'in request', loc
 	elif session.has_key('location'):
 		loc = session['location']
+		print 'in session', loc
 	elif request.cookies.get('location'):
 		loc = request.cookies.get('location')
+		print 'in cookies', loc
 	else:
+		print 'start detecting closest loc'
 		IP2LocObj = IP2Location.IP2Location()
-		IP2LocObj.open("app/IP2LOCATION-LITE-DB5.BIN")
+		print 'ip2locobj created'
+		IP2LocObj.open("/home/apresworkco/public_html/app/IP2LOCATION-LITE-DB5.BIN")
+		#except:
+		#	IP2LocObj.open("app/IP2LOCATION-LITE-DB5.BIN")
+		print 'IP2Location db loaded'
 		dist=lambda s,d: (s[0]-d[0])**2+(s[1]-d[1])**2
 		loc_rec = IP2LocObj.get_all(request.remote_addr)
+		print 'loc_rec getted', loc_rec
 		locs = db.session.query(Location).all()
 		locs_coords = []
 		for l in locs:
@@ -75,6 +87,7 @@ def get_loc(location_suffix=None):
 		min_coords = min(locs_coords, key=partial(dist, curr_loc))
 		loc_db = db.session.query(Location).filter_by(la=min_coords[0], lo=min_coords[1]).first()
 		loc = loc_db.suffix
+		print 'detected', loc
 	if not check_location(loc):
 		abort(404)
 	return loc
@@ -95,6 +108,7 @@ def save_lang(language_suffix=None):
 	return lang
 
 def save_loc(location_suffix=None):
+	print 'save_loc', location_suffix
 	loc = get_loc(location_suffix=location_suffix)
 
 	request.location_suffix = loc
@@ -127,7 +141,6 @@ def get_path(lang=''):
 			return request.path
 	else:
 		return request.path
-
 
 	
 '''

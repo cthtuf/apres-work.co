@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ _('Events - Homies community')}}{% endblock %}
 {% block description %}{{ _('The list of all past events. On this page you could find photos, videos and event members')}}{% endblock %}
-{% block url %}{{ url_for('events', location_suffix=location_suffix)}}{% endblock %}
+{% block url %}{{ url_for('events_g_list', language_suffix=language_suffix, location_suffix=location_suffix)}}{% endblock %}
 {% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
 {% block head_scripts %}
 {% endblock %}

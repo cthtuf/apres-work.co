@@ -12,7 +12,51 @@ import urllib
 def resorts_g_list(language_suffix):
 	save_lang(language_suffix)
 
-	return 'g_resorts'
+	cbr = {}
+	resorts = db.session.query(Resort).all() #get_loc_id()
+	location = db.session.query(Location).filter(Location.suffix==get_loc()).first()
+	for resort in resorts:
+		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_g_list', language_suffix=language_suffix)+'#id'+str(resort.id))
+		share_text = share_text.encode('utf-8')
+		#share_text = share_text+'#'+resort.name)
+		#print share_text
+		share_text = urllib.quote(share_text)
+		#print share_text
+		cbr[resort.id] = {
+			'ID' : resort.id,
+			'NAME' : resort.name,
+			'PHONE' : resort.phone,
+			'ADDRESS' : resort.address,
+			'URL_SITE' : resort.url_site,
+			'URL_IG' : resort.url_ig,
+			'URL_VK' : resort.url_vk,
+			'URL_FB' : resort.url_fb,
+			'URL_IMG': resort.url_img,
+			'LA' : resort.la,
+			'LO' : resort.lo,
+			'OWM_ID' : resort.owm_id,
+			'DESCRIPTION' : resort.description,
+			'SHARE_TEXT' : share_text,
+			'CAMERAS' : []
+		}
+	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).all()
+	for camera in webcameras:
+		cbr[camera.Resort.id]['CAMERAS'].append({
+				'ID' : camera.Webcamera.id,
+				'NAME' : camera.Webcamera.name,
+				'IMG_LINK' : camera.Webcamera.img_link,
+				'IFRAME_LINK' : camera.Webcamera.iframe_link,
+				'IMG_NA' : camera.Webcamera.img_na,
+				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
+			})
+	return render_template('resorts.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		resorts = cbr,
+		location_header = 'All resorts',
+		location_subheader = 'List of all resorts',
+		rand=random.randint(1,1000000),
+		debug=app.debug)
 
 # /ru/spb/r/ [GET]
 def resorts_s_list(language_suffix, location_suffix):
@@ -31,7 +75,7 @@ def resorts_list(language_suffix, location_suffix):
 	save_loc(location_suffix)
 
 	cbr = {}
-	resorts = db.session.query(Resort).filter(Resort.location_id==1).all() #get_loc_id()
+	resorts = db.session.query(Resort).filter(Resort.location_id==get_loc_id()).all() #get_loc_id()
 	location = db.session.query(Location).filter(Location.suffix==get_loc()).first()
 	for resort in resorts:
 		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_s_list', language_suffix=language_suffix, location_suffix=location_suffix)+'#id'+str(resort.id))
@@ -57,7 +101,7 @@ def resorts_list(language_suffix, location_suffix):
 			'SHARE_TEXT' : share_text,
 			'CAMERAS' : []
 		}
-	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==1).all()
+	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.location_id==get_loc_id()).all()
 	for camera in webcameras:
 		cbr[camera.Resort.id]['CAMERAS'].append({
 				'ID' : camera.Webcamera.id,
