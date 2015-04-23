@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr
-from app import db
+from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_loc_id, get_curr, get_path, get_site_url
+from app import db, app
 from models import *
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from datetime import datetime,timedelta
@@ -11,7 +11,16 @@ from flask.ext.babel import gettext
 def locations_g_list(language_suffix):
 	save_lang(language_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	locations = db.session.query(Location).all()
+	for loc in locations:
+		loc.url = get_site_url()+'/'+get_lang()+'/'+loc.suffix+'/'
+
+	return render_template('locations.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		debug = app.debug,
+		locations = locations
+	)
 
 #for /ru/spb/ [GET]
 def locations_index(language_suffix, location_suffix):
