@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %}Веб-камеры курортов - apres-work.co{% endblock %}
+{% block description %}Все курорты и парки СПб и Ленинградской области на одной странице{% endblock %}
+{% block url %}http://apres-work.co/webkamery{% endblock %}
+{% block image %}{{ url_for('static', filename='images/webcameras.jpg')}}{% endblock %}
+{% block head_scripts %}
+<link href="{{ url_for('static', filename='css/resorts.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block footer_scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/resorts.js') }}"></script>
+{#<script type="text/javascript">#}
+{#  VK.init({apiId: 4770943, onlyWidgets: true});#}
+{#  VK.Widgets.Like("vk_like", {type: "mini", height: 20}); #}
+{# </script> #}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="snap-content">
+    <div class="header">
+        <a href="index.html" class="header-logo">apres-work.co</a>
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+
+    <div class="header-clear"></div>
+    <div class="content">
+        <div class="container no-bottom">
+            <h3>{{location_header}}</h3>
+            <p>
+                {{location_subheader}}
+            </p>
+        </div>
+    	<div class="resorts-one" data-weatherurl="{{ url_for('getweather', location_suffix=location_suffix)}}">
+            {% for resort in resorts %}
+            <div id="id{{resorts[resort]['ID']}}" class="resorts-one-item resort-{{resort}} full-bottom">
+                <div class="resorts-one-image">
+                    {% if resorts[resort]['CAMERAS']|length == 0 %}
+                    <a href="{{resorts[resort]['URL_IMG']}}" class="swipebox" title="{{resorts[resort]['NAME']}}">
+                        <i class="fa fa-camera"></i>
+                    </a>
+                    <img src="{{resorts[resort]['URL_IMG']}}" class="responsive-image">
+                    {% else %}
+                    {# show first camera on page and other cameras in the swipebox #}
+                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="swipebox can-be-reloaded" title="{{resorts[resort]['NAME']}}">
+                        <i class="fa fa-video-camera"></i>
+                    </a>
+                    <img src="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="responsive-image">
+                    {% for camera in resorts[resort]['CAMERAS'][1:] %}
+                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}?random={{ rand }}" title="{{resorts[resort]['NAME']}}"></a>
+                    <img src="{{camera['IMG_LINK']}}?random={{ rand }}" class="responsive-image hidden">
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="resorts-one-text">
+                    <h3 class="title">{{ resorts[resort]['NAME']}}</h3>
+                    <em class="subtitle">
+                        {{resorts[resort]['ADDRESS']}}
+                        {% if resorts[resort]['ADDRESS'] and resorts[resort]['PHONE'] %},{%endif%}
+                        {% if resorts[resort]['PHONE'] %}
+                        {{resorts[resort]['PHONE']}}
+                        {% endif %}
+                    </em>
+                    <div class="resorts-one-details">
+                        {% if resorts[resort]['PHONE'] %}
+                        <a href="tel:{{ resorts[resort]['PHONE'] }}"><i class="fa fa-phone"></i></a>
+                        {% endif %}
+                        {% if resorts[resort]['URL_SITE'] %}
+                        <a href="{{resorts[resort]['URL_SITE']}}" target="_blank"><i class="fa fa-globe"></i></a>
+                        {% endif %}
+                        {% if resorts[resort]['URL_VK'] %}
+                        <a href="//vk.com/{{ resorts[resort]['URL_VK'] }}" target="_blank"><i class="fa fa-vk"></i></a>
+                        {% endif %}
+                        {% if resorts[resort]['URL_IG'] %}
+                        <a href="//instagram.com/{{ resorts[resort]['URL_IG']}}" target="_blank"><i class="fa fa-instagram"></i></a>
+                        {% endif %}
+                        {% if resorts[resort]['URL_FB'] %}
+                        <a href="//facebook.com/{{ resorts[resort]['URL_FB']}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        {% endif %}
+                        {% if resorts[resort]['LA'] and resorts[resort]['LO'] %}
+                            {% if request.user_agent.platform == 'android' %}
+                                <a href="geo:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
+                            {% elif request.user_agent.platform == 'iphone' %}
+                                <a href="maps:daddr={{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
+                            {% else %}
+                                <a href="//maps.google.com/maps?t=h&q=loc:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}&z=13" target="_blank"><i class="fa fa-map-marker"></i></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <p class="half-bottom">
+                        {% if resorts[resort]['DESCRIPTION'] %}
+                        {{ resorts[resort]['DESCRIPTION']}}
+                        {% endif %}
+                    </p>
+                    {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}
+                    <p class="half-bottom invite">
+                        Позвать друга:&nbsp;
+                        <a href="sms:{% if request.user_agent.platform =='iphone' %};{% else %}?{% endif %}body={{ resorts[resort]['SHARE_TEXT'] }}" title="через SMS"><i class="fa fa-mobile"></i></a>
+                        <a href="whatsapp://send?{{ resorts[resort]['SHARE_TEXT'] }}" title="через Whatsapp"><i class="fa fa-whatsapp"></i></a>
+                    </p>
+                    {% endif %}
+                    <div class="resorts-one-links resorts-weather">
+                        <a href="#" class="resorts-weather-load">
+                            Загрузить погоду&nbsp;<i class="fa fa-cloud-download"></i>
+                        </a>
+                        <div class="resorts-weather-container hidden">
+                            <div class="div-weather-now"><label>сейчас:</label> <span class="weather-now"></span></div>
+                            <div class="div-weather-today-night"><label>этой ночью:</label> <span class="weather-today-night"></span></div>
+                            <div class="div-weather-today-morning"><label>утром:</label> <span class="weather-today-morning"></span></div>
+                            <div class="div-weather-today-day"><label>днём:</label> <span class="weather-today-day"></span></div>
+                            <div class="div-weather-today-evening"><label>вечером:</label> <span class="weather-today-evening"></span></div>
+                            <div class="div-weather-tomorrow-night"><label>завтра ночью:</label> <span class="weather-tomorrow-night"></span></div>
+                            <div class="div-weather-tomorrow-morning"><label>завтра утром:</label> <span class="weather-tomorrow-morning"></span></div>
+                            <div class="div-weather-tomorrow-day"><label>завтра днём:</label> <span class="weather-tomorrow-day"></span></div>
+                            <div class="div-weather-tomorrow-evening"><label>завтра вечером:</label> <span class="weather-tomorrow-evening"></span></div>
+                        </div>
+                        <span class="resorts-weather-loading hidden">
+                            Загружается прогноз погоды...&nbsp;<i class="fa fa-spin fa-circle-o-notch"></i>
+                        </span>
+                    </div> 
+                </div>       
+            </div>
+            <div class="decoration"></div>
+            {% endfor %}
+        </div>
+        <div class="container no-bottom">
+            <p>
+                Мы пропустили один? <a href="mailto:content@apres-work.co?subject=New%20resort&body=Hi!%0A%0AYou%27ve%20forgot%20about%20one%20of%20resorts%20-%20">Сообщи нам какой!</a>
+            </p>
+        </div>
+    </div>
+    <!-- Page Footer-->
+    <div class="footer">
+        <div class="footer-socials half-bottom">
+            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <p class="center-text">2015&nbsp;&copy;&nbsp;apres-work.co</p>
+    </div>
+</div>
+<div class="share-bottom">
+    <h3>Поделиться</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Привет!%20Посмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ request.url }}">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Все%20парки%20СПб&body=Привет!%0A%0aПосмотри%20тут%20вебкамеры%20и%20погоду%20в%20парках:%20{{ request.url }}">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">Закрыть&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock %}

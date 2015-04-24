@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Homepage of Homies comunity")}}{% endblock %}
+{% block description %}{{ _("Welcome to community of local riders! It's community of clever riders - join us and get the cheapest way to ride in the snowparks, to jump on trampolines and to drink in extreme bars from time to time!")}}{% endblock %}
+{% block url %}http://apres-work.co/{% endblock %}
+{% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
+{% block head_scripts %}
+{#<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css">#}
+{% endblock %}
+{% block footer_scripts %}
+<script>
+$ = jQuery;
+var index = (function(){
+    return {
+        init : function(){
+            $('.arrow-scroll-down').on('click', function(){
+                console.log('1');
+                $('#content').animate({
+                    scrollTop:600//$('.slider-style').height()
+                }, 800, 'easeInOutQuad');
+            })
+        }
+    }
+})();
+
+var subscription = (function(){
+    var doSubscribe  = function(url, data){
+        $.ajax({
+            url : url, 
+            data : data,
+            method : "POST",
+            cache : false,
+            timeout: 5000,
+            beforeSend : function(){
+                $('.subscription .messages').html('');
+            }
+        }).done(function(rpo){
+            switch(rpo.CODE){
+                case "0":
+                    $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-green', text : rpo.TEXT}));
+                    $('.subscription form').addClass('hidden');
+                    break;
+                default:
+                    $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : rpo.TEXT}));
+                    break;
+            }
+        }).fail(function(){
+            $('.subscription .messages').append($('<div>', { 'class' : 'static-notification-yellow', text : _("An error occured. Please, try one more time")}));
+        });
+    };
+
+    return {
+        init : function(){
+            $('.subscription form').on('submit', subscription.subscribe);
+        },
+        subscribe : function(e){
+            e.preventDefault();
+            doSubscribe($('.subscription form').attr('action'), $('.subscription form').serialize());
+        }
+    }
+})();
+
+$(function(){
+    $.scrollIt();
+    index.init();
+    subscription.init();
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="snap-content">
+    <div class="header">
+        <a href="/" class="header-logo">apres-work.co</a>
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+    <div class="mainpage-slider-container">
+        <i class="arrow-scroll-down fa fa-angle-double-down animated infinite pulse"></i>
+        <div class="full-slider full-bottom" data-snap-ignore="true">     
+            <!-- Image Slider Style 1-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-1">  
+                    <div class="slider-style" style="height:270px; margin-top:-135px">
+                        <h2>{{ _("Ride") }}</h2>
+                        <h3>{{ _("with friends")}}</h3>
+                        <p>
+                            {{ _("After work or study or at the weekends. More fun with riding together (also it's cheaper!)")}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Slider Style 2-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-2">
+                    <div class="slider-style" style="height:260px; margin-top:-130px;">
+                        <h2>{{ _("Meet")}}</h2>
+                        <h3>{{ _("with other riders")}}</h3>
+                        <p>
+                            {{ _("and make new friends for riding together")}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Slider Style 3-->
+            <div>
+                <div class="overlay dark-overlay"></div>
+                <div class="slider-image slider-image-3">
+                    <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
+                    <div class="slider-style slider-style-3" style="height:240px; margin-top:-120px">
+                        <h2>{{ _("Improve")}}</h2>
+                        <h3>{{ _("Your tricks and style")}}</h3>
+                        <p>
+                            {{ _("by training or relax riding")}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">       
+        <div id="description" data-scroll-index="0" class="project-description container large-title no-bottom">
+            <h3>Salut gars!</h3>
+            <p>
+                {{ _("... or welcome to the homies community!") }}
+            </p>
+            <div class="center-socials">
+                <a href="//vk.com/apresworkco" class="vkontakte-color vk-social"><i class="fa fa-vk"></i></a>
+                <a href="//instagram.com/apresworkco" class="instagram-color instagram-social"><i class="fa fa-instagram"></i></a>
+            </div>
+            <p>
+                {{ _("apres-work it's kinda french apres-ski. It's not alco-party after riding, but it's riding after work or study in weekdays") }}<br>
+            </p>
+            <p>
+                <strong>{{ _("The common idea - riding in group with sale on the skipasses")}}</strong>.<br>{{ _("Works simple as a chair - fill the form on the website and when the count of participated will reached about 8-10 persons, everybody will get discount or special bonus from spot")}}
+            </p>
+            <p>
+                {{ _("How is it going: 3 days before we're ") }}<a href="//vk.com/apresworkco" target="_blank">{{ _('vote')}}</a>{{ _(" for spot. 1 day before the voting is closing and the event sign up form become available on this website") }}<br>{{ _("If you're going with us - just drop the name and phone number in the form and you'll get the SMS with promo-code. Show this code in the spot and get the discount!")}}
+            </p>
+            <p>
+                {{ _("Yep, so simple. Press the button - get the discount") }}
+            </p>
+        </div>
+        <div class="subscription">
+            <p class="description">{{ _("Subscribe to the news to be the first!")}}</p>
+            <form action="{{ url_for('subscribe', language_suffix=language_suffix, location_suffix=location_suffix) }}" method="POST" id="form_subscribe">
+                {{ form.hidden_tag() }}
+                <div class="form-group group-email-lbl">
+                    <label for="email">E-mail:</label>
+                </div>
+                <div class="form-group group-email">
+                    {{ form.email(class_="input-lg")}}
+                </div>
+                <div class="form-group group-submit">
+                    <button class="button button-green" type="submit"><i class="fa fa-envelope"></i>&nbsp;{{ _("Subscribe")}}</button>
+                </div>
+            </form>
+            <div class="messages"></div>
+        </div>
+        <div class="decoration"></div>
+    </div>
+        
+    <!-- Page Footer-->
+    <div class="footer">
+        <div class="footer-socials half-bottom">
+            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <p class="center-text">2015&nbsp;&copy;&nbsp;apres-work.co</p>
+    </div>       
+</div>
+    
+<div class="share-bottom">
+    <h3>{{ _("Share")}}</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Hi!%20There%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Resorts%20list&body=Hi!%0A%0AThere%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock %}
