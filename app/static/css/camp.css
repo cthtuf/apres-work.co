@@ -16,6 +16,12 @@
     .slider-camp-3{background-image:url(../images/camp/top/2048x1152_3rd.jpg);}    
 }
 
+@media all and (orientation:portrait){
+    .slider-camp-1{background-image:url(../images/camp/top/768x1024_1st.jpg);}
+    .slider-camp-2{background-image:url(../images/camp/top/768x1024_2nd.jpg);}
+    .slider-camp-3{background-image:url(../images/camp/top/768x1024_3rd.jpg);}       
+}
+
 .slider-style {
     position:absolute;
     width:100%;
