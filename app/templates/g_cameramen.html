@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ _('All Cameramen - Homies community')}}{% endblock %}
+{% block description %}{{ _('The list of all photographers and cameramen')}}{% endblock %}
+{% block url %}{{ url_for('cameramen_list', language_suffix=language_suffix, location_suffix=location_suffix)}}{% endblock %}
+{% block image %}{{ url_for('static', filename='images/bg_mainpage_social.jpg')}}{% endblock %}
+{% block head_scripts %}
+{% endblock %}
+
+{% block content %}
+{{ events }}
+<div id="content" class="snap-content">
+    <div class="header">
+        <a href="index.html" class="header-logo">apres-work.co</a>
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+
+    <div class="header-clear"></div>
+    <div class="content">
+        <div class="container no-bottom">
+            <h3>{{ _('Cameramen') }}</h3>
+            <p>
+                {{ _('The list of all cameramen')}}
+            </p>
+        </div>
+        
+        <div class="decoration"></div>
+        
+        <div class="timeline">
+            <div class="timeline-decoration" style="height:96%;"></div>
+            {% for cameraman in cameramen %}
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fa fa-asterisk"></i>
+                </div>
+                <div class="timeline-text">
+                    <h3 class="title">{{ cameraman.name }}</h3>
+                    {% if cameraman.photo %}
+                    <img src="{{ cameraman.photo }}" alt="Event poster" class="responsive-image">
+                    {% endif %}
+                    <p>
+                        {{ cameraman.description }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>    
+        <div class="decoration"></div>
+        <!-- Page Footer-->
+        <div class="footer">
+            <div class="footer-socials half-bottom">
+                <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+                <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+            </div>
+            <p class="center-text">2015&nbsp;&copy;&nbsp;apres-work.co</p>
+        </div>  
+    </div>
+</div>
+    <div class="share-bottom">
+        <h3>{{ _('Share') }}</h3>
+        <div class="share-socials-bottom">
+            <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+                <i class="fa fa-vk vkontakte-color"></i>
+                Vkontakte
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+                <i class="fa fa-facebook facebook-color"></i>
+                Facebook
+            </a>
+            <a href="sms:?body=Hi!%20There%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+                <i class="fa fa-comment-o sms-color"></i>
+                SMS
+            </a>
+            <a href="mailto:?&subject=Resorts%20list&body=Hi!%0A%0AThere%20are%20web-cameras%20and%20weather%20forecast%20for%20all%20ski%20resorts%20in%20our%20location.%20Check it!">
+                <i class="fa fa-envelope-o mail-color"></i>
+                Email
+            </a>
+        </div>
+        <a href="#" class="close-share-bottom">{{ _('Close') }}&nbsp;<i class="fa fa-times"></i></a>
+    </div>
+{% endblock %}

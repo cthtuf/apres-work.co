@@ -5,10 +5,7 @@ import datetime
 class Site(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	subdomain = db.Column(db.String(20), index=True, unique=True)
-	#subscriptions = db.relationship('Subscription', backref='site', lazy='dynamic')
-	#users = db.relationship('User', backref='site', lazy='dynamic')
-	#resorts = db.relationship('User', backref='site', lazy='dynamic')
-	#events = db.relationship('User', backref='site', lazy='dynamic')
+	
 	def __repr__(self):
 		return '<Site id=%r, subdomain=%r>' % (self.id, self.subdomain)
 
@@ -21,6 +18,8 @@ class Location(db.Model):
 	description = db.Column(db.String(200))
 	resorts_header = db.Column(db.String(100))
 	resorts_subheader = db.Column(db.String(500))
+	la = db.Column(db.String(10))
+	lo = db.Column(db.String(10))
 
 	def __repr__(self):
 		return '<Location id=%r, site_id=%r, suffix=%r, name=%r>' % (
@@ -155,6 +154,87 @@ class Event(db.Model):
 			self.resort_id,
 			self.name)
 
+class News(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	dt_news = db.Column(db.DateTime)
+	resort_id = db.Column(db.Integer, db.ForeignKey('resort.id'))
+	resort = db.relationship("Resort", foreign_keys=[resort_id])
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(50))
+	description = db.Column(db.String(1000))
+	poster_url = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_hashtag = db.Column(db.String(20))
+
+	def __repr__(self):
+		return '<News id=%r, dt_news=%r, resort_id=%r, name=%r>' % (
+			self.id,
+			self.dt_news,
+			self.resort_id,
+			self.name)
+
+class Coach(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_hashtag = db.Column(db.String(20))
+	vk_link = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Coach id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+class Cameraman(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_profile = db.Column(db.String(20))
+	vk_profile = db.Column(db.String(255))
+	fb_profile = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Cameraman id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+class Rider(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_created = db.Column(db.DateTime)
+	location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+	location = db.relationship("Location", foreign_keys=[location_id])
+	name = db.Column(db.String(255))
+	description = db.Column(db.String(1000))
+	photo = db.Column(db.String(255))
+	video_url = db.Column(db.String(255))
+	ig_profile = db.Column(db.String(20))
+	vk_profile = db.Column(db.String(255))
+	fb_profile = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<Rider id=%r, dt_created=%r, location_id=%r, name=%r>' % (
+			self.id,
+			self.dt_created,
+			self.location_id,
+			self.name)
+
+
 class Partner(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(120))
@@ -243,3 +323,46 @@ class Promocode(db.Model):
 			self.code,
 			self.is_unique
 			)
+
+class Facility(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(100))
+	icon = db.Column(db.String(20))
+	#camps = db.relationship('Camp', secondary=camp_facilities,
+	#	backref=db.backref('facilities', lazy='dynamic'))
+
+	def __repr__(self):
+		return '<Facility id=%r, name=%r, icon=%r' % (
+			self.id,
+			self.name,
+			self.icon
+			)
+
+camp_facilities = db.Table('camp_facilities',
+    db.Column('facility_id', db.Integer, db.ForeignKey('facility.id')),
+    db.Column('camp_id', db.Integer, db.ForeignKey('camp.id'))
+)
+
+class Camp(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	dt_create = db.Column(db.DateTime)
+	dt = db.Column(db.DateTime)
+	name = db.Column(db.String(100))
+	description = db.Column(db.String(3000))
+	url = db.Column(db.String(255))
+	logo_url = db.Column(db.String(255))
+	poster_url = db.Column(db.String(255))
+	seats_left = db.Column(db.Integer)
+	where = db.Column(db.String(255))
+	is_filled = db.Column(db.Boolean)
+	la = db.Column(db.String(10))
+	lo = db.Column(db.String(10))
+	facilities = db.relationship('Facility', secondary=camp_facilities,
+		backref=db.backref('camps', lazy='dynamic'))
+
+	def __repr__(self):
+		return '<Camp id=%r, name=%r, dt=%r' % (
+			self.id,
+			self.name,
+			self.dt
+		)

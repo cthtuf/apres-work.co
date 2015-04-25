@@ -1109,3 +1109,7 @@ li.language-nav a:hover {
 li.language-nav a.current {
     color:#ddd;
 }
+
+#content > .content {
+    margin-top: 60px;
+}
