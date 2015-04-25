@@ -6,14 +6,14 @@
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.slider-camp-1{background-image:url(../images/camp/top/1024x768_1st.jpg);}
-.slider-camp-2{background-image:url(../images/camp/top/1024x768_2nd.jpg);}
-.slider-camp-3{background-image:url(../images/camp/top/1024x768_5th.jpg);}
+.slider-camp-1{background-image:url(../images/camp/top/1280x720_1st.jpg);}
+.slider-camp-2{background-image:url(../images/camp/top/1280x720_2nd.jpg);}
+.slider-camp-3{background-image:url(../images/camp/top/1280x720_3rd.jpg);}
 
 @media (min-width:1025px){
-    .slider-camp-1{background-image:url(../images/camp/top/2048x1536_1st.jpg);}
-    .slider-camp-2{background-image:url(../images/camp/top/2048x1536_2nd.jpg);}
-    .slider-camp-3{background-image:url(../images/camp/top/2048x1536_5th.jpg);}    
+    .slider-camp-1{background-image:url(../images/camp/top/2048x1152_1st.jpg);}
+    .slider-camp-2{background-image:url(../images/camp/top/2048x1152_2nd.jpg);}
+    .slider-camp-3{background-image:url(../images/camp/top/2048x1152_3rd.jpg);}    
 }
 
 .slider-style {
