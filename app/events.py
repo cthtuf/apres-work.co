@@ -13,7 +13,7 @@ def events_g_list(language_suffix):
 
 	events = Event.query.all()
 
-	return render_template('events.html',
+	return render_template('g_events.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		rand=random.randint(1,1000000),
@@ -38,7 +38,7 @@ def events_list(language_suffix, location_suffix):
 
 	events = Event.query.filter(Event.resort.has(location_id=get_loc_id())).all()
 
-	return render_template('events.html',
+	return render_template('l_events.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		rand=random.randint(1,1000000),
@@ -50,7 +50,7 @@ def events_s_page(language_suffix, location_suffix, id):
 	save_loc(location_suffix)
 
 	return redirect(url_for(
-		'events_page',
+		'event_page',
 		language_suffix=language_suffix,
 		location_suffix=location_suffix,
 		id=id
@@ -61,7 +61,13 @@ def events_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	event = Event.query.filter(Event.id==id).first()
+
+	return render_template('p_event.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		event=event,
+		debug=app.debug)
 
 #for /ru/spb/event/3/attend/ [POST]
 def events_attend(language_suffix, location_suffix, event_id):

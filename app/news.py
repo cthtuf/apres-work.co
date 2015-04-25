@@ -14,7 +14,7 @@ def news_g_list(language_suffix):
 
 	news = News.query.all()
 
-	return render_template('news.html',
+	return render_template('g_news.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		rand=random.randint(1,1000000),
@@ -36,10 +36,10 @@ def news_s_list(language_suffix, location_suffix):
 def news_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
-	print 'loc_id', get_loc_id()
+
 	news = News.query.filter(News.location_id==get_loc_id()).all()
 
-	return render_template('news.html',
+	return render_template('l_news.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		rand=random.randint(1,1000000),
@@ -64,4 +64,11 @@ def news_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	news = News.query.filter(News.id==id).first()
+
+	return render_template('p_news.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		rand=random.randint(1,1000000),
+		news=news,
+		debug=app.debug)

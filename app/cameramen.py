@@ -13,7 +13,7 @@ def cameramen_g_list(language_suffix):
 
 	cameramen = Cameraman.query.all()
 
-	return render_template('cameramen.html',
+	return render_template('g_cameramen.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		rand=random.randint(1,1000000),
@@ -25,10 +25,10 @@ def cameramen_g_list(language_suffix):
 def cameramen_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
-	print 'loc_id', get_loc_id()
+
 	cameramen = Cameraman.query.filter(Cameraman.location_id==get_loc_id()).all()
 
-	return render_template('cameramen.html',
+	return render_template('l_cameramen.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		rand=random.randint(1,1000000),
@@ -40,4 +40,11 @@ def cameramen_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	cameraman = Cameraman.query.filter(Cameraman.id==id).first()
+
+	return render_template('p_cameraman.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		rand=random.randint(1,1000000),
+		cameraman=cameraman,
+		debug=app.debug)

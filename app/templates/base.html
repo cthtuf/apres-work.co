@@ -80,6 +80,7 @@
 	                <a href="http://facebook.com/apresworkco" target="_blank"><i class="fa fa-facebook"></i></a>
 	                <a href="http://vkontakte.ru/apresworkco" target="_blank"><i class="fa fa-vk"></i></a>
 	                <a href="http://instagram.com/apresworkco" target="_blank"><i class="fa fa-instagram"></i></a>
+	                <a href="http://twitter.com/apresworkco" target="_blank"><i class="fa fa-twitter"></i></a>
 	                <a href="#"><i class="fa fa-times"></i></a>                
 	            </div>
 	            
@@ -95,9 +96,9 @@
 	                <li><a class="{{is_menu_active('resorts_list')}}" href="{{ url_for('resorts_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("Resorts")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a class="{{is_menu_active('events_list')}}" href="{{ url_for('events_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("Events")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a class="{{is_menu_active('news_list')}}" href="{{ url_for('news_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("News")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('coaches_list')}}" href="{{ url_for('coaches_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("Coaches")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('cameramen_list')}}" href="{{ url_for('cameramen_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("Cameramen")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a class="{{is_menu_active('riders_list')}}" href="{{ url_for('riders_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("Riders")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('coaches_list')}}" href="{{ url_for('coaches_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-graduation-cap"></i>{{ _("Coaches")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('cameramen_list')}}" href="{{ url_for('cameramen_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-camera"></i>{{ _("Cameramen")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('riders_list')}}" href="{{ url_for('riders_list', language_suffix=language_suffix, location_suffix=location_suffix)}}"><i class="fa fa-star"></i>{{ _("Riders")}}<i class="fa fa-circle"></i></a></li>
 
 	            </ul>
 
@@ -106,17 +107,17 @@
 	            </div>
 
 	            <ul class="sidebar-navigation">
-	                <li><a class="{{is_menu_active('camps_list')}}" href="{{ url_for('camps_list', language_suffix=language_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camps')}}<i class="fa fa-circle"></i></a></li>
+	                <li><a class="{{is_menu_active('camps_g_list')}}" href="{{ url_for('camps_g_list', language_suffix=language_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camps')}}<i class="fa fa-circle"></i></a></li>
 	                <li class="has-submenu">
-	                	<a class="deploy-submenu" href="#"><i class="fa fa-picture-o"></i>Global<i class="fa fa-plus"></i></a>
+	                	<a class="deploy-submenu" href="#"><i class="fa fa-info"></i>Overall info<i class="fa fa-plus"></i></a>
 	                	<ul class="submenu">
-	                		<li><a class="{{is_menu_active('locations_g_list')}}" href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Locations")}}<i class="fa fa-circle"></i></a></li>
+	                		<li><a class="{{is_menu_active('locations_g_list')}}" href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-map-marker"></i>{{ _("All Locations")}}<i class="fa fa-circle"></i></a></li>
 			                <li><a class="{{is_menu_active('resorts_g_list')}}" href="{{ url_for('resorts_g_list', language_suffix=language_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("All Resorts")}}<i class="fa fa-circle"></i></a></li>
 			                <li><a class="{{is_menu_active('events_g_list')}}" href="{{ url_for('events_g_list', language_suffix=language_suffix)}}"><i class="fa fa-bookmark-o"></i>{{ _("All Events")}}<i class="fa fa-circle"></i></a></li>
 			                <li><a class="{{is_menu_active('news_g_list')}}" href="{{ url_for('news_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All News")}}<i class="fa fa-circle"></i></a></li>
-			                <li><a class="{{is_menu_active('coaches_g_list')}}" href="{{ url_for('coaches_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Coaches")}}<i class="fa fa-circle"></i></a></li>
-			                <li><a class="{{is_menu_active('cameramen_g_list')}}" href="{{ url_for('cameramen_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Cameramen")}}<i class="fa fa-circle"></i></a></li>
-			                <li><a class="{{is_menu_active('riders_g_list')}}" href="{{ url_for('riders_g_list', language_suffix=language_suffix)}}"><i class="fa fa-newspaper-o"></i>{{ _("All Riders")}}<i class="fa fa-circle"></i></a></li>
+			                <li><a class="{{is_menu_active('coaches_g_list')}}" href="{{ url_for('coaches_g_list', language_suffix=language_suffix)}}"><i class="fa fa-graduation-cap"></i>{{ _("All Coaches")}}<i class="fa fa-circle"></i></a></li>
+			                <li><a class="{{is_menu_active('cameramen_g_list')}}" href="{{ url_for('cameramen_g_list', language_suffix=language_suffix)}}"><i class="fa fa-camera"></i>{{ _("All Cameramen")}}<i class="fa fa-circle"></i></a></li>
+			                <li><a class="{{is_menu_active('riders_g_list')}}" href="{{ url_for('riders_g_list', language_suffix=language_suffix)}}"><i class="fa fa-star"></i>{{ _("All Riders")}}<i class="fa fa-circle"></i></a></li>
 	                	</ul>
 	                </li>
 	                
@@ -128,7 +129,7 @@
 	            </div>
 	            <ul class="sidebar-navigation">
 	            	<li><a href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-map-marker"></i>{{ request.location_description}}<i class="edit fa fa-edit" style="font-size:14px;"></i></a></li>
-	            	<li class="language-nav"><i class="fa fa-flag-o"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a></li>
+	            	<li class="language-nav"><i class="fa fa-language"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a></li>
 	            </ul>
 	        </div>
 	    </div>

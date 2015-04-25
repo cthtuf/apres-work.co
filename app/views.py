@@ -47,6 +47,7 @@ def check_location(location_suffix):
 	loc = db.session.query(Location).filter_by(suffix=location_suffix)
 	if loc.count()>0:
 		request.location_id = loc.first().id
+		request.location_description = loc.first().description
 		return True
 	else:
 		return False
@@ -142,81 +143,54 @@ def get_path(lang=''):
 	else:
 		return request.path
 
-	
-'''
-def save_suffixes(func):
-	@wraps(func)
-	def wrapper(language_suffix, location_suffix, *args, **kwargs):
-		request.language_suffix = language_suffix
-		request.location_suffix = location_suffix
-		#session['last_language_suffix'] = language_suffix
-		#session['last_location_suffix'] = location_suffix
-		return func(language_suffix, location_suffix, *args, **kwargs)
-	return wrapper
-'''
+# /_lang_/camp/1/ -> /ru/camp/1/
+def replace_lang(path, lang=''):
+	if lang == '':
+		lang = get_lang()
+	return path.replace('_lang_', lang)
 
+# /en/_loc_/ -> /ru/spb/
+def replace_loc(path, loc=''):
+	if loc == '':
+		loc = get_loc()
+	return path.replace('_loc_', loc)
 
-'''
-def check_suffixes(language_suffix, location_suffix):
-	if not session.has_key('locations') or not session['locations'].has_key(location_suffix):
-		loc = db.session.query(Location).filter_by(suffix=location_suffix)
-		if loc.count()>0:
-			if not session.has_key('locations'):
-				session['locations'] = {}
-			session['locations'][location_suffix] = loc.first().id
-			return True
-		else:
-			abort(404)
+def is_menu_active(checked_page):
+    	if get_curr() == checked_page:
+    		return 'active-menu'
+
+def is_current_language(language_suffix):
+	if language_suffix==request.language_suffix:
+		return 'current'
+	return ''
+
+def get_img_src(path, filename_desktop, filename_mobile):
+	if request.MOBILE:
+		return url_for('static', filename=path+filename_mobile)
 	else:
-		return True
-'''
+		return url_for('static', filename=path+filename_desktop)
 
+#pass functions to junja templates
+@app.context_processor
+def utility_processor():
+	return dict(
+		is_menu_active=is_menu_active,
+		is_current_language=is_current_language,
+		get_img_src=get_img_src,
+		get_curr_path_other_lang=get_path,
+		replace_lang=replace_lang,
+		replace_loc = replace_loc
+	)
 
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt='%d.%m.%Y'):
     return date.strftime(fmt) 
-
-@app.context_processor
-def utility_processor():
-    def is_menu_active(checked_page):
-    	if get_curr() == checked_page:
-    		return 'active-menu'
-        '''
-        if request.path == url_for(
-        	checked_page,
-        	location_suffix=request.location_suffix, #  session['last_location_suffix'],
-        	language_suffix=request.language_suffix # session['last_language_suffix']
-        	): return 'active-menu'
-		'''
-    return dict(is_menu_active=is_menu_active)
-
-@app.context_processor
-def utility_processor():
-	def is_current_language(language_suffix):
-		if language_suffix==request.language_suffix:
-			return 'current'
-		return ''
-	return dict(is_current_language=is_current_language)
-
-@app.context_processor
-def utility_processor():
-	def get_img_src(path, filename_desktop, filename_mobile):
-		if request.MOBILE:
-			return url_for('static', filename=path+filename_mobile)
-		else:
-			return url_for('static', filename=path+filename_desktop)
-	return dict(get_img_src=get_img_src)
-
-@app.context_processor
-def utility_processor():
-	return dict(get_curr_path_other_lang=get_path)
 
 # for / [GET]
 def index():
 	return redirect(url_for(
 		'camps_page',
 		language_suffix='en',#get_locale(),
-		location_suffix='l2a', #get_location()
 		id=1
 	))
 
@@ -225,7 +199,6 @@ def language_index(language_suffix):
 	return redirect(url_for(
 		'camps_page',
 		language_suffix='en',
-		location_suffix='l2a',
 		id=1
 	))
 

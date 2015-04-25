@@ -42,6 +42,8 @@ admin.add_view(ModelView(models.News, db.session))
 admin.add_view(ModelView(models.Coach, db.session))
 admin.add_view(ModelView(models.Cameraman, db.session))
 admin.add_view(ModelView(models.Rider, db.session))
+admin.add_view(ModelView(models.Camp, db.session))
+admin.add_view(ModelView(models.Facility, db.session))
 
 
 if __name__ == "__main__":

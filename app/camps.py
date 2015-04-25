@@ -17,22 +17,25 @@ def get_mailchimp_list_id(language_suffix):
 		return app.config['MAILCHIMP_CAMP_L2A15_EN']
 
 #for /ru/camps/ [GET]
-def camps_list(language_suffix):
-	save_curr('camps_list')
+def camps_g_list(language_suffix):
 	save_lang(language_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	camps = Camp.query.all()
+
+	return render_template('g_camps.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		rand=random.randint(1,1000000),
+		camps = camps,
+		debug=app.debug)
 
 #for /__lang__/camp/1/ [GET]
 def camps_page(language_suffix, id):
-	print "url_rule=", request.url_rule
-	print "request_path=", request.path
-	print "fr path = ", get_path('fr')
 	save_curr('camps_page')
 	lang = save_lang(language_suffix)
 	loc = save_loc()
 
-	mailchimp_list_token = get_mailchimp_list_id(language_suffix)
+	mailchimp_list_token = get_mailchimp_list_id(lang)
 	mc = mailchimp.Mailchimp(app.config['MAILCHIMP_TOKEN'])
 	mailchimp_form = {}
 	try:
@@ -41,7 +44,7 @@ def camps_page(language_suffix, id):
 	except Exception, e:
 		print e
 	return render_template(
-		'camp.html',
+		'p_camp.html',
 		language_suffix = lang,
 		location_suffix = loc,
 		camp_id=1,

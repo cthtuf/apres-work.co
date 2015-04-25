@@ -14,7 +14,7 @@ def riders_g_list(language_suffix):
 
 	riders = Rider.query.all()
 
-	return render_template('riders.html',
+	return render_template('g_riders.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		rand=random.randint(1,1000000),
@@ -25,10 +25,10 @@ def riders_g_list(language_suffix):
 def riders_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
-	print 'loc_id', get_loc_id()
+	
 	riders = Rider.query.filter(Rider.location_id==get_loc_id()).all()
 
-	return render_template('riders.html',
+	return render_template('l_riders.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		rand=random.randint(1,1000000),
@@ -41,4 +41,10 @@ def riders_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	rider = Rider.query.filter(Rider.id==id).first()
+
+	return render_template('p_rider.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		rider=rider,
+		debug=app.debug)

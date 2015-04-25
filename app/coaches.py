@@ -13,7 +13,7 @@ def coaches_g_list(language_suffix):
 
 	coaches = Coach.query.all()
 
-	return render_template('coaches.html',
+	return render_template('g_coaches.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		rand=random.randint(1,1000000),
@@ -38,7 +38,7 @@ def coaches_list(language_suffix, location_suffix):
 	print 'loc_id', get_loc_id()
 	coaches = Coach.query.filter(Coach.location_id==get_loc_id()).all()
 
-	return render_template('coaches.html',
+	return render_template('l_coaches.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		rand=random.randint(1,1000000),
@@ -62,4 +62,11 @@ def coaches_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	coach = Coach.query.filter(Coach.id==id).first()
+
+	return render_template('l_coaches.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		rand=random.randint(1,1000000),
+		coach=coach,
+		debug=app.debug)

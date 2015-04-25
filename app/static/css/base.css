@@ -1104,3 +1104,7 @@ li.language-nav a:hover {
 li.language-nav a.current {
     color:#ddd;
 }
+
+.snap-drawer-left::-webkit-scrollbar { 
+    display: none; 
+}

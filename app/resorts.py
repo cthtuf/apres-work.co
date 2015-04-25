@@ -18,10 +18,7 @@ def resorts_g_list(language_suffix):
 	for resort in resorts:
 		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_g_list', language_suffix=language_suffix)+'#id'+str(resort.id))
 		share_text = share_text.encode('utf-8')
-		#share_text = share_text+'#'+resort.name)
-		#print share_text
 		share_text = urllib.quote(share_text)
-		#print share_text
 		cbr[resort.id] = {
 			'ID' : resort.id,
 			'NAME' : resort.name,
@@ -49,7 +46,7 @@ def resorts_g_list(language_suffix):
 				'IMG_NA' : camera.Webcamera.img_na,
 				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
 			})
-	return render_template('resorts.html',
+	return render_template('g_resorts.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		resorts = cbr,
@@ -80,10 +77,7 @@ def resorts_list(language_suffix, location_suffix):
 	for resort in resorts:
 		share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_s_list', language_suffix=language_suffix, location_suffix=location_suffix)+'#id'+str(resort.id))
 		share_text = share_text.encode('utf-8')
-		#share_text = share_text+'#'+resort.name)
-		#print share_text
 		share_text = urllib.quote(share_text)
-		#print share_text
 		cbr[resort.id] = {
 			'ID' : resort.id,
 			'NAME' : resort.name,
@@ -111,7 +105,7 @@ def resorts_list(language_suffix, location_suffix):
 				'IMG_NA' : camera.Webcamera.img_na,
 				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
 			})
-	return render_template('resorts.html',
+	return render_template('l_resorts.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		resorts = cbr,
@@ -137,4 +131,8 @@ def resorts_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
-	return "Sorry, haven't implemented yet =\ "
+	return render_template('p_resort.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		resort = resort,
+		debug=app.debug)

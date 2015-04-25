@@ -144,7 +144,7 @@ $(function(){
         </div>
         <div class="subscription">
             <p class="description">{{ _("Subscribe to the news to be the first!")}}</p>
-            <form action="{{ url_for('subscribe', language_suffix=language_suffix, location_suffix=location_suffix) }}" method="POST" id="form_subscribe">
+            <form action="{{ url_for('locations_subscribe', language_suffix=language_suffix, location_suffix=location_suffix) }}" method="POST" id="form_subscribe">
                 {{ form.hidden_tag() }}
                 <div class="form-group group-email-lbl">
                     <label for="email">E-mail:</label>

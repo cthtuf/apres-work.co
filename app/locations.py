@@ -2,6 +2,7 @@
 from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_loc_id, get_curr, get_path, get_site_url
 from app import db, app
 from models import *
+from forms import SubscriptionForm
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from datetime import datetime,timedelta
 from helpers import *
@@ -13,9 +14,9 @@ def locations_g_list(language_suffix):
 
 	locations = db.session.query(Location).all()
 	for loc in locations:
-		loc.url = get_site_url()+'/'+get_lang()+'/'+loc.suffix+'/'
+		loc.url = '/'+get_lang()+'/'+loc.suffix+'/'
 
-	return render_template('locations.html',
+	return render_template('g_locations.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
 		debug = app.debug,
@@ -28,7 +29,7 @@ def locations_index(language_suffix, location_suffix):
 	save_loc(location_suffix)
 
 	form = SubscriptionForm()
-	return render_template('indexpage.html',
+	return render_template('l_index.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
 		form=form,
