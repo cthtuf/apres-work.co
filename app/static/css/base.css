@@ -1113,3 +1113,8 @@ li.language-nav a.current {
 #content > .content {
     margin-top: 60px;
 }
+
+em.subtitle i {
+    cursor: default;
+    font-size: 14px;
+}

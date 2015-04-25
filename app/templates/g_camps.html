@@ -34,7 +34,11 @@
                 </div>
                 <div class="timeline-text">
                     <h3 class="title"><a href="{{ replace_lang(camp.url) }}">{{ camp.name }}</a></h3>
-                    <em class="subtitle">{{ _('Where') }}: {{ camp.where }}, {{_('When') }}: {{ camp.dt|strftime }}</em>
+                    <em class="subtitle">{{ _('Where') }}: {{ camp.where }}, {{_('When') }}: {{ camp.dt|strftime }}, {{ _("Facilities") }}:
+                    {% for facility in camp.facilities %}
+                        <i class="fa {{facility.icon}}" title="{{ facility.name }}"></i>
+                    {% endfor %}
+                    </em>
                     {% if camp.poster_url %}
                     <img src="{{ camp.poster_url }}" alt="Camp poster" class="responsive-image">
                     {% endif %}
