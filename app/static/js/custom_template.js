@@ -103,7 +103,7 @@ $(document).ready(function() {
     
     //Countdown timer
 
-	var endDate = "June 7, 2015 15:03:25";
+	/*var endDate = "June 7, 2015 15:03:25";
 	
 	$('.countdown').countdown({
 	  date: endDate,
@@ -116,7 +116,7 @@ $(document).ready(function() {
 		"</div><span>min</span></div><div class='countdown-box box-seconds'><div class='countdown-seconds'>" + this.leadingZeros(data.sec, 2) + 
 		"</div><span>sec</span></div>");
 	  }
-	});
+	});*/
 	
 	
 	//Animate.css scroll to begin animation //	

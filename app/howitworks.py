@@ -14,6 +14,7 @@ def howitworks_list(language_suffix):
 	return render_template('not_ready.html',
 		language_suffix = language_suffix,
 		location_suffix = get_loc(),
+		countdown_time = 'May 1, 2015 15:03:25',
 		debug=app.debug)
 
 #for /ru/howitworks/events/

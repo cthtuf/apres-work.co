@@ -63,6 +63,21 @@ $(function(){
     $.scrollIt();
     index.init();
     subscription.init();
+
+    var endDate = "{{ countdown_time }}";
+    
+    $('.countdown').countdown({
+      date: endDate,
+      render: function(data) {
+        $(this.el).html(
+        "<div class='countdown-box box-years'><div class='countdown-years'>" + this.leadingZeros(data.years, 2) + 
+        "</div><span>years</span></div><div class='countdown-box box-days'><div class='countdown-days'>" + this.leadingZeros(data.days, 2) + 
+        "</div><span>days</span></div><div class='countdown-box box-hours'><div class='countdown-hours'>" + this.leadingZeros(data.hours, 2) + 
+        "</div><span>hours</span></div><div class='countdown-box box-minutes'><div class='countdown-minutes'>" + this.leadingZeros(data.min, 2) + 
+        "</div><span>min</span></div><div class='countdown-box box-seconds'><div class='countdown-seconds'>" + this.leadingZeros(data.sec, 2) + 
+        "</div><span>sec</span></div>");
+      }
+    });
 });
 </script>
 {% endblock %}
@@ -76,14 +91,15 @@ $(function(){
 
     <div class="soon-page-wrapper">
             <div class="soon-page">
-                <h1>Coming Soon</h1>
-                <h4>We're still working on this page!</h4>
+                <h1>{{_("Coming Soon")}}</h1>
+                <h4>{{_("We're still working on this page!")}}</h4>
                 <p>
-                    We're working really hard to get this page up and running as soon as possible! We have an estimate below! 
-                    
+                    {{ _("Honestly, we are riding...")}}
+                    <br>
+                    {{ _("We'll finish this page when we get back!")}}
                 </p>
                 <div class="countdown"></div>
-                <a href="#" onclick="window.history.back();" class="soon-button"><i class="fa fa-angle-left"></i>Back</a>
+                <a href="#" onclick="window.history.back();" class="soon-button"><i class="fa fa-angle-left"></i>{{ _("Go back") }}</a>
             </div>
             <div class="overlay"></div>
         </div>
