@@ -4,11 +4,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.pymongo import PyMongo
 from flask.ext.mongo_sessions import MongoDBSessionInterface
 from flask.ext.admin import Admin
+from flask_admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext.babel import Babel
 #from flask.ext.login import LoginManager
 from flask import current_app, Blueprint, render_template
 from werkzeug.debug import DebuggedApplication
+import os.path as op
 
 app = Flask(__name__, static_url_path='/static')
 app.config.from_object('config')
@@ -59,6 +61,9 @@ admin.add_view(ModelView(models.CampPartnersBlock, db.session))
 admin.add_view(ModelView(models.CampPartnerRecord, db.session))
 admin.add_view(ModelView(models.CampContactBlock, db.session))
 admin.add_view(ModelView(models.CampContactRecord, db.session))
+
+path = op.join(op.dirname(__file__), 'static')
+admin.add_view(FileAdmin(path, '/static/', name='Static Files'))
 
 if __name__ == "__main__":
     app.run(debug=True)
