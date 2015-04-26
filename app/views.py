@@ -169,6 +169,23 @@ def get_img_src(path, filename_desktop, filename_mobile):
 	else:
 		return url_for('static', filename=path+filename_desktop)
 
+def get_data_by_lang(obj, fieldname, default_lang):
+	v = getattr(obj, get_lang()+fieldname)
+	if not v:
+		v = getattr(obj, default_lang+fieldname)
+	else:
+		if not v:
+			v = ''
+	return v
+
+
+	#if hasattr(obj, get_lang()+fieldname):
+	#	return getattr(obj, get_lang()+fieldname)
+	#elif hasattr(obj, default_lang+fieldname):
+	#	return getattr(obj, default_lang+fieldname)
+	#else:
+	#	return ''
+
 #pass functions to junja templates
 @app.context_processor
 def utility_processor():
@@ -178,7 +195,8 @@ def utility_processor():
 		get_img_src=get_img_src,
 		get_curr_path_other_lang=get_path,
 		replace_lang=replace_lang,
-		replace_loc = replace_loc
+		replace_loc = replace_loc,
+		get_data_by_lang = get_data_by_lang
 	)
 
 @app.template_filter('strftime')

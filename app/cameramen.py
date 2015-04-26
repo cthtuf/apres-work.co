@@ -11,6 +11,12 @@ from flask.ext.babel import gettext
 def cameramen_g_list(language_suffix):
 	save_lang(language_suffix)
 
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		countdown_time = 'May 7, 2015 15:03:25',
+		debug=app.debug)
+
 	cameramen = Cameraman.query.all()
 
 	return render_template('g_cameramen.html',
@@ -25,6 +31,12 @@ def cameramen_g_list(language_suffix):
 def cameramen_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
+
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix(),
+		countdown_time = 'May 7, 2015 15:03:25',
+		debug=app.debug)
 
 	cameramen = Cameraman.query.filter(Cameraman.location_id==get_loc_id()).all()
 

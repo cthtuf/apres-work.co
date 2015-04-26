@@ -6,22 +6,6 @@
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.slider-camp-1{background-image:url(../images/camp/top/1280x720_1st.jpg);}
-.slider-camp-2{background-image:url(../images/camp/top/1280x720_2nd.jpg);}
-.slider-camp-3{background-image:url(../images/camp/top/1280x720_3rd.jpg);}
-
-@media (min-width:1025px){
-    .slider-camp-1{background-image:url(../images/camp/top/2048x1152_1st.jpg);}
-    .slider-camp-2{background-image:url(../images/camp/top/2048x1152_2nd.jpg);}
-    .slider-camp-3{background-image:url(../images/camp/top/2048x1152_3rd.jpg);}    
-}
-
-@media all and (orientation:portrait){
-    .slider-camp-1{background-image:url(../images/camp/top/768x1024_1st.jpg);}
-    .slider-camp-2{background-image:url(../images/camp/top/768x1024_2nd.jpg);}
-    .slider-camp-3{background-image:url(../images/camp/top/768x1024_3rd.jpg);}       
-}
-
 .slider-style {
     position:absolute;
     width:100%;

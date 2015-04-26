@@ -359,6 +359,26 @@ class Camp(db.Model):
 	lo = db.Column(db.String(10))
 	facilities = db.relationship('Facility', secondary=camp_facilities,
 		backref=db.backref('camps', lazy='dynamic'))
+	slider_block = db.relationship('CampTopSliderBlock', backref='camp',
+        lazy='dynamic')
+	top_info_block = db.relationship('CampTopInfoBlock', backref='camp',
+		lazy='dynamic')
+	#top_share_block = db.relationship('CampTopShareBlock', backref='camp',
+		#lazy='dynamic')
+	services = db.relationship('CampServicesBlock', backref='camp',
+		lazy='dynamic')
+	staff = db.relationship('CampStaffBlock', backref='camp',
+		lazy='dynamic')
+	main_info_block = db.relationship('CampMainInfoBlock', backref='camp',
+		lazy='dynamic')
+	signup_form = db.relationship('CampSignUpBlock', backref='camp',
+		lazy='dynamic')
+	partners = db.relationship('CampPartnersBlock', backref='camp',
+		lazy='dynamic')
+	contact_form = db.relationship('CampContactBlock', backref='camp',
+		lazy='dynamic')
+	#bottom_share_block = db.relationship('CampBottomShareBlock', backref='camp',
+		#lazy='dynamic')
 
 	def __repr__(self):
 		return '<Camp id=%r, name=%r, dt=%r' % (
@@ -366,3 +386,404 @@ class Camp(db.Model):
 			self.name,
 			self.dt
 		)
+
+camp_top_slider_records = db.Table('camp_top_slider_records',
+    db.Column('slider_block_id', db.Integer, db.ForeignKey('camp_top_slider_block.id')),
+    db.Column('slide_record_id', db.Integer, db.ForeignKey('camp_top_slider_record.id'))
+)
+
+class CampTopSliderBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+	slides = db.relationship('CampTopSliderRecord',
+		secondary=camp_top_slider_records, 
+		backref=db.backref('slider_block', lazy='dynamic')
+		)
+	camp_name = db.Column(db.String(20))
+
+	def __repr__(self):
+		return '<CampTopSliderBlock id=%r, camp_name=%r' % (
+			self.id,
+			self.camp_name
+			)
+	
+class CampTopSliderRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	index = db.Column(db.Integer)
+	
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	img_url_desktop = db.Column(db.String(255))
+	img_url_mobile = db.Column(db.String(255))
+	img_url_vertical = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<CampTopSliderRecord id=%r, header=%r' % (
+			self.id,
+			self.en_header
+		)
+
+class CampTopInfoBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<CampTopInfoBlock id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+'''class CampTopShareBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+'''
+
+CampServicesRecords = db.Table('camp_services_records',
+    db.Column('services_block_id', db.Integer, db.ForeignKey('camp_services_block.id')),
+    db.Column('service_record_id', db.Integer, db.ForeignKey('camp_service_record.id'))
+)
+
+class CampServicesBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	services = db.relationship('CampServiceRecord',
+		secondary=CampServicesRecords, 
+		backref=db.backref('services_block', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampServices id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampServiceRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(2000))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(2000))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(2000))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(2000))
+
+	img_link = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<CampServiceRecord id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+CampStaffRecords = db.Table('camp_staff_records',
+    db.Column('staff_block_id', db.Integer, db.ForeignKey('camp_staff_block.id')),
+    db.Column('staff_record_id', db.Integer, db.ForeignKey('camp_staff_record.id'))
+)
+
+class CampStaffBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	staff = db.relationship('CampStaffRecord',
+		secondary=CampStaffRecords, 
+		backref=db.backref('staff_block', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampStaff id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampStaffRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	order_index = db.Column(db.Integer)
+	en_name = db.Column(db.String(255))
+	en_role = db.Column(db.String(255))
+	ru_name = db.Column(db.String(255))
+	ru_role = db.Column(db.String(255))
+	fr_name = db.Column(db.String(255))
+	fr_role = db.Column(db.String(255))
+	es_name = db.Column(db.String(255))
+	es_role = db.Column(db.String(255))
+	en_info = db.Column(db.String(1000))
+	ru_info = db.Column(db.String(1000))
+	fr_info = db.Column(db.String(1000))
+	es_info = db.Column(db.String(1000))
+	en_hidden = db.Column(db.String(1000))
+	ru_hidden = db.Column(db.String(1000))
+	fr_hidden = db.Column(db.String(1000))
+	es_hidden = db.Column(db.String(1000))
+	en_contacts = db.Column(db.String(1000))
+	ru_contacts = db.Column(db.String(1000))
+	fr_contacts = db.Column(db.String(1000))
+	es_contacts = db.Column(db.String(1000))
+
+
+	img_link = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<CampStaffRecord id=%r, name=%r' % (
+			self.id,
+			self.name
+			)
+
+CampMainInfoBlockPhotos = db.Table('camp_main_info_block_photos',
+    db.Column('block_id', db.Integer, db.ForeignKey('camp_main_info_block.id')),
+    db.Column('photo_id', db.Integer, db.ForeignKey('camp_main_info_block_photo.id'))
+)
+
+class CampMainInfoBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	en_text_header = db.Column(db.String(255))
+	en_text_subheader = db.Column(db.String(255))
+	ru_text_header = db.Column(db.String(255))
+	ru_text_subheader = db.Column(db.String(255))
+	fr_text_header = db.Column(db.String(255))
+	fr_text_subheader = db.Column(db.String(255))
+	es_text_header = db.Column(db.String(255))
+	es_text_subheader = db.Column(db.String(255))
+
+	en_top_text = db.Column(db.String(1000))
+	en_hidden_text = db.Column(db.String(5000))
+	en_bottom_text = db.Column(db.String(1000))
+	ru_top_text = db.Column(db.String(1000))
+	ru_hidden_text = db.Column(db.String(5000))
+	ru_bottom_text = db.Column(db.String(1000))
+	fr_top_text = db.Column(db.String(1000))
+	fr_hidden_text = db.Column(db.String(5000))
+	fr_bottom_text = db.Column(db.String(1000))
+	es_top_text = db.Column(db.String(1000))
+	es_hidden_text = db.Column(db.String(5000))
+	es_bottom_text = db.Column(db.String(1000))
+
+	photos = db.relationship('CampMainInfoBlockPhoto',
+		secondary=CampMainInfoBlockPhotos, 
+		backref=db.backref('main_info_block', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampMainInfoBlock id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampMainInfoBlockPhoto(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	order_index = db.Column(db.Integer)
+	
+	en_alt = db.Column(db.String(255))
+	ru_alt = db.Column(db.String(255))
+	fr_alt = db.Column(db.String(255))
+	es_alt = db.Column(db.String(255))
+
+	img_link_desktop = db.Column(db.String(255))
+	img_link_mobile = db.Column(db.String(255))
+
+	def __repr__(self):
+		return '<CampMainInfoBlockPhoto id=%r, alt=%r' % (
+			self.id,
+			self.en_alt
+			)
+
+class CampSignUpBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	en_form_header = db.Column(db.String(255))
+	en_mailchimp_token = db.Column(db.String(20))
+	ru_form_header = db.Column(db.String(255))
+	ru_mailchimp_token = db.Column(db.String(20))
+	fr_form_header = db.Column(db.String(255))
+	fr_mailchimp_token = db.Column(db.String(20))
+	es_form_header = db.Column(db.String(255))
+	es_mailchimp_token = db.Column(db.String(20))
+
+	en_signup_button = db.Column(db.String(20))
+	ru_signup_button = db.Column(db.String(20))
+	fr_signup_button = db.Column(db.String(20))
+	es_signup_button = db.Column(db.String(20))
+
+	def __repr__(self):
+		return '<CampSignUpBlock id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+CampPartnerRecords = db.Table('camp_partners_records',
+    db.Column('block_id', db.Integer, db.ForeignKey('camp_partners_block.id')),
+    db.Column('partner_id', db.Integer, db.ForeignKey('camp_partner_record.id'))
+)
+
+class CampPartnersBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+
+	partners = db.relationship('CampPartnerRecord',
+		secondary=CampPartnerRecords, 
+		backref=db.backref('partners_block', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampPartnersBlock id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampPartnerRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	order_index = db.Column(db.Integer)
+
+	en_name = db.Column(db.String(100))
+	ru_name = db.Column(db.String(100))
+	fr_name = db.Column(db.String(100))
+	es_name = db.Column(db.String(100))
+	
+	en_description = db.Column(db.String(3000))
+	ru_description = db.Column(db.String(3000))
+	fr_description = db.Column(db.String(3000))
+	es_description = db.Column(db.String(3000))
+
+	url = db.Column(db.String(255))
+
+	img_link = db.Column(db.String(255))
+
+
+	def __repr__(self):
+		return '<CampPertnerRecord id=%r, alt=%r' % (
+			self.id,
+			self.en_alt
+			)
+
+CampContactRecords = db.Table('camp_contact_records',
+    db.Column('block_id', db.Integer, db.ForeignKey('camp_contact_block.id')),
+    db.Column('contact_id', db.Integer, db.ForeignKey('camp_contact_record.id'))
+)
+
+class CampContactBlock(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	email_for_letters = db.Column(db.String(255))
+
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.String(255))
+	en_right_subheader = db.Column(db.String(255))
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.String(255))
+	ru_right_subheader = db.Column(db.String(255))
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.String(255))
+	fr_right_subheader = db.Column(db.String(255))
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.String(255))
+	es_right_subheader = db.Column(db.String(255))
+
+	contacts = db.relationship('CampContactRecord',
+		secondary=CampContactRecords, 
+		backref=db.backref('contact_block', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampContactBlock id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampContactRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	order_index = db.Column(db.Integer)
+
+	icon_class = db.Column(db.String(20))
+	link = db.Column(db.String(255))
+	in_new_window = db.Column(db.Boolean)
+	
+	en_caption = db.Column(db.String(1000))
+	ru_caption = db.Column(db.String(1000))
+	fr_caption = db.Column(db.String(1000))
+	es_caption = db.Column(db.String(1000))
+
+	def __repr__(self):
+		return '<CampContactRecord id=%r, caption=%r' % (
+			self.id,
+			self.en_caption
+			)

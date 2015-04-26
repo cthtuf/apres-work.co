@@ -11,6 +11,12 @@ from flask.ext.babel import gettext
 def events_g_list(language_suffix):
 	save_lang(language_suffix)
 
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		countdown_time = 'May 3, 2015 15:03:25',
+		debug=app.debug)
+
 	events = Event.query.all()
 
 	return render_template('g_events.html',
@@ -35,6 +41,12 @@ def events_s_list(language_suffix, location_suffix):
 def events_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
+
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		countdown_time = 'May 3, 2015 15:03:25',
+		debug=app.debug)
 
 	events = Event.query.filter(Event.resort.has(location_id=get_loc_id())).all()
 

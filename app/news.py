@@ -12,6 +12,12 @@ from flask.ext.babel import gettext
 def news_g_list(language_suffix):
 	save_lang(language_suffix)
 
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = get_loc(),
+		countdown_time = 'May 11, 2015 15:03:25',
+		debug=app.debug)
+
 	news = News.query.all()
 
 	return render_template('g_news.html',
@@ -36,6 +42,12 @@ def news_s_list(language_suffix, location_suffix):
 def news_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
+
+	return render_template('not_ready.html',
+		language_suffix = language_suffix,
+		location_suffix = location_suffix,
+		countdown_time = 'May 11, 2015 15:03:25',
+		debug=app.debug)
 
 	news = News.query.filter(News.location_id==get_loc_id()).all()
 

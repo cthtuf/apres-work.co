@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr, get_path
+from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr, get_path, get_data_by_lang
 from app import db, app
 from models import *
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
@@ -35,7 +35,17 @@ def camps_page(language_suffix, id):
 	lang = save_lang(language_suffix)
 	loc = save_loc()
 
-	mailchimp_list_token = get_mailchimp_list_id(lang)
+	camp = Camp.query.filter(Camp.id==id).first()
+	top_slides = camp.slider_block.first().slides
+	top_info_block = camp.top_info_block.first()
+	services_block = camp.services.first()
+	staff_block = camp.staff.first()
+	main_info_block = camp.main_info_block.first()
+	signup_block = camp.signup_form.first()
+	partners_block = camp.partners.first()
+	contact_block = camp.contact_form.first()
+
+	mailchimp_list_token = get_data_by_lang(signup_block, '_mailchimp_token', 'en')  # get_mailchimp_list_id(lang)
 	mc = mailchimp.Mailchimp(app.config['MAILCHIMP_TOKEN'])
 	mailchimp_form = {}
 	try:
@@ -47,7 +57,15 @@ def camps_page(language_suffix, id):
 		'p_camp.html',
 		language_suffix = lang,
 		location_suffix = loc,
-		camp_id=1,
+		camp = camp,
+		top_slides = top_slides,
+		top_info_block = top_info_block,
+		services_block = services_block,
+		staff_block = staff_block,
+		main_info_block = main_info_block,
+		signup_block = signup_block,
+		partners_block = partners_block,
+		contact_block = contact_block,
 		debug=app.debug,
 		mailchimp_form=mailchimp_form
 	)
@@ -57,7 +75,10 @@ def camps_attend(language_suffix, id):
 	save_curr('camps_attend')
 	save_lang(language_suffix)
 
-	mailchimp_list_token = get_mailchimp_list_id(language_suffix)
+	camp = Camp.query.filter(Camp.id==id).first()
+	signup_block = camp.signup_form.first()
+	mailchimp_list_token = get_data_by_lang(signup_block, '_mailchimp_token', 'en')  # get_mailchimp_list_id(lang)
+	
 	mc = mailchimp.Mailchimp(app.config['MAILCHIMP_TOKEN'])
 	merge_fields = {}
 	for k,v in request.form.iteritems():

@@ -99,19 +99,12 @@ $(function(){
                     {{ _("We'll finish this page when we get back!")}}
                 </p>
                 <div class="countdown"></div>
-                <a href="#" onclick="window.history.back();" class="soon-button"><i class="fa fa-angle-left"></i>{{ _("Go back") }}</a>
+                <a href="#" onclick="window.history.go(-1); return false;" class="soon-button"><i class="fa fa-angle-left"></i>{{ _("Go back") }}</a>
             </div>
             <div class="overlay"></div>
         </div>
         
-    <!-- Page Footer-->
-    <div class="footer">
-        <div class="footer-socials half-bottom">
-            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
-            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
-        </div>
-        <p class="center-text">2015&nbsp;&copy;&nbsp;apres-work.co</p>
-    </div>       
+    <!-- Page Footer-->       
 </div>
     
 <div class="share-bottom">

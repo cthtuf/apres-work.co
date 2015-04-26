@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
 {% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
-{% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp_id) }}{% endblock %}
+{% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}{% endblock %}
 {% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
 {% block head_scripts %}
 <link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick-theme.css')}}" rel="stylesheet" type="text/css">
+<style>
+{% for top_slide in top_slides %}
+.slider-camp-{{top_slide.index}} { background-image:url({{top_slide.img_url_mobile}}); }
+{% endfor %}
+@media (min-width:1025px){
+{% for top_slide in top_slides %}
+    .slider-camp-{{top_slide.index}} { background-image:url({{top_slide.img_url_desktop}}); }
+{% endfor %}
+}
+@media all and (orientation:portrait){
+{% for top_slide in top_slides %}
+    .slider-camp-{{top_slide.index}} { background-image:url({{top_slide.img_url_vertical}}); }
+{% endfor %}
+}
+</style>
+
 {% endblock %}
 {% block footer_scripts %}
 <script src="{{ url_for('static', filename='js/lib/slick.min.js')}}"></script>
@@ -177,54 +193,27 @@ $(function(){
     <div class="mainpage-slider-container">
         <i class="arrow-scroll-down fa fa-angle-double-down animated infinite pulse"></i>
         <div class="full-slider full-bottom" data-snap-ignore="true">     
-            <!-- Image Slider Style 1-->
+            {% for top_slide in top_slides %}
             <div>
                 <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
-                <div class="slider-image slider-camp-1">  
-                    <div class="slider-style slider-camp-style-1" style="height:270px; margin-top:-135px">
-                        <h2>{{ _("Shred") }}</h2>
-                        {#<h3>Mobile and Tablet Template</h3>#}
+                <div class="slider-image slider-camp-{{top_slide.index}}">  
+                    <div class="slider-style slider-camp-style-{{top_slide.index}}" style="height:270px; margin-top:-135px">
+                        <h2>{{ get_data_by_lang(top_slide, '_header', 'en') }}</h2>
                         <p style="color:#FFF;font-size:20px;">
-                            {{ _("Your summer shred dreams have come true. This August, experience Les Deux Alpes’ Freestyle Land:<br> THE summer destination for park riding in France.") }}
+                            {{ get_data_by_lang(top_slide, '_subheader', 'en') }}
                         </p>
                     </div>
                 </div>
             </div>
-            <!-- Image Slider Style 3-->
-            <div>
-                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
-                <div class="slider-image slider-camp-3">
-                    <!-- Add your slide height, then margin top must be minus half of that to be perfectly centered -->
-                    <div class="slider-style slider-camp-style-3" style="height:240px; margin-top:-120px">
-                        <h2>{{ _("Play") }}</h2>
-                        {#<h3>Built by the best</h3>#}
-                        <p style="color:#FFF;font-size:20px;">
-                            {{ _("It’s not all about the snow: afternoons in Les Deux Alpes are endless. Mountain biking, skateboarding, swimming, luging and BBQ’s are only the half of it...") }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- Image Slider Style 2-->
-            <div>
-                <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
-                <div class="slider-image slider-camp-2">
-                    <div class="slider-style slider-camp-style-2" style="height:260px; margin-top:-130px;">
-                        <h2>{{ _("Party") }}</h2>
-                        {#<h3>Experience</h3>#}
-                        <p style="color:#FFF;font-size:20px;">
-                            {{ _("Apres-ski starts on the mountain and goes all night. With organized events and drink deals in the heart of the village, we’ve got all your evenings covered.") }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     
     <div class="content">       
         <div class="container large-title no-bottom">
-            <h3>{{ _("France, Les Deux Alpes, 8 - 22 Aug 2015") }}</h3>
+            <h3>{{ get_data_by_lang(top_info_block, '_header', 'en') }}</h3>
             <p>
-                {{ _("Skiing in the summer? We’ve got it all figured out. Come spend two weeks in the French Alps shredding, progressing, relaxing and partying with Après-Work Camps. Because skiing’s more fun with friends…") }}
+                {{ get_data_by_lang(top_info_block, '_subheader', 'en') }}
             </p>
 
             <div class="center-socials">
@@ -240,8 +229,8 @@ $(function(){
             
     <!-- Content Heding -->
     <div class="content-heading">
-        <h4>{{ _("Our services") }}</h4>
-        <p>{{ _("Après-Work Camps has all your needs covered") }}</p>
+        <h4>{{ get_data_by_lang(services_block, '_header', 'en') }}</h4>
+        <p>{{ get_data_by_lang(services_block, '_subheader', 'en') }}</p>
         <i class="fa fa-cog"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="">
@@ -251,50 +240,25 @@ $(function(){
     <div class="content">
         <div class="decoration"></div>
         <div class="container no-bottom">
-            <!-- Page Columns-->
-            <div class="one-half-responsive">
-                <p class="thumb-left no-bottom">
-                    <img src="{{ url_for('static', filename='images/camp/services/coaching.jpg')}}" alt="Coaching">
-                    <strong>{{ _("Coaching") }}</strong>
-                    <em><br>{{ _("We’ve got all the essentials for your progression: on-snow coaching, video analysis, trampoline training and yoga sessions designed to make the most of your time with Après Camp. Our well-rounded approach to training will help you progress quickly and safely, making sure you have all the tools you need to take your riding to the next level.") }}</em>
+            {% for service in services_block.services %}
+            <div class="one-half-responsive {{loop.cycle('', 'last-column')}}">
+                <p class="{{ loop.cycle('thumb-left', 'thumb-right') }} no-bottom">
+                    <img src="{{ service.img_link }}" alt="{{ get_data_by_lang(service, '_header', 'en') }}">
+                    <strong>{{ get_data_by_lang(service, '_header', 'en') }}</strong>
+                    <em><br>{{ get_data_by_lang(service, '_subheader', 'en') }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
-            <div class="decoration hide-if-responsive"></div>
-            <div class="one-half-responsive last-column">        
-                <p class="thumb-right no-bottom">
-                    <img src="{{ url_for('static', filename='images/camp/services/media.jpg')}}" alt="Media">
-                    <strong>{{ _("Media") }}</strong>
-                    <em><br>{{ _("Our professional media crew is here to capture all the action. We have dedicated photographers and videographers that are ready to get your Les Deux Alpes experience on film. Our crew will be taking photos and gathering footage throughout the whole camp – there is even an option for those who want their own edit!") }}</em>
-                </p>
-                <div class="thumb-clear"></div>
-            </div>
-            <div class="decoration hide-if-responsive"></div>
-            <div class="one-half-responsive">
-                <p class="thumb-left no-bottom">
-                    <img src="{{ url_for('static', filename='images/camp/services/entertainment.jpg')}}" alt="Entertainment">
-                    <strong>{{ _("Entertainment") }}</strong>
-                    <em><br>{{ _("Our calendar is packed full with activities to keep you stoked day and night. When you’re not training, you have all of Les Deux Alpes to explore. Everything from golf to mountain biking, BBQ’s to pub-crawls, and even a 2-day excursion to the Côte d’Azur, Après-Work Camps has it all planned out – all we’re waiting for is you!") }}</em>
-                </p>
-                <div class="thumb-clear"></div>
-            </div>
-            <div class="decoration hide-if-responsive"></div>
-            <div class="one-half-responsive last-column">        
-                <p class="thumb-right no-bottom">
-                    <img src="{{ url_for('static', filename='images/camp/services/organization.jpg')}}" alt="Organization">
-                    <strong>{{ _("The Total Package") }}</strong>
-                    <em><br>{{ _("Après-Work Camps is here to make sure that your vacation is really a vacation. We have organized transport to and from Les Deux Alpes, resort accommodation, lift tickets, afternoon activities, day trips and excursions all to make sure your time here is about the shred, the fun, and the party. You choose what options you want and we’ll personalize your package to make sure you’re getting the best deal on offer.") }}</em>
-                </p>
-                <div class="thumb-clear"></div>
-            </div>
+            <div class="decoration hide-if-responsive"></div>    
+            {% endfor %}
         </div>
         <div class="decoration"></div>             
     </div>
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>{{ _("The Team") }}</h4>
-        <p>{{ _("Meet the coaches that are ready to help you step up your game") }}</p>
+        <h4>{{ get_data_by_lang(staff_block, '_header', 'en') }}</h4>
+        <p>{{ get_data_by_lang(staff_block, '_subheader', 'en') }}</p>
         <i class="fa fa-user"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="Staff background">
@@ -308,50 +272,22 @@ $(function(){
             <a href="#" class="next-staff"></a>
             <a href="#" class="prev-staff"></a>
             <div class="staff-slider" data-snap-ignore="true">
+                {% for member in staff_block.staff %}
                 <div>
                     <div class="staff-item">
-                        <img src="{{ url_for('static', filename='images/camp/staff/bri.jpg')}}" alt="Briana">
-                        <h4>{{ _("Briana Delfs") }}</h4>
-                        <em>{{ _("Organizer")}}, {{_("Snowboarding coach")}}, {{_("Yoga instructor")}}</em>
+                        <img src="{{ member.img_link}}" alt="{{ get_data_by_lang(member, '_name', 'en') }}">
+                        <h4>{{ get_data_by_lang(member, '_name', 'en') }}</h4>
+                        <em>{{ get_data_by_lang(member, '_role', 'en') }}</em>
                         <strong class="staff-info">
-                            {{ _("Originally from the States and now living full-time in France, Bri has been dragging her snowboard bag from airport to airport around the world for the past six years.")}}
+                            {{ get_data_by_lang(member, '_info', 'en') }}
                         </strong>
                         <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
-                        <strong class="staff-info staff-details">{{ _(" She’s been instructing and coaching freestyle on both sides of the equator, most notably in New Zealand and USA. If she isn’t snowboarding, she’s either practicing yoga or working towards her philosophy degree in Paris. But most likely, you’ll find Bri hiking rails after the lifts shut until the park crew kicks her out.") }}
+                        <strong class="staff-info staff-details">{{ get_data_by_lang(member, '_hidden', 'en') }}
                         </strong>
-                        <div class="staff-contacts">FR, EN: <a href="https://www.facebook.com/bri.delfs" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:bri@apres-work.co"><i class="fa fa-envelope-o"></i></a></div>
+                        <div class="staff-contacts">{{ get_data_by_lang(member, '_contacts', 'en')|safe }}</div>
                     </div>
                 </div>
-                <div>
-                    <div class="staff-item">
-                        <img src="{{ url_for('static', filename='images/camp/staff/val.jpg')}}" alt="Valentine">
-                        <h4>{{ _("Valentine Tchoukhonine") }}</h4>
-                        <em>{{_("Organizer")}}, {{ _("Freeski coach") }}</em>
-                        <strong class="staff-info">
-                            {{ _("Starting out as a ski racer in Russia, Val has traded in his carving skis for a pair of twin tips and dumped his Lycra for tall tees.")}}
-                        </strong>
-                        <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
-                        <strong class="staff-info staff-details">
-                            {{ _("An extremely versatile skier, Val is turning heads whether he’s in the park, off-piste, or even on the occasional slalom course. He has instructed and coached skiing in New Zealand, Australia, and Japan, and is stoked to add France to his list. In his free time, Val runs his own photography business and small studio in Paris.") }}
-                        </strong>
-                        <div class="staff-contacts">FR, EN:<a href="https://www.facebook.com/vtchoukhonine" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:valentin@apres-work.co"><i class="fa fa-envelope-o"></i></a>&nbsp;<a href="whatsapp://send?text=Hi%20there.%20I%20have%20a%20question%20about%20the%20camp..."><i class="fa fa-whatsapp"></i>&nbsp;+3348549212</a></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="staff-item">
-                        <img src="{{ url_for('static', filename='images/camp/staff/sergey.jpg')}}" alt="Sergey">
-                        <h4>{{ _("Sergey Yarlov") }}</h4>
-                        <em>{{_("Organizer")}}, {{ _("Trampoline coach") }}</em>
-                        <strong class="staff-info">
-                            {{ _("Skateboarding brands, wakeboard camps, on-line snowsports communities: Sergey Yarlov is the man that makes it happen.")}}
-                        </strong>
-                        <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
-                        <strong class="staff-info staff-details">
-                            {{ _("Not only a camp organizer, this Russian entrepreneur is Après-Work Camp’s talented trampoline coach. With more than five years’ coaching experience, Sergey will get you inverted on the trampoline and get you flying in the terrain park.") }}
-                        </strong>
-                        <div class="staff-contacts">RU:<a href="https://www.facebook.com/sergey.yarlov" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:sergey@apres-work.co"><i class="fa fa-envelope-o"></i></a>&nbsp;<a href="whatsapp://send?text=Привет!%20У%20меня%20есть%20вопрос%20по%20поводу%20лагеря..."><i class="fa fa-whatsapp"></i>&nbsp;+79118131408</a></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>  
         <div class="decoration"></div>
@@ -359,8 +295,8 @@ $(function(){
     
     <!-- Content Heading-->
     <div class="content-heading">
-        <h4>{{ _("How it works") }}</h4>
-        <p>{{ _("A short summary of the camp") }}</p>
+        <h4>{{ get_data_by_lang(main_info_block, '_header', 'en') }}</h4>
+        <p>{{ get_data_by_lang(main_info_block, '_subheader', 'en') }}</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_3.jpg', '512x100_3.jpg')}}" alt="img">
@@ -372,46 +308,29 @@ $(function(){
             <div class="container">
                 <div class="one-half-responsive">
                     <div class="slider-bottom">
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s1.jpg', '512x512_s1.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s2.jpg', '512x512_s2.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s3.jpg', '512x512_s3.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s4.jpg', '512x512_s4.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s5.jpg', '512x512_s5.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s6.jpg', '512x512_s6.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s7.jpg', '512x512_s7.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s8.jpg', '512x512_s8.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s9.jpg', '512x512_s9.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s10.jpg', '512x512_s10.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s11.jpg', '512x512_s11.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s12.jpg', '512x512_s12.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s13.jpg', '512x512_s13.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s14.jpg', '512x512_s14.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s15.jpg', '512x512_s15.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s16.jpg', '512x512_s16.jpg')}}"></div>
-                        <div><img src="{{ get_img_src('images/camp/slider/', '1024x1024_s17.jpg', '512x512_s17.jpg')}}"></div>
+                        {% if request.MOBILE %}
+                            {% for photo in main_info_block.photos %}
+                                <div><img src="{{ photo.img_link_mobile }}"></div>
+                            {% endfor %}
+                        {% else %}
+                            {% for photo in main_info_block.photos %}
+                                <div><img src="{{ photo.img_link_desktop }}"></div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="one-half-responsive last-column">
-                    <h3 class="center-if-mobile no-bottom">{{ _("Après-Work Camps") }}</h3>
-                    <em class="center-if-mobile small-text half-bottom">{{ _("the ultimate summer freestyle camp") }}</em>
+                    <h3 class="center-if-mobile no-bottom">{{ get_data_by_lang(main_info_block, '_text_header', 'en') }}</h3>
+                    <em class="center-if-mobile small-text half-bottom">{{ get_data_by_lang(main_info_block, '_text_subheader', 'en') }}</em>
                     <p class="center-if-mobile half-bottom">
-                        {{ _("This summer, we’re bringing skiers and snowboards to the French Alps to ride, progress and party with Après-Work Camps. We’ve taken care of all the dirty work, now it’s up to you to come out and play.") }} 
+                        {{ get_data_by_lang(main_info_block, '_top_text', 'en') }}
                     </p>
                     <i class="fa fa-ellipsis-h show-more show-camp-info-details"></i>
                     <p class="camp-info-details center-if-mobile half-bottom">
-                        {{ _("Both a winter and summer ski destination, Les Deux Alpes is a breathtaking, adventure-filled resort. Despite being tucked away in the Southern French Alps, the resort is famous for its freestyle culture. During the summer, skiers and snowboarders take over Les Deux Alpes’ glacier, spending the season jumping and jibbing at 3600 meters…and Après-Work Camps wants you to be there.")}}
-                    </p>
-                    <p class="camp-info-details center-if-mobile half-bottom">
-                        {{ _("From August 8th to 22nd, Après-Work Camps is bringing campers from across Russia and Europe to Les Deux Alpes to ride, train, relax, and party. Whether you want to train like a professional or just ride with old and new friends, we have it all figured out.") }}
-                    </p>
-                    <p class="camp-info-details center-if-mobile half-bottom">
-                        {{ _("Our two-week summer camp session is all about fun and progression. Our freestyle coaches will work closely with you to help you get your riding to the next level. We offer coaching on the glacier by our qualified instructors and video analysis in the evening. In the afternoon, we have coached trampoline sessions to help you gain invaluable air awareness and yoga classes to keep you strong, balanced and healthy throughout your progression.") }}
-                    </p>
-                    <p class="camp-info-details center-if-mobile half-bottom">
-                        {{ _("We offer personalized packages to each of our campers to make sure that your vacation is a vacation: we have airport and train station transfers, accommodation and lift ticket deals, and calendars packed with activities that will keep you pumped from first chair to last call.")}}
+                        {{ get_data_by_lang(main_info_block, '_hidden_text', 'en') }}
                     </p>
                     <p class="center-if-mobile half-bottom">
-                        {{ _("Après-Work Camps is here to give you the ultimate summer camp experience. After two weeks shredding in Les Deux Alpes, we’ll have you convinced that snow and summer are the perfect match.")}}
+                        {{ get_data_by_lang(main_info_block, '_bottom_text', 'en') }}
                     </p>
                 </div>
             </div>
@@ -420,18 +339,18 @@ $(function(){
 
     <!-- Content Heading-->
     <div id="attend" class="content-heading">
-        <h4>{{ _("Sign up") }}</h4>
-        <p>{{ _("Sign up to camp and join us") }}</p>
+        <h4>{{ get_data_by_lang(signup_block, '_header', 'en') }}</h4>
+        <p>{{ get_data_by_lang(signup_block, '_subheader', 'en') }}</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="img">
     </div>
 
     <div class="content block-camp-attend">
-        <h3 class="center-text">{{ _("Sign up form") }}</h3>
+        <h3 class="center-text">{{ get_data_by_lang(signup_block, '_form_header', 'en') }}</h3>
         <div class="decoration"></div>
             <div class="container">
-                <form method="POST" action="{{ url_for('camps_attend', language_suffix=language_suffix, location_suffix=location_suffix, id=camp_id) }}" class="form-attend">
+                <form method="POST" action="{{ url_for('camps_attend', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}" class="form-attend">
                     {% for field in mailchimp_form %}
                     <div class="form-field">
                         <div class="one-half-responsive col-label">
@@ -469,7 +388,7 @@ $(function(){
                         <div class="one-half-responsive col-label">&nbsp;</div>
                         <div class="one-half-responsive last-column col-controls">
                             <button type="submit" class="button button-green center-if-mobile">
-                                {{ _("Sign up") }}
+                                {{ get_data_by_lang(signup_block, '_signup_button', 'en') }}
                             </button>
                         </div>
                     </div>
@@ -493,8 +412,8 @@ $(function(){
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>{{ _("Official partners") }}</h4>
-        <p>{{ _("Working together to make it happen") }}</p>
+        <h4>{{ get_data_by_lang(partners_block, '_header', 'en') }}</h4>
+        <p>{{ get_data_by_lang(partners_block, '_subheader', 'en') }}</p>
         <i class="fa fa-quote-left"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="">
@@ -503,42 +422,17 @@ $(function(){
     <div class="content">
         <div class="decoration"></div>        
         <div class="quote-slider full-bottom" data-snap-ignore="true">
+            {% for partner in partners_block.partners %}
             <div>
                 <div>
-                    <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'l2a.png', 'l2a.png')}}" alt="Les Deux Alpes logo">
+                    <img class="partner-logo" src="{{ partner.img_link }}" alt="{{ get_data_by_lang(partner, '_name', 'en') }}">
                     <h4>
-                        {{ _("Go-ahead, sporty and bang on trend, Les 2 Alpes is one of the rare European destinations where you can ski in the summer thanks to its glacier, culminating at an altitude of 3,600 metres.") }}
+                        {{ get_data_by_lang(partner, '_description', 'en') }}
                     </h4>
                 </div>
-                <a href="http://www.les2alpes.com" target="_blank">{{ _("Les Deux Aples Ski Resort") }}</a>
+                <a href="{{ partner.url }}" target="_blank">{{ get_data_by_lang(partner, '_name', 'en') }}</a>
             </div>
-            <div>
-                <div>
-                    <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'smithies.png', 'smithies.png')}}" alt="Les Deux Alpes logo">
-                    <h4>
-                        {{ _("Smithy's tavern, Bars and restaurants opened in Alpe d'Huez in 1996, Since opening we have established excellent food in our restaurants and great drinks served throughout the night over our big bars. Smithy's then opened in neighbouring Les Deux Alpes in 2002, where we fast became the place to eat, drink and party with many themed nights, live bands and guest Djs and artists.") }} 
-                    </h4>
-                </div>
-                <a href="http://www.smithystavern.com" target="_blank">{{ _("Smithy's tavern") }}</a>
-            </div>
-            <div>
-                <div>
-                    <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'polarbear.png', 'polarbear.png')}}" alt="Les Deux Alpes logo">
-                    <h4>
-                        {{ _("In the very heart of resort The Polar Bear Pub welcomes you into its warm, friendly atmosphere to sink a few pints and enjoy a good vin chaud after a hard day up the mountain.  Found by the central roundabout on the main strip of Les Deux Alpes the traditional log style chalet offers a great team  and a buzzing vibe to help you wind down your day.") }}
-                    </h4>
-                </div>
-                <a href="http://www.thepolarbearpub.com" target="_blank">{{ _("The Polar Bear Pub") }}</a>
-            </div>
-            <div>
-                <div>
-                    <img class="partner-logo" src="{{ get_img_src('images/camp/logos/', 'event2fly.png', 'event2fly.png')}}" alt="Les Deux Alpes logo">
-                    <h4>
-                        {{ _("Avec Event2fly vivez de nouvelles émotions et faites le plein d’adrénaline en sautant dans un sac gonflable: l’AIRBAG. Aux 2 Alpes Event2Fly vous propose une expérience unique et innovante. L’été et l’hiver au pied des pistes, tentez vos tricks les plus fous en toute sécurité grâce à une équipe de professionnels.") }}
-                    </h4>
-                </div>
-                <a href="http://event2fly.com" target="_blank">{{ _("Event2fly") }}</a>
-            </div>
+            {% endfor %}
         </div>
             
         <div class="decoration"></div>            
@@ -551,8 +445,8 @@ $(function(){
     <div class="content">
         <div class="decoration"></div>
         <div class="one-half-responsive">
-            <h4>{{ _("Send us a message!")}}</h4>
-            <p>{{ _("Feel free to ask any question you have")}}</p>
+            <h4>{{ get_data_by_lang(contact_block, '_header', 'en') }}</h4>
+            <p>{{ get_data_by_lang(contact_block, '_subheader', 'en') }}</p>
             <div class="container no-bottom">
                 <div class="contact-form no-bottom"> 
                     <div class="formSuccessMessageWrap" id="formSuccessMessageWrap">
@@ -608,15 +502,11 @@ $(function(){
         <div class="decoration hide-if-responsive"></div>
         <div class="one-half-responsive last-column">
             <div class="container no-bottom">
-                <h4>{{ _("Contact Information") }}</h4>
+                <h4>{{ get_data_by_lang(contact_block, '_right_subheader', 'en') }}</h4>
                 <p>
-                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, FR: +33 8495849</a>
-                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, EN: +33 9489384</a>
-                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, RU: +7 911 813 14 08</a>
-                    <a href="mailto:camp@apres-work.co" class="contact-mail" target="_blank"><i class="fa fa-envelope"></i>Email: camp@apres-work.co</a>
-                    <a href="//facebook.com/apresworkco" class="contact-facebook" target="_blank"><i class="fa fa-facebook"></i>Facebook: apresworkco</a>
-                    <a href="//vk.com/apresworkco" class="contact-facebook" target="_blank"><i class="fa fa-vk"></i>Vkontakte: apresworkco</a>
-                    <a href="//twitter.com/apresworkco" class="contact-twitter" target="_blank"><i class="fa fa-twitter"></i>Twitter: @apresworkco</a>
+                    {% for contact in contact_block.contacts %}
+                    <a href="{{ contact.link }}" class="contact-call" {% if contact.in_new_window %}target="_blank"{% endif %} ><i class="fa {{ contact.icon_class }}"></i>{{ get_data_by_lang(contact, '_caption', 'en') }}</a>
+                    {% endfor %}
                 </p>
             </div>            
         </div>
