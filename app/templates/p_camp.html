@@ -323,14 +323,14 @@ $(function(){
                     <h3 class="center-if-mobile no-bottom">{{ get_data_by_lang(main_info_block, '_text_header', 'en') }}</h3>
                     <em class="center-if-mobile small-text half-bottom">{{ get_data_by_lang(main_info_block, '_text_subheader', 'en') }}</em>
                     <p class="center-if-mobile half-bottom">
-                        {{ get_data_by_lang(main_info_block, '_top_text', 'en') }}
+                        {{ get_data_by_lang(main_info_block, '_top_text', 'en')|safe }}
                     </p>
                     <i class="fa fa-ellipsis-h show-more show-camp-info-details"></i>
                     <p class="camp-info-details center-if-mobile half-bottom">
-                        {{ get_data_by_lang(main_info_block, '_hidden_text', 'en') }}
+                        {{ get_data_by_lang(main_info_block, '_hidden_text', 'en')|safe }}
                     </p>
                     <p class="center-if-mobile half-bottom">
-                        {{ get_data_by_lang(main_info_block, '_bottom_text', 'en') }}
+                        {{ get_data_by_lang(main_info_block, '_bottom_text', 'en')|safe }}
                     </p>
                 </div>
             </div>
