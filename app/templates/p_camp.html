@@ -19,6 +19,14 @@ var index = (function(){
                 $('#content').animate({
                     scrollTop:600//$('.slider-style').height()
                 }, 800, 'easeInOutQuad');
+                $('i.show-more.show-staff-details').on('click', function(){
+                    $(this).parents('.staff-slider').find('.show-staff-details').hide();
+                    $(this).parents('.staff-slider').find('.staff-details').slideDown();
+                });
+                $('i.show-more.show-camp-info-details').on('click', function(){
+                    $(this).hide();
+                    $(this).parent().find('.camp-info-details').slideDown();
+                });
             })
         }
     }
@@ -147,6 +155,14 @@ $(function(){
         speed: 300,
         autoplay: true,
         autoplaySpeed: 2000
+    });
+    $('i.show-more.show-staff-details').on('click', function(){
+        $(this).parents('.staff-slider').find('.show-staff-details').hide();
+        $(this).parents('.staff-slider').find('.staff-details').slideDown();
+    });
+    $('i.show-more.show-camp-info-details').on('click', function(){
+        $(this).hide();
+        $(this).parent().find('.camp-info-details').slideDown();
     });
 });
 </script>
@@ -296,33 +312,44 @@ $(function(){
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/bri.jpg')}}" alt="Briana">
                         <h4>{{ _("Briana Delfs") }}</h4>
-                        <em>{{ _("Snowboarding coach, Yoga instructor") }}</em>
-                        <strong style="width:350px;">
-                            {{ _("Originally from the States and now living full-time in France, Bri has been dragging her snowboard bag from airport to airport around the world for the past six years. She’s been instructing and coaching freestyle on both sides of the equator, most notably in New Zealand and USA. If she isn’t snowboarding, she’s either practicing yoga or working towards her philosophy degree in Paris. But most likely, you’ll find Bri hiking rails after the lifts shut until the park crew kicks her out.") }}
-                            <div class="text-align:center;"><a href="https://www.facebook.com/bri.delfs" target="_blank"><i class="fa fa-facebook"></i></a></div>
+                        <em>{{ _("Organizer")}}, {{_("Snowboarding coach")}}, {{_("Yoga instructor")}}</em>
+                        <strong class="staff-info">
+                            {{ _("Originally from the States and now living full-time in France, Bri has been dragging her snowboard bag from airport to airport around the world for the past six years.")}}
                         </strong>
+                        <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
+                        <strong class="staff-info staff-details">{{ _(" She’s been instructing and coaching freestyle on both sides of the equator, most notably in New Zealand and USA. If she isn’t snowboarding, she’s either practicing yoga or working towards her philosophy degree in Paris. But most likely, you’ll find Bri hiking rails after the lifts shut until the park crew kicks her out.") }}
+                        </strong>
+                        <div class="staff-contacts">FR, EN: <a href="https://www.facebook.com/bri.delfs" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:bri@apres-work.co"><i class="fa fa-envelope-o"></i></a></div>
                     </div>
                 </div>
                 <div>
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/val.jpg')}}" alt="Valentine">
                         <h4>{{ _("Valentine Tchoukhonine") }}</h4>
-                        <em>{{ _("Freeski coach") }}</em>
-                        <strong style="width:350px;">
-                            {{ _("Starting out as a ski racer in Russia, Val has traded in his carving skis for a pair of twin tips and dumped his Lycra for tall tees. An extremely versatile skier, Val is turning heads whether he’s in the park, off-piste, or even on the occasional slalom course. He has instructed and coached skiing in New Zealand, Australia, and Japan, and is stoked to add France to his list. In his free time, Val runs his own photography business and small studio in Paris.") }}
-                            <div class="text-align:center;"><a href="https://www.facebook.com/vtchoukhonine" target="_blank"><i class="fa fa-facebook"></i></a></div>
+                        <em>{{_("Organizer")}}, {{ _("Freeski coach") }}</em>
+                        <strong class="staff-info">
+                            {{ _("Starting out as a ski racer in Russia, Val has traded in his carving skis for a pair of twin tips and dumped his Lycra for tall tees.")}}
                         </strong>
+                        <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
+                        <strong class="staff-info staff-details">
+                            {{ _("An extremely versatile skier, Val is turning heads whether he’s in the park, off-piste, or even on the occasional slalom course. He has instructed and coached skiing in New Zealand, Australia, and Japan, and is stoked to add France to his list. In his free time, Val runs his own photography business and small studio in Paris.") }}
+                        </strong>
+                        <div class="staff-contacts">FR, EN:<a href="https://www.facebook.com/vtchoukhonine" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:valentin@apres-work.co"><i class="fa fa-envelope-o"></i></a>&nbsp;<a href="whatsapp://send?text=Hi%20there.%20I%20have%20a%20question%20about%20the%20camp..."><i class="fa fa-whatsapp"></i>&nbsp;+3348549212</a></div>
                     </div>
                 </div>
                 <div>
                     <div class="staff-item">
                         <img src="{{ url_for('static', filename='images/camp/staff/sergey.jpg')}}" alt="Sergey">
                         <h4>{{ _("Sergey Yarlov") }}</h4>
-                        <em>{{ _("Trampoline coach") }}</em>
-                        <strong style="width:350px;">
-                            {{ _("Skateboarding brands, wakeboard camps, on-line snowsports communities: Sergey Yarlov is the man that makes it happen. Not only a camp organizer, this Russian entrepreneur is Après-Work Camp’s talented trampoline coach. With more than five years’ coaching experience, Sergey will get you inverted on the trampoline and get you flying in the terrain park.") }}
-                            <div class="text-align:center;"><a href="https://www.facebook.com/sergey.yarlov" target="_blank"><i class="fa fa-facebook"></i></a></div>
+                        <em>{{_("Organizer")}}, {{ _("Trampoline coach") }}</em>
+                        <strong class="staff-info">
+                            {{ _("Skateboarding brands, wakeboard camps, on-line snowsports communities: Sergey Yarlov is the man that makes it happen.")}}
                         </strong>
+                        <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
+                        <strong class="staff-info staff-details">
+                            {{ _("Not only a camp organizer, this Russian entrepreneur is Après-Work Camp’s talented trampoline coach. With more than five years’ coaching experience, Sergey will get you inverted on the trampoline and get you flying in the terrain park.") }}
+                        </strong>
+                        <div class="staff-contacts">RU:<a href="https://www.facebook.com/sergey.yarlov" target="_blank"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="mailto:sergey@apres-work.co"><i class="fa fa-envelope-o"></i></a>&nbsp;<a href="whatsapp://send?text=Привет!%20У%20меня%20есть%20вопрос%20по%20поводу%20лагеря..."><i class="fa fa-whatsapp"></i>&nbsp;+79118131408</a></div>
                     </div>
                 </div>
             </div>
@@ -370,16 +397,17 @@ $(function(){
                     <p class="center-if-mobile half-bottom">
                         {{ _("This summer, we’re bringing skiers and snowboards to the French Alps to ride, progress and party with Après-Work Camps. We’ve taken care of all the dirty work, now it’s up to you to come out and play.") }} 
                     </p>
-                    <p class="center-if-mobile half-bottom">
+                    <i class="fa fa-ellipsis-h show-more show-camp-info-details"></i>
+                    <p class="camp-info-details center-if-mobile half-bottom">
                         {{ _("Both a winter and summer ski destination, Les Deux Alpes is a breathtaking, adventure-filled resort. Despite being tucked away in the Southern French Alps, the resort is famous for its freestyle culture. During the summer, skiers and snowboarders take over Les Deux Alpes’ glacier, spending the season jumping and jibbing at 3600 meters…and Après-Work Camps wants you to be there.")}}
                     </p>
-                    <p class="center-if-mobile half-bottom">
+                    <p class="camp-info-details center-if-mobile half-bottom">
                         {{ _("From August 8th to 22nd, Après-Work Camps is bringing campers from across Russia and Europe to Les Deux Alpes to ride, train, relax, and party. Whether you want to train like a professional or just ride with old and new friends, we have it all figured out.") }}
                     </p>
-                    <p class="center-if-mobile half-bottom">
+                    <p class="camp-info-details center-if-mobile half-bottom">
                         {{ _("Our two-week summer camp session is all about fun and progression. Our freestyle coaches will work closely with you to help you get your riding to the next level. We offer coaching on the glacier by our qualified instructors and video analysis in the evening. In the afternoon, we have coached trampoline sessions to help you gain invaluable air awareness and yoga classes to keep you strong, balanced and healthy throughout your progression.") }}
                     </p>
-                    <p class="center-if-mobile half-bottom">
+                    <p class="camp-info-details center-if-mobile half-bottom">
                         {{ _("We offer personalized packages to each of our campers to make sure that your vacation is a vacation: we have airport and train station transfers, accommodation and lift ticket deals, and calendars packed with activities that will keep you pumped from first chair to last call.")}}
                     </p>
                     <p class="center-if-mobile half-bottom">
@@ -515,6 +543,86 @@ $(function(){
             
         <div class="decoration"></div>            
     </div>
+
+    <div class="maps-container">
+        <iframe class="responsive-image maps" src="https://maps.google.com/?ie=UTF8&amp;ll=44.997748,6.217629&amp;spn=0.006186,0.016512&amp;t=h&amp;z=13&amp;output=embed"></iframe>
+    </div>
+
+    <div class="content">
+        <div class="decoration"></div>
+        <div class="one-half-responsive">
+            <h4>{{ _("Send us a message!")}}</h4>
+            <p>{{ _("Feel free to ask any question you have")}}</p>
+            <div class="container no-bottom">
+                <div class="contact-form no-bottom"> 
+                    <div class="formSuccessMessageWrap" id="formSuccessMessageWrap">
+                        <div class="big-notification green-notification">
+                            <h3 class="uppercase">Message Sent </h3>
+                            <a href="#" class="close-big-notification">x</a>
+                            <p>{{_("Your message has been successfuly sent. Please allow up to 24 hours for a reply! Thank you!")}}</p>
+                        </div>
+                    </div>
+
+                    <form action="php/contact.php" method="post" class="contactForm" id="contactForm">
+                        <fieldset>
+                            <div class="formValidationError" id="contactNameFieldError">
+                                <div class="static-notification-red tap-dismiss-notification">
+                                    <p class="center-text uppercase">{{ _("Name is required!")}}</p>
+                                </div>
+                            </div>             
+                            <div class="formValidationError" id="contactEmailFieldError">
+                                <div class="static-notification-red tap-dismiss-notification">
+                                    <p class="center-text uppercase">{{ _("Mail address required!")}}</p>
+                                </div>
+                            </div> 
+                            <div class="formValidationError" id="contactEmailFieldError2">
+                                <div class="static-notification-red tap-dismiss-notification">
+                                    <p class="center-text uppercase">{{ _("Mail address must be valid!")}}</p>
+                                </div>
+                            </div> 
+                            <div class="formValidationError" id="contactMessageTextareaError">
+                                <div class="static-notification-red tap-dismiss-notification">
+                                    <p class="center-text uppercase">{{ _("Message field is empty!")}}</p>
+                                </div>
+                            </div>   
+                            <div class="formFieldWrap">
+                                <label class="field-title contactNameField" for="contactNameField">{{ _("Name") }}:<span>({{ _("required")}})</span></label>
+                                <input type="text" name="contactNameField" value="" class="contactField requiredField" id="contactNameField"/>
+                            </div>
+                            <div class="formFieldWrap">
+                                <label class="field-title contactEmailField" for="contactEmailField">{{ _("Email") }}: <span>({{ _("required")}})</span></label>
+                                <input type="text" name="contactEmailField" value="" class="contactField requiredField requiredEmailField" id="contactEmailField"/>
+                            </div>
+                            <div class="formTextareaWrap">
+                                <label class="field-title contactMessageTextarea" for="contactMessageTextarea">{{ _("Message") }}: <span>({{ _("required")}})</span></label>
+                                <textarea name="contactMessageTextarea" class="contactTextarea requiredField" id="contactMessageTextarea"></textarea>
+                            </div>
+                            <div class="formSubmitButtonErrorsWrap">
+                                <input type="submit" class="buttonWrap button button-green contactSubmitButton" id="contactSubmitButton" value="{{_('SUBMIT')}}" data-formId="contactForm"/>
+                            </div>
+                        </fieldset>
+                    </form>       
+                </div>
+            </div>
+        </div>
+        <div class="decoration hide-if-responsive"></div>
+        <div class="one-half-responsive last-column">
+            <div class="container no-bottom">
+                <h4>{{ _("Contact Information") }}</h4>
+                <p>
+                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, FR: +33 8495849</a>
+                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, EN: +33 9489384</a>
+                    <a href="#" class="contact-call"><i class="fa fa-phone"></i>Phone, RU: +7 911 813 14 08</a>
+                    <a href="mailto:camp@apres-work.co" class="contact-mail" target="_blank"><i class="fa fa-envelope"></i>Email: camp@apres-work.co</a>
+                    <a href="//facebook.com/apresworkco" class="contact-facebook" target="_blank"><i class="fa fa-facebook"></i>Facebook: apresworkco</a>
+                    <a href="//vk.com/apresworkco" class="contact-facebook" target="_blank"><i class="fa fa-vk"></i>Vkontakte: apresworkco</a>
+                    <a href="//twitter.com/apresworkco" class="contact-twitter" target="_blank"><i class="fa fa-twitter"></i>Twitter: @apresworkco</a>
+                </p>
+            </div>            
+        </div>
+    </div>
+
+    <div class="decoration container"></div>
         
     <!-- Page Footer-->
     <div class="footer">

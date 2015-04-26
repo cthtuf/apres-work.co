@@ -226,3 +226,37 @@
 .form-message {
     margin-top:30px;
 }
+
+i.show-more {
+    font-size:24px;
+    cursor: pointer;
+}
+
+.staff-item {
+    text-align: center;
+}
+
+.staff-info {
+    width:350px !important;
+}
+
+.staff-info.staff-details {
+    display: none;
+}
+
+.staff-contacts {
+    text-align: center;
+}
+
+.staff-contacts a {
+    display: inline;
+    margin:0 5px;
+
+}
+
+.staff-contacts i {
+    font-size:16px;
+}
+
+.camp-info-details {
+    display: none;
