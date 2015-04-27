@@ -111,10 +111,12 @@ def camps_feedback(language_suffix, id):
 
 	message_text = 'Name: '+request.form['contactNameField']+'\n\n'+'Message: '+request.form['contactMessageTextarea']
 
-	send_email('Camp #'+str(id)+' Feedback',
+	if send_email('Camp #'+str(id)+' Feedback',
 		request.form['contactEmailField'],
-		'camp@apres-work.co',
+		['camp@apres-work.co'],
 		message_text,
 		message_text
-	)
-	return '1'
+	):
+		return '1'
+	else:
+		return '0'

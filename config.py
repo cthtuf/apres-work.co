@@ -30,10 +30,9 @@ LANGUAGES = {
 
 BABEL_DEFAULT_LOCALE = 'en'
 
-MAIL_SERVER = 'mail.apres-work.co'
+MAIL_SERVER = 'localhost'
 MAIL_PORT = 25
-MAIL_USERNAME = None
-MAIL_PASSWORD = None
+MAIL_USE_SSL = False
 
 # administrator list
 ADMINS = ['no-reply@apres-work.co']
