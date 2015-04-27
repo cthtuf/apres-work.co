@@ -9,6 +9,7 @@ from flask.ext.babel import gettext
 import urllib
 
 #for /ru/resorts/
+@cache.cached(timeout=600)
 def resorts_g_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -56,6 +57,7 @@ def resorts_g_list(language_suffix):
 		debug=app.debug)
 
 # /ru/spb/r/ [GET]
+@cache.cached(timeout=600)
 def resorts_s_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -67,6 +69,7 @@ def resorts_s_list(language_suffix, location_suffix):
 	))
 
 # /ru/spb/resorts/ [GET]
+@cache.cached(timeout=600)
 def resorts_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -115,6 +118,7 @@ def resorts_list(language_suffix, location_suffix):
 		debug=app.debug)
 
 # /ru/spb/r/1/ [GET]
+@cache.cached(timeout=600)
 def resorts_s_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -127,6 +131,7 @@ def resorts_s_page(language_suffix, location_suffix, id):
 	))
 
 #for /ru/spb/resort/1/ [GET]
+@cache.cached(timeout=600)
 def resorts_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)

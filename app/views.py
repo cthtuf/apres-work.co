@@ -204,6 +204,7 @@ def _jinja2_filter_datetime(date, fmt='%d.%m.%Y'):
     return date.strftime(fmt) 
 
 # for / [GET]
+@cache.cached(timeout=600)
 def index():
 	return redirect(url_for(
 		'camps_page',
@@ -212,6 +213,7 @@ def index():
 	))
 
 # for /ru/ [GET]
+@cache.cached(timeout=600)
 def language_index(language_suffix):
 	return redirect(url_for(
 		'camps_page',

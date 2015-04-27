@@ -9,6 +9,7 @@ from flask.ext.babel import gettext
 
 
 #for /ru/news/ [GET]
+@cache.cached(timeout=600)
 def news_g_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -28,6 +29,7 @@ def news_g_list(language_suffix):
 		debug=app.debug)
 
 # /ru/spb/n/ [GET]
+@cache.cached(timeout=600)
 def news_s_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -39,6 +41,7 @@ def news_s_list(language_suffix, location_suffix):
 	))
 
 #for /ru/spb/news/ [GET]
+@cache.cached(timeout=600)
 def news_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -59,6 +62,7 @@ def news_list(language_suffix, location_suffix):
 		debug=app.debug)
 
 # /ru/spb/n/1/ [GET]
+@cache.cached(timeout=600)
 def news_s_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -72,6 +76,7 @@ def news_s_page(language_suffix, location_suffix, id):
 
 
 #for /ru/spb/news/1/ [GET]
+@cache.cached(timeout=600)
 def news_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)

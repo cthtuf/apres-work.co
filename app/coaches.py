@@ -8,6 +8,7 @@ from helpers import *
 from flask.ext.babel import gettext
 
 #for /ru/coaches/ [GET]
+@cache.cached(timeout=600)
 def coaches_g_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -27,6 +28,7 @@ def coaches_g_list(language_suffix):
 		debug=app.debug)
 
 #for /ru/spb/c/ [GET]
+@cache.cached(timeout=600)
 def coaches_s_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -38,6 +40,7 @@ def coaches_s_list(language_suffix, location_suffix):
 	))
 
 #for /ru/spb/coaches/ [GET]
+@cache.cached(timeout=600)
 def coaches_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -59,6 +62,7 @@ def coaches_list(language_suffix, location_suffix):
 		debug=app.debug)
 
 #for /ru/spb/c/1/ [GET]
+@cache.cached(timeout=600)
 def coaches_s_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -71,6 +75,7 @@ def coaches_s_page(language_suffix, location_suffix, id):
 	))
 
 #for /ru/spb/coach/1/ [GET]
+@cache.cached(timeout=600)
 def coaches_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)

@@ -8,6 +8,7 @@ from helpers import *
 from flask.ext.babel import gettext
 
 #for /ru/events/ [GET]
+@cache.cached(timeout=600)
 def events_g_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -27,6 +28,7 @@ def events_g_list(language_suffix):
 		debug=app.debug)
 
 #for /ru/spb/e/ [GET]
+@cache.cached(timeout=600)
 def events_s_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -38,6 +40,7 @@ def events_s_list(language_suffix, location_suffix):
 	))
 
 #for /ru/spb/events/ [GET]
+@cache.cached(timeout=600)
 def events_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -57,6 +60,7 @@ def events_list(language_suffix, location_suffix):
 		events=events,
 		debug=app.debug)
 
+@cache.cached(timeout=600)
 def events_s_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -69,6 +73,7 @@ def events_s_page(language_suffix, location_suffix, id):
 	))
 
 #for /ru/spb/event/1/ [GET]
+@cache.cached(timeout=600)
 def events_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)

@@ -9,6 +9,7 @@ from helpers import *
 from flask.ext.babel import gettext
 
 #for /ru/locations/ [GET]
+@cache.cached(timeout=600)
 def locations_g_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -24,6 +25,7 @@ def locations_g_list(language_suffix):
 	)
 
 #for /ru/spb/ [GET]
+@cache.cached(timeout=600)
 def locations_index(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)

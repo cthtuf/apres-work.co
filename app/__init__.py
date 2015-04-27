@@ -7,6 +7,7 @@ from flask.ext.admin import Admin
 from flask_admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext.babel import Babel
+from flask.ext.cache import Cache
 #from flask.ext.login import LoginManager
 from flask import current_app, Blueprint, render_template
 from werkzeug.debug import DebuggedApplication
@@ -24,6 +25,7 @@ with app.app_context():
 
 admin = Admin(app)
 babel = Babel(app)
+cache = Cache(app,config={'CACHE_TYPE': 'memcached', 'CACHE_KEY_PREFIX' : 'cache_'})
 
 from app import urls, views, models
 

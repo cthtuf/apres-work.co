@@ -8,6 +8,7 @@ from helpers import *
 from flask.ext.babel import gettext
 
 #for /ru/howitworks/ [GET]
+@cache.cached(timeout=600)
 def howitworks_list(language_suffix):
 	save_lang(language_suffix)
 
@@ -18,36 +19,42 @@ def howitworks_list(language_suffix):
 		debug=app.debug)
 
 #for /ru/howitworks/events/
+@cache.cached(timeout=600)
 def howitworks_events(language_suffix):
 	save_lang(language_suffix)
 
 	return "Sorry, hasn't implemented yet =\ "
 
 #for /ru/howitworks/camps/
+@cache.cached(timeout=600)
 def howitworks_camps(language_suffix):
 	save_lang(language_suffix)
 
 	return "Sorry, hasn't implemented yet =\ "
 
 #for /ru/howitworks/resorts/
+@cache.cached(timeout=600)
 def howitworks_resorts(language_suffix):
 	save_lang(language_suffix)
 
 	return "Sorry, hasn't implemented yet =\ "
 
 #for /ru/howitworks/locations/
+@cache.cached(timeout=600)
 def howitworks_locations(language_suffix):
 	save_lang(language_suffix)
 
 	return "Sorry, hasn't implemented yet =\ "
 
 #for /ru/howitworks/news/
+@cache.cached(timeout=600)
 def howitworks_news(language_suffix):
 	save_lang(language_suffix)
 
 	return "Sorry, hasn't implemented yet =\ "
 
 #for /ru/howitworks/coaches/
+@cache.cached(timeout=600)
 def howitworks_coaches(language_suffix):
 	save_lang(language_suffix)
 

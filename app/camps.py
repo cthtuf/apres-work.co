@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr, get_path, get_data_by_lang
-from app import db, app
+from app import db, app, cache
 from models import *
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from datetime import datetime,timedelta
@@ -17,7 +17,9 @@ def get_mailchimp_list_id(language_suffix):
 		return app.config['MAILCHIMP_CAMP_L2A15_EN']
 
 #for /ru/camps/ [GET]
+@cache.cached(timeout=600)
 def camps_g_list(language_suffix):
+	save_curr('camps_g_list')
 	save_lang(language_suffix)
 
 	camps = Camp.query.all()
@@ -30,6 +32,7 @@ def camps_g_list(language_suffix):
 		debug=app.debug)
 
 #for /__lang__/camp/1/ [GET]
+@cache.cached(timeout=60)
 def camps_page(language_suffix, id):
 	save_curr('camps_page')
 	lang = save_lang(language_suffix)
@@ -105,5 +108,5 @@ def camps_attend(language_suffix, id):
 #for /__lang__/camp/1/feedback/ [POST]
 def camps_feedback(language_suffix, id):
 	#save_curr('camps_attend')
-	#save_lang(language_suffix)
+	save_lang(language_suffix)
 	pass
