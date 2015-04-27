@@ -85,10 +85,20 @@ var subscription = (function(){
     }
 })();
 
+var formAttend = (function(){
+    return {
+        init : function(){
+
+        }
+    }
+})();
+
 var camp = (function(){
     $formContainer = $('.block-camp-attend');
     $form = $formContainer.find('form.form-attend');
     $formMessageContainer = $formContainer.find('.form-message-container');
+
+    var options = {};
 
     doEnableControls = function(){
         $form.find('button').removeAttr('disabled');
@@ -150,12 +160,33 @@ var camp = (function(){
             showFormMessage('{{ _("An error occured. Please, try one more time") }}', 'static-notification-yellow ')
             doEnableControls();
         });
+    },
+    reCalcOption = function(e){
+        var init_cost = $('#camp_form').attr('data-cost-initial'),
+            currency = $('#camp_form').attr('data-cost-currency');
+
+            cost = parseInt(init_cost);
+            $('#camp_form select').each(function(){
+                var group = $(this).attr('id');
+                var value = $(this).val();
+                if((options[group])&&(options[group][value])) cost+=parseInt(options[group][value]);
+            });
+
+        $('#camp_cost').text(cost+' '+currency);
     }
 
     return {
         init : function(){
             $('form.form-attend').on('submit', doAttend);
             doEnableControls();
+
+            {% for option in signup_block.options %}
+            if(!options['{{option.group}}']) options['{{option.group}}'] = {};
+            options['{{option.group}}']['{{option.value}}'] = {{option.cost}};
+            {% endfor %}
+
+            $('#camp_form select').on('change', reCalcOption);
+            reCalcOption();
         }
     }
 })();
@@ -198,9 +229,9 @@ $(function(){
                 <div class="overlay dark-overlay" {% if request.args['overlay'] %}style="background-color: rgba(0, 0, 0, {{request.args['overlay']}}) !important;"{%endif%}></div>
                 <div class="slider-image slider-camp-{{top_slide.index}}">  
                     <div class="slider-style slider-camp-style-{{top_slide.index}}" style="height:270px; margin-top:-135px">
-                        <h2>{{ get_data_by_lang(top_slide, '_header', 'en') }}</h2>
+                        <h2>{{ get_data_by_lang(top_slide, '_header', 'en')|safe }}</h2>
                         <p style="color:#FFF;font-size:20px;">
-                            {{ get_data_by_lang(top_slide, '_subheader', 'en') }}
+                            {{ get_data_by_lang(top_slide, '_subheader', 'en')|safe }}
                         </p>
                     </div>
                 </div>
@@ -211,9 +242,9 @@ $(function(){
     
     <div class="content">       
         <div class="container large-title no-bottom">
-            <h3>{{ get_data_by_lang(top_info_block, '_header', 'en') }}</h3>
+            <h3>{{ get_data_by_lang(top_info_block, '_header', 'en')|safe }}</h3>
             <p>
-                {{ get_data_by_lang(top_info_block, '_subheader', 'en') }}
+                {{ get_data_by_lang(top_info_block, '_subheader', 'en')|safe }}
             </p>
 
             <div class="center-socials">
@@ -229,8 +260,8 @@ $(function(){
             
     <!-- Content Heding -->
     <div class="content-heading">
-        <h4>{{ get_data_by_lang(services_block, '_header', 'en') }}</h4>
-        <p>{{ get_data_by_lang(services_block, '_subheader', 'en') }}</p>
+        <h4>{{ get_data_by_lang(services_block, '_header', 'en')|safe }}</h4>
+        <p>{{ get_data_by_lang(services_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-cog"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="">
@@ -244,8 +275,8 @@ $(function(){
             <div class="one-half-responsive {{loop.cycle('', 'last-column')}}">
                 <p class="{{ loop.cycle('thumb-left', 'thumb-right') }} no-bottom">
                     <img src="{{ service.img_link }}" alt="{{ get_data_by_lang(service, '_header', 'en') }}">
-                    <strong>{{ get_data_by_lang(service, '_header', 'en') }}</strong>
-                    <em><br>{{ get_data_by_lang(service, '_subheader', 'en') }}</em>
+                    <strong>{{ get_data_by_lang(service, '_header', 'en')|safe }}</strong>
+                    <em><br>{{ get_data_by_lang(service, '_subheader', 'en')|safe }}</em>
                 </p>
                 <div class="thumb-clear"></div>
             </div>
@@ -257,8 +288,8 @@ $(function(){
     
     <!-- Content Heading -->
     <div class="content-heading">
-        <h4>{{ get_data_by_lang(staff_block, '_header', 'en') }}</h4>
-        <p>{{ get_data_by_lang(staff_block, '_subheader', 'en') }}</p>
+        <h4>{{ get_data_by_lang(staff_block, '_header', 'en')|safe }}</h4>
+        <p>{{ get_data_by_lang(staff_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-user"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_2.jpg', '512x100_2.jpg')}}" alt="Staff background">
@@ -276,13 +307,13 @@ $(function(){
                 <div>
                     <div class="staff-item">
                         <img src="{{ member.img_link}}" alt="{{ get_data_by_lang(member, '_name', 'en') }}">
-                        <h4>{{ get_data_by_lang(member, '_name', 'en') }}</h4>
-                        <em>{{ get_data_by_lang(member, '_role', 'en') }}</em>
+                        <h4>{{ get_data_by_lang(member, '_name', 'en')|safe }}</h4>
+                        <em>{{ get_data_by_lang(member, '_role', 'en')|safe }}</em>
                         <strong class="staff-info">
-                            {{ get_data_by_lang(member, '_info', 'en') }}
+                            {{ get_data_by_lang(member, '_info', 'en')|safe }}
                         </strong>
                         <i class="fa fa-ellipsis-h show-more show-staff-details"></i>
-                        <strong class="staff-info staff-details">{{ get_data_by_lang(member, '_hidden', 'en') }}
+                        <strong class="staff-info staff-details">{{ get_data_by_lang(member, '_hidden', 'en')|safe }}
                         </strong>
                         <div class="staff-contacts">{{ get_data_by_lang(member, '_contacts', 'en')|safe }}</div>
                     </div>
@@ -295,8 +326,8 @@ $(function(){
     
     <!-- Content Heading-->
     <div class="content-heading">
-        <h4>{{ get_data_by_lang(main_info_block, '_header', 'en') }}</h4>
-        <p>{{ get_data_by_lang(main_info_block, '_subheader', 'en') }}</p>
+        <h4>{{ get_data_by_lang(main_info_block, '_header', 'en')|safe }}</h4>
+        <p>{{ get_data_by_lang(main_info_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_3.jpg', '512x100_3.jpg')}}" alt="img">
@@ -320,8 +351,8 @@ $(function(){
                     </div>
                 </div>
                 <div class="one-half-responsive last-column">
-                    <h3 class="center-if-mobile no-bottom">{{ get_data_by_lang(main_info_block, '_text_header', 'en') }}</h3>
-                    <em class="center-if-mobile small-text half-bottom">{{ get_data_by_lang(main_info_block, '_text_subheader', 'en') }}</em>
+                    <h3 class="center-if-mobile no-bottom">{{ get_data_by_lang(main_info_block, '_text_header', 'en')|safe }}</h3>
+                    <em class="center-if-mobile small-text half-bottom">{{ get_data_by_lang(main_info_block, '_text_subheader', 'en')|safe }}</em>
                     <p class="center-if-mobile half-bottom">
                         {{ get_data_by_lang(main_info_block, '_top_text', 'en')|safe }}
                     </p>
@@ -339,18 +370,18 @@ $(function(){
 
     <!-- Content Heading-->
     <div id="attend" class="content-heading">
-        <h4>{{ get_data_by_lang(signup_block, '_header', 'en') }}</h4>
-        <p>{{ get_data_by_lang(signup_block, '_subheader', 'en') }}</p>
+        <h4>{{ get_data_by_lang(signup_block, '_header', 'en')|safe }}</h4>
+        <p>{{ get_data_by_lang(signup_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-star-o"></i>
         <div class="overlay"></div>
         <img src="{{ get_img_src('images/camp/bg/', '1024x200_1.jpg', '512x100_1.jpg')}}" alt="img">
     </div>
 
     <div class="content block-camp-attend">
-        <h3 class="center-text">{{ get_data_by_lang(signup_block, '_form_header', 'en') }}</h3>
+        <h3 class="center-text">{{ get_data_by_lang(signup_block, '_form_header', 'en')|safe }}</h3>
         <div class="decoration"></div>
             <div class="container">
-                <form method="POST" action="{{ url_for('camps_attend', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}" class="form-attend">
+                <form id="camp_form" method="POST" action="{{ url_for('camps_attend', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}" class="form-attend" data-cost-initial="{{ signup_block.initial_cost }}" data-cost-currency="{{ signup_block.currency }}">
                     {% for field in mailchimp_form %}
                     <div class="form-field">
                         <div class="one-half-responsive col-label">
@@ -384,6 +415,15 @@ $(function(){
                         </div>
                     </div>
                     {% endfor %}
+                    {% if signup_block.initial_cost %}
+                    <div class="form-field">
+                        <div class="one-half-responsive col-label">
+                            <label class="left-if-mobile">Camp cost:</label></div>
+                        <div class="one-half-responsive last-column col-controls">
+                            <div id="camp_cost"></div>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="form-field">
                         <div class="one-half-responsive col-label">&nbsp;</div>
                         <div class="one-half-responsive last-column col-controls">
@@ -392,6 +432,16 @@ $(function(){
                             </button>
                         </div>
                     </div>
+                    {% if get_data_by_lang(signup_block, '_price_info', 'en') %}
+                    <div class="form-field">
+                        <div class="one-half-responsive col-label">&nbsp;</div>
+                        <div class="one-half-responsive last-column col-controls">
+                            <p class="help-text">
+                                {{ get_data_by_lang(signup_block, '_price_info', 'en') }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
                 </form>
                 <div class="form-message">
                     <div class="one-third-responsive">&nbsp;</div>
@@ -457,7 +507,7 @@ $(function(){
                         </div>
                     </div>
 
-                    <form action="php/contact.php" method="post" class="contactForm" id="contactForm">
+                    <form action="{# url_for('camp_feedback', language_suffix=language_suffix, id=camp.id) #}" method="post" class="contactForm" id="contactForm">
                         <fieldset>
                             <div class="formValidationError" id="contactNameFieldError">
                                 <div class="static-notification-red tap-dismiss-notification">

@@ -244,3 +244,8 @@ i.show-more {
 
 .camp-info-details {
     display: none;
+}
+
+#camp_cost {
+    line-height: 36px;
+}

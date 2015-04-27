@@ -642,6 +642,11 @@ class CampMainInfoBlockPhoto(db.Model):
 			self.en_alt
 			)
 
+CampSignUpOptions = db.Table('camp_sign_up_options',
+	db.Column('block_id', db.Integer, db.ForeignKey('camp_sign_up_block.id')),
+	db.Column('option_id', db.Integer, db.ForeignKey('camp_sign_up_option_record.id'))
+)
+
 class CampSignUpBlock(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
@@ -669,11 +674,38 @@ class CampSignUpBlock(db.Model):
 	fr_signup_button = db.Column(db.String(20))
 	es_signup_button = db.Column(db.String(20))
 
+	currency = db.Column(db.String(10))
+	initial_cost = db.Column(db.Integer)
+	en_price_info = db.Column(db.String(2000))
+	ru_price_info = db.Column(db.String(2000))
+	fr_price_info = db.Column(db.String(2000))
+	es_price_info = db.Column(db.String(2000))
+
+	options = db.relationship('CampSignUpOptionRecord',
+		secondary=CampSignUpOptions, 
+		backref=db.backref('signup_block', lazy='dynamic')
+		)
+
 	def __repr__(self):
 		return '<CampSignUpBlock id=%r, header=%r, subheader=%r' % (
 			self.id,
 			self.en_header,
 			self.en_subheader
+			)
+
+class CampSignUpOptionRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	order_index = db.Column(db.Integer)
+
+	group = db.Column(db.String(20))
+	value = db.Column(db.String(255))
+	cost = db.Column(db.Integer)
+
+	def __repr__(self):
+		return '<CampSignUpOptionRecord id=%r, group=%r, value=%r' % (
+			self.id,
+			self.group,
+			self.value
 			)
 
 CampPartnerRecords = db.Table('camp_partners_records',
@@ -787,3 +819,8 @@ class CampContactRecord(db.Model):
 			self.id,
 			self.en_caption
 			)
+
+# CampPriceOptions = db.Table('camp_price_options',
+#     db.Column('block_id', db.Integer, db.ForeignKey('camp_price_block.id')),
+#     db.Column('option_id', db.Integer, db.ForeignKey('camp_price_option_record.id'))
+# )

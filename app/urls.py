@@ -24,7 +24,8 @@ app.add_url_rule('/<string:language_suffix>/useful/<int:id>/', view_func=useful.
 #camps
 app.add_url_rule('/<string:language_suffix>/camps/', view_func=camps.camps_g_list, methods=['GET'])
 app.add_url_rule('/<string:language_suffix>/camp/<int:id>/', view_func=camps.camps_page, methods=['GET'])
-app.add_url_rule('/<string:language_suffix>/camp/<int:id>/attend', view_func=camps.camps_attend, methods=['POST'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/attend/', view_func=camps.camps_attend, methods=['POST'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/feedback/', view_func=camps.camps_feedback, methods=['POST'])
 
 #howitworks infographics
 app.add_url_rule('/<string:language_suffix>/howitworks', view_func=howitworks.howitworks_list, methods=['GET'])

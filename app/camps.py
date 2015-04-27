@@ -101,3 +101,9 @@ def camps_attend(language_suffix, id):
 		return jsonify({'CODE' : '2', 'TEXT' : gettext("You're already subscribed. Thank you!")})
 	except mailchimp.Error, e:
 		return jsonify({'CODE' : '1', 'TEXT' : gettext("An error occured. Please repeat.")})
+
+#for /__lang__/camp/1/feedback/ [POST]
+def camps_feedback(language_suffix, id):
+	#save_curr('camps_attend')
+	#save_lang(language_suffix)
+	pass
