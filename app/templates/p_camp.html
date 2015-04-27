@@ -507,7 +507,7 @@ $(function(){
                         </div>
                     </div>
 
-                    <form action="{# url_for('camp_feedback', language_suffix=language_suffix, id=camp.id) #}" method="post" class="contactForm" id="contactForm">
+                    <form action="{{ url_for('camps_feedback', language_suffix=language_suffix, id=camp.id) }}" method="post" class="contactForm" id="contactForm">
                         <fieldset>
                             <div class="formValidationError" id="contactNameFieldError">
                                 <div class="static-notification-red tap-dismiss-notification">

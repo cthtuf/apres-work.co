@@ -8,6 +8,8 @@ from flask_admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.contrib.sqlamodel import ModelView
 from flask.ext.babel import Babel
 from flask.ext.cache import Cache
+from flask.ext.mail import Mail
+from raven.contrib.flask import Sentry
 #from flask.ext.login import LoginManager
 from flask import current_app, Blueprint, render_template
 from werkzeug.debug import DebuggedApplication
@@ -26,6 +28,10 @@ with app.app_context():
 admin = Admin(app)
 babel = Babel(app)
 cache = Cache(app,config={'CACHE_TYPE': 'memcached', 'CACHE_KEY_PREFIX' : 'cache_'})
+mail = Mail(app)
+
+app.config['SENTRY_DSN'] = 'http://83e10362e15240a9ad0671c089cca4d7:bd401c60e92f4dc38d67a21371eb9abc@sentry.cubeline.ru/20'
+sentry = Sentry(app)
 
 from app import urls, views, models
 

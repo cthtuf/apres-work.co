@@ -34,7 +34,7 @@ def cameramen_list(language_suffix, location_suffix):
 
 	return render_template('not_ready.html',
 		language_suffix = language_suffix,
-		location_suffix = location_suffix(),
+		location_suffix = location_suffix,
 		countdown_time = 'May 7, 2015 15:03:25',
 		debug=app.debug)
 

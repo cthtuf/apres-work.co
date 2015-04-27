@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr, get_path, get_data_by_lang
-from app import db, app, cache
+from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_curr, get_path, get_data_by_lang, send_email
+from app import db, app, cache, mail
 from models import *
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from datetime import datetime,timedelta
@@ -107,6 +107,14 @@ def camps_attend(language_suffix, id):
 
 #for /__lang__/camp/1/feedback/ [POST]
 def camps_feedback(language_suffix, id):
-	#save_curr('camps_attend')
 	save_lang(language_suffix)
-	pass
+
+	message_text = 'Name: '+request.form['contactNameField']+'\n\n'+'Message: '+request.form['contactMessageTextarea']
+
+	send_email('Camp #'+str(id)+' Feedback',
+		request.form['contactEmailField'],
+		'camp@apres-work.co',
+		message_text,
+		message_text
+	)
+	return '1'

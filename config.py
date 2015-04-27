@@ -29,3 +29,11 @@ LANGUAGES = {
 }
 
 BABEL_DEFAULT_LOCALE = 'en'
+
+MAIL_SERVER = 'mail.apres-work.co'
+MAIL_PORT = 25
+MAIL_USERNAME = None
+MAIL_PASSWORD = None
+
+# administrator list
+ADMINS = ['no-reply@apres-work.co']

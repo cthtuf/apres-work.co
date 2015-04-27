@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
-from app import app, db, mongo, babel
+from app import app, db, mongo, babel, cache, mail
+from flask.ext.mail import Message
 from functools import wraps
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
 from flask.ext.login import LoginManager, UserMixin, login_required
@@ -226,3 +227,9 @@ def feedback(language_suffix):
 	save_langloc(language_suffix=language_suffix)
 	#check_suffixes(language_suffix, location_suffix)
 	return "Sorry, hasn't implemented yet =\ "
+
+def send_email(subject, sender, recipients, text_body, html_body):
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.body = text_body
+    msg.html = html_body
+    mail.send(msg)

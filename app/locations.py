@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_loc_id, get_curr, get_path, get_site_url
-from app import db, app
+from app import db, app, cache
 from models import *
 from forms import SubscriptionForm
 from flask import render_template, request, jsonify, session, abort, redirect, url_for
