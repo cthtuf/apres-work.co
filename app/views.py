@@ -2,7 +2,7 @@
 from app import app, db, mongo, babel, cache, mail
 from flask.ext.mail import Message
 from functools import wraps
-from flask import render_template, request, jsonify, session, abort, redirect, url_for
+from flask import render_template, request, jsonify, session, abort, redirect, url_for, make_response
 from flask.ext.login import LoginManager, UserMixin, login_required
 from flask.ext.mobility.decorators import mobile_template
 from smsc_api import SMSC
@@ -19,6 +19,39 @@ from flask.ext.babel import gettext
 from pprint import pprint
 import IP2Location
 from functools import partial
+
+
+def add_response_headers(headers={}):
+    """This decorator adds the headers passed in to the response"""
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            resp = make_response(f(*args, **kwargs))
+            h = resp.headers
+            for header, value in headers.items():
+                h[header] = value
+            return resp
+        return decorated_function
+    return decorator
+
+def noindex(f):
+    """This decorator passes X-Robots-Tag: noindex"""
+    @wraps(f)
+    @add_response_headers({'X-Robots-Tag': 'noindex'})
+    def decorated_function(*args, **kwargs):
+        return f(*args, **kwargs)
+    return decorated_function
+
+def crossdomain(f):
+	@wraps(f)
+	@add_response_headers({
+		'Access-Control-Allow-Origin' : '*',
+		'Access-Control-Allow-Methods' : 'GET',
+		'Access-Control-Allow-Headers' : 'Content-Type'
+	})
+	def decorated_function(*args, **kwargs):
+		return f(*args, **kwargs)
+	return decorated_function
 
 def get_site_url():
 	return u'http://apres-work.co' #to-do add support of subdomains

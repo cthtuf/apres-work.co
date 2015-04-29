@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pyowm import OWM,timeutils #for weather
-from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_loc_id, get_curr
+from views import save_lang, save_loc, save_curr, get_lang, get_loc, get_loc_id, get_curr, crossdomain
 from app import db, app
 from models import *
 from flask import request, jsonify, session
@@ -8,6 +8,7 @@ from datetime import datetime,timedelta
 from helpers import *
 from flask.ext.babel import gettext
 
+@crossdomain
 def getweather(location_suffix):
 	result = { 'success' : 'true', 'resorts' : {} }
 	#try:
