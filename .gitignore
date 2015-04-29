@@ -47,3 +47,5 @@ target/
 
 #npm
 node_modules/
+
+app.db

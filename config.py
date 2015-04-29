@@ -25,7 +25,8 @@ OWM_KEY = '212261a0fa0f62fe41ed0a1ba84f6627'
 LANGUAGES = {
     'en': 'English',
     'fr': 'Français',
-    'ru': 'Русский'
+    'ru': 'Русский',
+    'es': 'Español'
 }
 
 BABEL_DEFAULT_LOCALE = 'en'

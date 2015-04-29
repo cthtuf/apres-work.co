@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-03-19 09:09+0300\n"
+"POT-Creation-Date: 2015-04-30 02:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,208 +17,475 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: app/views.py:78
+#: app/camps.py:101
+msgid "You're in! We'll call you soon to confirm details"
+msgstr ""
+
+#: app/camps.py:104 app/locations.py:53 app/locations.py:66
+msgid "You're already subscribed. Thank you!"
+msgstr ""
+
+#: app/camps.py:106 app/locations.py:68
+msgid "An error occured. Please repeat."
+msgstr ""
+
+#: app/events.py:95
 msgid "Your promocode: _code_. See you!"
 msgstr ""
 
-#: app/views.py:86
+#: app/events.py:103
 msgid "Incorrect format"
 msgstr ""
 
-#: app/views.py:93
+#: app/events.py:110
 msgid "We can't send the sms to this number"
 msgstr ""
 
-#: app/views.py:97
+#: app/events.py:114
 msgid ""
 "Great! When the count of people will be enough, we will send promo-code "
 "to you in sms."
 msgstr ""
 
-#: app/views.py:115
+#: app/locations.py:51
 msgid "Set email address, please"
 msgstr ""
 
-#: app/views.py:117 app/views.py:130
-msgid "You're already subscribed. Thank you!"
-msgstr ""
-
-#: app/views.py:125
+#: app/locations.py:61
 msgid "Great! You're sucessfully subscribed."
 msgstr ""
 
-#: app/views.py:128
+#: app/locations.py:64
 msgid "Incorrect format of the Email"
 msgstr ""
 
-#: app/views.py:132
-msgid "An error occured. Please repeat."
-msgstr ""
-
-#: app/views.py:284 app/views.py:302 app/views.py:320 app/views.py:337
-#: app/views.py:353 app/views.py:369 app/views.py:385
+#: app/weather.py:108 app/weather.py:126 app/weather.py:144 app/weather.py:161
+#: app/weather.py:177 app/weather.py:193 app/weather.py:209
 msgid "from"
 msgstr ""
 
-#: app/views.py:284 app/views.py:302 app/views.py:320 app/views.py:337
-#: app/views.py:353 app/views.py:369 app/views.py:385
+#: app/weather.py:108 app/weather.py:126 app/weather.py:144 app/weather.py:161
+#: app/weather.py:177 app/weather.py:193 app/weather.py:209
 msgid "to"
 msgstr ""
 
-#: app/templates/base.html:91
-msgid "Navigation"
-msgstr ""
-
-#: app/templates/base.html:95
-msgid "Home"
+#: app/templates/base.html:92
+msgid "Local"
 msgstr ""
 
 #: app/templates/base.html:96
-msgid "How it works"
+msgid "Resorts"
 msgstr ""
 
 #: app/templates/base.html:97
-msgid "Where to ride"
-msgstr ""
-
-#: app/templates/base.html:98
 msgid "Events"
 msgstr ""
 
-#: app/templates/base.html:99
+#: app/templates/base.html:98
 msgid "News"
 msgstr ""
 
-#: app/templates/events.html:2
+#: app/templates/base.html:99
+msgid "Coaches"
+msgstr ""
+
+#: app/templates/base.html:100 app/templates/g_cameramen.html:20
+#: app/templates/l_cameramen.html:20
+msgid "Cameramen"
+msgstr ""
+
+#: app/templates/base.html:101
+msgid "Riders"
+msgstr ""
+
+#: app/templates/base.html:106
+msgid "Global"
+msgstr ""
+
+#: app/templates/base.html:110
+msgid "Camps"
+msgstr ""
+
+#: app/templates/base.html:112
+msgid "Overall info"
+msgstr ""
+
+#: app/templates/base.html:114
+msgid "All Locations"
+msgstr ""
+
+#: app/templates/base.html:115
+msgid "All Resorts"
+msgstr ""
+
+#: app/templates/base.html:116
+msgid "All Events"
+msgstr ""
+
+#: app/templates/base.html:117
+msgid "All News"
+msgstr ""
+
+#: app/templates/base.html:118
+msgid "All Coaches"
+msgstr ""
+
+#: app/templates/base.html:119
+msgid "All Cameramen"
+msgstr ""
+
+#: app/templates/base.html:120
+msgid "All Riders"
+msgstr ""
+
+#: app/templates/base.html:124
+msgid "How it works"
+msgstr ""
+
+#: app/templates/base.html:128
+msgid "Settings"
+msgstr ""
+
+#: app/templates/g_cameramen.html:2 app/templates/l_cameramen.html:2
+msgid "All Cameramen - Homies community"
+msgstr ""
+
+#: app/templates/g_cameramen.html:3 app/templates/l_cameramen.html:3
+msgid "The list of all photographers and cameramen"
+msgstr ""
+
+#: app/templates/g_cameramen.html:22 app/templates/l_cameramen.html:22
+msgid "The list of all cameramen"
+msgstr ""
+
+#: app/templates/g_cameramen.html:59 app/templates/g_camps.html:64
+#: app/templates/g_coaches.html:59 app/templates/g_events.html:63
+#: app/templates/g_locations.html:53 app/templates/g_news.html:63
+#: app/templates/g_riders.html:59 app/templates/l_cameramen.html:59
+#: app/templates/l_coaches.html:59 app/templates/l_events.html:63
+#: app/templates/l_index.html:175 app/templates/l_news.html:63
+#: app/templates/l_riders.html:59 app/templates/not_ready.html:111
+#: app/templates/p_cameraman.html:63 app/templates/p_camp.html:581
+#: app/templates/p_coach.html:63 app/templates/p_event.html:63
+#: app/templates/p_news.html:63 app/templates/p_rider.html:63
+msgid "Share"
+msgstr ""
+
+#: app/templates/g_cameramen.html:78 app/templates/g_camps.html:83
+#: app/templates/g_coaches.html:78 app/templates/g_events.html:82
+#: app/templates/g_locations.html:72 app/templates/g_news.html:82
+#: app/templates/g_riders.html:78 app/templates/l_cameramen.html:78
+#: app/templates/l_coaches.html:78 app/templates/l_events.html:82
+#: app/templates/l_index.html:194 app/templates/l_news.html:82
+#: app/templates/l_riders.html:78 app/templates/not_ready.html:130
+#: app/templates/p_cameraman.html:82 app/templates/p_camp.html:600
+#: app/templates/p_coach.html:82 app/templates/p_event.html:82
+#: app/templates/p_news.html:82 app/templates/p_rider.html:82
+msgid "Close"
+msgstr ""
+
+#: app/templates/g_camps.html:2
+msgid "Camps - Homies community"
+msgstr ""
+
+#: app/templates/g_camps.html:3 app/templates/g_camps.html:22
+msgid "The list of all camps"
+msgstr ""
+
+#: app/templates/g_camps.html:20
+msgid "All Camps"
+msgstr ""
+
+#: app/templates/g_camps.html:37 app/templates/g_events.html:37
+#: app/templates/g_news.html:37 app/templates/l_events.html:37
+#: app/templates/l_news.html:37 app/templates/p_cameraman.html:37
+#: app/templates/p_coach.html:37 app/templates/p_event.html:37
+#: app/templates/p_news.html:37 app/templates/p_rider.html:37
+msgid "Where"
+msgstr ""
+
+#: app/templates/g_camps.html:37 app/templates/g_events.html:37
+#: app/templates/g_news.html:37 app/templates/l_events.html:37
+#: app/templates/l_news.html:37 app/templates/p_cameraman.html:37
+#: app/templates/p_coach.html:37 app/templates/p_event.html:37
+#: app/templates/p_news.html:37 app/templates/p_rider.html:37
+msgid "When"
+msgstr ""
+
+#: app/templates/g_camps.html:37
+msgid "Facilities"
+msgstr ""
+
+#: app/templates/g_coaches.html:2 app/templates/l_coaches.html:2
+msgid "All Coaches - Homies community"
+msgstr ""
+
+#: app/templates/g_coaches.html:3 app/templates/l_coaches.html:3
+msgid "The list of all Coaches"
+msgstr ""
+
+#: app/templates/g_coaches.html:20 app/templates/l_coaches.html:20
+msgid "Coaches list"
+msgstr ""
+
+#: app/templates/g_coaches.html:22 app/templates/l_coaches.html:22
+msgid "The list of all coaches"
+msgstr ""
+
+#: app/templates/g_events.html:2 app/templates/l_events.html:2
+#: app/templates/p_event.html:2
 msgid "Events - Homies community"
 msgstr ""
 
-#: app/templates/events.html:3 app/templates/events.html:22
+#: app/templates/g_events.html:3 app/templates/g_events.html:22
+#: app/templates/g_news.html:3 app/templates/l_events.html:3
+#: app/templates/l_events.html:22 app/templates/l_news.html:3
+#: app/templates/p_cameraman.html:3 app/templates/p_coach.html:3
+#: app/templates/p_event.html:3 app/templates/p_event.html:22
+#: app/templates/p_news.html:3 app/templates/p_rider.html:3
 msgid ""
 "The list of all past events. On this page you could find photos, videos "
 "and event members"
 msgstr ""
 
-#: app/templates/events.html:20
+#: app/templates/g_events.html:20 app/templates/l_events.html:20
+#: app/templates/p_event.html:20
 msgid "Past events"
 msgstr ""
 
-#: app/templates/events.html:37
-msgid "Where"
+#: app/templates/g_locations.html:2
+msgid "Locations - Homies community"
 msgstr ""
 
-#: app/templates/events.html:37
-msgid "When"
+#: app/templates/g_locations.html:3 app/templates/g_locations.html:21
+msgid "The list of all locations"
 msgstr ""
 
-#: app/templates/events.html:63 app/templates/indexpage.html:175
-msgid "Share"
+#: app/templates/g_locations.html:19
+msgid "Locations list"
 msgstr ""
 
-#: app/templates/events.html:82 app/templates/indexpage.html:194
-msgid "Close"
+#: app/templates/g_news.html:2 app/templates/l_news.html:2
+#: app/templates/p_cameraman.html:2 app/templates/p_coach.html:2
+#: app/templates/p_news.html:2 app/templates/p_rider.html:2
+msgid "All News - Homies community"
 msgstr ""
 
-#: app/templates/indexpage.html:2
-msgid "Home - Homies comunity"
+#: app/templates/g_news.html:20 app/templates/l_news.html:20
+#: app/templates/p_cameraman.html:20 app/templates/p_coach.html:20
+#: app/templates/p_news.html:20 app/templates/p_rider.html:20
+msgid "Last News"
 msgstr ""
 
-#: app/templates/indexpage.html:3
+#: app/templates/g_news.html:22 app/templates/l_news.html:22
+#: app/templates/p_cameraman.html:22 app/templates/p_coach.html:22
+#: app/templates/p_news.html:22 app/templates/p_rider.html:22
+msgid "The list of all news"
+msgstr ""
+
+#: app/templates/g_riders.html:2 app/templates/l_riders.html:2
+msgid "All Riders - Homies community"
+msgstr ""
+
+#: app/templates/g_riders.html:3 app/templates/g_riders.html:22
+#: app/templates/l_riders.html:3 app/templates/l_riders.html:22
+msgid "The list of all riders"
+msgstr ""
+
+#: app/templates/g_riders.html:20 app/templates/l_riders.html:20
+msgid "Riders list"
+msgstr ""
+
+#: app/templates/l_index.html:2 app/templates/not_ready.html:2
+msgid "Homepage of Homies comunity"
+msgstr ""
+
+#: app/templates/l_index.html:3 app/templates/not_ready.html:3
 msgid ""
 "Welcome to community of local riders! It's community of clever riders - "
 "join us and get the cheapest way to ride in the snowparks, to jump on "
 "trampolines and to drink in extreme bars from time to time!"
 msgstr ""
 
-#: app/templates/indexpage.html:84
+#: app/templates/l_index.html:84
 msgid "Ride"
 msgstr ""
 
-#: app/templates/indexpage.html:85
+#: app/templates/l_index.html:85
 msgid "with friends"
 msgstr ""
 
-#: app/templates/indexpage.html:87
+#: app/templates/l_index.html:87
 msgid ""
 "After work or study or at the weekends. More fun with riding together "
 "(also it's cheaper!)"
 msgstr ""
 
-#: app/templates/indexpage.html:97
+#: app/templates/l_index.html:97
 msgid "Meet"
 msgstr ""
 
-#: app/templates/indexpage.html:98
+#: app/templates/l_index.html:98
 msgid "with other riders"
 msgstr ""
 
-#: app/templates/indexpage.html:100
+#: app/templates/l_index.html:100
 msgid "and make new friends for riding together"
 msgstr ""
 
-#: app/templates/indexpage.html:111
+#: app/templates/l_index.html:111
 msgid "Improve"
 msgstr ""
 
-#: app/templates/indexpage.html:112
+#: app/templates/l_index.html:112
 msgid "Your tricks and style"
 msgstr ""
 
-#: app/templates/indexpage.html:114
+#: app/templates/l_index.html:114
 msgid "by training or relax riding"
 msgstr ""
 
-#: app/templates/indexpage.html:126
+#: app/templates/l_index.html:126
 msgid "... or welcome to the homies community!"
 msgstr ""
 
-#: app/templates/indexpage.html:133
+#: app/templates/l_index.html:133
 msgid ""
 "apres-work it's kinda french apres-ski. It's not alco-party after riding,"
 " but it's riding after work or study in weekdays"
 msgstr ""
 
-#: app/templates/indexpage.html:136
+#: app/templates/l_index.html:136
 msgid "The common idea - riding in group with sale on the skipasses"
 msgstr ""
 
-#: app/templates/indexpage.html:136
+#: app/templates/l_index.html:136
 msgid ""
 "Works simple as a chair - fill the form on the website and when the count"
 " of participated will reached about 8-10 persons, everybody will get "
 "discount or special bonus from spot"
 msgstr ""
 
-#: app/templates/indexpage.html:139
+#: app/templates/l_index.html:139
 msgid "How is it going: 3 days before we're "
 msgstr ""
 
-#: app/templates/indexpage.html:139
+#: app/templates/l_index.html:139
 msgid "vote"
 msgstr ""
 
-#: app/templates/indexpage.html:139
+#: app/templates/l_index.html:139
 msgid ""
 " for spot. 1 day before the voting is closing and the event sign up form "
 "become available on this website"
 msgstr ""
 
-#: app/templates/indexpage.html:139
+#: app/templates/l_index.html:139
 msgid ""
 "If you're going with us - just drop the name and phone number in the form"
 " and you'll get the SMS with promo-code. Show this code in the spot and "
 "get the discount!"
 msgstr ""
 
-#: app/templates/indexpage.html:142
+#: app/templates/l_index.html:142
 msgid "Yep, so simple. Press the button - get the discount"
 msgstr ""
 
-#: app/templates/indexpage.html:146
+#: app/templates/l_index.html:146
 msgid "Subscribe to the news to be the first!"
 msgstr ""
 
-#: app/templates/indexpage.html:156
+#: app/templates/l_index.html:156
 msgid "Subscribe"
+msgstr ""
+
+#: app/templates/l_resorts.html:92
+msgid "Details..."
+msgstr ""
+
+#: app/templates/not_ready.html:94
+msgid "Coming Soon"
+msgstr ""
+
+#: app/templates/not_ready.html:95
+msgid "We're still working on this page!"
+msgstr ""
+
+#: app/templates/not_ready.html:97
+msgid "Honestly, we are riding..."
+msgstr ""
+
+#: app/templates/not_ready.html:99
+msgid "We'll finish this page when we get back!"
+msgstr ""
+
+#: app/templates/not_ready.html:102
+msgid "Go back"
+msgstr ""
+
+#: app/templates/p_camp.html:2
+msgid "Les Deux Alpes Summer Camp - apres-work.co"
+msgstr ""
+
+#: app/templates/p_camp.html:3
+msgid ""
+"Ski in the summer? We’ve got it all figured out. 12 days in Les Deux "
+"Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and "
+"partying...because skiing’s more fun with friends"
+msgstr ""
+
+#: app/templates/p_camp.html:73 app/templates/p_camp.html:160
+msgid "An error occured. Please, try one more time"
+msgstr ""
+
+#: app/templates/p_camp.html:135
+msgid "Please, fill all the fields"
+msgstr ""
+
+#: app/templates/p_camp.html:506
+msgid ""
+"Your message has been successfuly sent. Please allow up to 24 hours for a"
+" reply! Thank you!"
+msgstr ""
+
+#: app/templates/p_camp.html:514
+msgid "Name is required!"
+msgstr ""
+
+#: app/templates/p_camp.html:519
+msgid "Mail address required!"
+msgstr ""
+
+#: app/templates/p_camp.html:524
+msgid "Mail address must be valid!"
+msgstr ""
+
+#: app/templates/p_camp.html:529
+msgid "Message field is empty!"
+msgstr ""
+
+#: app/templates/p_camp.html:533
+msgid "Name"
+msgstr ""
+
+#: app/templates/p_camp.html:533 app/templates/p_camp.html:537
+#: app/templates/p_camp.html:541
+msgid "required"
+msgstr ""
+
+#: app/templates/p_camp.html:537
+msgid "Email"
+msgstr ""
+
+#: app/templates/p_camp.html:541
+msgid "Message"
+msgstr ""
+
+#: app/templates/p_camp.html:545
+msgid "SUBMIT"
+msgstr ""
+
+#: app/templates/p_camp.html:591 app/templates/p_camp.html:595
+msgid "Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/"
 msgstr ""
 

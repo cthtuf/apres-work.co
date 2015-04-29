@@ -1,162 +1,155 @@
-# Russian translations for PROJECT.
+# Spanish translations for PROJECT.
 # Copyright (C) 2015 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-04-30 02:18+0300\n"
-"PO-Revision-Date: 2015-04-30 02:32+0300\n"
-"Last-Translator: \n"
-"Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"PO-Revision-Date: 2015-04-30 02:22+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: ru\n"
-"X-Generator: Poedit 1.7.5\n"
 
 #: app/camps.py:101
 msgid "You're in! We'll call you soon to confirm details"
 msgstr ""
-"Вы зарегистрированы! В ближайшее время мы вам позвоним чтобы уточнить "
-"детали."
 
 #: app/camps.py:104 app/locations.py:53 app/locations.py:66
 msgid "You're already subscribed. Thank you!"
-msgstr "Вы уже подписаны. Спасибо!"
+msgstr ""
 
 #: app/camps.py:106 app/locations.py:68
 msgid "An error occured. Please repeat."
-msgstr "Произошла ошибка. Пожалуйста повторите."
+msgstr ""
 
 #: app/events.py:95
 msgid "Your promocode: _code_. See you!"
-msgstr "Твой промокод: _code_. Увидимся на склоне!"
+msgstr ""
 
 #: app/events.py:103
 msgid "Incorrect format"
-msgstr "Неверный формат"
+msgstr ""
 
 #: app/events.py:110
 msgid "We can't send the sms to this number"
-msgstr "Мы не можем отправить SMS на этот номер"
+msgstr ""
 
 #: app/events.py:114
 msgid ""
-"Great! When the count of people will be enough, we will send promo-code to "
-"you in sms."
-msgstr "Отлично! Когда наберется группа, мы отправим тебе промокод в смс."
+"Great! When the count of people will be enough, we will send promo-code "
+"to you in sms."
+msgstr ""
 
 #: app/locations.py:51
 msgid "Set email address, please"
-msgstr "Укажите адрес электронной почты, пожалуйста"
+msgstr ""
 
 #: app/locations.py:61
 msgid "Great! You're sucessfully subscribed."
-msgstr "Отлично! Вы успешно подписаны"
+msgstr ""
 
 #: app/locations.py:64
 msgid "Incorrect format of the Email"
-msgstr "Неверный формат электронной почты"
+msgstr ""
 
-#: app/weather.py:108 app/weather.py:126 app/weather.py:144
-#: app/weather.py:161 app/weather.py:177 app/weather.py:193
-#: app/weather.py:209
+#: app/weather.py:108 app/weather.py:126 app/weather.py:144 app/weather.py:161
+#: app/weather.py:177 app/weather.py:193 app/weather.py:209
 msgid "from"
-msgstr "от"
+msgstr ""
 
-#: app/weather.py:108 app/weather.py:126 app/weather.py:144
-#: app/weather.py:161 app/weather.py:177 app/weather.py:193
-#: app/weather.py:209
+#: app/weather.py:108 app/weather.py:126 app/weather.py:144 app/weather.py:161
+#: app/weather.py:177 app/weather.py:193 app/weather.py:209
 msgid "to"
-msgstr "до"
+msgstr ""
 
 #: app/templates/base.html:92
 msgid "Local"
-msgstr "Рядом"
+msgstr ""
 
 #: app/templates/base.html:96
 msgid "Resorts"
-msgstr "Споты"
+msgstr ""
 
 #: app/templates/base.html:97
 msgid "Events"
-msgstr "События"
+msgstr ""
 
 #: app/templates/base.html:98
 msgid "News"
-msgstr "Новости"
+msgstr ""
 
 #: app/templates/base.html:99
 msgid "Coaches"
-msgstr "Тренера"
+msgstr ""
 
 #: app/templates/base.html:100 app/templates/g_cameramen.html:20
 #: app/templates/l_cameramen.html:20
 msgid "Cameramen"
-msgstr "Операторы"
+msgstr ""
 
 #: app/templates/base.html:101
 msgid "Riders"
-msgstr "Райдеры"
+msgstr ""
 
 #: app/templates/base.html:106
 msgid "Global"
-msgstr "В мире"
+msgstr ""
 
 #: app/templates/base.html:110
 msgid "Camps"
-msgstr "Лагеря"
+msgstr ""
 
 #: app/templates/base.html:112
 msgid "Overall info"
-msgstr "Вся информация"
+msgstr ""
 
 #: app/templates/base.html:114
 msgid "All Locations"
-msgstr "Все локации"
+msgstr ""
 
 #: app/templates/base.html:115
 msgid "All Resorts"
-msgstr "Все споты"
+msgstr ""
 
 #: app/templates/base.html:116
 msgid "All Events"
-msgstr "Все события"
+msgstr ""
 
 #: app/templates/base.html:117
 msgid "All News"
-msgstr "Все новости"
+msgstr ""
 
 #: app/templates/base.html:118
 msgid "All Coaches"
-msgstr "Все тренера"
+msgstr ""
 
 #: app/templates/base.html:119
 msgid "All Cameramen"
-msgstr "Все операторы"
+msgstr ""
 
 #: app/templates/base.html:120
 msgid "All Riders"
-msgstr "Все райдеры"
+msgstr ""
 
 #: app/templates/base.html:124
 msgid "How it works"
-msgstr "Как это работает"
+msgstr ""
 
 #: app/templates/base.html:128
 msgid "Settings"
-msgstr "Настройки"
+msgstr ""
 
 #: app/templates/g_cameramen.html:2 app/templates/l_cameramen.html:2
-#, fuzzy
 msgid "All Cameramen - Homies community"
-msgstr "Главная - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_cameramen.html:3 app/templates/l_cameramen.html:3
 msgid "The list of all photographers and cameramen"
@@ -177,7 +170,7 @@ msgstr ""
 #: app/templates/p_coach.html:63 app/templates/p_event.html:63
 #: app/templates/p_news.html:63 app/templates/p_rider.html:63
 msgid "Share"
-msgstr "Поделиться"
+msgstr ""
 
 #: app/templates/g_cameramen.html:78 app/templates/g_camps.html:83
 #: app/templates/g_coaches.html:78 app/templates/g_events.html:82
@@ -190,20 +183,19 @@ msgstr "Поделиться"
 #: app/templates/p_coach.html:82 app/templates/p_event.html:82
 #: app/templates/p_news.html:82 app/templates/p_rider.html:82
 msgid "Close"
-msgstr "Закрыть"
+msgstr ""
 
 #: app/templates/g_camps.html:2
-#, fuzzy
 msgid "Camps - Homies community"
-msgstr "Главная - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_camps.html:3 app/templates/g_camps.html:22
 msgid "The list of all camps"
-msgstr "Список всех лагерей"
+msgstr ""
 
 #: app/templates/g_camps.html:20
 msgid "All Camps"
-msgstr "Все лагеря"
+msgstr ""
 
 #: app/templates/g_camps.html:37 app/templates/g_events.html:37
 #: app/templates/g_news.html:37 app/templates/l_events.html:37
@@ -211,7 +203,7 @@ msgstr "Все лагеря"
 #: app/templates/p_coach.html:37 app/templates/p_event.html:37
 #: app/templates/p_news.html:37 app/templates/p_rider.html:37
 msgid "Where"
-msgstr "Где"
+msgstr ""
 
 #: app/templates/g_camps.html:37 app/templates/g_events.html:37
 #: app/templates/g_news.html:37 app/templates/l_events.html:37
@@ -219,33 +211,32 @@ msgstr "Где"
 #: app/templates/p_coach.html:37 app/templates/p_event.html:37
 #: app/templates/p_news.html:37 app/templates/p_rider.html:37
 msgid "When"
-msgstr "Когда"
+msgstr ""
 
 #: app/templates/g_camps.html:37
 msgid "Facilities"
-msgstr "Предоставляемые услуги"
+msgstr ""
 
 #: app/templates/g_coaches.html:2 app/templates/l_coaches.html:2
-#, fuzzy
 msgid "All Coaches - Homies community"
-msgstr "Главная - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_coaches.html:3 app/templates/l_coaches.html:3
 msgid "The list of all Coaches"
-msgstr "Список всех тренеров"
+msgstr ""
 
 #: app/templates/g_coaches.html:20 app/templates/l_coaches.html:20
 msgid "Coaches list"
-msgstr "Список тренеров"
+msgstr ""
 
 #: app/templates/g_coaches.html:22 app/templates/l_coaches.html:22
 msgid "The list of all coaches"
-msgstr "Список всех тренеров"
+msgstr ""
 
 #: app/templates/g_events.html:2 app/templates/l_events.html:2
 #: app/templates/p_event.html:2
 msgid "Events - Homies community"
-msgstr "События - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_events.html:3 app/templates/g_events.html:22
 #: app/templates/g_news.html:3 app/templates/l_events.html:3
@@ -254,133 +245,125 @@ msgstr "События - сообщество локальных райдеро�
 #: app/templates/p_event.html:3 app/templates/p_event.html:22
 #: app/templates/p_news.html:3 app/templates/p_rider.html:3
 msgid ""
-"The list of all past events. On this page you could find photos, videos and "
-"event members"
+"The list of all past events. On this page you could find photos, videos "
+"and event members"
 msgstr ""
-"Это список всех прошедших событий. Здесь ты можешь найти фотографии, видео "
-"и участников прошедших событий"
 
 #: app/templates/g_events.html:20 app/templates/l_events.html:20
 #: app/templates/p_event.html:20
 msgid "Past events"
-msgstr "Прошедшие события"
+msgstr ""
 
 #: app/templates/g_locations.html:2
-#, fuzzy
 msgid "Locations - Homies community"
-msgstr "События - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_locations.html:3 app/templates/g_locations.html:21
 msgid "The list of all locations"
-msgstr "Список всех локаций"
+msgstr ""
 
 #: app/templates/g_locations.html:19
 msgid "Locations list"
-msgstr "Список локаций"
+msgstr ""
 
 #: app/templates/g_news.html:2 app/templates/l_news.html:2
 #: app/templates/p_cameraman.html:2 app/templates/p_coach.html:2
 #: app/templates/p_news.html:2 app/templates/p_rider.html:2
-#, fuzzy
 msgid "All News - Homies community"
-msgstr "События - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_news.html:20 app/templates/l_news.html:20
 #: app/templates/p_cameraman.html:20 app/templates/p_coach.html:20
 #: app/templates/p_news.html:20 app/templates/p_rider.html:20
 msgid "Last News"
-msgstr "Последние новости"
+msgstr ""
 
 #: app/templates/g_news.html:22 app/templates/l_news.html:22
 #: app/templates/p_cameraman.html:22 app/templates/p_coach.html:22
 #: app/templates/p_news.html:22 app/templates/p_rider.html:22
 msgid "The list of all news"
-msgstr "Список всех новостей"
+msgstr ""
 
 #: app/templates/g_riders.html:2 app/templates/l_riders.html:2
-#, fuzzy
 msgid "All Riders - Homies community"
-msgstr "События - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/g_riders.html:3 app/templates/g_riders.html:22
 #: app/templates/l_riders.html:3 app/templates/l_riders.html:22
 msgid "The list of all riders"
-msgstr "Список всех райдеров"
+msgstr ""
 
 #: app/templates/g_riders.html:20 app/templates/l_riders.html:20
 msgid "Riders list"
-msgstr "Список локальных райдеров"
+msgstr ""
 
 #: app/templates/l_index.html:2 app/templates/not_ready.html:2
-#, fuzzy
 msgid "Homepage of Homies comunity"
-msgstr "Главная - сообщество локальных райдеров"
+msgstr ""
 
 #: app/templates/l_index.html:3 app/templates/not_ready.html:3
 msgid ""
 "Welcome to community of local riders! It's community of clever riders - "
 "join us and get the cheapest way to ride in the snowparks, to jump on "
 "trampolines and to drink in extreme bars from time to time!"
-msgstr "Добро пожаловать в сообщество локальных райдеров. "
+msgstr ""
 
 #: app/templates/l_index.html:84
 msgid "Ride"
-msgstr "Катайся"
+msgstr ""
 
 #: app/templates/l_index.html:85
 msgid "with friends"
-msgstr "с друзьями"
+msgstr ""
 
 #: app/templates/l_index.html:87
 msgid ""
-"After work or study or at the weekends. More fun with riding together (also "
-"it's cheaper!)"
-msgstr "После работы или учебы. Ведь вместе веселее и дешевле"
+"After work or study or at the weekends. More fun with riding together "
+"(also it's cheaper!)"
+msgstr ""
 
 #: app/templates/l_index.html:97
 msgid "Meet"
-msgstr "Знакомься"
+msgstr ""
 
 #: app/templates/l_index.html:98
 msgid "with other riders"
-msgstr "с другими райдерами"
+msgstr ""
 
 #: app/templates/l_index.html:100
 msgid "and make new friends for riding together"
-msgstr "и заводи новых друзей чтобы вместе катать"
+msgstr ""
 
 #: app/templates/l_index.html:111
 msgid "Improve"
-msgstr "Прокачивайся"
+msgstr ""
 
 #: app/templates/l_index.html:112
 msgid "Your tricks and style"
-msgstr "в трюках и стиле"
+msgstr ""
 
 #: app/templates/l_index.html:114
 msgid "by training or relax riding"
-msgstr "тренеруясь или просто катаясь на релаксе"
+msgstr ""
 
 #: app/templates/l_index.html:126
 msgid "... or welcome to the homies community!"
-msgstr "... или добро пожаловать в сообщество локальных райдеров!"
+msgstr ""
 
 #: app/templates/l_index.html:133
 msgid ""
-"apres-work it's kinda french apres-ski. It's not alco-party after riding, "
-"but it's riding after work or study in weekdays"
+"apres-work it's kinda french apres-ski. It's not alco-party after riding,"
+" but it's riding after work or study in weekdays"
 msgstr ""
-"apres-work это почти что калька с французского apres-ski, только это не "
-"алко-пати после катания. Это катание по будням после работы или учебы"
 
 #: app/templates/l_index.html:136
 msgid "The common idea - riding in group with sale on the skipasses"
-msgstr "Основная идея - катание в группе со скидкой на скипасы"
+msgstr ""
 
 #: app/templates/l_index.html:136
 msgid ""
-"Works simple as a chair - fill the form on the website and when the count "
-"of participated will reached about 8-10 persons, everybody will get "
+"Works simple as a chair - fill the form on the website and when the count"
+" of participated will reached about 8-10 persons, everybody will get "
 "discount or special bonus from spot"
 msgstr ""
 
@@ -400,9 +383,9 @@ msgstr ""
 
 #: app/templates/l_index.html:139
 msgid ""
-"If you're going with us - just drop the name and phone number in the form "
-"and you'll get the SMS with promo-code. Show this code in the spot and get "
-"the discount!"
+"If you're going with us - just drop the name and phone number in the form"
+" and you'll get the SMS with promo-code. Show this code in the spot and "
+"get the discount!"
 msgstr ""
 
 #: app/templates/l_index.html:142
@@ -447,74 +430,63 @@ msgstr ""
 
 #: app/templates/p_camp.html:3
 msgid ""
-"Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, "
-"France with Apres-Work Camps. Shredding, coaching, relaxing and partying..."
-"because skiing’s more fun with friends"
+"Ski in the summer? We’ve got it all figured out. 12 days in Les Deux "
+"Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and "
+"partying...because skiing’s more fun with friends"
 msgstr ""
 
 #: app/templates/p_camp.html:73 app/templates/p_camp.html:160
-#, fuzzy
 msgid "An error occured. Please, try one more time"
-msgstr "Произошла ошибка. Пожалуйста повторите."
+msgstr ""
 
 #: app/templates/p_camp.html:135
 msgid "Please, fill all the fields"
-msgstr "Заполните все поля"
+msgstr ""
 
 #: app/templates/p_camp.html:506
 msgid ""
-"Your message has been successfuly sent. Please allow up to 24 hours for a "
-"reply! Thank you!"
+"Your message has been successfuly sent. Please allow up to 24 hours for a"
+" reply! Thank you!"
 msgstr ""
-"Ваше сообщение успешно отправлено! Дайте нам 24 часа на то чтобы написать "
-"вам ответ."
 
 #: app/templates/p_camp.html:514
 msgid "Name is required!"
-msgstr "Укажите имя"
+msgstr ""
 
 #: app/templates/p_camp.html:519
 msgid "Mail address required!"
-msgstr "Укажите адрес электронной почты, пожалуйста"
+msgstr ""
 
 #: app/templates/p_camp.html:524
 msgid "Mail address must be valid!"
-msgstr "Неверный формат адреса электронной почты"
+msgstr ""
 
 #: app/templates/p_camp.html:529
 msgid "Message field is empty!"
-msgstr "Введите текст сообщения"
+msgstr ""
 
 #: app/templates/p_camp.html:533
 msgid "Name"
-msgstr "Имя"
+msgstr ""
 
 #: app/templates/p_camp.html:533 app/templates/p_camp.html:537
 #: app/templates/p_camp.html:541
 msgid "required"
-msgstr "обязательное"
+msgstr ""
 
 #: app/templates/p_camp.html:537
 msgid "Email"
-msgstr "Электронная почта"
+msgstr ""
 
 #: app/templates/p_camp.html:541
 msgid "Message"
-msgstr "Сообщение"
+msgstr ""
 
 #: app/templates/p_camp.html:545
 msgid "SUBMIT"
-msgstr "Отправить"
+msgstr ""
 
 #: app/templates/p_camp.html:591 app/templates/p_camp.html:595
 msgid "Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/"
 msgstr ""
 
-#~ msgid "Navigation"
-#~ msgstr "Навигация"
-
-#~ msgid "Home"
-#~ msgstr "Главная"
-
-#~ msgid "Where to ride"
-#~ msgstr "Где покататься"

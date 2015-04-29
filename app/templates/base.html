@@ -109,7 +109,7 @@
 	            <ul class="sidebar-navigation">
 	                <li><a class="{{is_menu_active('camps_g_list')}}" href="{{ url_for('camps_g_list', language_suffix=language_suffix) }}"><i class="fa fa-ticket"></i>{{ _('Camps')}}<i class="fa fa-circle"></i></a></li>
 	                <li class="has-submenu">
-	                	<a class="deploy-submenu" href="#"><i class="fa fa-info"></i>Overall info<i class="fa fa-plus"></i></a>
+	                	<a class="deploy-submenu" href="#"><i class="fa fa-info"></i>{{_("Overall info")}}<i class="fa fa-plus"></i></a>
 	                	<ul class="submenu">
 	                		<li><a class="{{is_menu_active('locations_g_list')}}" href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-map-marker"></i>{{ _("All Locations")}}<i class="fa fa-circle"></i></a></li>
 			                <li><a class="{{is_menu_active('resorts_g_list')}}" href="{{ url_for('resorts_g_list', language_suffix=language_suffix)}}"><i class="fa fa-picture-o"></i>{{ _("All Resorts")}}<i class="fa fa-circle"></i></a></li>
@@ -129,7 +129,7 @@
 	            </div>
 	            <ul class="sidebar-navigation">
 	            	<li><a href="{{ url_for('locations_g_list', language_suffix=language_suffix)}}"><i class="fa fa-map-marker"></i>{{ request.location_description}}<i class="edit fa fa-edit" style="font-size:14px;"></i></a></li>
-	            	<li class="language-nav"><i class="fa fa-language"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a></li>
+	            	<li class="language-nav"><i class="fa fa-language"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a>&nbsp;<a href="{{ get_curr_path_other_lang('es') }}" class="{{ is_current_language('es') }}">ES</a></li>
 	            </ul>
 	        </div>
 	    </div>
