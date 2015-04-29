@@ -51,7 +51,7 @@
                     {% endif %}
                 </div>
                 <div class="resorts-one-text">
-                    <h3 class="title">{{ resorts[resort]['NAME']}}</h3>
+                    <h3 class="title"><a href="{{ url_for('resorts_page', language_suffix=language_suffix, location_suffix=location_suffix, id=resorts[resort]['ID'])}}">{{ resorts[resort]['NAME']}}</a></h3>
                     <em class="subtitle">
                         {{resorts[resort]['ADDRESS']}}
                         {% if resorts[resort]['ADDRESS'] and resorts[resort]['PHONE'] %},{%endif%}
@@ -88,6 +88,8 @@
                     <p class="half-bottom">
                         {% if resorts[resort]['DESCRIPTION'] %}
                         {{ resorts[resort]['DESCRIPTION']}}
+                        <br>
+                        <a href="{{ url_for('resorts_page', language_suffix=language_suffix, location_suffix=location_suffix, id=resorts[resort]['ID'])}}">{{ _("Details...")}}</a>
                         {% endif %}
                     </p>
                     {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}

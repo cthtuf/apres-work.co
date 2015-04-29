@@ -69,7 +69,7 @@ def resorts_s_list(language_suffix, location_suffix):
 	))
 
 # /ru/spb/resorts/ [GET]
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def resorts_list(language_suffix, location_suffix):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
@@ -131,13 +131,48 @@ def resorts_s_page(language_suffix, location_suffix, id):
 	))
 
 #for /ru/spb/resort/1/ [GET]
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def resorts_page(language_suffix, location_suffix, id):
 	save_lang(language_suffix)
 	save_loc(location_suffix)
 
+	resort = db.session.query(Resort).filter(Resort.id==id).first()
+	location = db.session.query(Location).filter(Location.suffix==get_loc()).first()
+	share_text = resort.share_text.replace('_url_', get_site_url()+url_for('resorts_s_page', language_suffix=language_suffix, location_suffix=location_suffix, id=resort.id))
+	share_text = share_text.encode('utf-8')
+	share_text = urllib.quote(share_text)
+	resort_obj = {
+		'ID' : resort.id,
+		'NAME' : resort.name,
+		'PHONE' : resort.phone,
+		'ADDRESS' : resort.address,
+		'URL_SITE' : resort.url_site,
+		'URL_IG' : resort.url_ig,
+		'URL_VK' : resort.url_vk,
+		'URL_FB' : resort.url_fb,
+		'URL_IMG': resort.url_img,
+		'LA' : resort.la,
+		'LO' : resort.lo,
+		'OWM_ID' : resort.owm_id,
+		'DESCRIPTION' : resort.description,
+		'SHARE_TEXT' : share_text,
+		'HOW_TO_GET' : resort.how_to_get,
+		'CAMERAS' : []
+	}
+	webcameras = db.session.query(Resort, Webcamera).join(Webcamera).filter(Resort.id==id).all()
+	for camera in webcameras:
+		resort_obj['CAMERAS'].append({
+				'ID' : camera.Webcamera.id,
+				'NAME' : camera.Webcamera.name,
+				'IMG_LINK' : camera.Webcamera.img_link,
+				'IFRAME_LINK' : camera.Webcamera.iframe_link,
+				'IMG_NA' : camera.Webcamera.img_na,
+				'LOAD_FROM_IFRAME' : camera.Webcamera.load_from_iframe
+			})
 	return render_template('p_resort.html',
 		language_suffix = language_suffix,
 		location_suffix = location_suffix,
-		resort = resort,
+		resort = resort_obj,
+
+		rand=random.randint(1,1000000),
 		debug=app.debug)

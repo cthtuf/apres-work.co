@@ -24,77 +24,78 @@
     <div class="header-clear"></div>
     <div class="content">
         <div class="container no-bottom">
-            <h3>{{location_header}}</h3>
+            <h3>{{ resort['NAME']}}</h3>
             <p>
-                {{location_subheader}}
+                {% if resort['ADDRESS'] %}
+                {{resort['ADDRESS']}}
+                {% endif %}
+                {% if resort['ADDRESS'] and resort['PHONE'] %},{%endif%}
+                {% if resort['PHONE'] %}
+                {{resort['PHONE']}}
+                {% endif %}
             </p>
         </div>
     	<div class="resorts-one" data-weatherurl="{{ url_for('getweather', location_suffix=location_suffix)}}">
-            {% for resort in resorts %}
-            <div id="id{{resorts[resort]['ID']}}" class="resorts-one-item resort-{{resort}} full-bottom">
+            <div id="id{{resort['ID']}}" class="resorts-one-item resort-{{resort['ID']}} full-bottom">
                 <div class="resorts-one-image">
-                    {% if resorts[resort]['CAMERAS']|length == 0 %}
-                    <a href="{{resorts[resort]['URL_IMG']}}" class="swipebox" title="{{resorts[resort]['NAME']}}">
+                    {% if resort['CAMERAS']|length == 0 %}
+                    <a href="{{resort['URL_IMG']}}" class="swipebox" title="{{resort['NAME']}}">
                         <i class="fa fa-camera"></i>
                     </a>
-                    <img src="{{resorts[resort]['URL_IMG']}}" class="responsive-image">
+                    <img src="{{resort['URL_IMG']}}" class="responsive-image">
                     {% else %}
                     {# show first camera on page and other cameras in the swipebox #}
-                    <a href="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="swipebox can-be-reloaded" title="{{resorts[resort]['NAME']}}">
+                    <a href="{{resort['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="swipebox can-be-reloaded" title="{{resort['NAME']}}">
                         <i class="fa fa-video-camera"></i>
                     </a>
-                    <img src="{{resorts[resort]['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="responsive-image">
-                    {% for camera in resorts[resort]['CAMERAS'][1:] %}
-                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}?random={{ rand }}" title="{{resorts[resort]['NAME']}}"></a>
+                    <img src="{{resort['CAMERAS'][0]['IMG_LINK']}}?random={{ rand }}" class="responsive-image">
+                    {% for camera in resort['CAMERAS'][1:] %}
+                    <a class="swipebox hidden can-be-reloaded" href="{{camera['IMG_LINK']}}?random={{ rand }}" title="{{resort['NAME']}}"></a>
                     <img src="{{camera['IMG_LINK']}}?random={{ rand }}" class="responsive-image hidden">
                     {% endfor %}
                     {% endif %}
                 </div>
                 <div class="resorts-one-text">
-                    <h3 class="title">{{ resorts[resort]['NAME']}}</h3>
+                    <h3 class="title"></h3>
                     <em class="subtitle">
-                        {{resorts[resort]['ADDRESS']}}
-                        {% if resorts[resort]['ADDRESS'] and resorts[resort]['PHONE'] %},{%endif%}
-                        {% if resorts[resort]['PHONE'] %}
-                        {{resorts[resort]['PHONE']}}
-                        {% endif %}
+                        
                     </em>
                     <div class="resorts-one-details">
-                        {% if resorts[resort]['PHONE'] %}
-                        <a href="tel:{{ resorts[resort]['PHONE'] }}"><i class="fa fa-phone"></i></a>
+                        {% if resort['PHONE'] %}
+                        <a href="tel:{{ resort['PHONE'] }}"><i class="fa fa-phone"></i></a>
                         {% endif %}
-                        {% if resorts[resort]['URL_SITE'] %}
-                        <a href="{{resorts[resort]['URL_SITE']}}" target="_blank"><i class="fa fa-globe"></i></a>
+                        {% if resort['URL_SITE'] %}
+                        <a href="{{resort['URL_SITE']}}" target="_blank"><i class="fa fa-globe"></i></a>
                         {% endif %}
-                        {% if resorts[resort]['URL_VK'] %}
-                        <a href="//vk.com/{{ resorts[resort]['URL_VK'] }}" target="_blank"><i class="fa fa-vk"></i></a>
+                        {% if resort['URL_VK'] %}
+                        <a href="//vk.com/{{ resort['URL_VK'] }}" target="_blank"><i class="fa fa-vk"></i></a>
                         {% endif %}
-                        {% if resorts[resort]['URL_IG'] %}
-                        <a href="//instagram.com/{{ resorts[resort]['URL_IG']}}" target="_blank"><i class="fa fa-instagram"></i></a>
+                        {% if resort['URL_IG'] %}
+                        <a href="//instagram.com/{{ resort['URL_IG']}}" target="_blank"><i class="fa fa-instagram"></i></a>
                         {% endif %}
-                        {% if resorts[resort]['URL_FB'] %}
-                        <a href="//facebook.com/{{ resorts[resort]['URL_FB']}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        {% if resort['URL_FB'] %}
+                        <a href="//facebook.com/{{ resort['URL_FB']}}" target="_blank"><i class="fa fa-facebook"></i></a>
                         {% endif %}
-                        {% if resorts[resort]['LA'] and resorts[resort]['LO'] %}
+                        {% if resort['LA'] and resort['LO'] %}
                             {% if request.user_agent.platform == 'android' %}
-                                <a href="geo:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
+                                <a href="geo:{{resort['LA']}},{{resort['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
                             {% elif request.user_agent.platform == 'iphone' %}
-                                <a href="maps:daddr={{resorts[resort]['LA']}},{{resorts[resort]['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
+                                <a href="maps:daddr={{resort['LA']}},{{resort['LO']}}" target="_blank"><i class="fa fa-map-marker"></i></a>
                             {% else %}
-                                <a href="//maps.google.com/maps?t=h&q=loc:{{resorts[resort]['LA']}},{{resorts[resort]['LO']}}&z=13" target="_blank"><i class="fa fa-map-marker"></i></a>
+                                <a href="//maps.google.com/maps?t=h&q=loc:{{resort['LA']}},{{resort['LO']}}&z=13" target="_blank"><i class="fa fa-map-marker"></i></a>
                             {% endif %}
                         {% endif %}
                     </div>
                     <p class="half-bottom">
-                        {% if resorts[resort]['DESCRIPTION'] %}
-                        {{ resorts[resort]['DESCRIPTION']}}
+                        {% if resort['DESCRIPTION'] %}
+                        {{ resort['DESCRIPTION']}}
                         {% endif %}
                     </p>
-                    {% if request.MOBILE and resorts[resort]['SHARE_TEXT'] %}
+                    {% if request.MOBILE and resort['SHARE_TEXT'] %}
                     <p class="half-bottom invite">
                         Позвать друга:&nbsp;
-                        <a href="sms:{% if request.user_agent.platform =='iphone' %};{% else %}?{% endif %}body={{ resorts[resort]['SHARE_TEXT'] }}" title="через SMS"><i class="fa fa-mobile"></i></a>
-                        <a href="whatsapp://send?{{ resorts[resort]['SHARE_TEXT'] }}" title="через Whatsapp"><i class="fa fa-whatsapp"></i></a>
+                        <a href="sms:{% if request.user_agent.platform =='iphone' %};{% else %}?{% endif %}body={{ resort['SHARE_TEXT'] }}" title="через SMS"><i class="fa fa-mobile"></i></a>
+                        <a href="whatsapp://send?{{ resort['SHARE_TEXT'] }}" title="через Whatsapp"><i class="fa fa-whatsapp"></i></a>
                     </p>
                     {% endif %}
                     <div class="resorts-one-links resorts-weather">
@@ -116,15 +117,15 @@
                             Загружается прогноз погоды...&nbsp;<i class="fa fa-spin fa-circle-o-notch"></i>
                         </span>
                     </div> 
-                </div>       
+                </div>
+                {% if resort['HOW_TO_GET'] %}
+                <div class="resorts-one-how-to-get">
+                    <h4>Как добраться</h4>
+                    {{ resort['HOW_TO_GET'] }}
+                </div>
+                {% endif %}
             </div>
             <div class="decoration"></div>
-            {% endfor %}
-        </div>
-        <div class="container no-bottom">
-            <p>
-                Мы пропустили один? <a href="mailto:content@apres-work.co?subject=New%20resort&body=Hi!%0A%0AYou%27ve%20forgot%20about%20one%20of%20resorts%20-%20">Сообщи нам какой!</a>
-            </p>
         </div>
     </div>
     <!-- Page Footer-->
