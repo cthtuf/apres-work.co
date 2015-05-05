@@ -35,4 +35,4 @@ def notifications_push():
 		})
 	result = json.loads(conn.getresponse().read())
 	print result
-	return result
+	return str(result)
