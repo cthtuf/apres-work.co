@@ -78,3 +78,4 @@ app.add_url_rule('/<string:location_suffix>/getweather/', view_func=weather.getw
 
 #notifications
 app.add_url_rule('/<string:language_suffix>/<string:location_suffix>/getnotifications/', view_func=notifications.notifications_list, methods=['GET', 'POST'])
+app.add_url_rule('/push/', view_func=notifications.notifications_push, methods=['GET'])
