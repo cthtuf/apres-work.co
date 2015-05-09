@@ -305,7 +305,7 @@ a.partner-list-logo:hover img {
     margin-right: 0px;
     margin-top: 16px;
     font-family: Roboto, sans-serif;
-    color: #EEE;
+    color: #FFF;
     font-size: 24px;
 }
 
@@ -329,3 +329,11 @@ select
     -webkit-border-radius: 0px;
     box-sizing:border-box;
 }
+
+#maininfo { position: relative; top:-30px;}
+#services,
+#staff,
+#howitworks,
+#attend,
+#partners,
+#contacts { position: relative; top:-60px;}

@@ -220,11 +220,10 @@ $(function(){
 {% endblock %}
 
 {% block content %}
-<div id="content" class="snap-content">
-    <div class="header">
+<div class="header">
         <a href="/" class="header-logo">apres-work.co</a>
         <!--<a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>-->
-        <a href="#content" class="header-nav-item"><i class="fa fa-angle-double-up"></i></a>
+        <a href="#top" class="header-nav-item"><i class="fa fa-angle-double-up"></i></a>
         <a href="#maininfo" class="header-nav-item"><i class="fa fa-bullhorn"></i></a>
         <a href="#services" class="header-nav-item"><i class="fa fa-rocket"></i></a>
         <a href="#staff" class="header-nav-item"><i class="fa fa-users"></i></a>
@@ -233,7 +232,9 @@ $(function(){
         <a href="#partners" class="header-nav-item"><i class="fa fa-cubes"></i></a>
         <a href="#contacts" class="header-nav-item"><i class="fa fa-envelope"></i></a>
     </div>
-    <div class="mainpage-slider-container">
+<div id="content" class="snap-content">
+    
+    <div id="top" class="mainpage-slider-container">
         <i class="arrow-scroll-down fa fa-angle-double-down animated infinite pulse"></i>
         <div class="full-slider full-bottom" data-snap-ignore="true">     
             {% for top_slide in top_slides %}
@@ -251,8 +252,8 @@ $(function(){
             {% endfor %}
         </div>
     </div>
-    
-    <div id="maininfo" class="content">       
+    <div id="maininfo"></div>
+    <div class="content">       
         <div class="container large-title no-bottom">
             <h3>{{ get_data_by_lang(top_info_block, '_header', 'en')|safe }}</h3>
             <p>
@@ -269,9 +270,9 @@ $(function(){
     </div> 
     
 
-            
+    <div id="services"></div>
     <!-- Content Heding -->
-    <div id="services" class="content-heading">
+    <div class="content-heading">
         <h4>{{ get_data_by_lang(services_block, '_header', 'en')|safe }}</h4>
         <p>{{ get_data_by_lang(services_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-rocket"></i>
@@ -298,8 +299,9 @@ $(function(){
         <div class="decoration"></div>             
     </div>
     
+    <div id="staff"></div>
     <!-- Content Heading -->
-    <div id="staff" class="content-heading">
+    <div class="content-heading">
         <h4>{{ get_data_by_lang(staff_block, '_header', 'en')|safe }}</h4>
         <p>{{ get_data_by_lang(staff_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-users"></i>
@@ -336,8 +338,9 @@ $(function(){
         <div class="decoration"></div>
     </div>
     
+    <div id="howitworks"></div>
     <!-- Content Heading-->
-    <div id="howitworks" class="content-heading">
+    <div class="content-heading">
         <h4>{{ get_data_by_lang(main_info_block, '_header', 'en')|safe }}</h4>
         <p>{{ get_data_by_lang(main_info_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-puzzle-piece"></i>
@@ -380,8 +383,9 @@ $(function(){
         <div class="decoration"></div>
     </div>
 
+    <div id="attend"></div>
     <!-- Content Heading-->
-    <div id="attend" class="content-heading">
+    <div class="content-heading">
         <h4>{{ get_data_by_lang(signup_block, '_header', 'en')|safe }}</h4>
         <p>{{ get_data_by_lang(signup_block, '_subheader', 'en')|safe }}</p>
         <i class="fa fa-user-plus"></i>
@@ -476,8 +480,9 @@ $(function(){
         <div class="decoration"></div>
     </div>
     
+    <div id="partners"></div>
     <!-- Content Heading -->
-    <div id="partners" class="content-heading">
+    <div class="content-heading">
         <h4>{{ get_data_by_lang(partners_block, '_header', 'en') }}</h4>
         <p>{{ get_data_by_lang(partners_block, '_subheader', 'en') }}</p>
         <i class="fa fa-cubes"></i>
@@ -508,7 +513,10 @@ $(function(){
             
         <div class="decoration"></div>            
     </div>
-    <div id="contacts" class="maps-container">
+
+    
+    <div id="contacts"></div>
+    <div class="maps-container">
         <iframe class="responsive-image maps" src="https://maps.google.com/?ie=UTF8&amp;ll=44.997748,6.217629&amp;spn=0.006186,0.016512&amp;t=h&amp;z=13&amp;output=embed&amp;scrollwheel=false" style="pointer-events:none;"></iframe>
     </div>
 
