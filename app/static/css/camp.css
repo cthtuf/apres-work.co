@@ -327,5 +327,5 @@ select
 {
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
-    box-sizing:content-box;
+    box-sizing:border-box;
 }
