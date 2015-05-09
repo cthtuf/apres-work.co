@@ -145,20 +145,29 @@
 .form-attend {
     font-size:16px;
     font-family: "Roboto",sans-serif !important;
+    text-align: center;
 }
 
-.form-attend label,
 .form-attend select,
 .form-attend input {
-    line-height: 36px;
+    height:36px;
+    font-size:16px;
 }
 
 .form-field {
-    margin-bottom:8px;    
+    margin-bottom:8px;
+    text-align: left;
 }
 
-.form-attend .one-half-responsive {
-    margin-right: 2%;
+.camp-attend-fields-block {
+    display: inline-block;
+    width:360px;
+    vertical-align: top;
+}
+
+.col-label {
+    display: block;
+    text-align: left;    
 }
 
 .col-controls {
@@ -173,8 +182,8 @@
 .col-controls .input-group select {
     display: inline;
     border:1px solid #DDD;
-    text-indent: 10px;
-    min-width:300px;
+    text-indent: 5px;
+    width:300px;
 }
 
 .col-controls .help-text {
@@ -189,22 +198,30 @@
 }
 
 @media (max-width:767px){
+    .form-attend label {
+        text-align: center;
+    }
+
+    .col-controls .input-group, #camp_cost {
+        text-align: center;
+    }
+
+    .col-controls .input-group select,
+    .col-controls .input-group input {
+        width:100%;
+        margin-left:2px;
+        margin-right:2px;
+    }
+
     .form-attend button {
         display: block;
         text-align: center;
         width:100%;
     }
-
-    .col-label label {
-        display: block;
-        text-align: left;
-    }
 }
 
 @media (min-width:768px){
-    .col-label label {
-        text-align: right;
-    }
+
 }
 
 .form-message {
@@ -247,5 +264,68 @@ i.show-more {
 }
 
 #camp_cost {
-    line-height: 36px;
+    height: 36px;
+    font-weight: 700;
+}
+
+.maps-container {
+    cursor: alias;
+}
+
+.partners-logos-list {
+    text-align: center;
+    margin-bottom:20px;
+}
+
+.partner-list-logo {
+    display: inline;
+    margin:0 10px;
+}
+
+.partner-list-logo img {
+    max-height: 40px;
+    display: inline;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+    filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+}
+
+a.partner-list-logo:hover img {
+    -webkit-filter: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    filter:none;
+}
+
+.open-menu, .header-nav-item {
+    position: static;
+    float: left;
+    height: 24px;
+    margin-left:25px;
+    margin-right: 0px;
+    margin-top: 16px;
+    font-family: Roboto, sans-serif;
+    color: #EEE;
+    font-size: 24px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="color"],
+select
+{
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    box-sizing:content-box;
 }

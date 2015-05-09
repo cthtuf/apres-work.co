@@ -108,6 +108,9 @@ class Resort(db.Model):
 	bad_wind_direction = db.Column(db.Integer)
 	share_text = db.Column(db.String(140))
 	how_to_get = db.Column(db.String(3000))
+	url_fb_comments = db.Column(db.String(255))
+	vk_id = db.Column(db.String(255))
+
 
 	def __repr__(self):
 		return '<Resort id=%r, location_id=%r, name=%r, url_site=%r, la=%r, lo=%r, owm_id=%r>' % (
@@ -147,6 +150,8 @@ class Event(db.Model):
 	video_url = db.Column(db.String(255))
 	ig_hashtag = db.Column(db.String(20))
 	vk_event_url = db.Column(db.String(255))
+	url_fb_comments = db.Column(db.String(255))
+	vk_id = db.Column(db.String(255))
 
 	def __repr__(self):
 		return '<Event id=%r, dt_event=%r, resort_id=%r, name=%r>' % (
@@ -168,6 +173,8 @@ class News(db.Model):
 	poster_url = db.Column(db.String(255))
 	video_url = db.Column(db.String(255))
 	ig_hashtag = db.Column(db.String(20))
+	url_fb_comments = db.Column(db.String(255))
+	vk_id = db.Column(db.String(255))
 
 	def __repr__(self):
 		return '<News id=%r, dt_news=%r, resort_id=%r, name=%r>' % (
@@ -187,6 +194,8 @@ class Coach(db.Model):
 	video_url = db.Column(db.String(255))
 	ig_hashtag = db.Column(db.String(20))
 	vk_link = db.Column(db.String(255))
+	url_fb_comments = db.Column(db.String(255))
+	vk_id = db.Column(db.String(255))
 
 	def __repr__(self):
 		return '<Coach id=%r, dt_created=%r, location_id=%r, name=%r>' % (
@@ -207,6 +216,8 @@ class Cameraman(db.Model):
 	ig_profile = db.Column(db.String(20))
 	vk_profile = db.Column(db.String(255))
 	fb_profile = db.Column(db.String(255))
+	url_fb_comments = db.Column(db.String(255))
+	vk_id = db.Column(db.String(255))
 
 	def __repr__(self):
 		return '<Cameraman id=%r, dt_created=%r, location_id=%r, name=%r>' % (
@@ -770,6 +781,11 @@ CampContactRecords = db.Table('camp_contact_records',
     db.Column('contact_id', db.Integer, db.ForeignKey('camp_contact_record.id'))
 )
 
+CampContactUsefulPages = db.Table('camp_contact_useful_pages',
+    db.Column('block_id', db.Integer, db.ForeignKey('camp_contact_block.id')),
+    db.Column('page_id', db.Integer, db.ForeignKey('camp_contact_useful_page.id'))
+)
+
 class CampContactBlock(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
@@ -779,18 +795,27 @@ class CampContactBlock(db.Model):
 	en_header = db.Column(db.String(255))
 	en_subheader = db.Column(db.String(255))
 	en_right_subheader = db.Column(db.String(255))
+	en_right_usefullpages = db.Column(db.String(255))
 	ru_header = db.Column(db.String(255))
 	ru_subheader = db.Column(db.String(255))
 	ru_right_subheader = db.Column(db.String(255))
+	ru_right_usefullpages = db.Column(db.String(255))
 	fr_header = db.Column(db.String(255))
 	fr_subheader = db.Column(db.String(255))
 	fr_right_subheader = db.Column(db.String(255))
+	fr_right_usefullpages = db.Column(db.String(255))
 	es_header = db.Column(db.String(255))
 	es_subheader = db.Column(db.String(255))
 	es_right_subheader = db.Column(db.String(255))
+	es_right_usefullpages = db.Column(db.String(255))
 
 	contacts = db.relationship('CampContactRecord',
 		secondary=CampContactRecords, 
+		backref=db.backref('contact_block', lazy='dynamic')
+		)
+
+	useful_pages = db.relationship('CampContactUsefulPage',
+		secondary=CampContactUsefulPages, 
 		backref=db.backref('contact_block', lazy='dynamic')
 		)
 
@@ -817,6 +842,26 @@ class CampContactRecord(db.Model):
 
 	def __repr__(self):
 		return '<CampContactRecord id=%r, caption=%r' % (
+			self.id,
+			self.en_caption
+			)
+
+class CampContactUsefulPage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	order_index = db.Column(db.Integer)
+
+	icon_class = db.Column(db.String(20))
+	link = db.Column(db.String(255))
+	in_new_window = db.Column(db.Boolean)
+
+	en_caption = db.Column(db.String(1000))
+	ru_caption = db.Column(db.String(1000))
+	fr_caption = db.Column(db.String(1000))
+	es_caption = db.Column(db.String(1000))
+
+	def __repr__(self):
+		return '<CampContactUsefulPage id=%r, caption=%r' % (
 			self.id,
 			self.en_caption
 			)
