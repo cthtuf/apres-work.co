@@ -309,6 +309,10 @@ a.partner-list-logo:hover img {
     font-size: 24px;
 }
 
+..header-nav-item.active {
+    color:#FF0000;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],

@@ -32,9 +32,9 @@ $ = jQuery;
 var index = (function(){
     return {
         init : function(){
-            $('.arrow-scroll-down').on('click', function(){
+            $('.arrow-scroll-down').on('click', function(){ //scroll down icon
                 $('#content').animate({
-                    scrollTop:600//$('.slider-style').height()
+                    scrollTop: $('#maininfo').position().top
                 }, 800, 'easeInOutQuad');
                 $('i.show-more.show-staff-details').on('click', function(){
                     $(this).parents('.staff-slider').find('.show-staff-details').hide();
@@ -44,7 +44,7 @@ var index = (function(){
                     $(this).hide();
                     $(this).parent().find('.camp-info-details').slideDown();
                 });
-            })
+            });
         }
     }
 })();
@@ -215,6 +215,8 @@ $(function(){
     $('.maps-container').on('click', function(){
         window.open($(this).find('iframe').attr('src'));
     });
+    $('body').scrollspy({target : ".header"});
+    snapper.disable();
 });
 </script>
 {% endblock %}
@@ -234,7 +236,7 @@ $(function(){
     </div>
 <div id="content" class="snap-content">
     
-    <div id="top" class="mainpage-slider-container">
+    <div id="top" class="mainpage-slider-container nav-anchor">
         <i class="arrow-scroll-down fa fa-angle-double-down animated infinite pulse"></i>
         <div class="full-slider full-bottom" data-snap-ignore="true">     
             {% for top_slide in top_slides %}
@@ -252,7 +254,7 @@ $(function(){
             {% endfor %}
         </div>
     </div>
-    <div id="maininfo"></div>
+    <div id="maininfo" class="nav-anchor"></div>
     <div class="content">       
         <div class="container large-title no-bottom">
             <h3>{{ get_data_by_lang(top_info_block, '_header', 'en')|safe }}</h3>
@@ -270,7 +272,7 @@ $(function(){
     </div> 
     
 
-    <div id="services"></div>
+    <div id="services" class="nav-anchor"></div>
     <!-- Content Heding -->
     <div class="content-heading">
         <h4>{{ get_data_by_lang(services_block, '_header', 'en')|safe }}</h4>
@@ -299,7 +301,7 @@ $(function(){
         <div class="decoration"></div>             
     </div>
     
-    <div id="staff"></div>
+    <div id="staff" class="nav-anchor"></div>
     <!-- Content Heading -->
     <div class="content-heading">
         <h4>{{ get_data_by_lang(staff_block, '_header', 'en')|safe }}</h4>
@@ -338,7 +340,7 @@ $(function(){
         <div class="decoration"></div>
     </div>
     
-    <div id="howitworks"></div>
+    <div id="howitworks" class="nav-anchor"></div>
     <!-- Content Heading-->
     <div class="content-heading">
         <h4>{{ get_data_by_lang(main_info_block, '_header', 'en')|safe }}</h4>
@@ -351,7 +353,7 @@ $(function(){
     <!-- Page Content-->
     <div class="content">
         <div class="decoration"></div>
-            <div class="container">
+            <div class="container" data-snap-ignore="true">
                 <div class="one-half-responsive">
                     <div class="slider-bottom">
                         {% if request.MOBILE %}
@@ -383,7 +385,7 @@ $(function(){
         <div class="decoration"></div>
     </div>
 
-    <div id="attend"></div>
+    <div id="attend" class="nav-anchor"></div>
     <!-- Content Heading-->
     <div class="content-heading">
         <h4>{{ get_data_by_lang(signup_block, '_header', 'en')|safe }}</h4>
@@ -480,7 +482,7 @@ $(function(){
         <div class="decoration"></div>
     </div>
     
-    <div id="partners"></div>
+    <div id="partners" class="nav-anchor"></div>
     <!-- Content Heading -->
     <div class="content-heading">
         <h4>{{ get_data_by_lang(partners_block, '_header', 'en') }}</h4>
@@ -514,8 +516,8 @@ $(function(){
         <div class="decoration"></div>            
     </div>
 
-    
-    <div id="contacts"></div>
+
+    <div id="contacts" class="nav-anchor"></div>
     <div class="maps-container">
         <iframe class="responsive-image maps" src="https://maps.google.com/?ie=UTF8&amp;ll=44.997748,6.217629&amp;spn=0.006186,0.016512&amp;t=h&amp;z=13&amp;output=embed&amp;scrollwheel=false" style="pointer-events:none;"></iframe>
     </div>
