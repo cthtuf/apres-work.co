@@ -7,6 +7,7 @@
 <link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick-theme.css')}}" rel="stylesheet" type="text/css">
+<script>disableSnap = true;</script>
 <style>
 {% for top_slide in top_slides %}
 .slider-camp-{{top_slide.index}} { background-image:url({{top_slide.img_url_mobile}}); }
@@ -215,7 +216,6 @@ $(function(){
     $('.maps-container').on('click', function(){
         window.open($(this).find('iframe').attr('src'));
     });
-    $('body').scrollspy({target : ".header"});
     snapper.disable();
 });
 </script>
