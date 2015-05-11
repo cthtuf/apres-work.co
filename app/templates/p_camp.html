@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_camp.html" %}
 {% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
 {% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
 {% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}{% endblock %}
@@ -22,7 +22,6 @@
     .slider-camp-{{top_slide.index}} { background-image:url({{top_slide.img_url_vertical}}); }
 {% endfor %}
 }
-.snap-drawers { display: none; } {# hide menu #}
 </style>
  
 {% endblock %}
@@ -216,25 +215,24 @@ $(function(){
     $('.maps-container').on('click', function(){
         window.open($(this).find('iframe').attr('src'));
     });
-    snapper.disable();
+    //snapper.disable();
 });
 </script>
 {% endblock %}
 
 {% block content %}
-<div class="header">
-        <a href="/" class="header-logo">apres-work.co</a>
-        <!--<a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>-->
-        <a href="#top" class="header-nav-item"><i class="fa fa-angle-double-up"></i></a>
-        <a href="#maininfo" class="header-nav-item"><i class="fa fa-bullhorn"></i></a>
-        <a href="#services" class="header-nav-item"><i class="fa fa-rocket"></i></a>
-        <a href="#staff" class="header-nav-item"><i class="fa fa-users"></i></a>
-        <a href="#howitworks" class="header-nav-item"><i class="fa fa-puzzle-piece"></i></a>
-        <a href="#attend" class="header-nav-item"><i class="fa fa-user-plus"></i></a>
-        <a href="#partners" class="header-nav-item"><i class="fa fa-cubes"></i></a>
-        <a href="#contacts" class="header-nav-item"><i class="fa fa-envelope"></i></a>
-    </div>
 <div id="content" class="snap-content">
+    <div class="header">
+        <!--<a href="/" class="header-logo">apres-work.co</a>-->
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+        <a href="#maininfo" class="header-nav-item">{{ _("Home")}}</a>
+        <a href="#services" class="header-nav-item header-nav-hide-on-mobile">{{ _("Services")}}</a>
+        <a href="#staff" class="header-nav-item header-nav-hide-on-mobile">{{ _("The team")}}</a>
+        <a href="#howitworks" class="header-nav-item">{{ _("How it works")}}</a>
+        <a href="#attend" class="header-nav-item">{{ _("Attend")}}</a>
+        <a href="#partners" class="header-nav-item header-nav-hide-on-mobile">{{ _("Partners")}}</a>
+        <a href="#contacts" class="header-nav-item header-nav-hide-on-mobile">{{ _("Contacts")}}</a>
+    </div>
     
     <div id="top" class="mainpage-slider-container nav-anchor">
         <i class="arrow-scroll-down fa fa-angle-double-down animated infinite pulse"></i>

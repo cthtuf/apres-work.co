@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+    <meta property="og:title" content="{% block title %}{% endblock %}" />
+    <meta property="og:description" content="{% block description %}{% endblock %}" />
+    <meta property="og:url" content="{% block url %}{% endblock %}" />
+    <meta property="og:image" content="{% block image %}{% endblock %}" />
+
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 			media="screen and (max-device-width: 320px)" />  
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" 		media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" /> 
+	<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+	<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+	<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+	<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
+	<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
+
+	<meta name="title" content="{{ self.title() }}" />
+    <meta name="description" content="{{ self.description() }}" />
+    <link rel="image_src" href="{{ self.image() }}" />
+    <title>{{ self.title() }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script|Montserrat' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css' />
+    {#<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.min.css')}}">#}
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/modernizr.min.js')}}"></script>
+
+    {#{% if debug %}#}
+    <link href="{{ url_for('static', filename='css/base.css')}}"     		 	rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/epsilon.css')}}" 		rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/owl-carousel.css')}}" 	rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/swipebox.css')}}"		rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/font-awesome.css')}}"	rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/weather-icons.css')}}"	rel="stylesheet" type="text/css">
+	<link href="{{ url_for('static', filename='css/lib/animate.css')}}"			rel="stylesheet" type="text/css">
+	{#{% else %}#}
+	{#<link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet" type="text/css">#}
+	{#{% endif %}#}
+
+    {% block head_scripts %}{% endblock %}
+</head>
+<body class="{% if not request.MOBILE %}desktop-client{% else %}mobile-client{% endif %}">
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5VS7S9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-5VS7S9');</script>
+	<div class="all-elements">
+	    <div class="snap-drawers">
+	        <!-- Left Sidebar -->
+	        <div class="snap-drawer snap-drawer-left">
+	            <div class="sidebar-header">
+	                <a href="http://facebook.com/apresworkco" target="_blank"><i class="fa fa-facebook"></i></a>
+	                <a href="http://vkontakte.ru/apresworkco" target="_blank"><i class="fa fa-vk"></i></a>
+	                <a href="http://instagram.com/apresworkco" target="_blank"><i class="fa fa-instagram"></i></a>
+	                <a href="http://twitter.com/apresworkco" target="_blank"><i class="fa fa-twitter"></i></a>
+	                <a href="#"><i class="fa fa-times"></i></a>                
+	            </div>
+	            
+	            <div class="sidebar-logo">
+	                <a href="{{ url_for('index', language_suffix=language_suffix, location_suffix=location_suffix) }}"></a>
+	            </div>
+	            
+	            <div class="sidebar-divider">
+	                {{ _("Navigation") }}
+	            </div>
+	            
+	            <ul class="sidebar-navigation">
+	            	<li><a href="#attend"><i class="fa fa-user-plus"></i>{{ _("Sign up")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#maininfo"><i class="fa fa-bookmark-o"></i>{{ _("Main info")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#services"><i class="fa fa-rocket"></i>{{ _("Services")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#staff"><i class="fa fa-users"></i>{{ _("The team")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#howitworks"><i class="fa fa-newspaper-o"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#partners"><i class="fa fa-cubes"></i>{{ _("Partners")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="#contacts"><i class="fa fa-envelope-o"></i>{{ _("Contacts")}}<i class="fa fa-circle"></i></a></li>
+	            </ul>
+
+	            <div class="sidebar-divider">
+	            	{{ _("Useful pages")}}
+	            </div>
+
+	            <ul class="sidebar-navigation">
+	            	<li><a href="/useful/dontforgetit/"><i class="fa fa-users"></i>{{ _("Don't forget it!")}}<i class="fa fa-circle"></i></a></li>
+	            	<li><a href="/useful/howtogetus/"><i class="fa fa-user-plus"></i>{{ _("How to get us")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="/useful/visa/"><i class="fa fa-bookmark-o"></i>{{ _("Visa and passport")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="/useful/insurance/"><i class="fa fa-rocket"></i>{{ _("Insurance")}}<i class="fa fa-circle"></i></a></li>
+	            </ul>
+
+	            <div class="sidebar-divider">
+	                {{ _("Language") }}
+	            </div>
+	            <ul class="sidebar-navigation">
+	            	<li class="language-nav"><i class="fa fa-language"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a>
+	            </ul>
+	        </div>
+	    </div>
+    	{% block content %}{% endblock %}
+	    {% block footer %}{% endblock %}
+	    {#{% if debug %}#}
+	    <script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery.min.js')}}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/lib/jqueryui.js')}}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/lib/plugins.js')}}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/custom_template.js')}}"></script>
+		<script type="text/javascript" src="https://rawgit.com/iacmru/goodshare.js/master/goodshare-custom.js"></script>
+		{#{% else %}#}
+		{#<script type="text/javascript" src="{{ url_for('static', filename='js/libs.min.js') }}"></script>#}
+		{#{% endif %}}#}
+		<script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
+	    {% block footer_scripts %}{% endblock %}
+	</div>
+</body>
+</html>

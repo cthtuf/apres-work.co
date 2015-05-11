@@ -97,7 +97,7 @@ $(document).ready(function() {
 		snapper.close();
 	});
 	
-	if(!disableSnap) var snapper = new Snap({
+	var snapper = new Snap({
 	  element: document.getElementById('content')
 	});
     
