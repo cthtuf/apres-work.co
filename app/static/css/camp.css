@@ -379,3 +379,7 @@ select
 #content > .content {
   margin-top: 0;
 }
+
+.mainpage-slider-container .arrow-scroll-down {
+    margin-left:-10px;
+}
