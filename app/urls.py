@@ -26,6 +26,10 @@ app.add_url_rule('/<string:language_suffix>/camps/', view_func=camps.camps_g_lis
 app.add_url_rule('/<string:language_suffix>/camp/<int:id>/', view_func=camps.camps_page, methods=['GET'])
 app.add_url_rule('/<string:language_suffix>/camp/<int:id>/attend/', view_func=camps.camps_attend, methods=['POST'])
 app.add_url_rule('/<string:language_suffix>/camp/<int:id>/feedback/', view_func=camps.camps_feedback, methods=['POST'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/dontforgetit/', view_func=camps.camps_dontforgetit, methods=['GET'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/visa/', view_func=camps.camps_visa, methods=['GET'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/insurance/', view_func=camps.camps_insurance, methods=['GET'])
+app.add_url_rule('/<string:language_suffix>/camp/<int:id>/howtogetusbyyouself/', view_func=camps.camps_howtogetusbyyouself, methods=['GET'])
 
 #howitworks infographics
 app.add_url_rule('/<string:language_suffix>/howitworks', view_func=howitworks.howitworks_list, methods=['GET'])

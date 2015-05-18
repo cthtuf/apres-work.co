@@ -1,0 +1,80 @@
+{% extends "base_camp.html" %}
+{% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
+{% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
+{% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}{% endblock %}
+{% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
+{% block head_scripts %}
+
+{% endblock %}
+{% block footer_scripts %}
+<script>
+$ = jQuery;
+
+$(function(){
+    
+    var endDate = "{{ countdown_time }}";
+    
+    $('.countdown').countdown({
+      date: endDate,
+      render: function(data) {
+        $(this.el).html(
+        "<div class='countdown-box box-years'><div class='countdown-years'>" + this.leadingZeros(data.years, 2) + 
+        "</div><span>years</span></div><div class='countdown-box box-days'><div class='countdown-days'>" + this.leadingZeros(data.days, 2) + 
+        "</div><span>days</span></div><div class='countdown-box box-hours'><div class='countdown-hours'>" + this.leadingZeros(data.hours, 2) + 
+        "</div><span>hours</span></div><div class='countdown-box box-minutes'><div class='countdown-minutes'>" + this.leadingZeros(data.min, 2) + 
+        "</div><span>min</span></div><div class='countdown-box box-seconds'><div class='countdown-seconds'>" + this.leadingZeros(data.sec, 2) + 
+        "</div><span>sec</span></div>");
+      }
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="snap-content">
+    <div class="header">
+        <a href="/" class="header-logo">apres-work.co</a>
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+
+    <div class="soon-page-wrapper">
+            <div class="soon-page">
+                <h1>{{_("Coming Soon")}}</h1>
+                <h4>{{_("We're still working on this page!")}}</h4>
+                <p>
+                    {{ _("Honestly, we are riding...")}}
+                    <br>
+                    {{ _("We'll finish this page when we get back!")}}
+                </p>
+                <div class="countdown"></div>
+                <a href="#" onclick="window.history.go(-1); return false;" class="soon-button"><i class="fa fa-angle-left"></i>{{ _("Go back") }}</a>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        
+    <!-- Page Footer-->       
+</div>
+    
+<div class="share-bottom">
+    <h3>{{ _("Share")}}</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Summer%20camp%20in%L2A&body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock %}

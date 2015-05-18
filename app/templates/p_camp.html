@@ -620,15 +620,15 @@ $(function(){
             <i class="fa fa-vk vkontakte-color"></i>
             Vkontakte
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
             <i class="fa fa-facebook facebook-color"></i>
             Facebook
         </a>
-        <a href='sms:?body={{ _("Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/") }}'>   
+        <a href="sms:?body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
             <i class="fa fa-comment-o sms-color"></i>
             SMS
         </a>
-        <a href='mailto:?&subject=Les%20Deux%20Alpes%20camp&body={{ _("Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/") }}'>
+        <a href="mailto:?&subject=Summer%20camp%20in%L2A&body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
             <i class="fa fa-envelope-o mail-color"></i>
             Email
         </a>

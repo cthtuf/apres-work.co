@@ -120,3 +120,47 @@ def camps_feedback(language_suffix, id):
 		return '1'
 	else:
 		return '0'
+
+def camps_dontforgetit(language_suffix, id):
+	save_lang(language_suffix)
+
+	camp = Camp.query.filter(Camp.id==id).first()
+
+	return render_template('not_ready_camp.html',
+		language_suffix = language_suffix,
+		countdown_time = 'May 24, 2015 15:03:25',
+		camp = camp,
+		debug=app.debug)
+
+def camps_visa(language_suffix, id):
+	save_lang(language_suffix)
+
+	camp = Camp.query.filter(Camp.id==id).first()
+
+	return render_template('not_ready_camp.html',
+		language_suffix = language_suffix,
+		countdown_time = 'May 24, 2015 15:03:25',
+		camp = camp,
+		debug=app.debug)
+
+def camps_insurance(language_suffix, id):
+	save_lang(language_suffix)
+
+	camp = Camp.query.filter(Camp.id==id).first()
+
+	return render_template('not_ready_camp.html',
+		language_suffix = language_suffix,
+		countdown_time = 'May 26, 2015 15:03:25',
+		camp = camp,
+		debug=app.debug)
+
+def camps_howtogetusbyyouself(language_suffix, id):
+	save_lang(language_suffix)
+
+	camp = Camp.query.filter(Camp.id==id).first()
+
+	return render_template('not_ready_camp.html',
+		language_suffix = language_suffix,
+		countdown_time = 'May 24, 2015 15:03:25',
+		camp = camp,
+		debug=app.debug)
