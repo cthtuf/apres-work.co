@@ -101,10 +101,10 @@
 	            </div>
 
 	            <ul class="sidebar-navigation">
-	            	<li><a href="/useful/dontforgetit/"><i class="fa fa-check-square-o"></i>{{ _("Don't forget it!")}}<i class="fa fa-circle"></i></a></li>
-	            	<li><a href="/useful/howtogetus/"><i class="fa fa-map-marker"></i>{{ _("How to get us")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="/useful/visa/"><i class="fa fa-book"></i>{{ _("Visa and passport")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="/useful/insurance/"><i class="fa fa-medkit"></i>{{ _("Insurance")}}<i class="fa fa-circle"></i></a></li>
+	            	<li><a href="{{ url_for('camps_dontforgetit', language_suffix=language_suffix, id=camp.id) }}"><i class="fa fa-check-square-o"></i>{{ _("Don't forget it!")}}<i class="fa fa-circle"></i></a></li>
+	            	<li><a href="{{ url_for('camps_visa', language_suffix=language_suffix, id=camp.id) }}"><i class="fa fa-map-marker"></i>{{ _("How to get us")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_insurance', language_suffix=language_suffix, id=camp.id) }}"><i class="fa fa-book"></i>{{ _("Visa and passport")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_howtogetusbyyourself', language_suffix=language_suffix, id=camp.id) }}"><i class="fa fa-medkit"></i>{{ _("Insurance")}}<i class="fa fa-circle"></i></a></li>
 	            </ul>
 
 	            <div class="sidebar-divider">
