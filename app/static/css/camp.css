@@ -330,6 +330,9 @@ a.partner-list-logo:hover img {
     .header-nav-hide-on-mobile {
         display: none;
     }
+    .header-nav-item {
+        display: none;
+    }
 }
 
 input[type="text"],
