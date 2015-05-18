@@ -4,7 +4,7 @@
 {% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}{% endblock %}
 {% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
 {% block head_scripts %}
-
+<link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block footer_scripts %}
 <script>
@@ -33,7 +33,7 @@ $(function(){
 {% block content %}
 <div id="content" class="snap-content">
     <div class="header">
-        <a href="/" class="header-logo">apres-work.co</a>
+        <a href="/" class="header-logo"></a>
         <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
     </div>
 

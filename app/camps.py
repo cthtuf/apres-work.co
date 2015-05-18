@@ -154,7 +154,7 @@ def camps_insurance(language_suffix, id):
 		camp = camp,
 		debug=app.debug)
 
-def camps_howtogetusbyyouself(language_suffix, id):
+def camps_howtogetusbyyourself(language_suffix, id):
 	save_lang(language_suffix)
 
 	camp = Camp.query.filter(Camp.id==id).first()
