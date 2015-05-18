@@ -79,7 +79,7 @@
 	            </div>
 	            
 	            <div class="sidebar-logo">
-	                <a href="#"></a>
+	                <a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}"></a>
 	            </div>
 	            
 	            <div class="sidebar-divider">
@@ -87,13 +87,13 @@
 	            </div>
 	            
 	            <ul class="sidebar-navigation">
-	            	<li><a href="#attend"><i class="fa fa-user-plus"></i>{{ _("Sign up")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#maininfo"><i class="fa fa-bookmark-o"></i>{{ _("Main info")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#services"><i class="fa fa-rocket"></i>{{ _("Services")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#staff"><i class="fa fa-users"></i>{{ _("The team")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#howitworks"><i class="fa fa-newspaper-o"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#partners"><i class="fa fa-cubes"></i>{{ _("Partners")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="#contacts"><i class="fa fa-envelope-o"></i>{{ _("Contacts")}}<i class="fa fa-circle"></i></a></li>
+	            	<li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#attend"><i class="fa fa-user-plus"></i>{{ _("Sign up")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#maininfo"><i class="fa fa-bookmark-o"></i>{{ _("Main info")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#services"><i class="fa fa-rocket"></i>{{ _("Services")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#staff"><i class="fa fa-users"></i>{{ _("The team")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#howitworks"><i class="fa fa-newspaper-o"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#partners"><i class="fa fa-cubes"></i>{{ _("Partners")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#contacts"><i class="fa fa-envelope-o"></i>{{ _("Contacts")}}<i class="fa fa-circle"></i></a></li>
 	            </ul>
 
 	            <div class="sidebar-divider">
