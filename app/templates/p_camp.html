@@ -421,7 +421,7 @@ $(function(){
                                     {% elif field.field_type == 'phone' %}
                                     <input type="tel" id="{{ field.tag }}" name="{{ field.tag }}">
                                     {% elif field.field_type == 'date' %}
-                                    <input type="date" id="{{ field.tag }}" name="{{ field.tag }}">
+                                    <input type="text" placeholder="DD/MM/YYYY" id="{{ field.tag }}" name="{{ field.tag }}">
                                     {% else %}
                                     <input type="text" id="{{ field.tag }}" name="{{ field.tag }}">
                                     {% endif %}
