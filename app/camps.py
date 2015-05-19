@@ -32,7 +32,7 @@ def camps_g_list(language_suffix):
 		debug=app.debug)
 
 #for /__lang__/camp/1/ [GET]
-#@cache.cached(timeout=60)
+@cache.cached(timeout=600)
 def camps_page(language_suffix, id):
 	save_curr('camps_page')
 	lang = save_lang(language_suffix)
@@ -121,6 +121,7 @@ def camps_feedback(language_suffix, id):
 	else:
 		return '0'
 
+@cache.cached(timeout=600)
 def camps_dontforgetit(language_suffix, id):
 	save_lang(language_suffix)
 
@@ -133,6 +134,7 @@ def camps_dontforgetit(language_suffix, id):
 		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
+@cache.cached(timeout=600)
 def camps_visa(language_suffix, id):
 	save_lang(language_suffix)
 
@@ -145,6 +147,7 @@ def camps_visa(language_suffix, id):
 		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
+@cache.cached(timeout=600)
 def camps_insurance(language_suffix, id):
 	save_lang(language_suffix)
 
@@ -157,6 +160,7 @@ def camps_insurance(language_suffix, id):
 		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
+@cache.cached(timeout=600)
 def camps_howtogetusbyyourself(language_suffix, id):
 	save_lang(language_suffix)
 
