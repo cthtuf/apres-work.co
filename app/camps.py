@@ -32,7 +32,7 @@ def camps_g_list(language_suffix):
 		debug=app.debug)
 
 #for /__lang__/camp/1/ [GET]
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def camps_page(language_suffix, id):
 	save_curr('camps_page')
 	lang = save_lang(language_suffix)

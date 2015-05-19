@@ -162,6 +162,24 @@ var camp = (function(){
             doEnableControls();
         });
     },
+    unselectTransfer = function(){
+        $('#TRANSFER option').each(function(){
+            console.log($(this).text());
+            console.log(options['TRANSFER'][$(this).text()]);
+            if(options['TRANSFER'][$(this).text()] == 0){
+                $('#TRANSFER').val($(this).text());
+            }
+        });
+    },
+    unselectCoteDAzure = function(){
+        $('#COTEDAZURE option').each(function(){
+            console.log($(this).text());
+            console.log(options['COTEDAZURE'][$(this).text()]);
+            if(options['COTEDAZURE'][$(this).text()] == 0){
+                $('#COTEDAZURE').val($(this).text());
+            }
+        });
+    },
     reCalcOption = function(e){
         var init_cost = $('#camp_form').attr('data-cost-initial'),
             currency = $('#camp_form').attr('data-cost-currency');
@@ -185,6 +203,8 @@ var camp = (function(){
             if(!options['{{option.group}}']) options['{{option.group}}'] = {};
             options['{{option.group}}']['{{option.value}}'] = {{option.cost}};
             {% endfor %}
+            unselectTransfer();
+            unselectCoteDAzure();
 
             $('#camp_form select').on('change', reCalcOption);
             reCalcOption();
