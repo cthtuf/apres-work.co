@@ -165,6 +165,12 @@
     vertical-align: top;
 }
 
+@media (max-width:767px){
+    .camp-attend-fields-block {
+        width:100%;
+    }
+}   
+
 .col-label {
     display: block;
     text-align: left;    
@@ -198,17 +204,9 @@
 }
 
 @media (max-width:767px){
-    .form-attend label {
-        text-align: center;
-    }
-
-    .col-controls .input-group, #camp_cost {
-        text-align: center;
-    }
-
     .col-controls .input-group select,
     .col-controls .input-group input {
-        width:100%;
+        width:99%;
         margin-left:2px;
         margin-right:2px;
     }
@@ -389,25 +387,6 @@ select
 
 .mainpage-slider-container .arrow-scroll-down {
     margin-left:-10px;
-}
-
-@media all and (max-width: 767px){
-.camp-attend-fields-block{
-width: 100%;
-}
-.input-group input{
-margin: 5px 0 5px 0;
-padding: 0 5px;
-}
-.input-group p{
-line-height: 1.4em;
-}
-.input-group select{
-text-indent: 0;
-}
-.form-attend label{
-text-align: left;
-}
 }
 
 @media all and (max-width: 512px){
