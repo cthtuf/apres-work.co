@@ -365,7 +365,7 @@ select
 #contacts { position: relative; top:-60px;}
 
 .header-logo {
-    background: url(/static/images/awc_logo.png) no-repeat center center;
+    background: none; /*url(/static/images/awc_logo.png) no-repeat center center;*/
     height:48px;
     margin-top:6px;
 }
@@ -377,6 +377,10 @@ select
     margin-left:10px;
     margin-top:10px;
     background-size: 100% auto;
+}
+
+.header-logo img {
+    width: 100%;
 }
 
 #content > .content {
