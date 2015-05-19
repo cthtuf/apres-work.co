@@ -850,9 +850,12 @@ class CampContactUsefulPage(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 
 	order_index = db.Column(db.Integer)
+	en_link = db.Column(db.String(255))
+	ru_link = db.Column(db.String(255))
+	fr_link = db.Column(db.String(255))
+	es_link = db.Column(db.String(255))
 
 	icon_class = db.Column(db.String(20))
-	link = db.Column(db.String(255))
 	in_new_window = db.Column(db.Boolean)
 
 	en_caption = db.Column(db.String(1000))
