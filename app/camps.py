@@ -130,6 +130,7 @@ def camps_dontforgetit(language_suffix, id):
 		language_suffix = language_suffix,
 		countdown_time = 'May 24, 2015 15:03:25',
 		camp = camp,
+		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
 def camps_visa(language_suffix, id):
@@ -141,6 +142,7 @@ def camps_visa(language_suffix, id):
 		language_suffix = language_suffix,
 		countdown_time = 'May 24, 2015 15:03:25',
 		camp = camp,
+		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
 def camps_insurance(language_suffix, id):
@@ -152,6 +154,7 @@ def camps_insurance(language_suffix, id):
 		language_suffix = language_suffix,
 		countdown_time = 'May 26, 2015 15:03:25',
 		camp = camp,
+		contact_block = camp.contact_form.first(),
 		debug=app.debug)
 
 def camps_howtogetusbyyourself(language_suffix, id):
@@ -163,4 +166,5 @@ def camps_howtogetusbyyourself(language_suffix, id):
 		language_suffix = language_suffix,
 		countdown_time = 'May 24, 2015 15:03:25',
 		camp = camp,
+		contact_block = camp.contact_form.first(),
 		debug=app.debug)
