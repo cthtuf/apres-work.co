@@ -29,6 +29,14 @@
         margin-bottom:10px;
     }
 
+    .bottom-text {
+        font-size:14px;
+    }
+
+    .bottom-text a {
+        display: inline;
+    }
+
 </style>
 {% endblock %}
 {% block footer_scripts %}{% endblock %}
@@ -78,7 +86,7 @@
                 
             </div>    
             <div class="decoration"></div>
-            {{ get_data_by_lang(page, '_bottom_text', 'en')|safe }}
+            <div class="bottom-text">{{ get_data_by_lang(page, '_bottom_text', 'en')|safe }}</div>
         </div>
         <!-- Page Footer-->
         <div class="footer">
