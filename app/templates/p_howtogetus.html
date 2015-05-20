@@ -20,6 +20,15 @@
     .timeline-text ul {
         list-style-position: inside;
     }
+
+    .timeline-text dl {
+        font-size: 14px;
+    }
+
+    .timeline-text dd {
+        margin-bottom:10px;
+    }
+
 </style>
 {% endblock %}
 {% block footer_scripts %}{% endblock %}
@@ -47,7 +56,7 @@
                     {{ get_data_by_lang(page, '_subheader', 'en')|safe }}
                 </p>
             </div>
-            
+            {{ get_data_by_lang(page, '_top_text', 'en')|safe }}
             <div class="decoration"></div>
             
             <div class="timeline">
@@ -69,6 +78,7 @@
                 
             </div>    
             <div class="decoration"></div>
+            {{ get_data_by_lang(page, '_bottom_text', 'en')|safe }}
         </div>
         <!-- Page Footer-->
         <div class="footer">
