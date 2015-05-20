@@ -357,6 +357,20 @@ camp_facilities = db.Table('camp_facilities',
 
 class Camp(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
 	dt_create = db.Column(db.DateTime)
 	dt = db.Column(db.DateTime)
 	name = db.Column(db.String(100))
@@ -391,6 +405,14 @@ class Camp(db.Model):
 		lazy='dynamic')
 	#bottom_share_block = db.relationship('CampBottomShareBlock', backref='camp',
 		#lazy='dynamic')
+	htgu_page = db.relationship('CampHtguPage', backref='camp',
+		lazy='dynamic')
+	insurance_page = db.relationship('CampInsurancePage', backref='camp',
+		lazy='dynamic')
+	visa_page = db.relationship('CampVisaPage', backref='camp',
+		lazy='dynamic')
+	dfic_page = db.relationship('CampDficPage', backref='camp',
+		lazy='dynamic')
 
 	def __repr__(self):
 		return '<Camp id=%r, name=%r, dt=%r' % (
@@ -873,3 +895,285 @@ class CampContactUsefulPage(db.Model):
 #     db.Column('block_id', db.Integer, db.ForeignKey('camp_price_block.id')),
 #     db.Column('option_id', db.Integer, db.ForeignKey('camp_price_option_record.id'))
 # )
+
+CampHtguRoutes = db.Table('camp_htgu_routes',
+    db.Column('htgu_page_id', db.Integer, db.ForeignKey('camp_htgu_page.id')),
+    db.Column('route_id', db.Integer, db.ForeignKey('camp_htgu_route.id'))
+)
+
+class CampHtguPage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	is_published = db.Column(db.Boolean)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	en_top_text = db.Column(db.Text)
+	en_bottom_text = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	ru_top_text = db.Column(db.Text)
+	ru_bottom_text = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	fr_top_text = db.Column(db.Text)
+	fr_bottom_text = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+	es_top_text = db.Column(db.Text)
+	es_bottom_text = db.Column(db.Text)
+
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
+	routes = db.relationship('CampHtguRoute',
+		secondary=CampHtguRoutes, 
+		backref=db.backref('htgu_page', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampHTGUPage id=%r, header=%r, subheader=%r' % (
+			self.id,
+			self.en_header,
+			self.en_subheader
+			)
+
+class CampHtguRoute(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	icon_class = db.Column(db.String(20))
+	
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.Text)
+	en_text = db.Column(db.Text)
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.Text)
+	ru_text = db.Column(db.Text)
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.Text)
+	fr_text = db.Column(db.Text)
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.Text)
+	es_text = db.Column(db.Text)
+
+	def __repr__(self):
+		return '<CampHTGURoute id=%r, header=%r' % (
+			self.id,
+			self.en_header
+			)
+
+class CampInsurancePage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	is_published = db.Column(db.Boolean)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	en_text = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	ru_text = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	fr_text = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+	es_text = db.Column(db.Text)
+
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
+	def __repr__(self):
+		return '<CampInsurancePage id=%r, header=%r' % (
+			self.id,
+			self.en_header,
+			)
+
+class CampVisaPage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+
+	is_published = db.Column(db.Boolean)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	en_text = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	ru_text = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	fr_text = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+	es_text = db.Column(db.Text)
+
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
+	def __repr__(self):
+		return '<CampVisaPage id=%r, header=%r' % (
+			self.id,
+			self.en_header,
+			)
+
+CampDficItems = db.Table('camp_dfic_items',
+    db.Column('page_id', db.Integer, db.ForeignKey('camp_dfic_page.id')),
+    db.Column('item_id', db.Integer, db.ForeignKey('camp_dfic_item.id'))
+)
+
+class CampDficPage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+	is_published = db.Column(db.Boolean)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	en_top_text = db.Column(db.Text)
+	en_bottom_text = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	ru_top_text = db.Column(db.Text)
+	ru_bottom_text = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	fr_top_text = db.Column(db.Text)
+	fr_bottom_text = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+	es_top_text = db.Column(db.Text)
+	es_bottom_text = db.Column(db.Text)
+
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
+	items = db.relationship('CampDficItem',
+		secondary=CampDficItems, 
+		backref=db.backref('dfic_page', lazy='dynamic')
+		)
+
+	def __repr__(self):
+		return '<CampDficPage id=%r, header=%r' % (
+			self.id,
+			self.en_header
+			)
+
+class CampDficItem(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	icon_class = db.Column(db.String(20))
+	img_url = db.Column(db.String(255))
+	weight = db.Column(db.Integer)
+	
+	en_header = db.Column(db.String(255))
+	en_subheader = db.Column(db.Text)
+	en_text = db.Column(db.Text)
+	ru_header = db.Column(db.String(255))
+	ru_subheader = db.Column(db.Text)
+	ru_text = db.Column(db.Text)
+	fr_header = db.Column(db.String(255))
+	fr_subheader = db.Column(db.Text)
+	fr_text = db.Column(db.Text)
+	es_header = db.Column(db.String(255))
+	es_subheader = db.Column(db.Text)
+	es_text = db.Column(db.Text)
+
+	def __repr__(self):
+		return '<CampDficItem id=%r, header=%r' % (
+			self.id,
+			self.en_header
+			)

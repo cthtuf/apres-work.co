@@ -121,54 +121,89 @@ def camps_feedback(language_suffix, id):
 	else:
 		return '0'
 
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def camps_dontforgetit(language_suffix, id):
 	save_lang(language_suffix)
 
 	camp = Camp.query.filter(Camp.id==id).first()
+	dfic = camp.dfic_page.first()
 
-	return render_template('not_ready_camp.html',
-		language_suffix = language_suffix,
-		countdown_time = 'May 24, 2015 15:03:25',
-		camp = camp,
-		contact_block = camp.contact_form.first(),
-		debug=app.debug)
+	if dfic.is_published:
+		return render_template('p_dontforgetit.html',
+			language_suffix = language_suffix,
+			camp = camp,
+			page = dfic,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)	
+	else:
+		return render_template('not_ready_camp.html',
+			language_suffix = language_suffix,
+			countdown_time = 'May 24, 2015 15:03:25',
+			camp = camp,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
 
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def camps_visa(language_suffix, id):
 	save_lang(language_suffix)
 
 	camp = Camp.query.filter(Camp.id==id).first()
+	visa = camp.visa_page.first()
+	if visa.is_published:
+		return render_template('p_visa.html',
+			language_suffix = language_suffix,
+			camp = camp,
+			page = visa,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
+	else:
+		return render_template('not_ready_camp.html',
+			language_suffix = language_suffix,
+			countdown_time = 'May 24, 2015 15:03:25',
+			camp = camp,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
 
-	return render_template('not_ready_camp.html',
-		language_suffix = language_suffix,
-		countdown_time = 'May 24, 2015 15:03:25',
-		camp = camp,
-		contact_block = camp.contact_form.first(),
-		debug=app.debug)
-
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def camps_insurance(language_suffix, id):
 	save_lang(language_suffix)
 
 	camp = Camp.query.filter(Camp.id==id).first()
 
-	return render_template('not_ready_camp.html',
-		language_suffix = language_suffix,
-		countdown_time = 'May 26, 2015 15:03:25',
-		camp = camp,
-		contact_block = camp.contact_form.first(),
-		debug=app.debug)
+	insurance = camp.insurance_page.first()
+	if insurance.is_published:
+		return render_template('p_insurance.html',
+			language_suffix = language_suffix,
+			camp = camp,
+			page = insurance,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
+	else:
+		return render_template('not_ready_camp.html',
+			language_suffix = language_suffix,
+			countdown_time = 'May 26, 2015 15:03:25',
+			camp = camp,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
 
-@cache.cached(timeout=600)
+#@cache.cached(timeout=600)
 def camps_howtogetusbyyourself(language_suffix, id):
 	save_lang(language_suffix)
 
 	camp = Camp.query.filter(Camp.id==id).first()
 
-	return render_template('not_ready_camp.html',
-		language_suffix = language_suffix,
-		countdown_time = 'May 24, 2015 15:03:25',
-		camp = camp,
-		contact_block = camp.contact_form.first(),
-		debug=app.debug)
+	htgu = camp.htgu_page.first()
+	if htgu.is_published:
+		return render_template('p_howtogetus.html',
+			language_suffix = language_suffix,
+			camp = camp,
+			page = htgu,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)
+	else:
+		return render_template('not_ready_camp.html',
+			language_suffix = language_suffix,
+			countdown_time = 'May 26, 2015 15:03:25',
+			camp = camp,
+			contact_block = camp.contact_form.first(),
+			debug=app.debug)

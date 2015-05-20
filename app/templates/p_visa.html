@@ -1,0 +1,89 @@
+{% extends "base_camp.html" %}
+{% block title %}{{_("How to get us by yourself - Les Deux Alpes Summer Camp")}}{% endblock %}
+{% block description %}{{_("This info will help you to get our camp")}}{% endblock %}
+{% block url %}{{ url_for('camps_visa', language_suffix=language_suffix, id=camp.id) }}{% endblock %}
+{% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
+{% block head_scripts %}
+<link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
+<style>
+    #content {
+        padding-top:80px;
+    }
+
+    #content > .content > .container small{
+        font-size:12px;
+        font-weight: 300;
+    }
+
+</style>
+{% endblock %}
+{% block footer_scripts %}{% endblock %}
+
+{% block content %}
+<!-- Page Content-->
+    <div id="content" class="snap-content">
+        <div class="header">
+            <a href="/" class="header-logo"><img src="{{ url_for('static', filename='images/awc_logo_200.png')}}"></a>
+            <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+            <a href="#maininfo" class="header-nav-item">{{ _("Home")}}</a>
+            <a href="#services" class="header-nav-item header-nav-hide-on-mobile">{{ _("Services")}}</a>
+            <a href="#staff" class="header-nav-item header-nav-hide-on-mobile">{{ _("The team")}}</a>
+            <a href="#howitworks" class="header-nav-item">{{ _("How it works")}}</a>
+            <a href="#attend" class="header-nav-item">{{ _("Attend")}}</a>
+            <a href="#partners" class="header-nav-item header-nav-hide-on-mobile">{{ _("Partners")}}</a>
+            <a href="#contacts" class="header-nav-item header-nav-hide-on-mobile">{{ _("Contacts")}}</a>
+        </div>
+        <div class="header-clear"></div>
+        
+        <div class="content">
+            <div class="container no-bottom">
+                <h3>{{ get_data_by_lang(page, '_header', 'en')|safe }}</h3>
+                <p>
+                    {{ get_data_by_lang(page, '_subheader', 'en')|safe }}
+                </p>
+            </div>
+            
+            <div class="decoration"></div>
+            
+            <div class="container">
+                {{ get_data_by_lang(page, '_text', 'en')|safe}}
+            </div>
+            <div class="decoration"></div>
+        </div>
+        <!-- Page Footer-->
+        <div class="footer">
+        <div class="footer-socials half-bottom">
+            <a href="#" class="goodshare footer-facebook" data-type="fb"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="goodshare footer-twitter" data-type="tw"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="goodshare footer-google" data-type="gp"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <p class="center-text">Copyright 2015. All rights reserved.</p>
+    </div>       
+</div>
+    
+<div class="share-bottom">
+    <h3>{{ _("Share") }}</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Summer%20camp%20in%L2A&body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock content %}
+
