@@ -72,6 +72,7 @@ $(function(){
             <a href="/" class="header-logo"><img src="{{ url_for('static', filename='images/awc_logo_200.png')}}"></a>
             <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
             <a href="#maininfo" class="header-nav-item">{{ _("Home")}}</a>
+            <a href="{{ url_for('camps_calendar', language_suffix=language_suffix, id=camp.id) }}" class="header-nav-item">{{ _("Calendar")}}</a>
             <a href="#services" class="header-nav-item header-nav-hide-on-mobile">{{ _("Services")}}</a>
             <a href="#staff" class="header-nav-item header-nav-hide-on-mobile">{{ _("The team")}}</a>
             <a href="#howitworks" class="header-nav-item">{{ _("How it works")}}</a>
