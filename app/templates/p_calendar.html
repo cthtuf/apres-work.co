@@ -1,7 +1,7 @@
 {% extends "base_camp.html" %}
-{% block title %}{{_("How to get us by yourself - Les Deux Alpes Summer Camp")}}{% endblock %}
-{% block description %}{{_("This info will help you to get our camp")}}{% endblock %}
-{% block url %}{{ url_for('camps_visa', language_suffix=language_suffix, id=camp.id) }}{% endblock %}
+{% block title %}{{_("Calendar and Timetable - Les Deux Alpes Summer Camp")}}{% endblock %}
+{% block description %}{{_("Look at the list of our events")}}{% endblock %}
+{% block url %}{{ url_for('camps_calendar', language_suffix=language_suffix, id=camp.id) }}{% endblock %}
 {% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
 {% block head_scripts %}
 <link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
