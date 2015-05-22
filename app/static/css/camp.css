@@ -394,3 +394,19 @@ select
         width:auto;
     }
 }
+
+.trip-day{
+    color:#FFFFFF!important;
+}
+
+.trip-day i{
+    color:#2980b9;
+}
+
+.calendar-hour {
+    display: none;
+}
+
+.calendar-day-header {
+    display: none;
+}

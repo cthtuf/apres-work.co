@@ -77,6 +77,8 @@ admin.add_view(ModelView(models.CampInsurancePage, db.session))
 admin.add_view(ModelView(models.CampVisaPage, db.session))
 admin.add_view(ModelView(models.CampDficPage, db.session))
 admin.add_view(ModelView(models.CampDficItem, db.session))
+admin.add_view(ModelView(models.CampCalendarPage, db.session))
+admin.add_view(ModelView(models.CampCalendarRecord, db.session))
 
 path = op.join(op.dirname(__file__), 'static')
 admin.add_view(FileAdmin(path, '/static/', name='Static Files'))

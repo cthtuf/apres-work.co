@@ -1,0 +1,184 @@
+{% extends "base_camp.html" %}
+{% block title %}{{_("How to get us by yourself - Les Deux Alpes Summer Camp")}}{% endblock %}
+{% block description %}{{_("This info will help you to get our camp")}}{% endblock %}
+{% block url %}{{ url_for('camps_visa', language_suffix=language_suffix, id=camp.id) }}{% endblock %}
+{% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
+{% block head_scripts %}
+<link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
+<style>
+    #content {
+        padding-top:60px;
+    }
+
+    #content > .content > .container small{
+        font-size:12px;
+        font-weight: 300;
+    }
+
+</style>
+{% endblock %}
+{% block footer_scripts %}
+<script>
+$ = jQuery;
+$(function(){
+    $('.calendar-day-8').show();
+
+    $('.calendar-day').on('click', function(e){
+        e.preventDefault();
+        $('.calendar-hour, .calendar-day-header').hide();
+        $('.'+$(this).attr('href').substring(1)).show();
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Page Content-->
+    <div id="content" class="snap-content">
+        <div class="header">
+            <a href="/" class="header-logo"><img src="{{ url_for('static', filename='images/awc_logo_200.png')}}"></a>
+            <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+            <a href="#maininfo" class="header-nav-item">{{ _("Home")}}</a>
+            <a href="#services" class="header-nav-item header-nav-hide-on-mobile">{{ _("Services")}}</a>
+            <a href="#staff" class="header-nav-item header-nav-hide-on-mobile">{{ _("The team")}}</a>
+            <a href="#howitworks" class="header-nav-item">{{ _("How it works")}}</a>
+            <a href="#attend" class="header-nav-item">{{ _("Attend")}}</a>
+            <a href="#partners" class="header-nav-item header-nav-hide-on-mobile">{{ _("Partners")}}</a>
+            <a href="#contacts" class="header-nav-item header-nav-hide-on-mobile">{{ _("Contacts")}}</a>
+        </div>
+        <div class="header-clear"></div>
+        
+        <div class="content">
+            <div class="one-half-responsive">
+                <h3>{{ get_data_by_lang(page, '_header', 'en')|safe }}</h3>
+                <p>
+                    {{ get_data_by_lang(page, '_subheader', 'en')|safe }}
+                </p>
+                <div class="decoration"></div>
+                <h3 class="right-text half-bottom">August, 2015</h3>
+                <div class="calendar-titles">
+                    <a href="#">Mo</a>
+                    <a href="#">Tu</a>
+                    <a href="#">We</a>
+                    <a href="#">Th</a>
+                    <a href="#">Fr</a>
+                    <a class="light-titles" href="#">Sa</a>
+                    <a class="light-titles" href="#">Su</a>
+                </div>
+                <div class="decoration half-bottom"></div>
+                <div class="calendar-days">
+                    <!-- &nbsp adds a space for the single numbers, this way they can be centered in boxes -->
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>27</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>28</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>29</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>30</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp1</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp2</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp3</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp4</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp5</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp6</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp7</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-8" title="Transfer and check-in day"><i class="fa fa-circle"></i>&nbsp8</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-9" title="Shred\play\party day"><i class="fa fa-circle"></i>&nbsp9</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-10" title="Shred\play\party day"><i class="fa fa-circle"></i>10</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-11" title="Shred\play\party day"><i class="fa fa-circle"></i>11</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-12" title="Shred\play\party day"><i class="fa fa-circle"></i>12</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-13" title="Shred\play\party day"><i class="fa fa-circle"></i>13</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-14" title="Shred\play\party day"><i class="fa fa-circle"></i>14</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-15" title="Shred\play\party day"><i class="fa fa-circle"></i>15</a>
+                    <a class="trip-day calendar-day" href="#calendar-day-16" title="Cote d'Azure trip"><i class="fa fa-circle"></i>16</a>
+                    <a class="trip-day calendar-day" href="#calendar-day-17" title="Cote d'Azure trip"><i class="fa fa-circle"></i>17</a>
+                    <a class="trip-day calendar-day" href="#calendar-day-18" title="Cote d'Azure trip"><i class="fa fa-circle"></i>18</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-19" title="Shred\play\party day"><i class="fa fa-circle"></i>19</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-20" title="Shred\play\party day"><i class="fa fa-circle"></i>20</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-21" title="Shred\play\party day"><i class="fa fa-circle"></i>21</a>
+                    <a class="taken-day calendar-day" href="#calendar-day-22" title="Check-out and transfer day"><i class="fa fa-circle"></i>22</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>23</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>24</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>25</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>26</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>27</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>28</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>29</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>30</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>31</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp1</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp2</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp3</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp4</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp5</a>
+                    <a class="light-day" href="#"><i class="fa fa-circle"></i>&nbsp6</a>
+                </div>
+            </div>
+            <div class="one-half-responsive last-column">
+                <h5 class="calendar-day-header calendar-day-8">Day 1, Aug 8</h5>
+                <h5 class="calendar-day-header calendar-day-9">Day 2, Aug 9</h5>
+                <h5 class="calendar-day-header calendar-day-10">Day 3, Aug 10</h5>
+                <h5 class="calendar-day-header calendar-day-11">Day 4, Aug 11</h5>
+                <h5 class="calendar-day-header calendar-day-12">Day 5, Aug 12</h5>
+                <h5 class="calendar-day-header calendar-day-13">Day 6, Aug 13</h5>
+                <h5 class="calendar-day-header calendar-day-14">Day 7, Aug 14</h5>
+                <h5 class="calendar-day-header calendar-day-15">Day 8, Aug 15</h5>
+                <h5 class="calendar-day-header calendar-day-16">Day 9, Aug 16</h5>
+                <h5 class="calendar-day-header calendar-day-17">Day 10, Aug 17</h5>
+                <h5 class="calendar-day-header calendar-day-18">Day 11, Aug 18</h5>
+                <h5 class="calendar-day-header calendar-day-19">Day 12, Aug 19</h5>
+                <h5 class="calendar-day-header calendar-day-20">Day 13, Aug 20</h5>
+                <h5 class="calendar-day-header calendar-day-21">Day 14, Aug 21</h5>
+                <h5 class="calendar-day-header calendar-day-22">Day 15, Aug 22</h5>
+                <div class="calendar-hours">
+                    {% for record in page.records %}
+                        <a id="calendar-day-{{record.day_of_month}}" href="#" class="calendar-day-{{record.day_of_month}} calendar-hour calendar-hour-taken">
+                            {% if record.time_to %}
+                            <strong class="cal-from">{{ record.time_from }}</strong>
+                            <strong class="cal-to">{{ record.time_to }}</strong>
+                            {% else %}
+                            <strong class="cal-time">{{ record.time_from }}</strong>
+                            {% endif %}
+                            <h4>{{ get_data_by_lang(record, '_header', 'en')|safe }}</h4>
+                            <em>{{ get_data_by_lang(record, '_subheader', 'en')|safe }}</em>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="decoration"></div>
+        </div>
+        <!-- Page Footer-->
+        <div class="footer">
+        <div class="footer-socials half-bottom">
+            <a href="#" class="goodshare footer-facebook" data-type="fb"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="goodshare footer-twitter" data-type="tw"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="goodshare footer-google" data-type="gp"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <p class="center-text">Copyright 2015. All rights reserved.</p>
+    </div>       
+</div>
+    
+<div class="share-bottom">
+    <h3>{{ _("Share") }}</h3>
+    <div class="share-socials-bottom">
+        <a href="http://vk.com/share.php?url={{request.url}}" target="_blank">
+            <i class="fa fa-vk vkontakte-color"></i>
+            Vkontakte
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.path }}" target="_blank">
+            <i class="fa fa-facebook facebook-color"></i>
+            Facebook
+        </a>
+        <a href="sms:?body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-comment-o sms-color"></i>
+            SMS
+        </a>
+        <a href="mailto:?&subject=Summer%20camp%20in%L2A&body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+            <i class="fa fa-envelope-o mail-color"></i>
+            Email
+        </a>
+    </div>
+    <a href="#" class="close-share-bottom">{{ _("Close") }}&nbsp;<i class="fa fa-times"></i></a>
+</div>
+{% endblock content %}
+

@@ -413,6 +413,8 @@ class Camp(db.Model):
 		lazy='dynamic')
 	dfic_page = db.relationship('CampDficPage', backref='camp',
 		lazy='dynamic')
+	calendar_page = db.relationship('CampCalendarPage', backref='camp',
+		lazy='dynamic')
 
 	def __repr__(self):
 		return '<Camp id=%r, name=%r, dt=%r' % (
@@ -1174,6 +1176,83 @@ class CampDficItem(db.Model):
 
 	def __repr__(self):
 		return '<CampDficItem id=%r, header=%r' % (
+			self.id,
+			self.en_header
+			)
+
+class CampCalendarPage(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	camp_id = db.Column(db.Integer, db.ForeignKey('camp.id'))
+	is_published = db.Column(db.Boolean)
+
+	en_page_title = db.Column(db.String(255))
+	en_page_description = db.Column(db.Text)
+	en_image_url = db.Column(db.String(255))
+	ru_page_title = db.Column(db.String(255))
+	ru_page_description = db.Column(db.Text)
+	ru_image_url = db.Column(db.String(255))
+	fr_page_title = db.Column(db.String(255))
+	fr_page_description = db.Column(db.Text)
+	fr_image_url = db.Column(db.String(255))
+	es_page_title = db.Column(db.String(255))
+	es_page_description = db.Column(db.Text)
+	es_image_url = db.Column(db.String(255))
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
+	records = db.relationship('CampCalendarRecord', backref='calendar_page',
+		lazy='dynamic')
+
+	def __repr__(self):
+		return '<CampCalendarPage id=%r, header=%r' % (
+			self.id,
+			self.en_header
+			)
+
+class CampCalendarRecord(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	calendar_id = db.Column(db.Integer, db.ForeignKey('camp_calendar_page.id'))
+
+	order_index = db.Column(db.Integer)
+
+	record_class = db.Column(db.String(50))
+
+	time_from = db.Column(db.String(20))
+	time_to = db.Column(db.String(20))
+
+	day_of_month = db.Column(db.Integer)
+
+	en_header = db.Column(db.Text)
+	en_subheader = db.Column(db.Text)
+	ru_header = db.Column(db.Text)
+	ru_subheader = db.Column(db.Text)
+	fr_header = db.Column(db.Text)
+	fr_subheader = db.Column(db.Text)
+	es_header = db.Column(db.Text)
+	es_subheader = db.Column(db.Text)
+
+	def __repr__(self):
+		return '<CampCalendarRecord id=%r, header=%r' % (
 			self.id,
 			self.en_header
 			)
