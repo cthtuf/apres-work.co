@@ -416,6 +416,19 @@ class Camp(db.Model):
 	calendar_page = db.relationship('CampCalendarPage', backref='camp',
 		lazy='dynamic')
 
+	en_share_email_subject = db.Column(db.String(255))
+	en_share_email_body = db.Column(db.Text)
+	en_share_sms = db.Column(db.Text)
+	ru_share_email_subject = db.Column(db.String(255))
+	ru_share_email_body = db.Column(db.Text)
+	ru_share_sms = db.Column(db.Text)
+	fr_share_email_subject = db.Column(db.String(255))
+	fr_share_email_body = db.Column(db.Text)
+	fr_share_sms = db.Column(db.Text)
+	es_share_email_subject = db.Column(db.String(255))
+	es_share_email_body = db.Column(db.Text)
+	es_share_sms = db.Column(db.Text)
+
 	def __repr__(self):
 		return '<Camp id=%r, name=%r, dt=%r' % (
 			self.id,

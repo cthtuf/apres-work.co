@@ -1,8 +1,8 @@
 {% extends "base_camp.html" %}
-{% block title %}{{_("Les Deux Alpes Summer Camp - apres-work.co")}}{% endblock %}
-{% block description %}{{_("Ski in the summer? We’ve got it all figured out. 12 days in Les Deux Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and partying...because skiing’s more fun with friends")}}{% endblock %}
-{% block url %}{{ url_for('camps_page', language_suffix=language_suffix, location_suffix=location_suffix, id=camp.id) }}{% endblock %}
-{% block image %}{{ url_for('static', filename='images/camp/top/2048x1536_1st.jpg')}}{% endblock %}
+{% block title %}{{ get_data_by_lang(camp, '_page_title', 'en')|safe }}{% endblock %}
+{% block description %}{{ get_data_by_lang(camp, '_page_description', 'en')|safe }}{% endblock %}
+{% block url %}{{ url_for('.camps_page', language_suffix=language_suffix, id=camp.id) }}{% endblock %}
+{% block image %}{{ get_data_by_lang(camp, '_image_url', 'en')|safe }}{% endblock %}
 {% block head_scripts %}
 <link href="{{ url_for('static', filename='css/camp.css', v='3') }}" rel="stylesheet" type="text/css">
 <link href="{{ url_for('static', filename='css/lib/slick.css')}}" rel="stylesheet" type="text/css">
@@ -645,11 +645,11 @@ $(function(){
             <i class="fa fa-facebook facebook-color"></i>
             Facebook
         </a>
-        <a href="sms:?body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+        <a href="sms:?body={{ get_data_by_lang(camp, '_share_sms', 'en') }}">
             <i class="fa fa-comment-o sms-color"></i>
             SMS
         </a>
-        <a href="mailto:?&subject=Summer%20camp%20in%L2A&body=Hi!%20Look%20at%20this%20camp%20at%20Les2Alpes!%20Check it!%20http://apres-work.co/{{ language_suffix}}/camp/1/">
+        <a href="mailto:?&subject={{ get_data_by_lang(camp, '_share_email_subject', 'en') }}&body={{ get_data_by_lang(camp, '_share_email_body', 'en') }}">
             <i class="fa fa-envelope-o mail-color"></i>
             Email
         </a>
