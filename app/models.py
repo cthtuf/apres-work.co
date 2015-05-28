@@ -617,7 +617,7 @@ class CampStaffRecord(db.Model):
 	def __repr__(self):
 		return '<CampStaffRecord id=%r, name=%r' % (
 			self.id,
-			self.name
+			self.en_name
 			)
 
 CampMainInfoBlockPhotos = db.Table('camp_main_info_block_photos',
