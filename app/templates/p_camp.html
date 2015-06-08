@@ -524,7 +524,7 @@ $(function(){
                 <div>
                     <img class="partner-logo" src="{{ partner.img_link }}" alt="{{ get_data_by_lang(partner, '_name', 'en') }}">
                     <h4>
-                        {{ get_data_by_lang(partner, '_description', 'en') }}
+                        {{ get_data_by_lang(partner, '_description', 'en')|safe }}
                     </h4>
                 </div>
                 <a href="{{ partner.url }}" target="_blank">{{ get_data_by_lang(partner, '_name', 'en') }}</a>

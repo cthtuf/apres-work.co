@@ -410,3 +410,8 @@ select
 .calendar-day-header {
     display: none;
 }
+
+.quote-slider h4 {
+    font-family: inherit;
+    font-size:inherit;
+}
