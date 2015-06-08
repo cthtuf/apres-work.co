@@ -808,9 +808,9 @@ class CampPartnerRecord(db.Model):
 
 
 	def __repr__(self):
-		return '<CampPertnerRecord id=%r, alt=%r' % (
+		return '<CampPertnerRecord id=%r, en_name=%r' % (
 			self.id,
-			self.en_alt
+			self.en_name
 			)
 
 CampContactRecords = db.Table('camp_contact_records',
