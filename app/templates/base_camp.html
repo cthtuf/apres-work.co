@@ -78,6 +78,13 @@
 	                <a href="#"><i class="fa fa-times"></i></a>                
 	            </div>
 	            
+	            <!--<div class="sidebar-divider">
+	                {{ _("Language") }}
+	            </div>-->
+	            <ul class="sidebar-navigation" style="text-align:center; width:266px;">
+	            	<li class="language-nav" style="display:inline-block;"><a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>{#&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>#}&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a>
+	            </ul>
+
 	            <div class="sidebar-logo">
 	                <a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}"></a>
 	            </div>
@@ -91,7 +98,7 @@
 	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#maininfo"><i class="fa fa-bookmark-o"></i>{{ _("Main info")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a href="{{ url_for('camps_calendar', language_suffix=language_suffix, id=camp.id) }}"><i class="fa fa-calendar"></i>{{ _("Calendar") }}<i class="fa fa-circle"></i></a></li>
 	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#services"><i class="fa fa-rocket"></i>{{ _("Services")}}<i class="fa fa-circle"></i></a></li>
-	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#staff"><i class="fa fa-users"></i>{{ _("The team")}}<i class="fa fa-circle"></i></a></li>
+	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#staff"><i class="fa fa-users"></i>{{ _("The Team")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#howitworks"><i class="fa fa-newspaper-o"></i>{{ _("How it works")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#partners"><i class="fa fa-cubes"></i>{{ _("Partners")}}<i class="fa fa-circle"></i></a></li>
 	                <li><a href="{{ url_for('camps_page', language_suffix=language_suffix, id=camp.id) }}#contacts"><i class="fa fa-envelope-o"></i>{{ _("Contacts")}}<i class="fa fa-circle"></i></a></li>
@@ -114,11 +121,8 @@
 	            </ul>
 
 	            <div class="sidebar-divider">
-	                {{ _("Language") }}
+	                &copy; apres-work.co 2015
 	            </div>
-	            <ul class="sidebar-navigation">
-	            	<li class="language-nav"><i class="fa fa-language"></i>&nbsp;<a href="{{ get_curr_path_other_lang('ru') }}" class="{{ is_current_language('ru') }}">RU</a>&nbsp;<a href="{{ get_curr_path_other_lang('fr') }}" class="{{ is_current_language('fr') }}">FR</a>&nbsp;<a href="{{ get_curr_path_other_lang('en') }}" class="{{ is_current_language('en') }}">EN</a>
-	            </ul>
 	        </div>
 	    </div>
     	{% block content %}{% endblock %}
