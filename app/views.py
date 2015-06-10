@@ -242,16 +242,17 @@ def _jinja2_filter_datetime(date, fmt='%d.%m.%Y'):
 def index():
 	return redirect(url_for(
 		'camps_page',
-		language_suffix='en',#get_locale(),
+		language_suffix=get_lang(),
 		id=1
 	))
 
 # for /ru/ [GET]
 @cache.cached(timeout=600)
 def language_index(language_suffix):
+	save_lang(language_suffix)
 	return redirect(url_for(
 		'camps_page',
-		language_suffix='en',
+		language_suffix=language_suffix,
 		id=1
 	))
 
