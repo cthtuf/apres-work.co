@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-30 02:18+0300\n"
+"POT-Creation-Date: 2015-06-10 09:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,12 +138,67 @@ msgstr ""
 msgid "All Riders"
 msgstr ""
 
-#: app/templates/base.html:124
+#: app/templates/base.html:124 app/templates/base_camp.html:95
+#: app/templates/p_calendar.html:45 app/templates/p_camp.html:252
+#: app/templates/p_dontforgetit.html:78 app/templates/p_howtogetus.html:55
+#: app/templates/p_insurance.html:32 app/templates/p_visa.html:32
 msgid "How it works"
 msgstr ""
 
 #: app/templates/base.html:128
 msgid "Settings"
+msgstr ""
+
+#: app/templates/base_camp.html:86
+msgid "Navigation"
+msgstr ""
+
+#: app/templates/base_camp.html:90
+msgid "Sign up"
+msgstr ""
+
+#: app/templates/base_camp.html:91
+msgid "Main info"
+msgstr ""
+
+#: app/templates/base_camp.html:92 app/templates/p_calendar.html:42
+#: app/templates/p_camp.html:249 app/templates/p_dontforgetit.html:75
+#: app/templates/p_howtogetus.html:52 app/templates/p_insurance.html:29
+#: app/templates/p_visa.html:29
+msgid "Calendar"
+msgstr ""
+
+#: app/templates/base_camp.html:93 app/templates/p_calendar.html:43
+#: app/templates/p_camp.html:250 app/templates/p_dontforgetit.html:76
+#: app/templates/p_howtogetus.html:53 app/templates/p_insurance.html:30
+#: app/templates/p_visa.html:30
+msgid "Services"
+msgstr ""
+
+#: app/templates/base_camp.html:94
+msgid "The Team"
+msgstr ""
+
+#: app/templates/base_camp.html:96 app/templates/p_calendar.html:47
+#: app/templates/p_camp.html:254 app/templates/p_dontforgetit.html:80
+#: app/templates/p_howtogetus.html:57 app/templates/p_insurance.html:34
+#: app/templates/p_visa.html:34
+msgid "Partners"
+msgstr ""
+
+#: app/templates/base_camp.html:97 app/templates/p_calendar.html:48
+#: app/templates/p_camp.html:255 app/templates/p_dontforgetit.html:81
+#: app/templates/p_howtogetus.html:58 app/templates/p_insurance.html:35
+#: app/templates/p_visa.html:35
+msgid "Contacts"
+msgstr ""
+
+#: app/templates/base_camp.html:101
+msgid "Useful pages"
+msgstr ""
+
+#: app/templates/base_camp.html:117
+msgid "Language"
 msgstr ""
 
 #: app/templates/g_cameramen.html:2 app/templates/l_cameramen.html:2
@@ -165,9 +220,12 @@ msgstr ""
 #: app/templates/l_coaches.html:59 app/templates/l_events.html:63
 #: app/templates/l_index.html:175 app/templates/l_news.html:63
 #: app/templates/l_riders.html:59 app/templates/not_ready.html:111
-#: app/templates/p_cameraman.html:63 app/templates/p_camp.html:581
-#: app/templates/p_coach.html:63 app/templates/p_event.html:63
-#: app/templates/p_news.html:63 app/templates/p_rider.html:63
+#: app/templates/not_ready_camp.html:59 app/templates/p_calendar.html:163
+#: app/templates/p_cameraman.html:63 app/templates/p_camp.html:638
+#: app/templates/p_coach.html:63 app/templates/p_dontforgetit.html:130
+#: app/templates/p_event.html:63 app/templates/p_howtogetus.html:107
+#: app/templates/p_insurance.html:68 app/templates/p_news.html:63
+#: app/templates/p_rider.html:63 app/templates/p_visa.html:68
 msgid "Share"
 msgstr ""
 
@@ -178,9 +236,12 @@ msgstr ""
 #: app/templates/l_coaches.html:78 app/templates/l_events.html:82
 #: app/templates/l_index.html:194 app/templates/l_news.html:82
 #: app/templates/l_riders.html:78 app/templates/not_ready.html:130
-#: app/templates/p_cameraman.html:82 app/templates/p_camp.html:600
-#: app/templates/p_coach.html:82 app/templates/p_event.html:82
-#: app/templates/p_news.html:82 app/templates/p_rider.html:82
+#: app/templates/not_ready_camp.html:78 app/templates/p_calendar.html:182
+#: app/templates/p_cameraman.html:82 app/templates/p_camp.html:657
+#: app/templates/p_coach.html:82 app/templates/p_dontforgetit.html:149
+#: app/templates/p_event.html:82 app/templates/p_howtogetus.html:126
+#: app/templates/p_insurance.html:87 app/templates/p_news.html:82
+#: app/templates/p_rider.html:82 app/templates/p_visa.html:87
 msgid "Close"
 msgstr ""
 
@@ -403,89 +464,103 @@ msgstr ""
 msgid "Details..."
 msgstr ""
 
-#: app/templates/not_ready.html:94
+#: app/templates/not_ready.html:94 app/templates/not_ready_camp.html:42
 msgid "Coming Soon"
 msgstr ""
 
-#: app/templates/not_ready.html:95
+#: app/templates/not_ready.html:95 app/templates/not_ready_camp.html:43
 msgid "We're still working on this page!"
 msgstr ""
 
-#: app/templates/not_ready.html:97
+#: app/templates/not_ready.html:97 app/templates/not_ready_camp.html:45
 msgid "Honestly, we are riding..."
 msgstr ""
 
-#: app/templates/not_ready.html:99
+#: app/templates/not_ready.html:99 app/templates/not_ready_camp.html:47
 msgid "We'll finish this page when we get back!"
 msgstr ""
 
-#: app/templates/not_ready.html:102
+#: app/templates/not_ready.html:102 app/templates/not_ready_camp.html:50
 msgid "Go back"
 msgstr ""
 
-#: app/templates/p_camp.html:2
+#: app/templates/not_ready_camp.html:2
 msgid "Les Deux Alpes Summer Camp - apres-work.co"
 msgstr ""
 
-#: app/templates/p_camp.html:3
+#: app/templates/not_ready_camp.html:3
 msgid ""
 "Ski in the summer? We’ve got it all figured out. 12 days in Les Deux "
 "Alpes, France with Apres-Work Camps. Shredding, coaching, relaxing and "
 "partying...because skiing’s more fun with friends"
 msgstr ""
 
-#: app/templates/p_camp.html:73 app/templates/p_camp.html:160
+#: app/templates/p_calendar.html:41 app/templates/p_camp.html:248
+#: app/templates/p_dontforgetit.html:74 app/templates/p_howtogetus.html:51
+#: app/templates/p_insurance.html:28 app/templates/p_visa.html:28
+msgid "Home"
+msgstr ""
+
+#: app/templates/p_calendar.html:44 app/templates/p_camp.html:251
+#: app/templates/p_dontforgetit.html:77 app/templates/p_howtogetus.html:54
+#: app/templates/p_insurance.html:31 app/templates/p_visa.html:31
+msgid "The team"
+msgstr ""
+
+#: app/templates/p_calendar.html:46 app/templates/p_camp.html:253
+#: app/templates/p_dontforgetit.html:79 app/templates/p_howtogetus.html:56
+#: app/templates/p_insurance.html:33 app/templates/p_visa.html:33
+msgid "Attend"
+msgstr ""
+
+#: app/templates/p_camp.html:74 app/templates/p_camp.html:161
 msgid "An error occured. Please, try one more time"
 msgstr ""
 
-#: app/templates/p_camp.html:135
+#: app/templates/p_camp.html:136
 msgid "Please, fill all the fields"
 msgstr ""
 
-#: app/templates/p_camp.html:506
+#: app/templates/p_camp.html:555
 msgid ""
 "Your message has been successfuly sent. Please allow up to 24 hours for a"
 " reply! Thank you!"
 msgstr ""
 
-#: app/templates/p_camp.html:514
+#: app/templates/p_camp.html:563
 msgid "Name is required!"
 msgstr ""
 
-#: app/templates/p_camp.html:519
+#: app/templates/p_camp.html:568
 msgid "Mail address required!"
 msgstr ""
 
-#: app/templates/p_camp.html:524
+#: app/templates/p_camp.html:573
 msgid "Mail address must be valid!"
 msgstr ""
 
-#: app/templates/p_camp.html:529
+#: app/templates/p_camp.html:578
 msgid "Message field is empty!"
 msgstr ""
 
-#: app/templates/p_camp.html:533
+#: app/templates/p_camp.html:582
 msgid "Name"
 msgstr ""
 
-#: app/templates/p_camp.html:533 app/templates/p_camp.html:537
-#: app/templates/p_camp.html:541
+#: app/templates/p_camp.html:582 app/templates/p_camp.html:586
+#: app/templates/p_camp.html:590
 msgid "required"
 msgstr ""
 
-#: app/templates/p_camp.html:537
+#: app/templates/p_camp.html:586
 msgid "Email"
 msgstr ""
 
-#: app/templates/p_camp.html:541
+#: app/templates/p_camp.html:590
 msgid "Message"
 msgstr ""
 
-#: app/templates/p_camp.html:545
+#: app/templates/p_camp.html:594
 msgid "SUBMIT"
-msgstr ""
-
-#: app/templates/p_camp.html:591 app/templates/p_camp.html:595
-msgid "Hi! Check this camp in L2A! http://apres-work.co/en/l2a/camp/"
 msgstr ""
 
