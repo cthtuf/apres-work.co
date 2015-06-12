@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-06-10 09:27+0300\n"
-"PO-Revision-Date: 2015-06-10 09:36+0300\n"
+"PO-Revision-Date: 2015-06-12 15:21+0300\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -151,7 +151,7 @@ msgstr "Все райдеры"
 #: app/templates/p_dontforgetit.html:78 app/templates/p_howtogetus.html:55
 #: app/templates/p_insurance.html:32 app/templates/p_visa.html:32
 msgid "How it works"
-msgstr "Как это работает"
+msgstr "Как это будет"
 
 #: app/templates/base.html:128
 msgid "Settings"
@@ -163,7 +163,7 @@ msgstr "Навигация"
 
 #: app/templates/base_camp.html:90
 msgid "Sign up"
-msgstr "Логин"
+msgstr "Записаться"
 
 #: app/templates/base_camp.html:91
 msgid "Main info"
